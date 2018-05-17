@@ -15,8 +15,7 @@ categories:
 - R
 ---
 ```{r global_options, include=FALSE}
-knitr::opts_chunk$set(cache=TRUE, out.width = "800px", fig.align = "center", echo=TRUE, warning=FALSE, message=FALSE, width = 900, tidy = FALSE)
-options(width = 250)
+knitr::opts_chunk$set(cache=TRUE, out.width = "600px", fig.align = "center", echo=TRUE, warning=FALSE, message=FALSE, tidy = FALSE)
 ```
 
 This article provides an in depth introduction to counting patent first filings or priority counts. It is a work in progress chapter for the WIPO Patent Analytics Handbook focusing on advanced patent analytics and builds on the introductory [WIPO Manual on Open Source Patent Analytics](https://wipo-analytics.github.io/).

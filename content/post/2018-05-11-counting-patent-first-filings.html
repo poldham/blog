@@ -44,23 +44,23 @@ numbers &lt;- read_csv(&quot;https://github.com/wipo-analytics/drones_data/blob/
 <p>In the table below we can see that we have a dataset consisting of five columns starting with the priority number.</p>
 <pre class="r"><code>numbers</code></pre>
 <pre><code>## # A tibble: 18,970 x 5
-##    priority_number                                                                                                                                                                        application_number  family_first family_number publication_num…
-##    &lt;chr&gt;                                                                                                                                                                                  &lt;chr&gt;               &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;           
-##  1 US2016578323F 2016-09-20                                                                                                                                                               US2016578323F 2016… &lt;NA&gt;         &lt;NA&gt;          USD801224S1     
-##  2 US14954632A 2015-11-30                                                                                                                                                                 US14954632A 2015-1… &lt;NA&gt;         &lt;NA&gt;          US9807866B2     
-##  3 US15360203A 2016-11-23                                                                                                                                                                 US15360203A 2016-1… &lt;NA&gt;         &lt;NA&gt;          US9807726B1     
-##  4 US62203383P 2015-08-10; US62314047P 2016-03-28                                                                                                                                         US15454805A 2017-0… &lt;NA&gt;         &lt;NA&gt;          US9807625B2     
-##  5 US62200764P 2015-08-04; US62314042P 2016-03-28                                                                                                                                         US15263985A 2016-0… &lt;NA&gt;         &lt;NA&gt;          US9807619B2     
-##  6 KR201528901A 2015-03-02                                                                                                                                                                US15057264A 2016-0… &lt;NA&gt;         &lt;NA&gt;          US9807364B2     
-##  7 US15217944A 2016-07-22; US2015196885P 2015-07-24; US62196885P 2015-07-24                                                                                                               US15217944A 2016-0… &lt;NA&gt;         &lt;NA&gt;          US9806846B2     
-##  8 US2008100721P 2008-09-27; US2008108743P 2008-10-27; US2008121159P 2008-12-09; US2009142796P 2009-01-06; US2009142818P 2009-01-06; US2009142880P 2009-01-06; US2009142885P 2009-01-06;… US14808174A 2015-0… &lt;NA&gt;         &lt;NA&gt;          US9806541B2     
-##  9 FR20142036A 2014-09-12                                                                                                                                                                 US14848061A 2015-0… &lt;NA&gt;         &lt;NA&gt;          US9805606B2     
-## 10 US14970643A 2015-12-16                                                                                                                                                                 US14970643A 2015-1… &lt;NA&gt;         &lt;NA&gt;          US9805598B2     
-## # ... with 18,960 more rows</code></pre>
+##    priority_number             application_num… family_first family_number
+##    &lt;chr&gt;                       &lt;chr&gt;            &lt;chr&gt;        &lt;chr&gt;        
+##  1 US2016578323F 2016-09-20    US2016578323F 2… &lt;NA&gt;         &lt;NA&gt;         
+##  2 US14954632A 2015-11-30      US14954632A 201… &lt;NA&gt;         &lt;NA&gt;         
+##  3 US15360203A 2016-11-23      US15360203A 201… &lt;NA&gt;         &lt;NA&gt;         
+##  4 US62203383P 2015-08-10; US… US15454805A 201… &lt;NA&gt;         &lt;NA&gt;         
+##  5 US62200764P 2015-08-04; US… US15263985A 201… &lt;NA&gt;         &lt;NA&gt;         
+##  6 KR201528901A 2015-03-02     US15057264A 201… &lt;NA&gt;         &lt;NA&gt;         
+##  7 US15217944A 2016-07-22; US… US15217944A 201… &lt;NA&gt;         &lt;NA&gt;         
+##  8 US2008100721P 2008-09-27; … US14808174A 201… &lt;NA&gt;         &lt;NA&gt;         
+##  9 FR20142036A 2014-09-12      US14848061A 201… &lt;NA&gt;         &lt;NA&gt;         
+## 10 US14970643A 2015-12-16      US14970643A 201… &lt;NA&gt;         &lt;NA&gt;         
+## # ... with 18,960 more rows, and 1 more variable: publication_number &lt;chr&gt;</code></pre>
 <p>We will only be working with the priority number and the application number, but as a general principle it is useful to understand the relationship between these fields which can be simply described as follows.</p>
 <p>priority number &gt; application number &gt; publication number &gt; family members</p>
 <p>We can get a clearer understanding of the relationship between these numbers by looking at the front page of a patent document from our dataset using the popular <a href="mailto:esp@cenet">esp@cenet</a> database. You can access this example <a href="https://worldwide.espacenet.com/publicationDetails/biblio?FT=D&amp;date=20151210&amp;DB=EPODOC&amp;locale=en_EP&amp;CC=US&amp;NR=2015357831A1&amp;KC=A1&amp;ND=4">here</a>.</p>
-<p><img src="/images/priority/witricity.png" width="800px" style="display: block; margin: auto;" /></p>
+<p><img src="/images/priority/witricity.png" width="600px" style="display: block; margin: auto;" /></p>
 <p>We can see that the front page or biblio of a patent record contains a large amount of information. It is typically this information that is used to generate patent statistics. For our purposes we can see that the priority numbers field consists of one or more priority numbers. We might expect that there would only be one priority number as the original filing for the invention. However that is often not the case as we will discuss below.</p>
 <p>From the front page we can see that if we proceed up from the priority numbers the first priority number in the list exactly matches the application number on the front page. This tells us that this is the first filing for this particular application. This application is then published as US2015357831A1.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> We can clearly see the relationship we described above</p>
 <p><code>priority number &gt; application number &gt; publication number</code></p>
@@ -90,7 +90,7 @@ numbers[1,] %&gt;%
 ##   &lt;chr&gt;                    &lt;chr&gt;                   
 ## 1 US2016578323F 2016-09-20 US2016578323F 2016-09-20</code></pre>
 <p>However, the patent system is an international system. A patent applicant may choose to file for patent rights in up to 152 contracting parties to the <a href="http://www.wipo.int/pct/en/">Patent Cooperation Treaty</a> (although applications in all member states is unusual). As the applications are submitted in multiple countries additional priority numbers will appear in the record. An example of this is provided below.</p>
-<p><img src="/images/priority/japan.png" width="800px" style="display: block; margin: auto;" /></p>
+<p><img src="/images/priority/japan.png" width="600px" style="display: block; margin: auto;" /></p>
 <p>In this case we can see that the earliest priority number is for Japan (JP20150122335 20150617) and the second priority number is for WO (the Patent Cooperation Treaty) and incorporates the country code of the first filing JP into the new priority number (WO2016JP67809 20160615). The Patent Cooperation Treaty is the vehicle through which applicants can submit applications in multiple countries. In this case we can see that the applicant from Japan has chosen to pursue an application in the United States using the Patent Cooperation Treaty (WO) resulting in the application number US201615322008 20160615 filed in 2016 that was then published as <a href="https://worldwide.espacenet.com/publicationDetails/biblio?FT=D&amp;date=20170518&amp;DB=EPODOC&amp;locale=en_EP&amp;CC=US&amp;NR=2017137104A1&amp;KC=A1&amp;ND=4">US2017137104A1</a>.</p>
 <p>From this we might be tempted to assume that the earliest priority will always appear at the front of the list of priorities. However, this assumption is not safe as we will see below where the first filing appears at the end of the list of priorities. We will be on safer ground by identifying the earliest date in the sequence.</p>
 <ol start="2" style="list-style-type: decimal">
@@ -147,16 +147,16 @@ numbers[1,] %&gt;%
   select(-family_first, -family_number, -publication_number) %&gt;% 
   .[53:60,]</code></pre>
 <pre><code>## # A tibble: 8 x 2
-##   priority_number                                                                                     application_number      
-##   &lt;chr&gt;                                                                                               &lt;chr&gt;                   
-## 1 EP1980400905A 1980-06-19; FR197916840A 1979-06-29                                                   EP1980400905A 1980-06-19
-## 2 EP1980400905A 1980-06-19; FR197916840A 1979-06-29                                                   EP1980400905A 1980-06-19
-## 3 SE19799920A 1979-11-30                                                                              EP1980850181A 1980-11-28
-## 4 SE19799920A 1979-11-30                                                                              EP1980850181A 1980-11-28
-## 5 JP1979145870A 1979-11-09; JP1979145871A 1979-11-09; JP19804902A 1980-01-18; JP198074817A 1980-06-02 EP1980902127A 1980-11-06
-## 6 JP1979145870A 1979-11-09; JP1979145871A 1979-11-09; JP19804902A 1980-01-18; JP198074817A 1980-06-02 EP1980902127A 1980-11-06
-## 7 US1979105606A 1979-12-20                                                                            EP1981900248A 1980-12-17
-## 8 US1979105606A 1979-12-20                                                                            EP1981900248A 1980-12-17</code></pre>
+##   priority_number                                      application_number 
+##   &lt;chr&gt;                                                &lt;chr&gt;              
+## 1 EP1980400905A 1980-06-19; FR197916840A 1979-06-29    EP1980400905A 1980…
+## 2 EP1980400905A 1980-06-19; FR197916840A 1979-06-29    EP1980400905A 1980…
+## 3 SE19799920A 1979-11-30                               EP1980850181A 1980…
+## 4 SE19799920A 1979-11-30                               EP1980850181A 1980…
+## 5 JP1979145870A 1979-11-09; JP1979145871A 1979-11-09;… EP1980902127A 1980…
+## 6 JP1979145870A 1979-11-09; JP1979145871A 1979-11-09;… EP1980902127A 1980…
+## 7 US1979105606A 1979-12-20                             EP1981900248A 1980…
+## 8 US1979105606A 1979-12-20                             EP1981900248A 1980…</code></pre>
 <p>There are two things we need to note in this view.</p>
 <p>First, some of our data is concatenated (joined) with <code>;</code> as the separator. Second, and more importantly for the moment, we can see that we seem to have duplicate application numbers e.g. EP1980400905A in the first and second rows and then onwards.</p>
 <p>The reason that we have duplicates in the data is that a patent application may be published multiple times (for example as an application and as a grant or with corrections etc.). So, in the data above we can see that EP1980400905A 1980-06-19 has been published as EP22391A1 and EP22391B1 with the two letter <code>kind codes</code> at the end of the publication number representing the first publication of the application (A1) and kind code B1 representing the first publication of a patent grant.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></p>
@@ -195,18 +195,18 @@ nrow(numbers_unique) # count the rows</code></pre>
   mutate(missing_priority = is.na(priority_number)) %&gt;% 
   filter(missing_priority == &quot;TRUE&quot;)</code></pre>
 <pre><code>## # A tibble: 96 x 4
-##    priority_number application_number    publication_number missing_priority
-##    &lt;chr&gt;           &lt;chr&gt;                 &lt;chr&gt;              &lt;lgl&gt;           
-##  1 &lt;NA&gt;            USD502486A 0001-01-01 US502486A          TRUE            
-##  2 &lt;NA&gt;            USD500197A 0001-01-01 US500197A          TRUE            
-##  3 &lt;NA&gt;            USD499490A 0001-01-01 US499490A          TRUE            
-##  4 &lt;NA&gt;            USD497518A 0001-01-01 US497518A          TRUE            
-##  5 &lt;NA&gt;            USD565353A 0001-01-01 US565353A          TRUE            
-##  6 &lt;NA&gt;            USD474115A 0001-01-01 US474115A          TRUE            
-##  7 &lt;NA&gt;            USD459287A 0001-01-01 US459287A          TRUE            
-##  8 &lt;NA&gt;            USD540479A 0001-01-01 US540479A          TRUE            
-##  9 &lt;NA&gt;            USD522772A 0001-01-01 US522772A          TRUE            
-## 10 &lt;NA&gt;            USD593712A 0001-01-01 US593712A          TRUE            
+##    priority_number application_number    publication_num… missing_priority
+##    &lt;chr&gt;           &lt;chr&gt;                 &lt;chr&gt;            &lt;lgl&gt;           
+##  1 &lt;NA&gt;            USD502486A 0001-01-01 US502486A        TRUE            
+##  2 &lt;NA&gt;            USD500197A 0001-01-01 US500197A        TRUE            
+##  3 &lt;NA&gt;            USD499490A 0001-01-01 US499490A        TRUE            
+##  4 &lt;NA&gt;            USD497518A 0001-01-01 US497518A        TRUE            
+##  5 &lt;NA&gt;            USD565353A 0001-01-01 US565353A        TRUE            
+##  6 &lt;NA&gt;            USD474115A 0001-01-01 US474115A        TRUE            
+##  7 &lt;NA&gt;            USD459287A 0001-01-01 US459287A        TRUE            
+##  8 &lt;NA&gt;            USD540479A 0001-01-01 US540479A        TRUE            
+##  9 &lt;NA&gt;            USD522772A 0001-01-01 US522772A        TRUE            
+## 10 &lt;NA&gt;            USD593712A 0001-01-01 US593712A        TRUE            
 ## # ... with 86 more rows</code></pre>
 <p>The first thing we notice about this data is that the dates for the records are 0001-01-01. This type of device (along with 999999) is often used to denote the absence of a date. In this case if we look up some of these cases we will discover that they are very old records. For example <a href="https://worldwide.espacenet.com/publicationDetails/biblio?DB=EPODOC&amp;II=0&amp;ND=3&amp;adjacent=true&amp;locale=en_EP&amp;FT=D&amp;date=18850728&amp;CC=US&amp;NR=322982A&amp;KC=A">US322982A</a> dates to 1885. The Paris Convention did not enter into force in the United States until May 1887 and it is unclear when exactly the USPTO started using the system, so it is not surprising that these documents lack priority numbers.<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a> If we continue to keep these records we will see an artificial spike of activity somewhere at the start of our graph. In this case we can safely drop these records using the handy <code>drop_na()</code> function from <code>dplyr</code>. We will simply overwrite the existing table and specify the priority number as the column where we will drop the rows with NA values.</p>
 <pre class="r"><code>numbers_unique &lt;- numbers_unique %&gt;% 
@@ -244,56 +244,59 @@ target</code></pre>
 
 numbers_unique</code></pre>
 <pre><code>## # A tibble: 68,361 x 7
-##    priority_number          priority_date application_number       provisional     n priority_country application_country
-##    &lt;chr&gt;                    &lt;date&gt;        &lt;chr&gt;                    &lt;lgl&gt;       &lt;int&gt; &lt;chr&gt;            &lt;chr&gt;              
-##  1 US2016578323F 2016-09-20 2016-09-20    US2016578323F 2016-09-20 FALSE           1 US               US                 
-##  2 US14954632A 2015-11-30   2015-11-30    US14954632A 2015-11-30   FALSE           1 US               US                 
-##  3 US15360203A 2016-11-23   2016-11-23    US15360203A 2016-11-23   FALSE           1 US               US                 
-##  4 US62203383P 2015-08-10   2015-08-10    US15454805A 2017-03-09   TRUE            2 US               US                 
-##  5 US62314047P 2016-03-28   2016-03-28    US15454805A 2017-03-09   TRUE            2 US               US                 
-##  6 US62200764P 2015-08-04   2015-08-04    US15263985A 2016-09-13   TRUE            2 US               US                 
-##  7 US62314042P 2016-03-28   2016-03-28    US15263985A 2016-09-13   TRUE            2 US               US                 
-##  8 KR201528901A 2015-03-02  2015-03-02    US15057264A 2016-03-01   FALSE           1 KR               US                 
-##  9 US15217944A 2016-07-22   2016-07-22    US15217944A 2016-07-22   FALSE           3 US               US                 
-## 10 US2015196885P 2015-07-24 2015-07-24    US15217944A 2016-07-22   TRUE            3 US               US                 
-## # ... with 68,351 more rows</code></pre>
+##    priority_number     priority_date application_number  provisional     n
+##    &lt;chr&gt;               &lt;date&gt;        &lt;chr&gt;               &lt;lgl&gt;       &lt;int&gt;
+##  1 US2016578323F 2016… 2016-09-20    US2016578323F 2016… FALSE           1
+##  2 US14954632A 2015-1… 2015-11-30    US14954632A 2015-1… FALSE           1
+##  3 US15360203A 2016-1… 2016-11-23    US15360203A 2016-1… FALSE           1
+##  4 US62203383P 2015-0… 2015-08-10    US15454805A 2017-0… TRUE            2
+##  5 US62314047P 2016-0… 2016-03-28    US15454805A 2017-0… TRUE            2
+##  6 US62200764P 2015-0… 2015-08-04    US15263985A 2016-0… TRUE            2
+##  7 US62314042P 2016-0… 2016-03-28    US15263985A 2016-0… TRUE            2
+##  8 KR201528901A 2015-… 2015-03-02    US15057264A 2016-0… FALSE           1
+##  9 US15217944A 2016-0… 2016-07-22    US15217944A 2016-0… FALSE           3
+## 10 US2015196885P 2015… 2015-07-24    US15217944A 2016-0… TRUE            3
+## # ... with 68,351 more rows, and 2 more variables: priority_country &lt;chr&gt;,
+## #   application_country &lt;chr&gt;</code></pre>
 <p>Let’s quickly review what we just did in plain language. We separated each priority number onto its own row using the semicolon as the separator then we split off the priority number and the date and reformatted the date before finally trimming the white space around the numbers in the priority column. A couple of points to note here: in the call to separate we specified the separator or <code>sep</code> as a space, we opted to keep the original column with <code>remove = FALSE</code> (the default is true and removes the column). We then added a simple count because we know the number of application numbers are duplicated to the number of priorities and then grouped the applications to add a count of the total priorities per application with <code>add_tally</code>. We ungrouped the table and then extracted the priority country and application country. Ungrouping is important, but hard to remember, because if we do not ungroup the data then any calculation we apply will be applied by group. This will normally cause unexpected results or the calculation simply won’t work.</p>
 <p>When preparing data in this way one of the signs that there are unresolved issues with your data is that you will receive warnings about missing or extra pieces of data when you use <code>separate()</code>. If you see these messages go back and inspect your data. It can mean that there are NA values in the column you are separating or it can mean that you have extra spaces (so there will be too many pieces) or something else is present in the data. Issues with white space are common culprits with patent data (following separation) and this is one of the reasons that there are two calls to trim white space with <code>str_trim()</code> as a security blanket to avoid later problems.</p>
 <p>To make this clearer lets just try and run separate on our original concatenated data using the space as the separator.</p>
 <pre class="r"><code>numbers %&gt;% 
   separate(priority_number, into = c(&quot;one&quot;, &quot;two&quot;), sep = &quot; &quot;)</code></pre>
-<pre><code>## Warning: Expected 2 pieces. Additional pieces discarded in 10937 rows [4, 5, 7, 8, 11, 21, 22, 32, 33, 34, 37, 39, 40, 41, 42, 43, 44, 45, 48, 49, ...].</code></pre>
+<pre><code>## Warning: Expected 2 pieces. Additional pieces discarded in 10937 rows
+## [4, 5, 7, 8, 11, 21, 22, 32, 33, 34, 37, 39, 40, 41, 42, 43, 44, 45, 48,
+## 49, ...].</code></pre>
 <pre><code>## # A tibble: 18,970 x 6
-##    one           two         application_number       family_first family_number publication_number
-##    &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;                    &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;             
-##  1 US2016578323F 2016-09-20  US2016578323F 2016-09-20 &lt;NA&gt;         &lt;NA&gt;          USD801224S1       
-##  2 US14954632A   2015-11-30  US14954632A 2015-11-30   &lt;NA&gt;         &lt;NA&gt;          US9807866B2       
-##  3 US15360203A   2016-11-23  US15360203A 2016-11-23   &lt;NA&gt;         &lt;NA&gt;          US9807726B1       
-##  4 US62203383P   2015-08-10; US15454805A 2017-03-09   &lt;NA&gt;         &lt;NA&gt;          US9807625B2       
-##  5 US62200764P   2015-08-04; US15263985A 2016-09-13   &lt;NA&gt;         &lt;NA&gt;          US9807619B2       
-##  6 KR201528901A  2015-03-02  US15057264A 2016-03-01   &lt;NA&gt;         &lt;NA&gt;          US9807364B2       
-##  7 US15217944A   2016-07-22; US15217944A 2016-07-22   &lt;NA&gt;         &lt;NA&gt;          US9806846B2       
-##  8 US2008100721P 2008-09-27; US14808174A 2015-07-24   &lt;NA&gt;         &lt;NA&gt;          US9806541B2       
-##  9 FR20142036A   2014-09-12  US14848061A 2015-09-08   &lt;NA&gt;         &lt;NA&gt;          US9805606B2       
-## 10 US14970643A   2015-12-16  US14970643A 2015-12-16   &lt;NA&gt;         &lt;NA&gt;          US9805598B2       
-## # ... with 18,960 more rows</code></pre>
+##    one         two        application_number    family_first family_number
+##    &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;                 &lt;chr&gt;        &lt;chr&gt;        
+##  1 US20165783… 2016-09-20 US2016578323F 2016-0… &lt;NA&gt;         &lt;NA&gt;         
+##  2 US14954632A 2015-11-30 US14954632A 2015-11-… &lt;NA&gt;         &lt;NA&gt;         
+##  3 US15360203A 2016-11-23 US15360203A 2016-11-… &lt;NA&gt;         &lt;NA&gt;         
+##  4 US62203383P 2015-08-1… US15454805A 2017-03-… &lt;NA&gt;         &lt;NA&gt;         
+##  5 US62200764P 2015-08-0… US15263985A 2016-09-… &lt;NA&gt;         &lt;NA&gt;         
+##  6 KR20152890… 2015-03-02 US15057264A 2016-03-… &lt;NA&gt;         &lt;NA&gt;         
+##  7 US15217944A 2016-07-2… US15217944A 2016-07-… &lt;NA&gt;         &lt;NA&gt;         
+##  8 US20081007… 2008-09-2… US14808174A 2015-07-… &lt;NA&gt;         &lt;NA&gt;         
+##  9 FR20142036A 2014-09-12 US14848061A 2015-09-… &lt;NA&gt;         &lt;NA&gt;         
+## 10 US14970643A 2015-12-16 US14970643A 2015-12-… &lt;NA&gt;         &lt;NA&gt;         
+## # ... with 18,960 more rows, and 1 more variable: publication_number &lt;chr&gt;</code></pre>
 <p>We immediately get a warning about extra pieces in over 10,000 rows signifying that we need to go back and pay more attention to our data. In other cases you will not always be concerned about this, although it is an extremely good idea to be clear about why you are not concerned, and you can deal with extra data by specifying <code>extra = &quot;merge&quot;</code>. For fun let’s try that.</p>
 <pre class="r"><code>numbers %&gt;% 
   separate(priority_number, into = c(&quot;one&quot;, &quot;two&quot;), sep = &quot; &quot;, extra = &quot;merge&quot;) %&gt;% 
   select(one, two)</code></pre>
 <pre><code>## # A tibble: 18,970 x 2
-##    one           two                                                                                                                                                                                                                                     
-##    &lt;chr&gt;         &lt;chr&gt;                                                                                                                                                                                                                                   
-##  1 US2016578323F 2016-09-20                                                                                                                                                                                                                              
-##  2 US14954632A   2015-11-30                                                                                                                                                                                                                              
-##  3 US15360203A   2016-11-23                                                                                                                                                                                                                              
-##  4 US62203383P   2015-08-10; US62314047P 2016-03-28                                                                                                                                                                                                      
-##  5 US62200764P   2015-08-04; US62314042P 2016-03-28                                                                                                                                                                                                      
-##  6 KR201528901A  2015-03-02                                                                                                                                                                                                                              
-##  7 US15217944A   2016-07-22; US2015196885P 2015-07-24; US62196885P 2015-07-24                                                                                                                                                                            
-##  8 US2008100721P 2008-09-27; US2008108743P 2008-10-27; US2008121159P 2008-12-09; US2009142796P 2009-01-06; US2009142818P 2009-01-06; US2009142880P 2009-01-06; US2009142885P 2009-01-06; US2009142887P 2009-01-06; US2009142889P 2009-01-06; US200914297…
-##  9 FR20142036A   2014-09-12                                                                                                                                                                                                                              
-## 10 US14970643A   2015-12-16                                                                                                                                                                                                                              
+##    one           two                                                      
+##    &lt;chr&gt;         &lt;chr&gt;                                                    
+##  1 US2016578323F 2016-09-20                                               
+##  2 US14954632A   2015-11-30                                               
+##  3 US15360203A   2016-11-23                                               
+##  4 US62203383P   2015-08-10; US62314047P 2016-03-28                       
+##  5 US62200764P   2015-08-04; US62314042P 2016-03-28                       
+##  6 KR201528901A  2015-03-02                                               
+##  7 US15217944A   2016-07-22; US2015196885P 2015-07-24; US62196885P 2015-0…
+##  8 US2008100721P 2008-09-27; US2008108743P 2008-10-27; US2008121159P 2008…
+##  9 FR20142036A   2014-09-12                                               
+## 10 US14970643A   2015-12-16                                               
 ## # ... with 18,960 more rows</code></pre>
 <p>As we would expect from using the space as a separator, the function is showing us the number in the first column and the date in the second but is then tacking on the rest of the data in cases with multiple priority numbers. Warnings and arguments such as <code>extra = &quot;merge&quot;</code> can help you get to grips with the issues in your data.</p>
 </div>
@@ -313,19 +316,20 @@ numbers_unique</code></pre>
 
 earliest</code></pre>
 <pre><code>## # A tibble: 15,680 x 8
-##    priority_number          priority_date application_number       provisional     n priority_country application_country filing_order
-##    &lt;chr&gt;                    &lt;date&gt;        &lt;chr&gt;                    &lt;lgl&gt;       &lt;int&gt; &lt;chr&gt;            &lt;chr&gt;                      &lt;int&gt;
-##  1 US2016578323F 2016-09-20 2016-09-20    US2016578323F 2016-09-20 FALSE           1 US               US                             1
-##  2 US14954632A 2015-11-30   2015-11-30    US14954632A 2015-11-30   FALSE           1 US               US                             1
-##  3 US15360203A 2016-11-23   2016-11-23    US15360203A 2016-11-23   FALSE           1 US               US                             1
-##  4 US62203383P 2015-08-10   2015-08-10    US15454805A 2017-03-09   TRUE            2 US               US                             1
-##  5 US62200764P 2015-08-04   2015-08-04    US15263985A 2016-09-13   TRUE            2 US               US                             1
-##  6 KR201528901A 2015-03-02  2015-03-02    US15057264A 2016-03-01   FALSE           1 KR               US                             1
-##  7 US2015196885P 2015-07-24 2015-07-24    US15217944A 2016-07-22   TRUE            3 US               US                             1
-##  8 US2008100721P 2008-09-27 2008-09-27    US14808174A 2015-07-24   TRUE           22 US               US                             1
-##  9 FR20142036A 2014-09-12   2014-09-12    US14848061A 2015-09-08   FALSE           1 FR               US                             1
-## 10 US14970643A 2015-12-16   2015-12-16    US14970643A 2015-12-16   FALSE           1 US               US                             1
-## # ... with 15,670 more rows</code></pre>
+##    priority_number     priority_date application_number  provisional     n
+##    &lt;chr&gt;               &lt;date&gt;        &lt;chr&gt;               &lt;lgl&gt;       &lt;int&gt;
+##  1 US2016578323F 2016… 2016-09-20    US2016578323F 2016… FALSE           1
+##  2 US14954632A 2015-1… 2015-11-30    US14954632A 2015-1… FALSE           1
+##  3 US15360203A 2016-1… 2016-11-23    US15360203A 2016-1… FALSE           1
+##  4 US62203383P 2015-0… 2015-08-10    US15454805A 2017-0… TRUE            2
+##  5 US62200764P 2015-0… 2015-08-04    US15263985A 2016-0… TRUE            2
+##  6 KR201528901A 2015-… 2015-03-02    US15057264A 2016-0… FALSE           1
+##  7 US2015196885P 2015… 2015-07-24    US15217944A 2016-0… TRUE            3
+##  8 US2008100721P 2008… 2008-09-27    US14808174A 2015-0… TRUE           22
+##  9 FR20142036A 2014-0… 2014-09-12    US14848061A 2015-0… FALSE           1
+## 10 US14970643A 2015-1… 2015-12-16    US14970643A 2015-1… FALSE           1
+## # ... with 15,670 more rows, and 3 more variables: priority_country &lt;chr&gt;,
+## #   application_country &lt;chr&gt;, filing_order &lt;int&gt;</code></pre>
 <p>We now have a data frame that identifies the earliest priority numbers in a set. The 15,680 records corresponds match our target of 15,680 application numbers and so all is good.</p>
 <p>The final step with this data is to remember that this dataset is based on unique <em>application numbers</em> and not unique priority numbers. In practice, some of the application numbers in our set will share priority numbers with other applications and will be follow on filings. We therefore need to identify duplicates in the priority numbers and deduplicate to unique priority numbers.</p>
 <pre class="r"><code>earliest_unique &lt;- earliest %&gt;% 
@@ -336,7 +340,7 @@ earliest</code></pre>
 <p>Let’s quickly graph this data. Here we are using the popular R graphing package ggplot2 to draw quick graphs of the data. To learn more about using <code>ggplot2</code> try the excellent <a href="http://www.cookbook-r.com/Graphs/">R Graphics Cookbook by Winston Chang</a> which is available in open access form online. A step by step walk through on using ggplot2 to visualise patent data is available in this <a href="https://www.pauloldham.net/graphing-patent-data-with-ggplot2-part2/">article</a>. If you prefer using Excel or Tableau then write the file to a .csv and then open it in your tool of choice. You can do this simply with the following line of code.</p>
 <pre class="r"><code>readr::write_csv(earliest_unique, &quot;earliest_unique.csv&quot;)</code></pre>
 <p>ggplot2 is quite a lot more involved than working with Tableau, Excel or other tools but provides a powerful way to control graphing. Let’s take a quick look at the data.</p>
-<p><img src="/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-6-1.png" width="800px" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-6-1.png" width="600px" style="display: block; margin: auto;" /></p>
 <p>Note that graphs of priority data display a characteristic data cliff the closer that we move towards the present. This reflects the fact that patent applications are normally published at least 24 months after they were originally filed. This data cliff can easily mislead an audience into believing that interest in a technology has suddenly collapsed when in reality we are missing or only have partial data for the period. It is therefore important to pull the year range back to accommodate this. Depending on your data it is sensible to pull back the year by at least two years and possibly three years.</p>
 <pre class="r"><code>earliest_unique %&gt;% 
   select(-n) %&gt;% 
@@ -347,7 +351,7 @@ earliest</code></pre>
   ggplot(., aes(x = year, y = n)) +
   geom_line() +
   labs(title = &quot;Trends in First Filings of Patent Applications for Drone Technology&quot;, x = &quot;priority year&quot;, y = &quot;first filings&quot;)</code></pre>
-<p><img src="/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-7-1.png" width="800px" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-7-1.png" width="600px" style="display: block; margin: auto;" /></p>
 <p>Note the speed bump in the data around 2008 that is likely to reflect the impact of the financial crisis with filings relating to drone technology before accelerating rapidly in recent years.<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a></p>
 <p>In this dataset we can also gain an insight into the countries driving this trend by ranking them in a bar graph for the same period.</p>
 <pre class="r"><code>library(ggthemes)
@@ -365,7 +369,7 @@ earliest_unique %&gt;%
   theme_igray() +
   scale_fill_tableau(&quot;tableau20&quot;) +
   theme(legend.position = &quot;none&quot;)</code></pre>
-<p><img src="/post/2018-05-11-counting-patent-first-filings_files/figure-html/echo-1.png" width="800px" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2018-05-11-counting-patent-first-filings_files/figure-html/echo-1.png" width="600px" style="display: block; margin: auto;" /></p>
 <p>Note here that the United States emerges first in the top 5 followed by Japan, France, Korea and the Patent Cooperation Treaty (WO). It is important to bear in mind here that WO records will typically be filed through national offices, although no priority number will be present, as we can see in the references to country codes inside the WO priority documents.</p>
 <pre class="r"><code>earliest_unique %&gt;% 
   filter(priority_country == &quot;WO&quot;) %&gt;% 
@@ -455,18 +459,18 @@ earliest_unique %&gt;%
 <pre class="r"><code>results &lt;- extract_priority(data = numbers, priority_number = &quot;priority_number&quot;, key = &quot;application_number&quot;)
 results</code></pre>
 <pre><code>## # A tibble: 9,366 x 4
-##    priority_number          priority_date application_number       priority_country
-##    &lt;chr&gt;                    &lt;date&gt;        &lt;chr&gt;                    &lt;chr&gt;           
-##  1 US2016578323F 2016-09-20 2016-09-20    US2016578323F 2016-09-20 US              
-##  2 US14954632A 2015-11-30   2015-11-30    US14954632A 2015-11-30   US              
-##  3 US15360203A 2016-11-23   2016-11-23    US15360203A 2016-11-23   US              
-##  4 US62203383P 2015-08-10   2015-08-10    US15454805A 2017-03-09   US              
-##  5 US62200764P 2015-08-04   2015-08-04    US15263985A 2016-09-13   US              
-##  6 KR201528901A 2015-03-02  2015-03-02    US15057264A 2016-03-01   KR              
-##  7 US2015196885P 2015-07-24 2015-07-24    US15217944A 2016-07-22   US              
-##  8 US2008100721P 2008-09-27 2008-09-27    US14808174A 2015-07-24   US              
-##  9 FR20142036A 2014-09-12   2014-09-12    US14848061A 2015-09-08   FR              
-## 10 US14970643A 2015-12-16   2015-12-16    US14970643A 2015-12-16   US              
+##    priority_number      priority_date application_number  priority_country
+##    &lt;chr&gt;                &lt;date&gt;        &lt;chr&gt;               &lt;chr&gt;           
+##  1 US2016578323F 2016-… 2016-09-20    US2016578323F 2016… US              
+##  2 US14954632A 2015-11… 2015-11-30    US14954632A 2015-1… US              
+##  3 US15360203A 2016-11… 2016-11-23    US15360203A 2016-1… US              
+##  4 US62203383P 2015-08… 2015-08-10    US15454805A 2017-0… US              
+##  5 US62200764P 2015-08… 2015-08-04    US15263985A 2016-0… US              
+##  6 KR201528901A 2015-0… 2015-03-02    US15057264A 2016-0… KR              
+##  7 US2015196885P 2015-… 2015-07-24    US15217944A 2016-0… US              
+##  8 US2008100721P 2008-… 2008-09-27    US14808174A 2015-0… US              
+##  9 FR20142036A 2014-09… 2014-09-12    US14848061A 2015-0… FR              
+## 10 US14970643A 2015-12… 2015-12-16    US14970643A 2015-1… US              
 ## # ... with 9,356 more rows</code></pre>
 <p>What this means is that where we have a dataset with a priority number field and the application number field as a key we do not need to write all the code again by hand. We may have to adjust the code… for example if the numbers contain different separators (such as ;; in the case of the Lens database) or junk such as “[” is found in a data field. However, the ability to turn code into a reusable function is the most powerful feature of programming languages such as R and a powerful reason to engage with R when working with patent data.</p>
 </div>

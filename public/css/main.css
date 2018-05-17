@@ -246,7 +246,7 @@ code {
   margin-left: 2px;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1100px) {
   .header {
     padding: 25px 0;
   }
