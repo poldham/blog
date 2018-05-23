@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
-    <lastBuildDate>Fri, 18 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 22 May 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Bibliometrics</title>
       <link>/tags/bibliometrics/</link>
-      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 22 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/bibliometrics/</guid>
       <description></description>
@@ -51,7 +51,7 @@
     <item>
       <title>Clarivate Analytics</title>
       <link>/tags/clarivate-analytics/</link>
-      <pubDate>Fri, 11 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 22 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/clarivate-analytics/</guid>
       <description></description>
@@ -87,7 +87,7 @@
     <item>
       <title>Geocoding</title>
       <link>/tags/geocoding/</link>
-      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 22 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/geocoding/</guid>
       <description></description>
@@ -375,7 +375,7 @@
     <item>
       <title>Scientometrics</title>
       <link>/tags/scientometrics/</link>
-      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 27 Oct 2015 00:00:00 +0000</pubDate>
       
       <guid>/tags/scientometrics/</guid>
       <description></description>
@@ -436,9 +436,18 @@
     </item>
     
     <item>
+      <title>Web of Knowledge</title>
+      <link>/tags/web-of-knowledge/</link>
+      <pubDate>Tue, 22 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/web-of-knowledge/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Web of Science</title>
       <link>/tags/web-of-science/</link>
-      <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 22 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/web-of-science/</guid>
       <description></description>

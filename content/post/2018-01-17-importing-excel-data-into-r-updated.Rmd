@@ -54,7 +54,7 @@ knitr::include_graphics("/images/excel/skip_col.png")
 
 It is worth bearing in mind that if you are importing a number of worksheets you can easily lose track. I sometimes use the approach of copying the import chunk into an Rmarkdown document to keep track of what I am doing and where a file came from. 
 
-When copying chunks note the small clipboard icon in the top right above the chunk that will copy the chunk to the clipboard for pasting into the console or an R markdown code chunk to document your import steps for the future. My approach when working with multiple sheets is to create an R markdown file and copy and paste the import code into chunks that I then save. That allows "future me" to understand where the datasets came from.
+When copying chunks note the small clipboard icon in the top right above the chunk that will copy the chunk to the clipboard for pasting into the console or an R markdown code chunk to document your import steps for the future. My approach when working with multiple sheets is to create an R markdown file and copy and paste the import code into chunks that I then save. That allows "future me", to borrow from Hadley Wickham, to understand where the datasets came from.
 
 ```{r copy_chunk, echo=FALSE}
 knitr::include_graphics("/images/excel/import_panel_chunk.png")
@@ -111,14 +111,14 @@ df <- tibble(a = c(1,2,3),
 When we read this in we specify the column types. Note that in this case we need to use the term "text" rather than the familiar "character" or we get an error.
 
 ```{r specify_types}
-df <- read_excel("/Users/pauloldham17inch/Desktop/open_source_master/blog/content/post/df.xlsx", col_names = TRUE, col_types = c("numeric", "text", "logical", "text"))
+df <- read_excel("/Users/pauloldham17inch/blog/content/post/df.xlsx", col_names = TRUE, col_types = c("numeric", "text", "logical", "text"))
 df
 ```
 
 The documentation for read_excel (`?read_excel`) sets out quite a few other options. For example we could specify the format of some columns and leave the function to guess the others. That would look like this. 
 
 ```{r guess_cols}
-df <- read_excel("/Users/pauloldham17inch/Desktop/open_source_master/blog/content/post/df.xlsx", col_names = TRUE, col_types = c("guess", "guess", "logical", "guess"))
+df <- read_excel("/Users/pauloldham17inch/blog/content/post/df.xlsx", col_names = TRUE, col_types = c("guess", "guess", "logical", "guess"))
 ```
 
 **3. Convert all columns to a single type**
@@ -256,7 +256,7 @@ install.packages("janitor")
 For this we need an excel worksheet with noisy names. For R coding Blue Peter fans..."Here is one we prepared earlier".
 
 ```{r noisy_cols}
-noisycols <- read_excel("/Users/pauloldham17inch/Desktop/open_source_master/blog/content/post/noisydf.xlsx")
+noisycols <- read_excel("/Users/pauloldham17inch/blog/content/post/noisydf.xlsx")
 ```
 
 ```{r show_noisy, echo=FALSE}

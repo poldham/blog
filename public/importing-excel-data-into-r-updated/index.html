@@ -51,7 +51,7 @@
       <header class="header">
         <nav class="nav">
   <a href="/" class="nav-logo">
-    <img src="/images/paul-oval.png"
+    <img src="/images/paul-oval1.png"
          width="50"
          height="50"
          alt="Logo">
@@ -114,7 +114,7 @@
 <p>You can also click on a column and choose to skip it or change the format.</p>
 <p><img src="/images/excel/skip_col.png" width="600px" style="display: block; margin: auto;" /></p>
 <p>It is worth bearing in mind that if you are importing a number of worksheets you can easily lose track. I sometimes use the approach of copying the import chunk into an Rmarkdown document to keep track of what I am doing and where a file came from.</p>
-<p>When copying chunks note the small clipboard icon in the top right above the chunk that will copy the chunk to the clipboard for pasting into the console or an R markdown code chunk to document your import steps for the future. My approach when working with multiple sheets is to create an R markdown file and copy and paste the import code into chunks that I then save. That allows “future me” to understand where the datasets came from.</p>
+<p>When copying chunks note the small clipboard icon in the top right above the chunk that will copy the chunk to the clipboard for pasting into the console or an R markdown code chunk to document your import steps for the future. My approach when working with multiple sheets is to create an R markdown file and copy and paste the import code into chunks that I then save. That allows “future me”, to borrow from Hadley Wickham, to understand where the datasets came from.</p>
 <p><img src="/images/excel/import_panel_chunk.png" width="600px" style="display: block; margin: auto;" /></p>
 <p>As we can see from importing the file behind the scenes RStudio is using the <code>readxl</code> library to import the file.</p>
 <p><code>readxl</code> will commonly generate warning messages during the import process. For example this dataset generated a long long string of warnings that looked like this.</p>
@@ -172,8 +172,8 @@ df &lt;- tibble(a = c(1,2,3),
              d = c(&quot;2017-12-10&quot;, &quot;20170815&quot;, &quot;2017_06_12&quot;)) %&gt;%
   writexl::write_xlsx(., &quot;df.xlsx&quot;)</code></pre>
 <p>When we read this in we specify the column types. Note that in this case we need to use the term “text” rather than the familiar “character” or we get an error.</p>
-<pre class="r"><code>df &lt;- read_excel(&quot;/Users/pauloldham17inch/Desktop/open_source_master/blog/content/post/df.xlsx&quot;, 
-    col_names = TRUE, col_types = c(&quot;numeric&quot;, &quot;text&quot;, &quot;logical&quot;, &quot;text&quot;))
+<pre class="r"><code>df &lt;- read_excel(&quot;/Users/pauloldham17inch/blog/content/post/df.xlsx&quot;, col_names = TRUE, 
+    col_types = c(&quot;numeric&quot;, &quot;text&quot;, &quot;logical&quot;, &quot;text&quot;))
 df</code></pre>
 <pre><code>## # A tibble: 3 x 4
 ##       a b     c     d         
@@ -182,8 +182,8 @@ df</code></pre>
 ## 2    2. b     FALSE 20170815  
 ## 3    3. c     TRUE  2017_06_12</code></pre>
 <p>The documentation for read_excel (<code>?read_excel</code>) sets out quite a few other options. For example we could specify the format of some columns and leave the function to guess the others. That would look like this.</p>
-<pre class="r"><code>df &lt;- read_excel(&quot;/Users/pauloldham17inch/Desktop/open_source_master/blog/content/post/df.xlsx&quot;, 
-    col_names = TRUE, col_types = c(&quot;guess&quot;, &quot;guess&quot;, &quot;logical&quot;, &quot;guess&quot;))</code></pre>
+<pre class="r"><code>df &lt;- read_excel(&quot;/Users/pauloldham17inch/blog/content/post/df.xlsx&quot;, col_names = TRUE, 
+    col_types = c(&quot;guess&quot;, &quot;guess&quot;, &quot;logical&quot;, &quot;guess&quot;))</code></pre>
 <p><strong>3. Convert all columns to a single type</strong></p>
 <p>For a dataset with a lot of columns trying to work out the column types or writing <code>guess, logical, character</code> can rapidly become painful. Depending on your needs it may be easier to simply use the <code>col_types = &quot;text&quot;</code> for all columns and change them where needed later using <code>as.character()</code>, <code>as.logical()</code>, <code>as.numeric()</code> or <code>as.Date()</code>.</p>
 <pre class="r"><code>library(readxl)
@@ -301,7 +301,7 @@ str(df)</code></pre>
 <p>One issue once you have your data in R is that column names in excel files often contain mixed case names and spaces or other characters such as brackets that can be awkward to work with in R. To solve that an easy option is to use the recent <code>janitor</code> package.</p>
 <pre class="r"><code>install.packages(&quot;janitor&quot;)</code></pre>
 <p>For this we need an excel worksheet with noisy names. For R coding Blue Peter fans…“Here is one we prepared earlier”.</p>
-<pre class="r"><code>noisycols &lt;- read_excel(&quot;/Users/pauloldham17inch/Desktop/open_source_master/blog/content/post/noisydf.xlsx&quot;)</code></pre>
+<pre class="r"><code>noisycols &lt;- read_excel(&quot;/Users/pauloldham17inch/blog/content/post/noisydf.xlsx&quot;)</code></pre>
 <table>
 <thead>
 <tr class="header">
