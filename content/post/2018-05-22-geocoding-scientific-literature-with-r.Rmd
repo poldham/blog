@@ -670,7 +670,6 @@ The main take away message is that geocoding using the Google Maps API will norm
 
 R is a functional programming language meaning that it will be feasible to construct a function that brings together the functions used to process the data in the above steps. We will not go there today, but to round up lets think about some of the elements that we might want to use to address this in a single R function based on the steps that we have taken above. 
 
-- sign up for the API and obtain a key
 - import dataset
 - address case issues
 - separate organisation, city, country

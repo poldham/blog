@@ -708,7 +708,6 @@ mapdata</code></pre>
 <p>The main take away message is that geocoding using the Google Maps API will normally be an iterative process that may requires multiple passes and adjustments to the data to arrive at accurate results. One things should now also be clear, while the Google Maps API has dramatically improved in its ability to offer geocoded results (including on messy names) these results should not be taken at face value. Instead, and depending on your purpose, multiple iterations may be needed to improve the resolution of the results. In this article we have not gone all the way with this but have hopefully provided enough pointers to allow you to take it further.</p>
 <p>R is a functional programming language meaning that it will be feasible to construct a function that brings together the functions used to process the data in the above steps. We will not go there today, but to round up lets think about some of the elements that we might want to use to address this in a single R function based on the steps that we have taken above.</p>
 <ul>
-<li>sign up for the API and obtain a key</li>
 <li>import dataset</li>
 <li>address case issues</li>
 <li>separate organisation, city, country</li>
