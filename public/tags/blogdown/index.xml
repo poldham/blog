@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blogdown on Paul Oldham&#39;s Blog</title>
-    <link>/tags/blogdown/</link>
+    <link>https://www.pauloldham.net/tags/blogdown/</link>
     <description>Recent content in Blogdown on Paul Oldham&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
-    <lastBuildDate>Sat, 07 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 23 May 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/blogdown/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.pauloldham.net/tags/blogdown/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Useful Blogdown Tips</title>
-      <link>/useful-blogdown-tips/</link>
-      <pubDate>Sat, 07 Apr 2018 00:00:00 +0000</pubDate>
+      <title>Creating A Bibliography with rcrossref</title>
+      <link>https://www.pauloldham.net/creating-a-bibliography-with-rcrossref/</link>
+      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>/useful-blogdown-tips/</guid>
-      <description>Many of the things you need to know about Blogdown are in the excellent blogdown book… and there are lots of tutorials out there. Here I’m going to compile some of the various posts providing tips, and add some of my own.
-Transferring to blogdown The blogdown book provides a very good description of how to move from Github or Wordpress to Blogdown with Netlify. But if you want to stay with Blogdown here are a few very useful posts:</description>
+      <guid>https://www.pauloldham.net/creating-a-bibliography-with-rcrossref/</guid>
+      <description>In this article we will look at how to create a bibliography using the rcrossref package in R with RStudio. To help us get started we will also look at how to reference any R packages that you use in your work with knitr. The article is part of work in progress for the WIPO Handbook on Patent Analytics. Comments and suggestions are welcome.
+Many of us will have spent an unreasonable amount of our time struggling to create bibliographies for a thesis, publication or reports.</description>
     </item>
     
   </channel>

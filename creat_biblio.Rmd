@@ -12,15 +12,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Create a packages biblio file
 
 ```{r cars}
-knitr::write_bib(c("placement", "tidyverse", "ggmap", "googleway", "dplyr", "usethis", "devtools", "base", "googleway", "leaflet"), width = 60, file = "/Users/pauloldham17inch/blog/content/post/packages.bib")
+knitr::write_bib(c("placement", "tidyverse", "ggmap", "googleway", "dplyr", "usethis", "devtools", "base", "googleway", "leaflet", "rcrossref", "rplos", "rorcid", "quanteda", "tidytext", "spacyr", "keras", "sparklyr", "ggplot2", "tidyr", "stringr", "purrr", "sf", "blogdown", "bookdown", "knitr", "rmarkdown"), width = 60, file = "/Users/pauloldham17inch/blog/content/post/packages.bib")
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

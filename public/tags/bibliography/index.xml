@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bibliography on Paul Oldham&#39;s Blog</title>
+    <link>https://www.pauloldham.net/tags/bibliography/</link>
+    <description>Recent content in Bibliography on Paul Oldham&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
+    <lastBuildDate>Wed, 23 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.pauloldham.net/tags/bibliography/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Creating A Bibliography with rcrossref</title>
+      <link>https://www.pauloldham.net/creating-a-bibliography-with-rcrossref/</link>
+      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.pauloldham.net/creating-a-bibliography-with-rcrossref/</guid>
+      <description>In this article we will look at how to create a bibliography using the rcrossref package in R with RStudio. To help us get started we will also look at how to reference any R packages that you use in your work with knitr. The article is part of work in progress for the WIPO Handbook on Patent Analytics. Comments and suggestions are welcome.
+Many of us will have spent an unreasonable amount of our time struggling to create bibliographies for a thesis, publication or reports.</description>
+    </item>
+    
+  </channel>
+</rss>
