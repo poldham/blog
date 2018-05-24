@@ -145,7 +145,7 @@ library(rcrossref)</code></pre>
 <div id="adding-the-bibliography" class="section level3">
 <h3>Adding the Bibliography</h3>
 <p>We now have two bibliographies, one called packages.bib and one called crossref.bib. To get them to render when we knit the document (or build for blogdown or bookdown users… no knitting please) we need to put them in the header or YAML of the rmarkdown document. In all cases that looks like this.</p>
-<pre class="r"><code>bibliography: [references.bib, crossref.bib]</code></pre>
+<pre class="r"><code>bibliography: [packages.bib, crossref.bib]</code></pre>
 <p>When we knit or build the document the citations will show up in the text itself and at the bottom of the document. To mark the start of the bibliography simply create a header such as <code>#References</code> as the final line of your document.</p>
 </div>
 <div id="going-further" class="section level3">
