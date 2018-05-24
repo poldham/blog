@@ -3,7 +3,7 @@ title: Creating A Bibliography with rcrossref
 author: Paul Oldham
 date: '2018-05-23'
 slug: creating-a-bibliography-with-rcrossref
-twitterimg: /images/rcrossref/addarticlesmall.gif
+twitterimg: https://github.com/poldham/blog/blob/master/static/images/rcrossref/addarticlesmall.gif
 description: Creating bibliographies is a pain but the knitr and the rcrossref packages in RStudio will ease your suffering. 
 categories:
   - R
