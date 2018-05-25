@@ -23,12 +23,12 @@ Many of us will have spent an unreasonable amount of our time struggling to crea
     </item>
     
     <item>
-      <title>Geocoding Scientific Literature with R</title>
+      <title>Exploring Geocoding Scientific Literature with R</title>
       <link>https://www.pauloldham.net/geocoding-scientific-literature-with-r/</link>
       <pubDate>Tue, 22 May 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.pauloldham.net/geocoding-scientific-literature-with-r/</guid>
-      <description>In this article we will look at geocoding using the Google Maps API and the placement, ggmap, and googleway packages in R. We will work with some raw data from Clarivate Analytics Web of Science (formerly Thomson Reuters) database of scientific literature. Many universities have access to Web of Science and it is a very important tool in fields such as bibliometrics/scientometrics. This article is part of work in progress for the WIPO Patent Analytics Handbook that addresses methods for advanced patent analytics including linking the scientific literature with patent literature.</description>
+      <description>Getting Started Getting set up with the Google Maps API Using the API The Source Data Lookup the Records Using placement Using ggmap Using Googleway  Reviewing Initial Results Tackling Abbreviations Lookup edited names Bringing the data together Assessing the Quality of Geocoding  Preprocess the Data and Rerun the Query Duplicated Affiliation Names Quickly Mapping the Data  Round Up References   In this article we will explore geocoding using the Google Maps API and the placement, ggmap, and googleway packages in R.</description>
     </item>
     
     <item>

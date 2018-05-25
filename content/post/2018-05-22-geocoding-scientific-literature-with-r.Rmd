@@ -1,9 +1,9 @@
 ---
-title: Geocoding Scientific Literature with R
+title: Exploring Geocoding Scientific Literature with R
 author: Paul Oldham
 date: '2018-05-22'
 slug: geocoding-scientific-literature-with-r
-description: Geocoding 5000 organisation names from Web of Science in R with the Google Maps API. Work in progress for the WIPO Patent Analytics Handbook.
+description: Exploring geocoding 5000 organisation names from Web of Science in R with the Google Maps API using the placement, ggmap and googleway packages. 
 categories:
   - Patents
 tags:
@@ -22,12 +22,18 @@ nocite: |
   @R-googleway
   @R-usethis
   @R-leaflet
+  @R-stringr
+  @R-dplyr
+  @R-tidyr
+output:
+  blogdown::html_page:
+    toc: true   
 ---
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(cache=TRUE, out.width = "800px", fig.align = "center", echo=TRUE, warning=FALSE, message=FALSE)
 ```
 
-In this article we will look at geocoding using the Google Maps API and the `placement`, `ggmap`, and `googleway` packages in R. We will work with some raw data from Clarivate Analytics [`Web of Science`](http://wokinfo.com/) (formerly Thomson Reuters) database of scientific literature. Many universities have access to Web of Science and it is a very important tool in fields such as bibliometrics/scientometrics.  This article is part of work in progress for the WIPO Patent Analytics Handbook that addresses methods for advanced patent analytics including linking the scientific literature with patent literature. Comments and suggestions for improvements are welcome and can be provided by raising an issue on Github [here](https://github.com/poldham/blog/issues).
+In this article we will explore geocoding using the Google Maps API and the `placement`, `ggmap`, and `googleway` packages in R. We will work with some raw data from Clarivate Analytics [`Web of Science`](http://wokinfo.com/) database of scientific literature. Many universities have access to Web of Science and it is a very important tool in fields such as bibliometrics/scientometrics.  This article is part of work in progress for the WIPO Patent Analytics Handbook. The aim of the article is to explore geocoding issues involving the scientific literature in depth and move closer to a solution using R. 
 
 Geocoding is the process of taking a name and address and looking up the geographic coordinates expressed in latitude and longitude. This is normally done using a web service. There are plenty of example walkthroughs on how to do this. However, many of them start with data that is already clean. We will be working with data that is really rather messy.   
 
@@ -122,9 +128,9 @@ Below we will briefly show how to use the `placement`, `ggmap` and newer `google
 
 ### The Source Data
 
-Next let's take a quick look at the source data. When we send the addresses to the Google Maps API with `placement` it will return the original search terms in a column called `locations`. To make our life easier we renamed the original column in our source dataset. Note that the records field refers to the number of publications associated with an address and will allow us to size dots on any map we produce with the results. 
+Next let's take a quick look at the source data. When we send the addresses to the Google Maps API with `placement` it will return the original search terms in a column called `locations`. To make our life easier we renamed the original column in our source dataset. Note that the records field refers to the number of publications associated with an address and will allow us to size dots on any map we produce with the results. We can import the data directly from Github. 
 
-```{r import_affiliation, echo=FALSE, eval=FALSE}
+```{r import_affiliation, eval=FALSE}
 affiliation_records <- read_csv("https://github.com/wipo-analytics/data-handbook/raw/master/affiliation_records.csv")
 ```
 
@@ -147,6 +153,8 @@ In this section we will look up some of the records with each of the three packa
 ### Using placement
 
 The `placement` package can do more than we will attempt here. For example, you can attempt address cleaning or calculating driving distances with `placement`. For our purposes the main event is the `geocode_url()` function, We pass the data in the locations column to the function along with the authentication route and the private key. The `clean = TRUE` argument applies the `address_cleaner` function before encoding the URL to send to the API. The default is set to TRUE and you may want to experiment with setting this value to FALSE. We also add the date of search as it is always useful to know when we carried out the search and we set verbose to TRUE to receive more information. Note that other arguments such as `dryrun` can be useful for debugging problem addresses.
+
+Note that the key can be entered directly into `geocode_url()` as `privkey = Sys.getenv("GOOGLE_MAPS_KEY")`. However, I found that this sometimes returned an error message on long runs. For that reason we might copy it into our local environment (and be careful not to expose it).
 
 ```{r eval=FALSE}
 key <- Sys.getenv("GOOGLE_MAPS_KEY")
@@ -217,7 +225,7 @@ ggmap1 %>%
   head()
 ```
 
-### Googleway
+### Using Googleway
 
 An alternative to `placement` or `ggmap` is also available using the `googleway` package. `googleway` includes access to the Google APIs for directions, distance, elevation, timezones, places, geocoding and reverse geocoding and so has a wider set of uses. However, `googleway` is expecting an address field of length 1 (meaning it takes one address at a time) whereas placement and ggmap are vectorised. The return from googleway returns a list object containing a data frame with the results and the status of the return. Here is one quick example.
 
@@ -237,11 +245,11 @@ googleway2 <-
 
 As this makes clear, you have at least three choices for geocoding and which you prefer will depend on your needs. I found `ggmap` rather awkward because the existing CRAN version (2.6) does not provide the `register_google()` function in the long standing 2.7 development version. While this is a bit awkward `ggmap` provides some very powerful features that you will want to use. On the other hand `googleway` would involve some more work to vectorise over the list as we started exploring above. `placement` on the other hand is fine with the only disadvantage being the return of the API key in the input URL that we have to remember.  
 
-## Processing the Results
+## Reviewing Initial Results
 
 When we originally started working with the Google API in 2017 the API returned 3,937 results from the 5,206 names. This then required a lot of additional work to retrieve the remaining numbers by cleaning up abbreviations and country names. However, the Google Maps API seems to have improved rather radically in the meantime.
 
-Let's take a look at the issues that can arise with the return from the Google Maps API. For the moment we will focus on the completeness of the data. 
+Let's take a look at the issues that can arise with the return from the Google Maps API. For the moment we will focus on the completeness of the data revealed in status and error messages. 
 
 ```{r}
 coordaffil %>%
@@ -249,7 +257,7 @@ coordaffil %>%
   head()
 ```
 
-The return from placement is a data.frame that is exactly the same length as our input. What we need to watch out for are the entries in the status column and the error message column. Here we need to be cautious because most of the time the API returns either "OK" or "ZERO_RESULTS". However, there are additional status codes listed [here](https://developers.google.com/maps/documentation/geocoding/intro). They are:
+The return from placement is a data.frame that is exactly the same length as our input. What we need to watch out for are the entries in the status column and the error message column. Here we need to be cautious because most of the time the API returns either "OK" or "ZERO_RESULTS". However, there are additional status codes listed [here](https://developers.google.com/maps/documentation/geocoding/intro) and they are also listed in the documentation for `geocode_url()`. They are:
 
 - "OK"
 - "ZERO_RESULTS"
@@ -273,7 +281,6 @@ We can identify the results found so far by filtering on the status field which 
 ```{r, resultsfound}
 results %>%
   filter(., status == "OK")
-results
 ```
 
 For the results that were not found it is safest not to simply filter for ZERO RESULTS but instead to filter for anything that is not OK using `!=`. This can save on endless hours of confusion where you have multiple messages in the status column.  
@@ -299,12 +306,10 @@ However, the lookup table highlights an issue that the Google Maps API previousl
 
 Here we have created a simple file containing some of the major Web of Science organisation abbreviations and their matches. It is probably not complete but is a good start. Next we added a column with word boundaries that we will use to find and replace the abbreviations. You can download the the file directly from Github.
 
-```{r import_abbreviation_dictionary, echo=FALSE, eval=FALSE}
+```{r import_abbreviation_dictionary, eval=FALSE}
 wos_abbreviations <- read_csv("https://github.com/wipo-analytics/data-handbook/raw/master/wos_abbreviations.csv", 
   col_types = cols(abbreviation = col_character(), 
     text = col_character()))
-head(wos_abbreviations) %>% 
-  knitr::kable()
 ```
 
 A simple word boundary regular expression was added to assist with matching. 
@@ -335,6 +340,14 @@ lookup <-
   separate(., locations, c("organisation", "city", "country"), sep = ",", remove = FALSE)
 ```
 
+```{r echo=FALSE}
+save(lookup, file = "lookup.rda")
+```
+
+```{r echo=FALSE}
+load("lookup.rda")
+```
+
 ```{r show_lookup1, echo=FALSE}
 lookup %>% 
   select(., 1:6) %>%
@@ -363,13 +376,30 @@ One issue with cleaning names is capitalisation. For example, in our wos abbrevi
 ```{r}
 lookup <- lookup %>%  
   mutate(organisation_edited = str_to_title(.$organisation))
+lookup %>% select(organisation_edited)
+```
+
+```{r echo=FALSE}
+save(lookup, file = "lookup.rda")
+```
+
+```{r echo=FALSE}
+load("lookup.rda")
 ```
 
 Next, we transform the abbreviations using replaceabbr. 
 
-```{r apply_reoplaceabbr, eval=FALSE}
+```{r apply_reoplaceabbr}
 lookup$organisation_edited <- 
   replaceabbr(wos_abbreviations$regex, wos_abbreviations$text, lookup$organisation_edited)
+```
+
+```{r echo=FALSE}
+save(lookup, file = "lookup.rda")
+```
+
+```{r echo=FALSE}
+load("lookup.rda")
 ```
 
 ```{r show_lookup}
@@ -377,9 +407,9 @@ lookup %>%
   select(organisation_edited)
 ```
 
-This is not perfect, for example we encounter issues with Agriculture and Agricultural and so on. However, it is good enough for the time being. Rather than focus on resolving a small number of remaining items the next step is to reunite the fields we separated into a field we will call locations edited using the `tidyr` `unite` function. 
+This is not perfect, for example we encounter issues with Agriculture and Agricultural and so on. We also encounter issues of capitalisation in the city and the country field that we are presently ignoring. However, it is good enough for the time being. Rather than focus on resolving a small number of remaining items the next step is to reunite the fields we separated into a field we will call locations edited using the `tidyr` `unite` function. 
 
-```{r create_locateionsedited, eval=FALSE}
+```{r create_locateionsedited}
 lookup <- lookup %>%
   unite(., locations_edited, c(organisation_edited, city, country), sep = ",", remove = FALSE)
 
@@ -387,7 +417,7 @@ lookup %>%
   select(organisation, city, country, locations_edited)
 ```
 
-```{r save_lookup, echo=FALSE, eval=FALSE}
+```{r save_lookup, echo=FALSE}
 save(lookup, file = "lookup.rda")
 ```
 
@@ -434,6 +464,9 @@ b) renaming locations to locations_edited in the lookup results (the join field)
 c) join the tables
 d) drop the locations-edited column
 
+```{r echo=FALSE}
+load("lookup.rda")
+```
 
 ```{r}
 lookup <- lookup %>% 
@@ -446,7 +479,7 @@ res <- left_join(lookup, coordlookup, by = "locations_edited") %>%
   select(-locations_edited)
 ```
 
-```{r echo=FALSE, eval=FALSE}
+```{r echo=FALSE}
 save(res, file = "res.rda")
 ```
 
@@ -454,7 +487,7 @@ save(res, file = "res.rda")
 load("res.rda")
 ```
 
-To join the data back together we now need to do two things. First we filter the results from the original search to those that are `status == "OK"` and then bind the res table to the end.
+To join the data back together we now need to do two things. First we filter the results from the original search to those that are `status == "OK"` and then bind the `res` table to the end.
 
 ```{r}
 results_complete <- results %>%
@@ -473,7 +506,7 @@ We now have a complete set of geocoded results with 5,198 locations from 5,206. 
 
 ### Assessing the Quality of Geocoding
 
-So far we have focused on getting geocoded data without really looking at it. To assess the quality of the data that has been returned we should take a look at the location type field. The API documentation for these entries can be found [here](https://developers.google.com/maps/documentation/geocoding/intro).
+So far we have focused on getting geocoded data without really looking at it. To assess the quality of the data that has been returned we should take a look at the location type field. The API documentation for these entries can be found [here](https://developers.google.com/maps/documentation/geocoding/intro) and in the `geocode_url()` documentation.
 
 ```{r}
 results_complete %>%
@@ -487,8 +520,11 @@ The API documentation fills us in on what is going on here.
 >"location_type stores additional data about the specified location. The following values are currently supported:
 
 >"ROOFTOP" indicates that the returned result is a precise geocode for which we have location information accurate down to street address precision.
+
 >"RANGE_INTERPOLATED" indicates that the returned result reflects an approximation (usually on a road) interpolated between two precise points (such as intersections). Interpolated results are generally returned when rooftop geocodes are unavailable for a street address.
+
 >"GEOMETRIC_CENTER" indicates that the returned result is the geometric center of a result such as a polyline (for example, a street) or polygon (region).
+
 >"APPROXIMATE" indicates that the returned result is approximate."
 
 What this tells us is that Google believes it has reached rooftop accuracy for 2155 records but has selected the geometric centre or an approximate value for around 58% of the entries. Lets take a closer look at the geometric center data. 
@@ -508,6 +544,9 @@ results_complete %>%
 ```
 
 The approximate results are a mixed bag, in some cases the coordinates focus on a city or town. In other cases such as `Adv Choice Econ Pty Ltd, Bateman, Australia` the coordinate is for a country and so on. 
+
+
+## Preprocess the Data and Rerun the Query
 
 This suggests to me at least that while the geocoding is OK the prevalence of geometric centre and approximate results suggests that we might want to run this again but this time edit the location names first to see if we can improve the accuracy of the results. We now know that we can geocode pretty much all of this data. What we are interested in now is whether we can improve the accuracy of the geocoding. 
 
@@ -585,7 +624,7 @@ run1 %>%
   mutate(prop = prop.table(n))
 ```
 
-What this has done is improved the rooftop resolution by a couple of percentage points and improved the geometric centre results by about the same. The approximate score has dropped to 19% from 23% so this is definitely progress. As this suggests, improving the quality of geocoding matters and it is therefore worth putting the effort into improving the resolution of the results. 
+What this has done is improved the rooftop resolution by a couple of percentage points and improved the geometric centre results by about the same. The approximate score has dropped to 19% from 23% so this is definitely progress. In total 214 records have moved up from the approximate to the rooftop or geometric centre location_types. As this suggests, improving the quality of geocoding matters and it is therefore worth putting the effort into improving the resolution of the results. 
 
 ### Duplicated Affiliation Names
 
@@ -622,7 +661,7 @@ affiliation2 %>%
   head(20)
 ```
 
-In the case of Aarhus University, we can see that We have Aarhus University Bioscience, Aarhus University Hospital and an Aarhus University. In some cases the entities belong to the organisation but might otherwise be regarded as distinct (Aarhus University Hospital) which in another the Bioscience reference refers to a department (but gives the impression that it may be a separate University as for Agricultural cases). To add to this we note that there are locations in Aarhus and Roskilde and a minor variant (Aarhus C) in the address field. 
+In the case of Aarhus University, we can see that we have Aarhus University Bioscience, Aarhus University Hospital and an Aarhus University. In some cases the entities belong to the organisation but might otherwise be regarded as distinct (Aarhus University Hospital) while in another the Bioscience reference refers to a department (but gives the impression that it may be a separate University as for Agricultural cases). To add to this we note that there are locations in Aarhus and Roskilde and a minor variant (Aarhus C) in the address field. 
 
 As this makes clear address field data in scientific names is pretty messy because authors choose how to denote their affiliations, and are perhaps rebelling against the tyranny of performance indicators and endless research assessment exercises. 
 
@@ -662,7 +701,7 @@ mapdata
 
 As this makes clear it is relatively straightforward to generate quick maps with R and even easier to export the data to tools such as Tableau for publication quality and interactive maps. We will go into mapping in more depth in a future article. 
 
-### Round Up
+## Round Up
 
 In this article we looked at three R packages for geocoding data on research affiliations from the scientific literature using Web of Science. We focused on the use of the `placement` package as it is very easy to use. However, your needs may differ with packages such as `ggmap` and `googleway` offering different functionality. 
 
@@ -684,3 +723,5 @@ R is a functional programming language meaning that it will be feasible to const
 In many cases it will make sense to choose a threshold based on counts of records before sending the data to the API. For example where dealing with publications (as in this case) it could make sense to exclude records where there is only one record. For example, in our original input table 1,624 entries only had one record. If no one is ever likely to look at data points with only one record you may wish to filter them out and concentrate on the accuracy of geocoding for scores above the threshold. 
 
 We have also seen that while the focus of geocoding is logically on mapping, in reality geocoding services may offer new opportunities for the vexed problem of accurate name cleaning when working with the scientific literature or patent data. We will look at this in more detail in a future article. For the moment, congratulations, you have survived geocoding using the Google Maps API in R. 
+
+# References
