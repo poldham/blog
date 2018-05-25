@@ -20,6 +20,8 @@ nocite: |
   @R-knitr
   @R-citr
   @R-bibtex
+  @W_McLean_2017
+  @R-bib2df
 ---
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(cache=TRUE, out.width = "800px", fig.align = "center", echo=TRUE, warning=FALSE, message=FALSE)
@@ -114,7 +116,7 @@ The rcrossref add in creates a new file in your RStudio project directory (assum
 
 ### Adding citations in Rmarkdown
 
-To add a citation we simply use [@] and the relevant link in the citation, as explained by Yihui [here](https://bookdown.org/yihui/bookdown/citations.html). For example:
+To add a citation, using the example above, we simply use `[@R-rcrossref]`, as explained by Yihui [here](https://bookdown.org/yihui/bookdown/citations.html). Note when inserting the reference we skip the type (e.g. Manual, Article etc) at the start of the crossref.bib entry. The result will look something like this:
 
 >rcrossref [@R-rcrossref] is a great package for accessing data for a bibliography or for larger scale bibliometrices. In 2014 Paul Oldham and his co-authors published an article on the completely mad subject of global climate engineering that succeeded in exciting consipiracy theorists using the #contrails and #chemtrails hashtags on twitter [@Oldham_2014]. 
 
@@ -132,7 +134,7 @@ When we knit or build the document the citations will show up in the text itself
 
 ### Going Further
 
-Thanks to the team behind `rcrossref` you now have over 96 million references at your finger tips. Many thankas are also due to Yihui Xie and the team behind `knitr`, `bookdown` and `blogdown` for their really great work 
+Thanks to the team behind `rcrossref` you now have over 96 million references at your finger tips. Many thanks are also due to Yihui Xie and the team behind `knitr`, `bookdown` and `blogdown` for their really great work 
 
 You can read more about bibliographies on the RStudio site [here](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html). Yihui Xie's [knitr website](https://yihui.name/knitr/) and [book](https://www.amazon.com/dp/1498716962/ref=cm_sw_su_dp) are great resources [@Dynamic_2016]. 
 
@@ -140,7 +142,7 @@ Bookdown users can find more information in the electronic version of the bookdo
 
 For blogdown users: [Alison Presmanes Hill](https://github.com/apreshill), a co-author of blogdown, has written a very useful guide to citations in the minimal blogdown demo [here](https://github.com/rbind/blogdown-demo/blob/master/content/post/2017-08-28-adding-citations-to-posts.Rmd) that I used to write this article. It covers subjects such as using `nocite:` in your YAML to avoid academic style citations for packages in the text. In the references below you will see that there all the packages used are included but without inline citation. You will very probably want to read the excellent blogdown book [here](https://bookdown.org/yihui/blogdown/) as well [@blogdown_2017]. 
 
-Packages to help you navigate citations include `citr` and `bibtex` and you may well want to check them out. If you know of any more please feel welcome to mention them below.
+Packages to help you navigate citations include [`RefManageR`](https://github.com/ropensci/RefManageR), [`citr`](https://github.com/crsh/citr) and [`bibtex`](https://github.com/romainfrancois/bibtex) and [`bib2df](https://github.com/ropensci/bib2df) you may well want to check them out. bib2df may be useful for cleaning up bibliography entries as it provides functions to convert a .bib file to a data.frame and back again.^[At the time of writing install using devtools::install_github("ottlngr/bib2df")] This list is not comprehensive and so if you know of any more please feel welcome to mention them below.
 
 # References
 
