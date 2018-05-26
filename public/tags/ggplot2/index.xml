@@ -1,24 +1,1086 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ggplot2 on Paul Oldham&#39;s Blog</title>
-    <link>https://www.pauloldham.net/tags/ggplot2/</link>
-    <description>Recent content in Ggplot2 on Paul Oldham&#39;s Blog</description>
+    <title>Ggplot2 on Paul Oldham&#39;s Analytics Blog</title>
+    <link>/tags/ggplot2/</link>
+    <description>Recent content in Ggplot2 on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Mon, 20 Jul 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://www.pauloldham.net/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Graphing Patent Data with ggplot2 part2</title>
-      <link>https://www.pauloldham.net/graphing-patent-data-with-ggplot2-part2/</link>
+      <link>/graphing-patent-data-with-ggplot2-part2/</link>
       <pubDate>Mon, 20 Jul 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/graphing-patent-data-with-ggplot2-part2/</guid>
-      <description>Introduction The Grammar of Graphics Getting Started Loading the Data Reviewing and Preparing the Dataset with dplyr Creating a Publication Country Table Creating a Publication Country by Year Table  Getting Going with ggplot in ggplot2 Establishing the Base Object Adding a geom Changing the Geom Adding a trend line Statistical Transformations Adding Labels Publication Country Charts A Bar chart Adding labels to columns A Ranked Bar Chart A Dot Plot A Balloon Plot A Stacked Bar Chart Faceting facet_wrap  Pie and Coxcomb Plots Creating a Pie Chart (aaaargh) The Coxcomb Plot  Round Up Useful Resources   Introduction This is Part 2 of an article introducing R for patent analytics that focuses on visualising patent data in R using the ggplot2 package.</description>
+      <guid>/graphing-patent-data-with-ggplot2-part2/</guid>
+      <description>&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#the-grammar-of-graphics&#34;&gt;The Grammar of Graphics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#getting-started&#34;&gt;Getting Started&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#loading-the-data&#34;&gt;Loading the Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#reviewing-and-preparing-the-dataset-with-dplyr&#34;&gt;Reviewing and Preparing the Dataset with &lt;code&gt;dplyr&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#creating-a-publication-country-table&#34;&gt;Creating a Publication Country Table&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#creating-a-publication-country-by-year-table&#34;&gt;Creating a Publication Country by Year Table&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#getting-going-with-ggplot-in-ggplot2&#34;&gt;Getting Going with ggplot in ggplot2&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#establishing-the-base-object&#34;&gt;Establishing the Base Object&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#adding-a-geom&#34;&gt;Adding a &lt;code&gt;geom&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#changing-the-geom&#34;&gt;Changing the Geom&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#adding-a-trend-line&#34;&gt;Adding a trend line&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#statistical-transformations&#34;&gt;Statistical Transformations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#adding-labels&#34;&gt;Adding Labels&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#publication-country-charts&#34;&gt;Publication Country Charts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#a-bar-chart&#34;&gt;A Bar chart&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#adding-labels-to-columns&#34;&gt;Adding labels to columns&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#a-ranked-bar-chart&#34;&gt;A Ranked Bar Chart&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#a-dot-plot&#34;&gt;A Dot Plot&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#a-balloon-plot&#34;&gt;A Balloon Plot&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#a-stacked-bar-chart&#34;&gt;A Stacked Bar Chart&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#faceting&#34;&gt;Faceting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#facet_wrap&#34;&gt;facet_wrap&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#pie-and-coxcomb-plots&#34;&gt;Pie and Coxcomb Plots&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#creating-a-pie-chart-aaaargh&#34;&gt;Creating a Pie Chart (aaaargh)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#the-coxcomb-plot&#34;&gt;The Coxcomb Plot&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#round-up&#34;&gt;Round Up&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#useful-resources&#34;&gt;Useful Resources&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;This is Part 2 of an article introducing R for patent analytics that focuses on visualising patent data in R using the ggplot2 package.&lt;/p&gt;
+&lt;p&gt;In Part 1 we introduced the basics of wrangling patent data in R using the &lt;code&gt;dplyr&lt;/code&gt; package to select and add data. In this article we will go into more detail on these functions. We then focused on using &lt;code&gt;qplot&lt;/code&gt; from the &lt;code&gt;ggplot2&lt;/code&gt; package to illustrate the ease with which graphics can be created and edited in R. In this article we will focus on &lt;code&gt;ggplot&lt;/code&gt; and the Grammar of Graphics. As in Part 1 we assume that you are new to R and make no assumptions about familiarity with R. However, you must have &lt;a href=&#34;https://www.rstudio.com/products/rstudio/#Desktop&#34;&gt;RStudio&lt;/a&gt; installed on your computer (see Part 1) for instructions. We will also move a little faster on some of the initial steps than in Part 1.&lt;/p&gt;
+&lt;p&gt;The majority of examples in this article are based on the list of recipes for generating graphics using ggplot2 in &lt;code&gt;Winston Chang&#39;s R Graphics Cookbook&lt;/code&gt; and the accompanying &lt;a href=&#34;http://www.cookbook-r.com/Graphs/&#34;&gt;website&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This article is a work in progress and will be updated as solutions are identified to some of the issues encountered in graphing using ggplot2. Please feel welcome to add comments to this post, particularly where you identify a solution to issues.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-grammar-of-graphics&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The Grammar of Graphics&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;ggplot2&lt;/code&gt; is an implementation of Leland Wilkinson’s Grammar of Graphics by Hadley Wickham at RStudio as described in &lt;a href=&#34;http://vita.had.co.nz/papers/layered-grammar.pdf&#34;&gt;this article&lt;/a&gt; and &lt;a href=&#34;http://www.amazon.co.uk/ggplot2-Elegant-Graphics-Data-Analysis/dp/0387981403&#34;&gt;ggplot2 book&lt;/a&gt;. Hadley Wickham’s grammar differs from the original by focusing on layered approach to building statistical graphics.&lt;/p&gt;
+&lt;p&gt;The grammar of graphics is an approach to building graphics based on the idea that any statistical graphic can be built from the following components:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;A data set&lt;/li&gt;
+&lt;li&gt;A set of aesthetic or &lt;code&gt;aes&lt;/code&gt; attributes such as size, shape &amp;amp; colour&lt;/li&gt;
+&lt;li&gt;Statistical transformations&lt;/li&gt;
+&lt;li&gt;A geometric object &lt;code&gt;geom&lt;/code&gt; or set of objects (&lt;code&gt;geoms&lt;/code&gt;) for the type of plot e.g. line, bar or map&lt;/li&gt;
+&lt;li&gt;scales for the above&lt;/li&gt;
+&lt;li&gt;A coordinate system (e.g. a grid or map)&lt;/li&gt;
+&lt;li&gt;Faceting (trellising)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In practice, this breaks down into three main elements:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;A base object. The first two of these components combine into a base object consisting of the data set and aesthetic mappings or &lt;code&gt;aes&lt;/code&gt; for the particular data we want to see. That includes the axes and any fill or line colours.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;geoms&lt;/code&gt; or geometric objects. We then add one or more &lt;code&gt;geom&lt;/code&gt; to specify the form in which we want to see the data we have selected in 1. This tends to also involve a statistical transformation (such as placing data into bins for a bar chart). Defaults deal with some of this. However, a statistical transformation or &lt;code&gt;stat&lt;/code&gt; can also be specified.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;A coordinate system. We normally don’t need to think about this. The default is a standard Cartesian grid. However, this can be changed to a fixed grid or a polar grid.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;An easy way to think about it is that&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;The base object defines what we want to see.&lt;/li&gt;
+&lt;li&gt;The geoms define the form we want to see it in.&lt;/li&gt;
+&lt;li&gt;The coordinate system defines the framework for the visualisation.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;As with any grammar it can take a while to get used to its terms and peculiarities. The good news is that there are plenty of free resources out there for this very popular package.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Winston Chang’s &lt;a href=&#34;http://www.cookbook-r.com/Graphs/&#34;&gt;R Graphics Cookbook website&lt;/a&gt; is a very valuable practical guide to most things you will want to do with ggplot2. The full R Graphics Cookbook goes into a lot more detail and is an invaluable reference if you will be doing a lot of work with graphics in R. Those with budgets may also want to invest in Hadley Wickham’s book ggplot2 published by Springer.&lt;/li&gt;
+&lt;li&gt;RStudio have developed a very helpful cheat sheet that you can download &lt;a href=&#34;http://www.rstudio.com/wp-content/uploads/2015/05/ggplot2-cheatsheet.pdf&#34;&gt;here&lt;/a&gt; or view &lt;a href=&#34;http://www.rstudio.com/resources/cheatsheets/&#34;&gt;here&lt;/a&gt;. We suggest downloading and printing the cheat sheet when using ggplot2.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;getting-started&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Getting Started&lt;/h2&gt;
+&lt;p&gt;If you don’t have these packages already then install each of them below by pressing command and Enter at the end of each line. As an alternative select &lt;strong&gt;&lt;em&gt;Packages &amp;gt; Install&lt;/em&gt;&lt;/strong&gt; in the pane displaying a tab called Packages. Then enter the names of the packages one at a time without the quotation marks.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;readr&amp;quot;)
+install.packages(&amp;quot;dplyr&amp;quot;)
+install.packages(&amp;quot;ggplot2&amp;quot;)
+install.packages(&amp;quot;ggthemes&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then make sure the packages have loaded to make them available. Press command and enter at the end of each line below (or, if you are feeling brave, select them all and then click the icon marked Run).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readr)
+library(dplyr)
+library(ggplot2)
+library(ggthemes)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You are now good to go.&lt;/p&gt;
+&lt;div id=&#34;loading-the-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Loading the Data&lt;/h3&gt;
+&lt;p&gt;We will load the pizza dataset directly from the &lt;a href=&#34;https://github.com/poldham/opensource-patent-analytics/tree/master/2_datasets/pizza_medium_clean&#34;&gt;Github datasets repository&lt;/a&gt; using &lt;code&gt;read_csv&lt;/code&gt; from the &lt;code&gt;readr&lt;/code&gt; package. If downloading from the repository note that it is the View Raw file that you want. If loading from a downloaded file include the full file path inside quotation marks.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pizza &amp;lt;- read_csv(&amp;quot;https://github.com/poldham/opensource-patent-analytics/blob/master/2_datasets/pizza_medium_clean/pizza.csv?raw=true&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As in Part 1 we will use &lt;code&gt;dplyr&lt;/code&gt; to create a count field using the publication number, rename some of the fields and then select fields we want to count.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;reviewing-and-preparing-the-dataset-with-dplyr&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Reviewing and Preparing the Dataset with &lt;code&gt;dplyr&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Inspecting our data is a first step. Type &lt;code&gt;View(pizza)&lt;/code&gt; in the console to see the table and &lt;code&gt;str(pizza)&lt;/code&gt; to see its structure.&lt;/p&gt;
+&lt;p&gt;In practice we have a number of issues that we will want to fix.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;We have a blank row at the bottom of the dataset that we will want to remove because it will produce a red error message. It does not have to be removed but this will help in interpreting any error messages.&lt;/li&gt;
+&lt;li&gt;Patent data commonly doesn’t contain numeric fields. Data fields are mainly characters or dates with the exception at times of cited and citing counts. We will want to add a count column.&lt;/li&gt;
+&lt;li&gt;We will not be working with all 31 columns in &lt;code&gt;pizza&lt;/code&gt; and so we will want to select just those we will be working with.&lt;/li&gt;
+&lt;li&gt;To save typing we may want to rename some of the columns (and we can revert the names later if need be).&lt;/li&gt;
+&lt;li&gt;Some data may be missing for particular countries. For example, for Canada some of the entries are missing a year field. That may be fine for raw totals but not for charting by year.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;To handle these tasks we can use the very useful functions in &lt;code&gt;dplyr&lt;/code&gt;. For other tasks we might also want to use &lt;code&gt;tidyr&lt;/code&gt; or &lt;code&gt;plyr&lt;/code&gt; as sister packages to &lt;code&gt;dplyr&lt;/code&gt;. &lt;code&gt;dplyr&#39;s&lt;/code&gt; main functions are described &lt;a href=&#34;http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html&#34;&gt;here&lt;/a&gt;. These are the functions we think you will find most useful with patent data.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;filter() and slice()&lt;/li&gt;
+&lt;li&gt;arrange()&lt;/li&gt;
+&lt;li&gt;select()&lt;/li&gt;
+&lt;li&gt;distinct()&lt;/li&gt;
+&lt;li&gt;mutate()&lt;/li&gt;
+&lt;li&gt;summarise()&lt;/li&gt;
+&lt;li&gt;group_by()&lt;/li&gt;
+&lt;li&gt;count()&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;dplyr&lt;/code&gt; functions are important because they will help you to easily extract elements of the data for graphing. They can also be very useful for basic patent analysis workflows where tools such as Excel or Open Office will struggle. For more on wrangling data using &lt;code&gt;dplyr&lt;/code&gt; and &lt;code&gt;tidyr&lt;/code&gt; see the &lt;a href=&#34;http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf&#34;&gt;RStudio Data Wrangling Cheatsheet&lt;/a&gt;. &lt;code&gt;dplyr&lt;/code&gt; also includes pipes, such as %&amp;gt;% (meaning then) that can be used to string together chunks of code in an efficient and easy to use way. We will illustrate the use of pipes in this article but will not use pipes throughout as we are adopting a simple step by step approach. As you become more familiar and comfortable with R we suggest that you increasingly start to work with pipes to make your life easier. We caution against leaping into pipes when learning R. While they are very easy to use and efficient, they are still relatively new. That can make reading ‘normal’ R code difficult until you are more familiar with it.&lt;/p&gt;
+&lt;p&gt;We will now use two &lt;code&gt;dplyr&lt;/code&gt; functions.&lt;/p&gt;
+&lt;p&gt;First we will add a column with a numeric value for each publication number in the dataset using &lt;code&gt;mutate&lt;/code&gt;. &lt;code&gt;mutate&lt;/code&gt; takes an argument applied to the values of one or more columns and adds a new column based on that argument. Here, as in Part 1 we simply add a new column called &lt;code&gt;n&lt;/code&gt; that uses &lt;code&gt;sum()&lt;/code&gt; to award each publication number the value of 1. We now have a numeric count column &lt;code&gt;n&lt;/code&gt; from our character vectors.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pizza &amp;lt;- mutate(pizza, n = sum(publication_number = 1))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next we will rename the columns to make life easier using &lt;code&gt;rename()&lt;/code&gt;. The code has been indented to make it easier to read. To run this code, select the code and press Run in R or press command and enter.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pizza &amp;lt;- rename(pizza, 
+                pubcountry = publication_country_name,
+                pubcode = publication_country_code, 
+                pubyear = publication_year
+                )
+pizza&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 9,996 x 32
+##    applicants_cleaned    applicants_clean… applicants_orga… applicants_original
+##    &amp;lt;chr&amp;gt;                 &amp;lt;chr&amp;gt;             &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;              
+##  1 &amp;lt;NA&amp;gt;                  People            &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;               
+##  2 Ventimeglia Jamie Jo… People            &amp;lt;NA&amp;gt;             Ventimeglia Jamie …
+##  3 Cordova Robert; Mart… People            &amp;lt;NA&amp;gt;             Cordova Robert;Mar…
+##  4 Lazarillo De Tormes … Corporate         Lazarillo De To… LAZARILLO DE TORME…
+##  5 &amp;lt;NA&amp;gt;                  People            &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;               
+##  6 Depoortere, Thomas    People            &amp;lt;NA&amp;gt;             DEPOORTERE, Thomas 
+##  7 Frisco Findus Ag      Corporate         Frisco Findus Ag FRISCO-FINDUS AG   
+##  8 Bicycle Tools Incorp… Corporate         Bicycle Tools I… Bicycle Tools Inco…
+##  9 Castiglioni, Carlo    People            &amp;lt;NA&amp;gt;             CASTIGLIONI, CARLO 
+## 10 &amp;lt;NA&amp;gt;                  People            &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;               
+## # ... with 9,986 more rows, and 28 more variables: inventors_cleaned &amp;lt;chr&amp;gt;,
+## #   inventors_original &amp;lt;chr&amp;gt;, ipc_class &amp;lt;chr&amp;gt;, ipc_codes &amp;lt;chr&amp;gt;,
+## #   ipc_names &amp;lt;chr&amp;gt;, ipc_original &amp;lt;chr&amp;gt;, ipc_subclass_codes &amp;lt;chr&amp;gt;,
+## #   ipc_subclass_detail &amp;lt;chr&amp;gt;, ipc_subclass_names &amp;lt;chr&amp;gt;,
+## #   priority_country_code &amp;lt;chr&amp;gt;, priority_country_code_names &amp;lt;chr&amp;gt;,
+## #   priority_data_original &amp;lt;chr&amp;gt;, priority_date &amp;lt;chr&amp;gt;, pubcode &amp;lt;chr&amp;gt;,
+## #   pubcountry &amp;lt;chr&amp;gt;, publication_date &amp;lt;chr&amp;gt;, publication_date_original &amp;lt;chr&amp;gt;,
+## #   publication_day &amp;lt;int&amp;gt;, publication_month &amp;lt;int&amp;gt;, publication_number &amp;lt;chr&amp;gt;,
+## #   publication_number_espacenet_links &amp;lt;chr&amp;gt;, pubyear &amp;lt;int&amp;gt;,
+## #   title_cleaned &amp;lt;chr&amp;gt;, title_nlp_cleaned &amp;lt;chr&amp;gt;,
+## #   title_nlp_multiword_phrases &amp;lt;chr&amp;gt;, title_nlp_raw &amp;lt;chr&amp;gt;,
+## #   title_original &amp;lt;chr&amp;gt;, n &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We now want to create 4 data tables:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;p1 as a reference set with four columns&lt;/li&gt;
+&lt;li&gt;pc = publication country totals&lt;/li&gt;
+&lt;li&gt;pt = publication totals by year&lt;/li&gt;
+&lt;li&gt;pcy = publication country by year&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We will create a new working table called &lt;code&gt;p1&lt;/code&gt; that contains just the data we want to work with using &lt;code&gt;dplyr&#39;s&lt;/code&gt; &lt;code&gt;select()&lt;/code&gt;. &lt;code&gt;select()&lt;/code&gt; will only include columns that we name and will drop the others from the new table.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p1 &amp;lt;- select(pizza, pubcountry, pubcode, pubyear, n)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;p1 will be our reference set and contains 4 columns, use &lt;code&gt;View(p1)&lt;/code&gt; to see it.&lt;/p&gt;
+&lt;p&gt;If we were to inspect this data we would see that we have some sparse results dating back to the 1940s. In the last article we controlled for this in graphs using &lt;code&gt;xlim&lt;/code&gt; to limit the x axis to specific years. Here we will remove that data.&lt;/p&gt;
+&lt;p&gt;To remove the sparse years we need to use &lt;code&gt;dplyrs&lt;/code&gt; filter function. &lt;code&gt;filter&lt;/code&gt; is basically the equivalent of &lt;code&gt;select&lt;/code&gt; for rows. Rather than naming each of the years that we want to remove we will us an operator for values equal or greater than 1970 &lt;code&gt;&amp;gt;=&lt;/code&gt;. We will also want to pull back from the data cliff in more recent years as discussed in Part 1. To do that we will add a second argument to filter for years that are equal to or below 2012 &lt;code&gt;&amp;lt;=&lt;/code&gt;. Note here that &lt;code&gt;dplyr&lt;/code&gt; functions can take more than one argument at a time. So we do not need to repeat the function for each filter operation. For a list of other operators see this quick &lt;a href=&#34;http://www.statmethods.net/management/operators.html&#34;&gt;table&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p1 &amp;lt;- filter(p1, pubyear &amp;gt;= 1970, pubyear &amp;lt;= 2012)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can now go ahead and create a publication total table &lt;code&gt;pt&lt;/code&gt; using &lt;code&gt;count()&lt;/code&gt; in &lt;code&gt;dplyr&lt;/code&gt;. &lt;code&gt;count&lt;/code&gt; is actually a wrapper for two other &lt;code&gt;dplyr&lt;/code&gt; functions, &lt;code&gt;group_by&lt;/code&gt; and &lt;code&gt;summarise&lt;/code&gt;. We do not need to use those because &lt;code&gt;count&lt;/code&gt; does that for us. Note here that &lt;code&gt;wt&lt;/code&gt; for &lt;code&gt;weight&lt;/code&gt; will sum the value of n for us (see &lt;code&gt;?count&lt;/code&gt; for details).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pt &amp;lt;- count(p1, pubyear, wt = n)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If we inspect &lt;code&gt;pt&lt;/code&gt; we will see that we now have totals for each year. We might want to add a rank or percentage column to that for later use. There are a variety of ways of going about this. However, staying with &lt;code&gt;dplyr&lt;/code&gt;, behind the scenes &lt;code&gt;count&lt;/code&gt; function has grouped the data for us (see &lt;code&gt;?count&lt;/code&gt;). To understand this use &lt;code&gt;str(pt)&lt;/code&gt; in the console to view the data. This will reveal that we have a grouped data frame with attributes. To go further we will ungroup the table first. [Note that ungrouping is not normally necessary but is used here because of an unexpected problem calculating a percentage on a grouped table using &lt;code&gt;sum(n)&lt;/code&gt; in &lt;code&gt;dplyr&lt;/code&gt;].&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pt &amp;lt;- ungroup(pt)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As with filter we can pass multiple arguments to &lt;code&gt;mutate&lt;/code&gt;. To demonstrate this we will add a column with a percentage score, then use &lt;code&gt;ntile&lt;/code&gt; to split the data into 3 groups and then calculate the percent rank using &lt;code&gt;percent_rank(nn)&lt;/code&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pt &amp;lt;- mutate(pt, group = ntile(nn, 3),
+             percent = nn / sum(nn) * 100, 
+             rank = percent_rank(nn))
+pt&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 43 x 5
+##    pubyear    nn group percent   rank
+##      &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;
+##  1    1970    2.     1  0.0223 0.    
+##  2    1971    6.     1  0.0668 0.0238
+##  3    1972   14.     1  0.156  0.119 
+##  4    1973    9.     1  0.100  0.0714
+##  5    1974    7.     1  0.0780 0.0476
+##  6    1975   11.     1  0.123  0.0952
+##  7    1976   27.     1  0.301  0.190 
+##  8    1977   24.     1  0.267  0.143 
+##  9    1978   30.     1  0.334  0.214 
+## 10    1979   26.     1  0.290  0.167 
+## # ... with 33 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This neatly demonstrates how easy it is to use mutate to add columns based on different calculations.&lt;/p&gt;
+&lt;p&gt;The reason that we are focusing on adding counts to the publication total table is that when graphing later we can use these columns to split and order the graphics. This is particularly helpful because with patent data we normally have widely varying scores that produce crunched graphs. The availability of either buckets or percentages is very helpful for creating ranked bar charts or plots and faceting (trellis graphs). As we often want to see what happens with a graph before deciding how to proceed or drop data it is useful to have a ranking system. We can then filter the data using function at a later stage.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-a-publication-country-table&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Creating a Publication Country Table&lt;/h3&gt;
+&lt;p&gt;We will follow the same procedure for the publication country table. However, in this case we will illustrate the use of pipes to simplify the process. We will use the most common pipe &lt;code&gt;%&amp;gt;%&lt;/code&gt;, which means “then”. This basically says, “this” then “that”. Select and run the code.&lt;/p&gt;
+&lt;!--- could probably use n() here. Note that if attempt to use n then it thinks it is the function.---&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pc &amp;lt;- count(p1, pubcountry, pubcode, wt = n) %&amp;gt;%
+    ungroup() %&amp;gt;%
+    mutate(group = ntile(nn, 3),
+           percent = nn / sum(nn) * 100,
+           rank = percent_rank(nn)) %&amp;gt;%
+    arrange(desc(nn)) 
+print(pc)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 16 x 6
+##    pubcountry                   pubcode    nn group percent   rank
+##    &amp;lt;chr&amp;gt;                        &amp;lt;chr&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;
+##  1 United States of America     US      4267.     3 47.5    1.000 
+##  2 Patent Co-operation Treaty   WO      1390.     3 15.5    0.933 
+##  3 Canada                       CA      1316.     3 14.7    0.867 
+##  4 European Patent Office       EP      1184.     3 13.2    0.800 
+##  5 Korea, Republic of           KR       308.     3  3.43   0.733 
+##  6 Japan                        JP       205.     2  2.28   0.667 
+##  7 Germany                      DE        89.     2  0.991  0.600 
+##  8 South Africa                 ZA        72.     2  0.802  0.533 
+##  9 China                        CN        60.     2  0.668  0.467 
+## 10 Israel                       IL        35.     2  0.390  0.400 
+## 11 Mexico                       MX        23.     1  0.256  0.333 
+## 12 Portugal                     PT        10.     1  0.111  0.200 
+## 13 Russian Federation           RU        10.     1  0.111  0.200 
+## 14 Eurasian Patent Organization EA         4.     1  0.0446 0.133 
+## 15 Spain                        ES         3.     1  0.0334 0.0667
+## 16 Singapore                    SG         2.     1  0.0223 0.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;While we will not focus on using pipes in this article, they simplify the writing of code in R and make it clearer. The above code is identical to the code below. However, note that in the code below we have to keep overwriting each time we add an element. Also note that in the code above we only mention our reference table, p1, once at the beginning whereas in the version without pipes or chaining, we have to mention it as the first argument of each function.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pc &amp;lt;- count(p1, pubcountry, pubcode, wt = n)
+   pc &amp;lt;- ungroup(pc)
+   pc &amp;lt;- mutate(pc, group = ntile(nn, 3), 
+                percent = nn / sum(nn) * 100, 
+                rank = percent_rank(nn))
+   pc &amp;lt;- arrange(pc, desc(nn))
+   pc&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 16 x 6
+##    pubcountry                   pubcode    nn group percent   rank
+##    &amp;lt;chr&amp;gt;                        &amp;lt;chr&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;
+##  1 United States of America     US      4267.     3 47.5    1.000 
+##  2 Patent Co-operation Treaty   WO      1390.     3 15.5    0.933 
+##  3 Canada                       CA      1316.     3 14.7    0.867 
+##  4 European Patent Office       EP      1184.     3 13.2    0.800 
+##  5 Korea, Republic of           KR       308.     3  3.43   0.733 
+##  6 Japan                        JP       205.     2  2.28   0.667 
+##  7 Germany                      DE        89.     2  0.991  0.600 
+##  8 South Africa                 ZA        72.     2  0.802  0.533 
+##  9 China                        CN        60.     2  0.668  0.467 
+## 10 Israel                       IL        35.     2  0.390  0.400 
+## 11 Mexico                       MX        23.     1  0.256  0.333 
+## 12 Portugal                     PT        10.     1  0.111  0.200 
+## 13 Russian Federation           RU        10.     1  0.111  0.200 
+## 14 Eurasian Patent Organization EA         4.     1  0.0446 0.133 
+## 15 Spain                        ES         3.     1  0.0334 0.0667
+## 16 Singapore                    SG         2.     1  0.0223 0.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that we have added the function &lt;code&gt;arrange&lt;/code&gt; and given it the value of &lt;code&gt;n&lt;/code&gt;. Arrange will sort a table on a column in ascending order by default and descending order using &lt;code&gt;desc&lt;/code&gt; inside the function as in this case. Use &lt;code&gt;View(pc)&lt;/code&gt; to take a look. To reverse the order try the code below.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pc &amp;lt;- arrange(pc, nn)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This will arrange the &lt;code&gt;pc&lt;/code&gt; data by the value of &lt;code&gt;n&lt;/code&gt; in the default ascending order.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-a-publication-country-by-year-table&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Creating a Publication Country by Year Table&lt;/h3&gt;
+&lt;p&gt;For the publication country by year we do the same but retain all the columns.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pcy &amp;lt;- count(p1, pubcountry, pubcode, pubyear, wt = n) %&amp;gt;% ungroup()
+pcy&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 296 x 4
+##    pubcountry pubcode pubyear    nn
+##    &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;     &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt;
+##  1 Canada     CA         1971    2.
+##  2 Canada     CA         1972    4.
+##  3 Canada     CA         1974    1.
+##  4 Canada     CA         1975    1.
+##  5 Canada     CA         1976    1.
+##  6 Canada     CA         1977    1.
+##  7 Canada     CA         1978    4.
+##  8 Canada     CA         1979    8.
+##  9 Canada     CA         1980   11.
+## 10 Canada     CA         1981   14.
+## # ... with 286 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We now have a table that sums up the values by country and year. However, we are now presented with a conundrum. We have lost our groups and ranks. We cannot simply repeat what we did before (e.g. ntile) because the data is now split by year and it will not assign correctly. In addition, using other functions is made difficult by the fact our columns are character columns.&lt;/p&gt;
+&lt;p&gt;One solution to this conundrum is to join the &lt;code&gt;pcy&lt;/code&gt; and the &lt;code&gt;pc&lt;/code&gt; tables together using the &lt;code&gt;join&lt;/code&gt; functions in &lt;code&gt;dplyr&lt;/code&gt;. We will start by creating a temporary table that we will call &lt;code&gt;df&lt;/code&gt; and use &lt;code&gt;select&lt;/code&gt; to drop the columns we don’t want, then we will create a new &lt;code&gt;pcy&lt;/code&gt; using &lt;code&gt;left_join&lt;/code&gt; from &lt;code&gt;dplyr&lt;/code&gt; (see &lt;code&gt;join&lt;/code&gt;).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df &amp;lt;- select(pc, pubcode, group)
+  pcy &amp;lt;- left_join(pcy, df)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We now have a publication country by year table where groups are assigned as in the previous table. Note that for a join to be made the table must possess one or more shared columns that serve as a key for the join (in this case the shared key is &lt;code&gt;pubcode&lt;/code&gt;). It can be a very good idea to retain a field to use as a shared key where you expect to be joining data at a later stage. Also note that this is one solution, it is not necessarily the best or most efficient solution.&lt;/p&gt;
+&lt;p&gt;We could also break our publication countries into separate tables using to select only those rows in a group we want. Here we create three tables based on the groups assigned to them where they match the group number using ==.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;main &amp;lt;- filter(pcy, group == 3)
+other &amp;lt;- filter(pcy, group == 2)
+low &amp;lt;- filter(pcy, group == 1)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In practice, we do not always need to create separate tables, however, as we can now see the combination of &lt;code&gt;select&lt;/code&gt; for columns and &lt;code&gt;filter&lt;/code&gt; for rows in makes it easy to create subsets of our data. We have also seen that functions such as &lt;code&gt;left_join&lt;/code&gt; can come in useful where we cannot easily repeat the creation of a variable in a table divided on different variables. While there are almost always other ways of doing things in R, &lt;code&gt;dplyr&lt;/code&gt; and its sister packages &lt;code&gt;tidyr&lt;/code&gt; and &lt;code&gt;plyr&lt;/code&gt; aim to make everyday data preparation and analysis tasks easier.&lt;/p&gt;
+&lt;p&gt;We now have four data tables and in the following sections we will work with:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pt = the publication total data&lt;/li&gt;
+&lt;li&gt;pc = the publication country data&lt;/li&gt;
+&lt;li&gt;pcy = the publication country by year table&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We will be working through graph creation in a step wise direction so that you can see what is happening at each step. In the process we will create multiple objects. This is not the fastest way to proceed. However, it is transparent in mapping out the steps and the consequences of small chunks of code. Faster ways include using pipes as we have seen above. We have initially chosen the slower route to explain what is going on. However, you may want to experiment with pipes on some of the code at the end of this article.&lt;/p&gt;
+&lt;p&gt;This section has usefully reminded us that data preparation is a fundamental step in any patent analysis task including visualisation. Choices made at this stage will determine the ease or difficulty with which we can perform particular visualisation tasks later. However, there is nothing to stop us returning to our data wrangling functions at a later stage. For example, we may well discover that the three bins we have created using &lt;code&gt;ntile&lt;/code&gt; should be 4 or we might want to use a calculation to determine the number of bins. This need for adjustment is a normal part of data analysis. For more information on data wrangling in R using &lt;code&gt;dplyr&lt;/code&gt; and &lt;code&gt;tidyr&lt;/code&gt; see the &lt;a href=&#34;https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf&#34;&gt;RStudio Data Wrangling Cheatsheet&lt;/a&gt; and Garrett Grolemund’s excellent &lt;a href=&#34;https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf&#34;&gt;Data Wrangling with R&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;getting-going-with-ggplot-in-ggplot2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Getting Going with ggplot in ggplot2&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;ggplot()&lt;/code&gt; basically builds graphics from separate layers. Those layers are added, adjusted and specified in the ggplot function using small chunks of code describing different elements of the graph. Essential background reading here is &lt;a href=&#34;http://www.cookbook-r.com/Graphs/&#34;&gt;Winston Chang’s Cookbook for R Graphics website&lt;/a&gt; and book along with &lt;a href=&#34;http://www.r-bloggers.com/search/ggplot2&#34;&gt;R-bloggers posts on ggplot2&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;establishing-the-base-object&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Establishing the Base Object&lt;/h3&gt;
+&lt;p&gt;Most ggplot2 tutorials do not refer to a base object, possibly because it is obvious. However, this term was used in Hadley Wickham’s 2010 article &lt;a href=&#34;http://vita.had.co.nz/papers/layered-grammar.pdf&#34;&gt;A Layered Grammar of Graphics&lt;/a&gt; and helps us to understand the layering process. The base object consists of the data we want to graph and the aesthetic mappings or &lt;code&gt;aes&lt;/code&gt;. This is basically what we want to see on a graphic. Using the &lt;code&gt;pt&lt;/code&gt; (totals) table we can create a base object &lt;code&gt;t&lt;/code&gt; for total as follows.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;t &amp;lt;- ggplot(pt, aes(pubyear, weight = nn))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This follows the pattern of:&lt;/p&gt;
+&lt;p&gt;data = pt, aesthetic mappings = (x = publication year, y = the sum of n)&lt;/p&gt;
+&lt;p&gt;We now have a base object with the &lt;code&gt;aes&lt;/code&gt; mappings. Bear in mind that we will need to change this base object for particular types of graph.&lt;/p&gt;
+&lt;p&gt;If we enter &lt;code&gt;t&lt;/code&gt; in the console now then we will see an error message &lt;code&gt;Error: No layers in plot&lt;/code&gt;. That is because we haven’t defined how we want to see the data using a &lt;code&gt;geom&lt;/code&gt;. So let’s add a &lt;code&gt;geom&lt;/code&gt; now.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;adding-a-geom&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Adding a &lt;code&gt;geom&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;The geometric object is basically the form we want to see the data in plus any additional conditions we might want to set.&lt;/p&gt;
+&lt;p&gt;For a bar graph (histogram) we would specify &lt;code&gt;t&lt;/code&gt; and &lt;code&gt;+&lt;/code&gt; for the &lt;code&gt;geom&lt;/code&gt; for a bar graph. Inside the &lt;code&gt;geom_bar()&lt;/code&gt; function we can add some additional details.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;t + geom_histogram(colour = &amp;quot;white&amp;quot;, fill = &amp;quot;red&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig1_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!--- this is not looking as I had expected!---&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig1_gplot2-1.png)---&gt;
+&lt;p&gt;When we press command enter (or enter &lt;code&gt;t&lt;/code&gt; in the console) we will now see a bar chart.&lt;/p&gt;
+&lt;p&gt;The geom specifies what we want to see. Note here that we have:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Created a white outline around the bars using colour = “white”&lt;/li&gt;
+&lt;li&gt;Created a fill using fill = “red”. The default is black.&lt;/li&gt;
+&lt;li&gt;We have specified bindwidth = 1 because the default is the range divided by 30. This has been described as “perverse” by Hadley Wickham. It is intended to encourage thought and experimentation in binning data. In this case our base object is weighted to sum on the values of and we want to see the values in a bin for each year.&lt;/li&gt;
+&lt;li&gt;The default for counts in a bar chart is a count of cases (number of observations in the bin), not a count of values. For that reason we specified in the base object for the y axis (weight can also be written as ).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;changing-the-geom&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Changing the Geom&lt;/h3&gt;
+&lt;p&gt;If we wanted to change the &lt;code&gt;geom&lt;/code&gt; to generate a different kind of graph, such as a line graph we would first need to make an adjustment to our base object. In this case we are specifying that the y axis is &lt;code&gt;n&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;l &amp;lt;- ggplot(pt, aes(pubyear, nn, weight = nn))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To view this we now specify the geom as line:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;l + geom_line()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig2_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig2_gplot2-1.png)---&gt;
+&lt;p&gt;We now have a line graph. Let’s imagine that we wanted to change this to a point (scatter plot).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;l + geom_point()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig3_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig3_gplot2-1.png)---&gt;
+&lt;p&gt;However, now we would like to have a line and a scatterplot.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;l + geom_point() + 
+  geom_line()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig4_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig4_gplot2-1.png)---&gt;
+&lt;p&gt;This will then draw a line through our scatterplot points. For the sake of illustration we could add another geom to our list to convert to an area graph.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;l + geom_point() + 
+  geom_line() + 
+  geom_area()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig5_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig5_gplot2-1.png)---&gt;
+&lt;p&gt;There is clearly not much point in using this combination because the area geom obliterates the other geoms. But, it illustrates that we can play around with adding and removing geometric objects without going back and changing our base object. We are simply adding and removing layers specifying the geometric object(s) we want to see in the plot.&lt;/p&gt;
+&lt;p&gt;For readers following this article from the previous Tableau Public article note that our area graph is the same as in panel 1 of the Tableau Public version &lt;a href=&#34;https://public.tableau.com/views/pizzapatents/Overview?:embed=y&amp;amp;:display_count=yes&amp;amp;:showTabs=y&#34;&gt;here&lt;/a&gt;. To reproduce that in R we will start using themes from the ggthemes package. We will start by creating a base object with no fill specified in &lt;code&gt;l1&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;l1 &amp;lt;- ggplot(pt, aes(pubyear, nn, weight = nn, fill=&amp;quot;&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We now add layers including the theme. In this case we have chosen &lt;code&gt;theme_igray&lt;/code&gt; and specified the font as Helvetica, then &lt;code&gt;scale_fill_tableau&lt;/code&gt; specifying the “tableau20” palette. Because something for &lt;code&gt;fill&lt;/code&gt; has to be specified in the base object we end up with a legend we don’t need. To remove that when applying the theme we add a + &lt;code&gt;theme(legend.position=&amp;quot;none&amp;quot;)&lt;/code&gt; to drop the legend.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;l2 &amp;lt;- l1+ geom_area() +
+  theme_igray(base_family = &amp;quot;Helvetica&amp;quot;) +
+  scale_fill_tableau(&amp;quot;tableau20&amp;quot;) +
+  theme(legend.position=&amp;quot;none&amp;quot;)
+l2&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig6_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig6_gplot2-1.png)---&gt;
+&lt;p&gt;That is very close to the filled graph in our &lt;a href=&#34;https://public.tableau.com/views/pizzapatents/Overview?:embed=y&amp;amp;:display_count=yes&amp;amp;:showTabs=y&#34;&gt;Tableau Public workbook&lt;/a&gt;. A range of themes are available as part of ggthemes the package and are well worth exploring.&lt;/p&gt;
+&lt;p&gt;For illustration, we could add information that augments our understanding of the data. First, we could add a line. Second, we could add a rug to the plot. A rug adds a line for each of the observations in the data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;l2 + geom_line() +
+  geom_rug()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig7_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig7_gplot2-1.png)---&gt;
+&lt;p&gt;What has happened here is that the addition of geom_rug has added a line to the left and the bottom for each of the observations. Thus, on the x axis, each year gets a tick. On the y axis each observation (value) in the data gains a tick.&lt;/p&gt;
+&lt;p&gt;What is clear from this is that we do not need a rug for the year. So, let’s change that.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;l2 + geom_rug(sides = &amp;quot;l&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig8_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig8_gplot2-1.png)---&gt;
+&lt;p&gt;In this case we have specified that the rug should appear on the left (the other options are t, r, b for top, right and bottom respectively).&lt;/p&gt;
+&lt;p&gt;A rug plot is useful for spotting outliers in the data. In this case it is telling us where the observations that make up the area plot are concentrated over the years. However, again for illustration, we could also use a different dataset to add a rug layer. Let’s try this with our publication country year or &lt;code&gt;pcy&lt;/code&gt; table.&lt;/p&gt;
+&lt;p&gt;Rather than seeing the distribution of the scores for the overall data, we are now seeing the rug by country. This tells us that no country has a score in any year above 300, with the bulk at under 100 per year. Clearly, this is not the best use of a rug, but it is a simple example of adding a layer from a different dataset to augment the information in another dataset. But, it does suggest that the majority of country observations making up the total are concentrated at less than 100 documents per year and two groupings between 200 to 300. The latter are from the US (see the &lt;code&gt;pcy&lt;/code&gt; table).&lt;/p&gt;
+&lt;p&gt;What if we wanted to see the overall trend and the trend for each country on the same graphic? This might initially appear to be difficult because the total data is in the data table and the country year data is in the &lt;code&gt;pcy&lt;/code&gt; table. However, they share the same columns and (thanks to Didzis Efferts answer to this stackoverflow question question) we can do that in two steps.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;First we use the ggplot call for the data as before but add +geom_line() to draw the line graph for the total data.&lt;/li&gt;
+&lt;li&gt;We add a second &lt;code&gt;geom_line()&lt;/code&gt; and then specify the data that we want to use and its aesthetic mappings inside the function. We will stay with the tableau theme in &lt;code&gt;ggthemes&lt;/code&gt; and adapt this for a line graph using &lt;code&gt;colour&lt;/code&gt; rather than &lt;code&gt;fill&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We will place that in an object called &lt;code&gt;co&lt;/code&gt; for combined.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;co &amp;lt;- ggplot(pt, aes(pubyear, nn, weight = nn)) +
+  geom_line() +
+  geom_line(data = pcy, aes(pubyear, nn, weight = nn, colour = pubcode)) +
+  theme_igray() + scale_color_tableau(palette = &amp;quot;tableau20&amp;quot;)
+co&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig9_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig9_gplot2-1.png)---&gt;
+&lt;p&gt;To view the graph type &lt;code&gt;co&lt;/code&gt; in the console. Note that we have used pubcode (for the two letter country code), rather than the full country name because the graphic is easier to read.&lt;/p&gt;
+&lt;p&gt;We could add to this graphic in at least two ways. Let’s try adding a trend line.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;adding-a-trend-line&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Adding a trend line&lt;/h3&gt;
+&lt;p&gt;What we would like to know here is the trend for pizza patent publications using a regression (see &lt;code&gt;?geom_smooth()&lt;/code&gt; and &lt;code&gt;?stat_smooth()&lt;/code&gt; for further details).&lt;/p&gt;
+&lt;p&gt;To do that we will work with &lt;code&gt;co&lt;/code&gt; as follows by changing geom_line() on the pt data to geom_point() for a scatter plot and then adding a &lt;code&gt;geom_smooth()&lt;/code&gt;. By default &lt;code&gt;geom_smooth()&lt;/code&gt; will draw a grey area indicating the standard error interval (se). That interval is set to 0.95 by default. We can do this quite easily by adding &lt;code&gt;geom_smooth()&lt;/code&gt; to &lt;code&gt;co&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;co + geom_smooth()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig10_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig10_gplot2-1.png)---&gt;
+&lt;p&gt;We will now see a message telling us what is happening “geom_smooth: method=”auto&amp;quot; and size of largest group is &amp;lt;1000, so using loess. Use ‘method = x’ to change the smoothing method.&amp;quot;&lt;/p&gt;
+&lt;p&gt;If we leave the standard error interval for the trend line on then our graph becomes hard to understand. We can turn it off we can set an argument inside as follows.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;co + geom_smooth(se = FALSE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig11_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig11_gplot2-1.png)---&gt;
+&lt;p&gt;To experiment with an alternative method try &lt;code&gt;+ geom_smooth(method = &amp;quot;lm&amp;quot;, se = FALSE)&lt;/code&gt; for a linear model and look up &lt;code&gt;?geom_smooth&lt;/code&gt; and associated &lt;code&gt;?stat_smooth&lt;/code&gt;. We would of course want to add a label for the trend line but we will come to labels below. &lt;strong&gt;&lt;em&gt;Add label&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;statistical-transformations&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Statistical Transformations&lt;/h3&gt;
+&lt;p&gt;As this suggests there are a range of statistical transformations available in ggplot2 and some are used in the default settings (such as a bar chart and binwidth). Other options include stat_density(), stat_contour() and stat_quantile() with details listed in ggplot2 under Packages and on the second page of the &lt;a href=&#34;https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf&#34;&gt;RStudio Data Visualization cheatsheet&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;adding-labels&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Adding Labels&lt;/h3&gt;
+&lt;p&gt;To add labels use the function &lt;code&gt;labs()&lt;/code&gt;. Note that the title= , x = and y = must be specified if you want to include labels. Otherwise R will not know what to do with the information.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;co + geom_smooth(se = FALSE) + 
+  labs(title = &amp;quot;Patentscope Pizza Patents&amp;quot;,
+          x = &amp;quot;Publication Year&amp;quot;,
+          y = &amp;quot;Publication Count&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig12_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;%7B%7B%20site.baseurl%20%7D%7D/images/fggplot2/fig12_gplot2-1.png&#34; alt=&#34;_config.yml&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;_config.yml&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;In addition to the general labs argument you can also separately use&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;ggtitle(“Patentscope Pizza Patents”) for a main title.&lt;/li&gt;
+&lt;li&gt;xlab(“New xlab”) 3. ylab(“New y lab”)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We will go into more detail on legends below.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;publication-country-charts&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Publication Country Charts&lt;/h3&gt;
+&lt;p&gt;To illustrate different types of charts we will now work with the publication country &lt;code&gt;pc&lt;/code&gt; data frame that we created earlier.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-bar-chart&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;A Bar chart&lt;/h3&gt;
+&lt;p&gt;￼Again first we set the data and aesthetic mappings, specifying the publication country code as the fill (fill with colour) and color as pubcode.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ct &amp;lt;- ggplot(pc, aes(pubcode, weight = nn, fill = pubcode))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next we set the geom, in this case for &lt;code&gt;geom_bar()&lt;/code&gt;. Because the x axis will have country code labels we will remove the legend using &lt;code&gt;guides(fill=FALSE)&lt;/code&gt;. Note that the legend arises from &lt;code&gt;fill=pubcode&lt;/code&gt; in the base object. Alternative ways of removing a legend include &lt;code&gt;scale_fill_discrete(guide = FALSE)&lt;/code&gt; or &lt;code&gt;theme(legend.position=&amp;quot;none&amp;quot;)&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ct + geom_bar() + guides(fill=FALSE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig13_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig13_gplot2-1.png)---&gt;
+&lt;p&gt;Note here that if we changed &lt;code&gt;fill = pubcode&lt;/code&gt; in &lt;code&gt;ct&lt;/code&gt; to &lt;code&gt;colour = pubcode&lt;/code&gt; then the countries would be outlined with colour. Try this, then select Enter at the end of the line to update the object.&lt;/p&gt;
+&lt;p&gt;Following Edward Tufte we could also try a simpler approach. To do that we apply &lt;code&gt;theme_tufte()&lt;/code&gt; from &lt;code&gt;ggthemes&lt;/code&gt; and change the font to Helvetica, or something other than the default Serif in this theme, by specifying the &lt;code&gt;base_family&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ct1 &amp;lt;- ct + geom_bar() +
+  theme_tufte(base_family = &amp;quot;Helvetica&amp;quot;) +
+  guides(fill=FALSE)
+ct1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig14_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig14_gplot2-1.png)---&gt;
+&lt;p&gt;This is a nice simple example of removing clutter to focus in on what matters: presenting the data. We can also apply the tableau theme for consistency with our trends plots. In this case we will use &lt;code&gt;theme(legend.position=&amp;quot;none&amp;quot;)&lt;/code&gt; to turn off the legend.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ct2 &amp;lt;- ct + geom_bar() +
+  theme_igray() +
+  scale_color_tableau(&amp;quot;tableau20&amp;quot;) +
+  theme(legend.position=&amp;quot;none&amp;quot;)
+ct2&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig15_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig15_gplot2-1.png)---&gt;
+&lt;p&gt;A range of other options for controlling fonts and legends with practical demonstrations can be found on &lt;a href=&#34;http://www.cookbook-r.com/Graphs/&#34;&gt;Winston Chang’s R Graphics Cookbook website&lt;/a&gt;. Adjusting line weight and backgrounds can contribute to bringing data to the fore while minimising noise and what Tufte in The Visualisation of Quantitative Information called “chart junk”.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;adding-labels-to-columns&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Adding labels to columns&lt;/h3&gt;
+&lt;p&gt;We can also add the values to our bars for our new object . We can achieve this using &lt;code&gt;geom_text&lt;/code&gt;. In this case we needed to specify the y axis again inside &lt;code&gt;geom_text&lt;/code&gt;. &lt;code&gt;vjust&lt;/code&gt; specifies the vertical justification with the horizontal being &lt;code&gt;hjust&lt;/code&gt;. In this case we have also specified the font size in &lt;code&gt;geom_text()&lt;/code&gt; as 12.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ct2 + geom_text(aes(y = nn, label = nn, size = 12), vjust= -0.2)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig16_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig16_gplot2-1.png)---&gt;
+&lt;p&gt;￼If we wanted to make this more closely resemble the country count chart from our earlier Tableau workbook (a stacked horizontal bar chart) we would need to swap around the axes. To do that we add &lt;code&gt;coord_flip()&lt;/code&gt; to flip around x and y and then we adjust the labelling to use &lt;code&gt;hjust&lt;/code&gt; for horizontal justification rather than &lt;code&gt;vjust&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To create the ranked bar we need to use the function &lt;code&gt;reorder()&lt;/code&gt; with either the x or the y axis. In this case it is the x axis. We need to specify both x and the y inside &lt;code&gt;reorder()&lt;/code&gt; for this to work. In other cases you may need to go back to your original data table to adjust the data.&lt;/p&gt;
+&lt;p&gt;Depending on the font used you may have to change the &lt;code&gt;hjust&lt;/code&gt; value or adjust the font size. Note that only the first four lines are essential to this code. The remainder are for our tableau theme and to hide the legend.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-ranked-bar-chart&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;A Ranked Bar Chart&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ctr &amp;lt;- ggplot(pc, aes(x = reorder(pubcode, nn), y = nn, fill = pubcode)) + 
+  geom_bar(stat = &amp;quot;identity&amp;quot;) +
+  coord_flip() +
+  geom_text(aes(y = nn, label = nn, size = 12), hjust = -0.1) +
+  theme_igray() +
+  scale_color_tableau(&amp;quot;tableau20&amp;quot;) +
+  theme(legend.position=&amp;quot;none&amp;quot;) +
+  labs(title=&amp;quot;Patentscope Pizza Patents&amp;quot;, x = &amp;quot;Publication Country&amp;quot;, y = &amp;quot;Publication Count&amp;quot;)
+ctr&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig17_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig17_gplot2-1.png)---&gt;
+&lt;p&gt;There is room for improvement here, such as the colour of the country names (or replacing them with actual names) and adjusting the font size to more closely match the axis fonts. It can also be tricky to ensure that the highest value (in this case the label for the US) stays inside the plot. However, it is pretty close. Turning now to our patent country year table &lt;code&gt;pcr&lt;/code&gt; we will look at some other chart forms and coordinate systems.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-dot-plot&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;A Dot Plot&lt;/h3&gt;
+&lt;p&gt;For a simple dot plot of the same data we can make three changes. 1. We change fill to colour in the base object. 2. We change &lt;code&gt;geom_bar&lt;/code&gt; to &lt;code&gt;geom_point&lt;/code&gt; and specify the size of the dots. 3. For the labelled values we change hjust.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ctd &amp;lt;- ggplot(pc, aes(x = reorder(pubcode, nn), y = nn, colour = pubcode)) + 
+  geom_point(size = 3) +
+  coord_flip() +
+  geom_text(aes(y = nn, label = nn, size = 12), hjust = -0.4) +
+  theme_igray() +
+  scale_color_tableau(&amp;quot;tableau20&amp;quot;) +
+  theme(legend.position=&amp;quot;none&amp;quot;) +
+  labs(title=&amp;quot;Patentscope Pizza Patents&amp;quot;, x = &amp;quot;Publication Country&amp;quot;, y = &amp;quot;Publication Count&amp;quot;)
+ctd&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig18_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig18_gplot2-1.png)---&gt;
+&lt;p&gt;Note here that one limitation of this dot plot is the adjustment of &lt;code&gt;hjust&lt;/code&gt; where smaller numbers appear closer to the dots than larger numbers. This suggests a need for experimentation with &lt;code&gt;hjust&lt;/code&gt; and possibly the size and assessing whether to retain the labels. Options for recolouring labels might also be considered.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-balloon-plot&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;A Balloon Plot&lt;/h3&gt;
+&lt;p&gt;Another way or representing the data would be as a set of balloons sized on the number of records.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ctb &amp;lt;- ggplot(pc, aes(x = pubcode, y = nn, size = nn)) + 
+  geom_point(shape = 21, colour = &amp;quot;black&amp;quot;, fill = &amp;quot;cornsilk&amp;quot;) +
+  scale_size_area(max_size = 15) + 
+  theme_igray() +
+  scale_color_tableau(&amp;quot;tableau20&amp;quot;) +
+  theme(legend.position=&amp;quot;none&amp;quot;) +
+  labs(title=&amp;quot;Patentscope Pizza Patents&amp;quot;, x = &amp;quot;Publication Country&amp;quot;, y = &amp;quot;Publication Count&amp;quot;)
+ctb&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig19_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig19_gplot2-1.png)---&gt;
+&lt;p&gt;This is a very basic balloon plot and plots of this type could be readily adapted to represent a wide variety of patent data.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-stacked-bar-chart&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;A Stacked Bar Chart&lt;/h3&gt;
+&lt;p&gt;To create a stacked bar chart using our &lt;code&gt;pcy&lt;/code&gt; data we can use the following. We will however rapidly run into some of the aesthetic problems that are common with stacked bar charts. In reading this section, consider whether a stacked bar chart is really the best way to represent the data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sb &amp;lt;- ggplot(pcy, aes(pubyear, weight = nn, fill = pubcode)) +
+  geom_bar(binwidth = 1)
+sb&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig20_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig20_gplot2-1.png)---&gt;
+&lt;p&gt;In practice a filled graph of this type could reasonably be described as a mess. This arises from the number of countries involved and the default colors. It is in fact less clear than the line plot by country created above. Stacked plots also suffer from problems with the order of the data and the legend. That is, as we saw above, simpler is generally better in conveying information.&lt;/p&gt;
+&lt;p&gt;It is not a good idea to attempt to prettify a bad graph because it will still be a bad graph. Indeed we encounter multiple issues if we attempt to improve this stacked bar. We will illustrate this with the &lt;code&gt;main&lt;/code&gt; table we created earlier.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sm &amp;lt;- ggplot(main, aes(pubyear, weight = nn, fill = pubcode))&lt;/code&gt;&lt;/pre&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Adding a colour border.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We are presently using fill on the pubcode, but what if we specified a colour for the borders of the data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sm + geom_bar(binwidth = 1, colour = &amp;quot;black&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig21_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig21_gplot2-1.png)---&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;The order of the bars&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The addition of the colour outline is an improvement but the order of the stacked bars is not correct. We can attempt to adjust for this with a quick use of arrange&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;main &amp;lt;- arrange(main, pubcode)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A definite improvement but not earth shattering and we now have a filled legend. We can try changing the palette.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sm + geom_bar(binwidth=1, colour=&amp;quot;black&amp;quot;) +
+  theme_igray() +
+  scale_fill_tableau(&amp;quot;tableau20&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig22_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig22_gplot2-1.png)---&gt;
+&lt;p&gt;We can also start to work on the line colour and the line weight in the function to try to clarify the plot.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sm + geom_bar(binwidth = 1, colour = &amp;quot;gray&amp;quot;, size = .25) +
+  theme_igray(base_family = &amp;quot;Helvetica&amp;quot;) +
+  scale_fill_tableau(&amp;quot;tableau20&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig23_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig23_gplot2-1.png)---&gt;
+&lt;p&gt;That is an improvement of sorts. We could then do the same for the other tables while noting that a means will be needed to ensure that different colours are used on the countries across the summary plots.&lt;/p&gt;
+&lt;p&gt;As this suggests stacked bar charts present communication difficulties. That is they take quite a lot of work to get right and the ultimate result may still be difficult for a reader to interpret.&lt;/p&gt;
+&lt;p&gt;We could try this as a stacked area graph as follows.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sm &amp;lt;- ggplot(main, aes(pubyear, y = nn, fill = pubcode, order = pubcode)) +
+   geom_area() +
+   theme_igray(base_family = &amp;quot;Helvetica&amp;quot;) +
+   scale_fill_tableau(&amp;quot;tableau20&amp;quot;)
+sm&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig24_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig24_gplot2-1.png)---&gt;
+&lt;p&gt;That looks promising but note that the order of the stack is not correct and can give a misleading impression. Thus the order should be descending from US, WO, CA, EP, KR. At the time of writing an easy way of adjusting this has not been identified. As such, significant energy could be expended attempting to improve what is essentially a bad graph.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;faceting&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Faceting&lt;/h3&gt;
+&lt;p&gt;One of the problems we commonly encounter in patent analysis is that data is compressed by dominant players, whether these be countries, applicants or technology areas. One important approach to addressing this problem is to break the data out into multiple individual plots by faceting that data. The term faceting in ggplot is perhaps more familiar as the creation of trellis graphs.&lt;/p&gt;
+&lt;p&gt;To facet our publication by country and year data from the graph above we will start by creating an object with the information below. We will leave out labels. We will however add a control that excludes the legend because it will be redundant and get in the way of the large plot we will be creating.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;f &amp;lt;- ggplot(pcy, aes(x = pubyear, y = nn, color = pubcode)) +
+  geom_point() +
+  theme_igray(base_family = &amp;quot;Helvetica&amp;quot;) +
+  scale_fill_tableau(&amp;quot;tableau20&amp;quot;) +
+  theme(legend.position=&amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The key to creating the facet plot is selecting:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;the right faceting option (either &lt;code&gt;facet_grid&lt;/code&gt; or &lt;code&gt;facet_wrap&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;the variable to facet on which is specified using tilde &lt;code&gt;~&lt;/code&gt; in the function e.g &lt;code&gt;~pubcode&lt;/code&gt; to facet only on pubcode or &lt;code&gt;pubcode~group&lt;/code&gt; for both pubcode and group.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For demonstration we will walk through some options:&lt;/p&gt;
+&lt;p&gt;If we choose &lt;code&gt;facet_grid&lt;/code&gt; we will see a line of plots. The main issue that arises here is adjusting the labelling on the x axis. We can do that by adding &lt;code&gt;scale_x_continuous&lt;/code&gt; and specifying the breaks and values we want to see. We could also as needed change the labels by adding to the function like this &lt;code&gt;scale_x_continuous(breaks = c(1970, 2010), labels = c(label1, label2))&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;f + facet_grid(~pubcode, shrink = TRUE) +
+  scale_x_continuous(breaks = c(1970, 2010))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig25_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig25_gplot2-1.png)---&gt;
+&lt;p&gt;However, the above plot suffers from being too vertical and the labels remain squashed. In future it may be possible to adjust this (using &lt;code&gt;+ theme(panel.margin.x = unit(5, &amp;quot;lines&amp;quot;)&lt;/code&gt; but at the time of writing this did not appear to be working) (see this &lt;a href=&#34;http://stackoverflow.com/questions/12252750/alter-just-horizontal-spacing-between-facets-ggplot2&#34;&gt;Stackoverflow discussion&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;An alternative option for a clearer plot might be to use the groups that we created in the data table to facet on.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;f + facet_grid(pubcode~group, shrink = TRUE) +
+  theme(legend.position = &amp;quot;none&amp;quot;) +
+  scale_x_continuous(breaks = c(1970, 2010))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig26_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig26_gplot2-1.png)---&gt;
+&lt;p&gt;That is an improvement, as we can see the three groups, but note that the countries are ordered alphabetically rather than by group.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;facet_wrap&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;facet_wrap&lt;/h3&gt;
+&lt;p&gt;To create a more reasonable plot we can use &lt;code&gt;facet_wrap()&lt;/code&gt;. Note that the position of the group has been reversed to &lt;code&gt;group~pubcode&lt;/code&gt; to achieve this plot.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;f + facet_wrap(group~pubcode) +
+  theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig27_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig27_gplot2-1.png)---&gt;
+&lt;p&gt;What we now see is a facet plot that is ordered from group 1 to group 3. This is pretty good.&lt;/p&gt;
+&lt;p&gt;While we would generally want to drop some of the smallest values, to improve this type of plot we might try freeing up the scales. In this case we focus on the y axis by specifying &lt;code&gt;free_y&lt;/code&gt; with the alternative being &lt;code&gt;free_x&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;f + facet_wrap(group~pubcode, scales =&amp;quot;free_y&amp;quot;) +
+  theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig28_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig28_gplot2-1.png)---&gt;
+&lt;p&gt;This removes the compression and gives each individual plot its own scale. The default for facets is to show the highest values at the bottom right (the default of argument &lt;code&gt;as.table&lt;/code&gt;). If we specify &lt;code&gt;as.table = FALSE&lt;/code&gt; the facets will show the higher values (in group 3) first. This might improve the plot.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;f + facet_wrap(group~pubcode, scales =&amp;quot;free_y&amp;quot;, as.table = FALSE) +
+  theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig29_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig29_gplot2-1.png)---&gt;
+&lt;p&gt;Note that this still presents some problems as ideally the highest value (the US) would appear first and then read in descending order across from left to right. There appear to be some limitations to the controls possible in &lt;code&gt;facet_wrap&lt;/code&gt; and also our data structure.&lt;/p&gt;
+&lt;p&gt;We will revert to the ascending order but keep the free y axis. We could if we wished add a regression to show the trend by country by adding &lt;code&gt;geom_smooth()&lt;/code&gt;. We will remove the standard error area by specifying &lt;code&gt;se = FALSE&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;f + facet_wrap(group~pubcode, scales =&amp;quot;free_y&amp;quot;, as.table = TRUE) +
+  geom_smooth(se = FALSE) +
+  theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig30_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig30_gplot2-1.png)---&gt;
+&lt;p&gt;In running this code we will receive a message for each plot informing us of the smoothing method that is being used.&lt;/p&gt;
+&lt;p&gt;The issue we encounter here is that a number of countries in group 1 and group 2 have very sparse results with no corresponding meaningful trend to display. In practice we would drop group 1 entirely and focus on group 2 and 3. To conclude, let’s do that.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;g &amp;lt;- filter(pcy, group %in% c(2,3))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;%in%&lt;/code&gt; within filter basically says “extract rows falling into group 2 or 3 from within group”. Once again it is a simple &lt;code&gt;dplyr&lt;/code&gt; solution and easy to remember.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;g1 &amp;lt;- ggplot(g, aes(x = pubyear, y = nn, color = pubcode)) +
+  geom_point() +
+  theme_igray(base_family = &amp;quot;Helvetica&amp;quot;) +
+  scale_fill_tableau(&amp;quot;tableau20&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can now try again with our trend line using &lt;code&gt;geom_smooth&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;g1 + facet_wrap(group~pubcode, scales =&amp;quot;free_y&amp;quot;, as.table = TRUE) +
+  geom_smooth(se = FALSE) +
+  theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig32_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig32_gplot2-1.png)---&gt;
+&lt;p&gt;That is a considerable improvement and we will stop there. One limitation of facet wrap is that it appears that renaming the labels, to leave only the country codes, is not possible (although using labeller may provides solutions). It may also be the case that we would prefer to drop some of the other countries with low scores from group 2. We could do that by applying a filter on pubcode. We could also add some labels to the overall plot.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;pie-and-coxcomb-plots&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Pie and Coxcomb Plots&lt;/h2&gt;
+&lt;div id=&#34;creating-a-pie-chart-aaaargh&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Creating a Pie Chart (aaaargh)&lt;/h3&gt;
+&lt;p&gt;A pie chart is the plan view of a stacked bar chart using polar coordinates. Pie charts of the familiar variety are widely criticised because they are hard to accurately interpret. They also tend to become laden with what Edward Tufte called “chart junk”, such as 3D rendering, that distracts from the presentation and communication of the data. Edward Tufte has this to say about pie charts in The Visual Display of Quantitative Information:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“A table is nearly always better than a dumb pie chart; the only worse design than a pie chart is several of them, for then the viewer is asked to compare quantities located in spatial disarray both within and between pies… Given their low data-density and failure to order numbers along a visual dimension, pie charts should never be used.”(Tufte 2001: 178)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;However, Tufte’s criticism has done relatively little to diminish the popularity of the pie chart and it seems, almost everyone knows what a pie chart is.&lt;/p&gt;
+&lt;p&gt;Creating a pie chart in ggplot takes some thought. As is often the case when working with R we can find a detailed walk through in the wider user community. In this case we are following the code developed by the &lt;a href=&#34;http://mathematicalcoffee.blogspot.co.uk/2014/06/ggpie-pie-graphs-in-ggplot2.html&#34;&gt;Mathematical Coffee blog entitled ggpie: pie graphs in ggplot2&lt;/a&gt;. For those familiar with R, Mathematical Coffee wraps this into a function called for generating pie charts. We will walk through the steps from the blog post and adapt it to our pizza data.&lt;/p&gt;
+&lt;p&gt;The first step is to create an object as a stacked chart. In this case we attribute a single value to the x axis, specify the y axis as percent and then the fill as publication code. This creates a stacked bar chart.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;o1 &amp;lt;- ggplot(pc, aes(x=1, y = percent, fill = pubcode)) + geom_bar(stat = &amp;quot;identity&amp;quot;)
+o1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig33_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig33_gplot2-1.png)---&gt;
+&lt;p&gt;If we view this it will be a stacked bar. In the second step we create the pie chart by specifying the polar coordinate and &lt;code&gt;theta = y&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;y &amp;lt;- o1 + coord_polar(theta = &amp;quot;y&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If we now enter y in the console we will see a pie chart. The remaining steps involve further defining the aesthetics of the chart, tidying up and adding labels.&lt;/p&gt;
+&lt;p&gt;The following adds black lines to define the pie segments. Because these lines are then reflected in the legend the argument overrides this by using colour = NA.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;z &amp;lt;- y + geom_bar(stat = &amp;quot;identity&amp;quot;, colour = &amp;quot;black&amp;quot;) +
+  guides(fill=guide_legend(override.aes=list(colour=NA)))
+z&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig34_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig34_gplot2-1.png)---&gt;
+&lt;p&gt;Then remove the various tick marks&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;z &amp;lt;- z +
+    theme(axis.ticks=element_blank(),
+          axis.title=element_blank(),
+          axis.text.y=element_blank()
+          )
+z&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig35_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig35_gplot2-1.png)---&gt;
+&lt;p&gt;We need to work out the position of the labels that we would like to see on the pie, and in particular the mid-point of each pie. This can be found as the cumulative sum &lt;code&gt;cumsum&lt;/code&gt; of the variable we used for the slices. That is percent expressed as &lt;code&gt;pc$percent&lt;/code&gt; to state the data frame and the column we want in the &lt;code&gt;percent&lt;/code&gt; table.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;y.breaks &amp;lt;- cumsum(pc$percent) - pc$percent/2&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If we print y.breaks to the console we will a list of values.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;q &amp;lt;- z +
+    theme(axis.text.x=element_text(color=&amp;#39;black&amp;#39;)) +
+    scale_y_continuous(
+        breaks=y.breaks,
+        labels=pc$pubcode)
+q&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig36_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig36_gplot2-1.png)---&gt;
+&lt;p&gt;Thanks to Mathematical Coffee we now have a functional pie chart of the percentage share of pizza patent documents. The only issue with this plot is that some of the labels on the smaller values are crunched. That could however be addressed by filtering rows in accordance with the groups on the &lt;code&gt;pc&lt;/code&gt; table, as we did above for &lt;code&gt;pcy&lt;/code&gt;, to remove the overlap.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-coxcomb-plot&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The Coxcomb Plot&lt;/h3&gt;
+&lt;p&gt;A coxcomb plot is generally associated with Florence Nightingales representation of the causes of mortality among the British Army in the Korean War that can be viewed &lt;a href=&#34;&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A coxcomb plot begins with a bar chart as follows. Note that we have chosen &lt;code&gt;n&lt;/code&gt; for the y value from the table. We could have used percent.&lt;/p&gt;
+&lt;p&gt;￼￼We will use a filtered version of the table that only contains group 3 results.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cx &amp;lt;- filter(pc, group %in% 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We start the plot by creating a bar chart. Note that we are using the value of &lt;code&gt;n&lt;/code&gt; here for the y axis. This could be changed to percent or another value as needed.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cx1 &amp;lt;- ggplot(cx, aes(x = pubcode, y = nn, fill= pubcode)) +
+  geom_bar(stat=&amp;quot;identity&amp;quot;)
+cx1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig37_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig37_gplot2-1.png)---&gt;
+&lt;p&gt;We them add a &lt;code&gt;coord_polar&lt;/code&gt; specifying theta in this case as x (the pubcode). The remainder of the code is thematic.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cx1 + coord_polar(theta=&amp;quot;x&amp;quot;) +
+   theme_light() +
+   theme(legend.position=&amp;quot;none&amp;quot;) +
+   labs(x = &amp;quot;Publication Country&amp;quot;, y = &amp;quot;Publication Count&amp;quot;, 
+        title  = &amp;quot;Pizza Patent Publications by Country&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig38_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig38_gplot2-1.png)---&gt;
+&lt;p&gt;In the R Graphics Cookbook, Winston Chang adds three observations about coxcomb plots. The first is that for y variables the smallest value is mapped to the centre of the plot, rather than a data value of 0 being mapped to a radius of 0. Second, for a continuous x (or theta) the smallest and largest values are merged. Third, theta values of polar coordinates do not wrap around. As such changes would need to be made to the limits of the plot (see Chang 2013: 200-203 for discussion).&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;round-up&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Round Up&lt;/h2&gt;
+&lt;p&gt;In this article we have covered two main topics.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;How to prepare data for graphing in R using the &lt;code&gt;dplyr&lt;/code&gt; package.&lt;/li&gt;
+&lt;li&gt;How to draw a range of graphs and the issues encountered using ggplot2.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In this article we have not explored the full potential of visualisation options in ggplot2, such as heat maps and choropleth maps. These topics are regularly covered on sites such as &lt;a href=&#34;http://www.r-bloggers.com&#34;&gt;r-bloggers.com&lt;/a&gt;. However, we have seen that it is possible to construct graphics from the bottom up using simple code and specifying the details we would like to see.&lt;/p&gt;
+&lt;p&gt;We have seen that the great strength of ggplot2 is the ability to control all aspects of a graphic. However, in working with our sample data we have also seen that this can lead to complexity in terms of adjusting data such as arranging or labelling. While it will be possible to bundle the code into functions that could be reused, it is equally clear that significant time investments are involved in working towards publication quality graphics using ggplot2. Those time demands will diminish with improved familiarity but are nevertheless a significant factor.&lt;/p&gt;
+&lt;p&gt;To go further with ggplot2 we provide a list of resources below. We also suggest installing R tutorials such as (install.packages(“swirl”)) and learning more about the use of pipes in &lt;code&gt;dplyr&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;useful-resources&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Useful Resources&lt;/h2&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.rstudio.com/wp-content/uploads/2015/05/ggplot2-cheatsheet.pdf&#34;&gt;RStudio Cheatsheet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.cookbook-r.com/Graphs/&#34;&gt;R Graphics Cookbook&lt;/a&gt; by Winston Chang&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://vita.had.co.nz/papers/layered-grammar.pdf&#34;&gt;Hadley Wickham 2010 A Layered Grammar of Graphics preprint article&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.amazon.co.uk/Hadley-Wickham/e/B002BOA9GI/ref=sr_tc_2_0?qid=1435678538&amp;amp;sr=1-2-ent&#34;&gt;Hadley Wickham ggplot2 book from Amazon&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Swirl tutorials (install.packages(“swirl”)) and &lt;a href=&#34;https://github.com/swirldev/swirl_courses&#34;&gt;Github repository&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://docs.ggplot2.org/0.9.3/index.html#&#34;&gt;ggplot2 online help topics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.r-bloggers.com/search/ggplot2&#34;&gt;R-Bloggers on ggplot2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/tagged/ggplot2&#34;&gt;Stack Overflow questions and answers on ggplot2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/results?search_query=ggplot2&#34;&gt;YouTube ggplot 2 videos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://mathematicalcoffee.blogspot.co.uk/2014/06/ggpie-pie-graphs-in-ggplot2.html&#34;&gt;Mathematical Coffee Blog Post on Creating a Pie Chart with ggplot2 an the ggpie code&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Wrangling Pizza Patents in R</title>
+      <link>/wrangling-pizza-patents-in-r/</link>
+      <pubDate>Thu, 25 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/wrangling-pizza-patents-in-r/</guid>
+      <description>&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#getting-started-with-r&#34;&gt;Getting Started with R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#getting-started&#34;&gt;Getting Started&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#about-the-pizza-patent-dataset&#34;&gt;About the pizza patent dataset&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#reading-in-the-data&#34;&gt;Reading in the Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#creating-a-numeric-field&#34;&gt;Creating a numeric field&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#renaming-columns&#34;&gt;Renaming Columns&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#selecting-columns-for-plotting&#34;&gt;Selecting Columns for plotting&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#creating-counts&#34;&gt;Creating Counts&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#total-by-year&#34;&gt;Total by Year&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#round-up&#34;&gt;Round Up&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This is the first part of a two part article on using R and the &lt;code&gt;ggplot2&lt;/code&gt; package to visualise patent data. In a previous article we looked at visualising pizza related patent activity in Tableau Public. In this article we look at how to wrangle our &lt;code&gt;pizza&lt;/code&gt; dataset using &lt;code&gt;dplyr&lt;/code&gt; package in RStudio to prepare the data for graphing. This is intended as a gentle introduction and you do not need to know anything about R to follow this article. You will however need to install &lt;a href=&#34;http://www.rstudio.com/products/rstudio/&#34;&gt;RStudio Desktop&lt;/a&gt; for your operating system (see below).&lt;/p&gt;
+&lt;p&gt;Part 1 will introduce the basics of handling data in R in preparation for plotting and will then use the quick plot or &lt;code&gt;qplot&lt;/code&gt; function in &lt;code&gt;ggplot2&lt;/code&gt; to start graphing elements of the pizza patents dataset.&lt;/p&gt;
+&lt;p&gt;Part 2 will go into more depth on handling data in R and the use of ggplot2.&lt;/p&gt;
+&lt;p&gt;ggplot2 is an implementation of the theory behind the Grammar of Graphics. The theory was originally developed by Leland Wilkinson and reinterpreted with considerable success by Hadley Wickham at Rice University and RStudio. The basic idea behind the Grammar of Graphics is that any statistical graphic can be built using a set of simple layers consisting of:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;A dataset containing the data we want to see (e.g x and y axes and data points)&lt;/li&gt;
+&lt;li&gt;A geometric object (or &lt;code&gt;geom&lt;/code&gt;) that defines the form we want to see (points, lines, shapes etc.) known as a &lt;code&gt;geom&lt;/code&gt;. Multiple &lt;code&gt;geoms&lt;/code&gt; can be used to build a graphic (e.g, points and lines etc.).&lt;/li&gt;
+&lt;li&gt;A coordinate system (e.g. a grid, a map etc.).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;On top of these three basic components, the grammar includes statistical transformations (or &lt;code&gt;stats&lt;/code&gt;) describing the statistics to be applied to the data to create a bar chart or trend line. The grammar also describes the use of faceting (trellising) to break a dataset down into smaller components (see Part 2).&lt;/p&gt;
+&lt;p&gt;A very useful article explaining this approach is &lt;a href=&#34;http://vita.had.co.nz/papers/layered-grammar.pdf&#34;&gt;Hadley Wickham’s 2010 A Layered Grammar of Graphics&lt;/a&gt; (preprint) and is recommended reading.&lt;/p&gt;
+&lt;p&gt;The power of this approach is that it allows us to build complex graphs from simple layers while being able to control each element and understand what is happening. One way to think of this is as stripping back a graph to its basic elements and allowing you to decide what each element (layer) should contain and look like. In short, you get to decide what your graphs look like.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ggplot2&lt;/code&gt; contains two main functions:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;qplot (quick plot)&lt;/li&gt;
+&lt;li&gt;ggplot()&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The main difference between the two is that quick plot makes assumptions for you and, as the name suggests, is used for quick plots. In contrast, with ggplot we build graphics from scratch with helpful defaults that give us full control over what we see.&lt;/p&gt;
+&lt;p&gt;In this article we will start with qplot and increasingly merge into developing plots by adding layers in what could be called a ggplot kind of way. We will develop that further in the Part 2.&lt;/p&gt;
+&lt;div id=&#34;getting-started-with-r&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Getting Started with R&lt;/h2&gt;
+&lt;p&gt;This article assumes that you are new to using R. You do not need any knowledge of programming in R to follow this article. While you don’t need to know anything about R to follow the article, you may find it helpful to know that :&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;R is a statistical programming language. That can sound a bit intimidating. However, R can handle lots of other tasks a patent analyst might need such as cleaning and tidying data or text mining. This makes it a good choice for a patent analyst.&lt;/li&gt;
+&lt;li&gt;R works using packages (libraries) for performing tasks such as importing files, manipulating files and graphics. There are around 6,819 packages and they are open source (mainly it seems under the MIT licence). If you can think of it there is probably a package that meets (or almost meets) your analysis needs.&lt;/li&gt;
+&lt;li&gt;Packages contain functions that do things such as &lt;code&gt;read_csv()&lt;/code&gt; to read in a comma separated file.&lt;/li&gt;
+&lt;li&gt;The functions take arguments that tell them what you want to do, such as specifying the data to graph and the x and y axis e.g. qplot(x = , y = , data = my dataset).&lt;/li&gt;
+&lt;li&gt;If you want to learn more, or get stuck, there are a huge number of resources and free courses out there and RStudio lists some of the main resources on their website &lt;a href=&#34;http://www.rstudio.com/resources/training/online-learning/&#34;&gt;here&lt;/a&gt;. With R you are never alone.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;R is best learned by doing. The main trick with R is to install and load the packages that you will need and then to work with functions and their arguments. Given that most patent analysts are likely to be unfamiliar with R we will adopt the simplest approach possible to make sure it is clear what is going on at each step.&lt;/p&gt;
+&lt;p&gt;The first step is to install R and RStudio desktop for your operating system by following the links and instructions &lt;a href=&#34;http://www.rstudio.com/products/rstudio/download/&#34;&gt;here&lt;/a&gt; and making sure that you follow the link to install R. Follow this very useful &lt;a href=&#34;http://www.computerworld.com/article/2497143/business-intelligence/business-intelligence-beginner-s-guide-to-r-introduction.html?page=2&#34;&gt;Computerworld article&lt;/a&gt; to become familiar with what you are seeing. You may well want to follow the rest of that article. Inside R you can learn a lot by installing the &lt;code&gt;Swirl&lt;/code&gt; package that provides interactive tutorials for learning R. Details are provided in the resources at the end of the article.&lt;/p&gt;
+&lt;p&gt;The main thing you need to do to get started other than installing R and RStudio is to open RStudio and install some packages.&lt;/p&gt;
+&lt;p&gt;In this article we will use four packages:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;code&gt;readr&lt;/code&gt; to quickly read in the pizza patent dataset as an easy to use data table.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dplyr&lt;/code&gt; for quick addition and operations on the data to make it easier to graph.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ggplot2&lt;/code&gt; or Grammar of Graphics 2 as the tool we will use for graphing.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ggthemes&lt;/code&gt; provides very useful additional themes including Tufte range plots, the Economist and Tableau and can be accessed through &lt;a href=&#34;http://cran.r-project.org/web/packages/ggthemes/index.html&#34;&gt;CRAN&lt;/a&gt; or &lt;a href=&#34;https://github.com/jrnold/ggthemes&#34;&gt;Github&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;getting-started&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Getting Started&lt;/h2&gt;
+&lt;p&gt;If you don’t have these packages already then install each of them below by pressing command and Enter at the end of each line. As an alternative select &lt;strong&gt;&lt;em&gt;Packages &amp;gt; Install&lt;/em&gt;&lt;/strong&gt; in the pane displaying a tab called Packages. Then enter the names of the packages one at a time without the quotation marks.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;readr&amp;quot;)
+install.packages(&amp;quot;dplyr&amp;quot;)
+install.packages(&amp;quot;ggplot2&amp;quot;)
+install.packages(&amp;quot;ggthemes&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then make sure the packages have loaded to make them available. Press command and enter at the end of each line below (or, if you are feeling brave, select them all and then click the icon marked Run).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readr)
+library(dplyr)
+library(ggplot2)
+library(ggthemes)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You are now good to go.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;about-the-pizza-patent-dataset&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;About the pizza patent dataset&lt;/h2&gt;
+&lt;p&gt;The pizza patents dataset is a set of 9,996 patent documents from the WIPO Patentscope database that make reference somewhere in the text to the term &lt;code&gt;pizza&lt;/code&gt;. Almost everybody likes pizza and this is simply a working dataset that we can use to learn how to work with different open source tools. This will also allow us over time to refine our understanding of patent activity involving the term pizza and hone in on actual pizza related technology. In previous walkthroughs we divided the &lt;code&gt;pizza&lt;/code&gt; dataset into a set of distinct data tables to enable analysis and visualisation using Tableau Public. You can download that dataset in .csv format &lt;a href=&#34;https://github.com/poldham/opensource-patent-analytics/blob/master/2_datasets/pizza_medium_clean/pizza_medium_clean.zip?raw=true&#34;&gt;here&lt;/a&gt;. These data tables are:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;pizza (the core set)&lt;/li&gt;
+&lt;li&gt;applicants (a subdataset divided and cleaned on applicant names)&lt;/li&gt;
+&lt;li&gt;inventors (a subdataset divided and cleaned on inventor names)&lt;/li&gt;
+&lt;li&gt;ipc_class (a subdataset divided on ipc class names names)&lt;/li&gt;
+&lt;li&gt;applicants_ipc (a child dataset of applicants listing the IPC codes)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In this article we will focus on the &lt;code&gt;pizza&lt;/code&gt; table as the core set. However, you may want to experiment with other sets.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;reading-in-the-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Reading in the Data&lt;/h2&gt;
+&lt;p&gt;We will use the &lt;code&gt;readr&lt;/code&gt; package to rapidly read in the pizza set to R (for other options see the in depth articles on reading in &lt;a href=&#34;&#34;&gt;.csv&lt;/a&gt; and &lt;a href=&#34;&#34;&gt;Excel&lt;/a&gt; files and the recent Getting your Data into R RStudio &lt;a href=&#34;http://www.rstudio.com/resources/webinars/&#34;&gt;webinar&lt;/a&gt;). &lt;code&gt;readr&lt;/code&gt; is nice and easy to use and creates a data table that we can easily view.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readr)
+library(dplyr)
+pizza &amp;lt;- read_csv(&amp;quot;https://github.com/poldham/opensource-patent-analytics/blob/master/2_datasets/pizza_medium_clean/pizza.csv?raw=true&amp;quot;) %&amp;gt;% 
+    select(-applicants_cleaned, -applicants_cleaned_type, -applicants_original, -inventors_cleaned, 
+        -inventors_original)  # drop cols with a multibyte string
+head(pizza)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 26
+##   applicants_organ… ipc_class ipc_codes ipc_names ipc_original ipc_subclass_co…
+##   &amp;lt;chr&amp;gt;             &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;           
+## 1 &amp;lt;NA&amp;gt;              A21: Bak… A21D 13/… A21D 13/… A21D 13/00;… A21D; A23L      
+## 2 &amp;lt;NA&amp;gt;              A21: Bak… A21B 3/13 A21B 3/1… A21B 3/13    A21B            
+## 3 &amp;lt;NA&amp;gt;              A21: Bak… A21C 15/… A21C 15/… A21C 15/04   A21C            
+## 4 Lazarillo De Tor… A21: Bak… A21D 13/… A21D 13/… A21D 13/00;… A21D; A23L      
+## 5 &amp;lt;NA&amp;gt;              B65: Con… B65D 21/… B65D 21/… B65D 21/032… B65D            
+## 6 &amp;lt;NA&amp;gt;              B65: Con… B65D 85/… B65D 85/… B65D 85/36   B65D            
+## # ... with 20 more variables: ipc_subclass_detail &amp;lt;chr&amp;gt;,
+## #   ipc_subclass_names &amp;lt;chr&amp;gt;, priority_country_code &amp;lt;chr&amp;gt;,
+## #   priority_country_code_names &amp;lt;chr&amp;gt;, priority_data_original &amp;lt;chr&amp;gt;,
+## #   priority_date &amp;lt;chr&amp;gt;, publication_country_code &amp;lt;chr&amp;gt;,
+## #   publication_country_name &amp;lt;chr&amp;gt;, publication_date &amp;lt;chr&amp;gt;,
+## #   publication_date_original &amp;lt;chr&amp;gt;, publication_day &amp;lt;int&amp;gt;,
+## #   publication_month &amp;lt;int&amp;gt;, publication_number &amp;lt;chr&amp;gt;,
+## #   publication_number_espacenet_links &amp;lt;chr&amp;gt;, publication_year &amp;lt;int&amp;gt;,
+## #   title_cleaned &amp;lt;chr&amp;gt;, title_nlp_cleaned &amp;lt;chr&amp;gt;,
+## #   title_nlp_multiword_phrases &amp;lt;chr&amp;gt;, title_nlp_raw &amp;lt;chr&amp;gt;,
+## #   title_original &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We now have a data table with the data. We can inspect this data in a variety of ways:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;1. View&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;See a separate table in a new tab. This is useful if you want to get a sense of the data or look for column numbers.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;View(pizza)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;2. head (for the bottom use &lt;code&gt;tail&lt;/code&gt;)&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;head&lt;/code&gt; allows you to see the top few rows or using &lt;code&gt;tail&lt;/code&gt; the bottom few rows.If you would like to see more rows add a number after the dataset name e.g. `head(pizza, 20).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(pizza)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 26
+##   applicants_organ… ipc_class ipc_codes ipc_names ipc_original ipc_subclass_co…
+##   &amp;lt;chr&amp;gt;             &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;           
+## 1 &amp;lt;NA&amp;gt;              A21: Bak… A21D 13/… A21D 13/… A21D 13/00;… A21D; A23L      
+## 2 &amp;lt;NA&amp;gt;              A21: Bak… A21B 3/13 A21B 3/1… A21B 3/13    A21B            
+## 3 &amp;lt;NA&amp;gt;              A21: Bak… A21C 15/… A21C 15/… A21C 15/04   A21C            
+## 4 Lazarillo De Tor… A21: Bak… A21D 13/… A21D 13/… A21D 13/00;… A21D; A23L      
+## 5 &amp;lt;NA&amp;gt;              B65: Con… B65D 21/… B65D 21/… B65D 21/032… B65D            
+## 6 &amp;lt;NA&amp;gt;              B65: Con… B65D 85/… B65D 85/… B65D 85/36   B65D            
+## # ... with 20 more variables: ipc_subclass_detail &amp;lt;chr&amp;gt;,
+## #   ipc_subclass_names &amp;lt;chr&amp;gt;, priority_country_code &amp;lt;chr&amp;gt;,
+## #   priority_country_code_names &amp;lt;chr&amp;gt;, priority_data_original &amp;lt;chr&amp;gt;,
+## #   priority_date &amp;lt;chr&amp;gt;, publication_country_code &amp;lt;chr&amp;gt;,
+## #   publication_country_name &amp;lt;chr&amp;gt;, publication_date &amp;lt;chr&amp;gt;,
+## #   publication_date_original &amp;lt;chr&amp;gt;, publication_day &amp;lt;int&amp;gt;,
+## #   publication_month &amp;lt;int&amp;gt;, publication_number &amp;lt;chr&amp;gt;,
+## #   publication_number_espacenet_links &amp;lt;chr&amp;gt;, publication_year &amp;lt;int&amp;gt;,
+## #   title_cleaned &amp;lt;chr&amp;gt;, title_nlp_cleaned &amp;lt;chr&amp;gt;,
+## #   title_nlp_multiword_phrases &amp;lt;chr&amp;gt;, title_nlp_raw &amp;lt;chr&amp;gt;,
+## #   title_original &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;3. dimensions&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This allows us to see how many rows there are (9996) and how many columns(31)&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(pizza)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 9996   26&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;4. Summary&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Provides a summary of the dataset columns including quick calculations on numeric fields and the class of vector.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(pizza)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  applicants_organisations  ipc_class          ipc_codes        
+##  Length:9996              Length:9996        Length:9996       
+##  Class :character         Class :character   Class :character  
+##  Mode  :character         Mode  :character   Mode  :character  
+##                                                                
+##                                                                
+##                                                                
+##                                                                
+##   ipc_names         ipc_original       ipc_subclass_codes ipc_subclass_detail
+##  Length:9996        Length:9996        Length:9996        Length:9996        
+##  Class :character   Class :character   Class :character   Class :character   
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character   
+##                                                                              
+##                                                                              
+##                                                                              
+##                                                                              
+##  ipc_subclass_names priority_country_code priority_country_code_names
+##  Length:9996        Length:9996           Length:9996                
+##  Class :character   Class :character      Class :character           
+##  Mode  :character   Mode  :character      Mode  :character           
+##                                                                      
+##                                                                      
+##                                                                      
+##                                                                      
+##  priority_data_original priority_date      publication_country_code
+##  Length:9996            Length:9996        Length:9996             
+##  Class :character       Class :character   Class :character        
+##  Mode  :character       Mode  :character   Mode  :character        
+##                                                                    
+##                                                                    
+##                                                                    
+##                                                                    
+##  publication_country_name publication_date   publication_date_original
+##  Length:9996              Length:9996        Length:9996              
+##  Class :character         Class :character   Class :character         
+##  Mode  :character         Mode  :character   Mode  :character         
+##                                                                       
+##                                                                       
+##                                                                       
+##                                                                       
+##  publication_day publication_month publication_number
+##  Min.   : 1.00   Min.   : 1.000    Length:9996       
+##  1st Qu.: 8.00   1st Qu.: 4.000    Class :character  
+##  Median :16.00   Median : 7.000    Mode  :character  
+##  Mean   :15.68   Mean   : 6.608                      
+##  3rd Qu.:23.00   3rd Qu.:10.000                      
+##  Max.   :31.00   Max.   :12.000                      
+##  NA&amp;#39;s   :30      NA&amp;#39;s   :30                          
+##  publication_number_espacenet_links publication_year title_cleaned     
+##  Length:9996                        Min.   :1940     Length:9996       
+##  Class :character                   1st Qu.:1999     Class :character  
+##  Mode  :character                   Median :2005     Mode  :character  
+##                                     Mean   :2003                       
+##                                     3rd Qu.:2009                       
+##                                     Max.   :2015                       
+##                                     NA&amp;#39;s   :30                         
+##  title_nlp_cleaned  title_nlp_multiword_phrases title_nlp_raw     
+##  Length:9996        Length:9996                 Length:9996       
+##  Class :character   Class :character            Class :character  
+##  Mode  :character   Mode  :character            Mode  :character  
+##                                                                   
+##                                                                   
+##                                                                   
+##                                                                   
+##  title_original    
+##  Length:9996       
+##  Class :character  
+##  Mode  :character  
+##                    
+##                    
+##                    
+## &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;5.The class of R object&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;class()&lt;/code&gt; is one of the most useful functions in R because it tells you what kind of object or vectors you are dealing with. R vectors are normally either character, numeric, or logical (TRUE, FALSE) but classes also include integers and factors. Most of the time patent data is of either the character type or a date.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;class(pizza)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;tbl_df&amp;quot;     &amp;quot;tbl&amp;quot;        &amp;quot;data.frame&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;4. &lt;code&gt;str&lt;/code&gt; - See the structure&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;As you become more familiar with R the function &lt;code&gt;str()&lt;/code&gt; becomes one of the most useful for examining the structure of your data. For example, using str we can see whether an object we are working with is a simple vector, a list of objects or a list that contains a set of data frames (e.g.) tables. If things don’t seem to be working then &lt;code&gt;class&lt;/code&gt; and &lt;code&gt;str&lt;/code&gt; will often help you to understand why not.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;str(pizza, max.level = 1)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;These options illustrate the range of ways that you can view the data before and during graphing. Mainly what will be needed is the column names but we also need to think about the column types.&lt;/p&gt;
+&lt;p&gt;If we inspect this data using &lt;code&gt;str(pizza)&lt;/code&gt; we will see that the bulk of the fields are character fields. One feature of patent data is that it rarely includes actual numeric fields (such as counts). Most fields are character fields such as names or alphanumeric values (such as publication numbers e.g. US20151234A1). Sometimes we see counts such as citing documents or family members but most of the time our fields are character fields or dates. A second common feature of patent data is that some fields are concatenated. That is the cells in a column contain more than one value (e.g. multiple inventor or applicant names etc.).&lt;/p&gt;
+&lt;p&gt;We will walk through how to deal with these common patent data issues in R in other articles. For now, we don’t need to worry about the form of data except that it is normally best to select a column (variable) that is not concatenated with multiple values to develop our counts. So as a first step we will quickly create a numeric field from the &lt;code&gt;publication_number&lt;/code&gt; field in &lt;code&gt;pizza&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-a-numeric-field&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Creating a numeric field&lt;/h2&gt;
+&lt;p&gt;To create a numeric field for graphing we will need to do two things&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;add a column&lt;/li&gt;
+&lt;li&gt;assign each cell in that column a value that we can then count.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The most obvious field to use as the basis for counting in the pizza data is the &lt;code&gt;publication_number&lt;/code&gt; field because typically this contains unique alphanumeric identifiers.&lt;/p&gt;
+&lt;p&gt;To create a numeric field we will use the &lt;code&gt;dplyr&lt;/code&gt; package. &lt;code&gt;dplyr&lt;/code&gt; and its sister package &lt;code&gt;tidyr&lt;/code&gt; are some of the most useful packages available for working in R and come with a handy &lt;a href=&#34;http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf&#34;&gt;RStudio Cheatsheet&lt;/a&gt; and &lt;a href=&#34;http://www.rstudio.com/resources/webinars/archives/#&#34;&gt;webinar&lt;/a&gt;. To see what the functions in &lt;code&gt;dplyr&lt;/code&gt; are then click on its name in the packages pane.&lt;/p&gt;
+&lt;p&gt;Just for future reference the main functions are:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;filter (to select rows in a data)&lt;/li&gt;
+&lt;li&gt;select (to select the columns you want to work with)&lt;/li&gt;
+&lt;li&gt;mutate (to add columns based on other columns)&lt;/li&gt;
+&lt;li&gt;arrange (to sort)&lt;/li&gt;
+&lt;li&gt;group_by( to group data)&lt;/li&gt;
+&lt;li&gt;count (to easily summarise data on a value)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;dplyr&#39;s&lt;/code&gt; &lt;code&gt;mutate&lt;/code&gt; function allows us to add a new column based on the values contained in one or more of the other columns in the dataset. We will call this new variable &lt;code&gt;n&lt;/code&gt; and we could always rename it in the graphs later on. There are quite a variety of ways of creating counts in R but this is one of the easiest. The mutate function is really very useful and worth learning.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+pizza &amp;lt;- mutate(pizza, record_count = sum(publication_number = 1))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What we have done here is to tell R that we want to use the &lt;code&gt;mutate()&lt;/code&gt; function. We have then passed it a series of arguments consisting of:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;our dataset = pizza&lt;/li&gt;
+&lt;li&gt;record_count = the result of the function sum() which is the sum of publication_number giving the value 1 to each number.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pizza &amp;lt;-&lt;/code&gt; this tells R to create an object (a data frame) called &lt;code&gt;pizza&lt;/code&gt; containing the results. If you take a look in the Environment pane you will now see that pizza has 32 variables. Note that we have now modified the data we imported into R although the original data in the file remains the same. If we now use &lt;code&gt;View(pizza)&lt;/code&gt; we will see a new column called &lt;code&gt;record_count&lt;/code&gt; with a value of 1 for each entry.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div id=&#34;renaming-columns&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Renaming Columns&lt;/h3&gt;
+&lt;p&gt;We will be doing quite a lot of work with the &lt;code&gt;publication_country_name&lt;/code&gt; field, so let’s make our lives a bit easier by renaming it with the &lt;code&gt;dplyr&lt;/code&gt; function &lt;code&gt;rename()&lt;/code&gt;. We will also do the same for the &lt;code&gt;publication_country_code&lt;/code&gt; and publication_year. Note that it is easy to create labels for graphs with ggplot so we don’t need to worry about renaming column names too much. We can rename them again later if saving the file to a new &lt;code&gt;.csv&lt;/code&gt; file.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+pizza &amp;lt;- rename(pizza, pubcountry = publication_country_name, pubcode = publication_country_code, 
+    pubyear = publication_year)
+head(pizza)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 27
+##   applicants_organ… ipc_class ipc_codes ipc_names ipc_original ipc_subclass_co…
+##   &amp;lt;chr&amp;gt;             &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;           
+## 1 &amp;lt;NA&amp;gt;              A21: Bak… A21D 13/… A21D 13/… A21D 13/00;… A21D; A23L      
+## 2 &amp;lt;NA&amp;gt;              A21: Bak… A21B 3/13 A21B 3/1… A21B 3/13    A21B            
+## 3 &amp;lt;NA&amp;gt;              A21: Bak… A21C 15/… A21C 15/… A21C 15/04   A21C            
+## 4 Lazarillo De Tor… A21: Bak… A21D 13/… A21D 13/… A21D 13/00;… A21D; A23L      
+## 5 &amp;lt;NA&amp;gt;              B65: Con… B65D 21/… B65D 21/… B65D 21/032… B65D            
+## 6 &amp;lt;NA&amp;gt;              B65: Con… B65D 85/… B65D 85/… B65D 85/36   B65D            
+## # ... with 21 more variables: ipc_subclass_detail &amp;lt;chr&amp;gt;,
+## #   ipc_subclass_names &amp;lt;chr&amp;gt;, priority_country_code &amp;lt;chr&amp;gt;,
+## #   priority_country_code_names &amp;lt;chr&amp;gt;, priority_data_original &amp;lt;chr&amp;gt;,
+## #   priority_date &amp;lt;chr&amp;gt;, pubcode &amp;lt;chr&amp;gt;, pubcountry &amp;lt;chr&amp;gt;,
+## #   publication_date &amp;lt;chr&amp;gt;, publication_date_original &amp;lt;chr&amp;gt;,
+## #   publication_day &amp;lt;int&amp;gt;, publication_month &amp;lt;int&amp;gt;, publication_number &amp;lt;chr&amp;gt;,
+## #   publication_number_espacenet_links &amp;lt;chr&amp;gt;, pubyear &amp;lt;int&amp;gt;,
+## #   title_cleaned &amp;lt;chr&amp;gt;, title_nlp_cleaned &amp;lt;chr&amp;gt;,
+## #   title_nlp_multiword_phrases &amp;lt;chr&amp;gt;, title_nlp_raw &amp;lt;chr&amp;gt;,
+## #   title_original &amp;lt;chr&amp;gt;, record_count &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;selecting-columns-for-plotting&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Selecting Columns for plotting&lt;/h3&gt;
+&lt;p&gt;We could now simply go ahead and work with pizza. However, for datasets with many columns or requiring different kinds of counts it can be much easier to simply select the columns we want to work with to reduce clutter. We can use the &lt;code&gt;select()&lt;/code&gt; function from &lt;code&gt;dplyr&lt;/code&gt; to do this.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+p1 &amp;lt;- pizza %&amp;gt;% select(., pubcountry, pubcode, pubyear, record_count)
+head(p1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 4
+##   pubcountry                 pubcode pubyear record_count
+##   &amp;lt;chr&amp;gt;                      &amp;lt;chr&amp;gt;     &amp;lt;int&amp;gt;        &amp;lt;dbl&amp;gt;
+## 1 United States of America   US         2009           1.
+## 2 United States of America   US         2014           1.
+## 3 United States of America   US         2013           1.
+## 4 European Patent Office     EP         2007           1.
+## 5 United States of America   US         2003           1.
+## 6 Patent Co-operation Treaty WO         2002           1.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that &lt;code&gt;dplyr&lt;/code&gt; will exclude columns that are not mentioned when using select. This is one of the purposes of &lt;code&gt;select&lt;/code&gt; as a function. For that reason you will probably want to rename the object (in this case as p1). If we used the name &lt;code&gt;pizza&lt;/code&gt; for the object our original table would be reduced to the 4 columns specified by &lt;code&gt;select&lt;/code&gt;. Type &lt;code&gt;?select&lt;/code&gt; in the console for further details.&lt;/p&gt;
+&lt;p&gt;We now have a data frame with 9,996 rows and 4 variables (columns). Use &lt;code&gt;View(p1)&lt;/code&gt; or simply enter &lt;code&gt;p1&lt;/code&gt; into the console to take a look.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-counts&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Creating Counts&lt;/h2&gt;
+&lt;p&gt;To make life even easier for ourselves we can use function &lt;code&gt;count()&lt;/code&gt; from &lt;code&gt;dplyr&lt;/code&gt; to group the data onto counts by different variables for graphing. Note that we could defer counting until later, however, this is a good opportunity to learn more about &lt;code&gt;dplyr&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Let’s go ahead and construct some counts using &lt;code&gt;p1&lt;/code&gt;. At the same time we will use quick plot (&lt;code&gt;qplot&lt;/code&gt;) for some exploratory plotting of the results. In the course of this R will show error warnings in red for missing values. We will be ignoring the warning because they are often R telling us things it things we need to know.&lt;/p&gt;
+&lt;div id=&#34;total-by-year&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Total by Year&lt;/h3&gt;
+&lt;p&gt;What if we wanted to know the overall total for our sample data by publication year. Try the following.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pt &amp;lt;- count(p1, pubyear, wt = record_count)
+head(pt)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 2
+##   pubyear     n
+##     &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt;
+## 1    1940    1.
+## 2    1954    1.
+## 3    1956    1.
+## 4    1957    1.
+## 5    1959    1.
+## 6    1962    1.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If we now view &lt;code&gt;pt&lt;/code&gt; (either by using &lt;code&gt;View(pt)&lt;/code&gt;, noting the capital V, or clicking &lt;code&gt;pt&lt;/code&gt; in the Environment pane) we will see that R has dropped the country columns to present us with an overall total by year in &lt;code&gt;n&lt;/code&gt;. We now have a general overview of the data for graphing.&lt;/p&gt;
+&lt;p&gt;Let’s go ahead and quickly plot that using the &lt;code&gt;qplot()&lt;/code&gt; function.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;qplot(x = pubyear, y = n, data = pt, geom = &amp;quot;line&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2015-06-25-wrangling-pizza-patents-in-R_files/figure-html/fig1_ggplot1-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;round-up&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Round Up&lt;/h3&gt;
+&lt;p&gt;That’s it. You may feel at the end of this post that this was a lot of work to get to a very simple graph. But, in reality, it is the data preparation that takes the time. In the next post we will focus in on creating different kinds of graph in ggplot2 and some of the challenges that we encounter along the way.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
     </item>
     
   </channel>

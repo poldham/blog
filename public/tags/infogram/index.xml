@@ -1,25 +1,814 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Infogram on Paul Oldham&#39;s Blog</title>
-    <link>https://www.pauloldham.net/tags/infogram/</link>
-    <description>Recent content in Infogram on Paul Oldham&#39;s Blog</description>
+    <title>Infogram on Paul Oldham&#39;s Analytics Blog</title>
+    <link>/tags/infogram/</link>
+    <description>Recent content in Infogram on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Wed, 20 Apr 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://www.pauloldham.net/tags/infogram/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/infogram/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Creating an Infographic with infogram</title>
-      <link>https://www.pauloldham.net/infographics/</link>
+      <link>/infographics/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/infographics/</guid>
-      <description>In this article we will use RStudio to prepare patent data for visualisation in an infographic using the online software tool infogram.
-Infographics are a popular way of presenting data in a way that is easy for a reader to understand without reading a long report. Infographics are well suited to presenting summaries of data with simple messages about key findings. A good infographic can encourage the audience to read a detailed report and is a tool for engagement with audiences during presentations of the findings of patent research.</description>
+      <guid>/infographics/</guid>
+      <description>&lt;p&gt;In this article we will use RStudio to prepare patent data for visualisation in an infographic using the online software tool &lt;a href=&#34;https://infogram.com/?rc=paid0sem0branded0search0&amp;amp;gclid=EAIaIQobChMIw6KgvMiq2AIViLvtCh2fpgxhEAAYASAAEgKR2PD_BwE&#34;&gt;infogram&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Infographics are a popular way of presenting data in a way that is easy for a reader to understand without reading a long report. Infographics are well suited to presenting summaries of data with simple messages about key findings. A good infographic can encourage the audience to read a detailed report and is a tool for engagement with audiences during presentations of the findings of patent research.&lt;/p&gt;
+&lt;p&gt;Some patent offices have already been creating infographics as part of their reports to policy makers and other clients. The Instituto Nacional de Propiedade Industrial (INPI) in Brazil produces regular two page &lt;a href=&#34;http://www.inpi.gov.br/menu-servicos/informacao/radares-tecnologicos&#34;&gt;Technology Radar&lt;/a&gt; (Radar Tecnologico) consisting of charts and maps that briefly summarise more detailed research on subjects such as &lt;a href=&#34;http://www.inpi.gov.br/menu-servicos/arquivos-cedin/n08_radar_tecnologico_nano_residuos_versao_resumida_ingles_atualizada_20160122.pdf&#34;&gt;Nanotechnology in Waste Management&lt;/a&gt;. &lt;a href=&#34;http://www.wipo.int/patentscope/en/programs/patent_landscapes/&#34;&gt;WIPO Patent Landscape Reports&lt;/a&gt;, which go into depth on patent activity for a particular area, are accompanied by one page infographics that have proved very popular such as the infographic accompanying a recent report on &lt;a href=&#34;http://www.wipo.int/export/sites/www/patentscope/en/programs/patent_landscapes/reports/documents/assistivedevices_infographic.pdf&#34;&gt;assistive devices&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A growing number of companies are offering online infographic software services such as &lt;a href=&#34;https://infogr.am/app/#/library&#34;&gt;infogr.am&lt;/a&gt;,&lt;a href=&#34;http://www.easel.ly&#34;&gt;easel.ly&lt;/a&gt; &lt;a href=&#34;https://magic.piktochart.com/templates&#34;&gt;piktochart.com&lt;/a&gt;, &lt;a href=&#34;https://www.canva.com/create/infographics/&#34;&gt;canva.com&lt;/a&gt; or &lt;a href=&#34;https://venngage.com&#34;&gt;venngage.com&lt;/a&gt; to mention only a selection of the offerings out there. The &lt;a href=&#34;http://www.coolinfographics.com/tools/&#34;&gt;Cool Infographics website&lt;/a&gt; provides a useful overview of available tools.&lt;/p&gt;
+&lt;p&gt;One feature of many of these services is that they are based on a freemium model. Creating graphics is free but the ability to export files and the available formats for export of your masterpiece (e.g. high resolution or .pdf) often depend on upgrading to a monthly account at varying prices. In this chapter we test drive &lt;a href=&#34;https://infogr.am/app/#/library&#34;&gt;infogr.am&lt;/a&gt; as a chart friendly service, albeit with export options that depend on a paid account.&lt;/p&gt;
+&lt;p&gt;This article is divided into two sections.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;In part 1 we focus on using RStudio to prepare patent data for visualisation in infographics software using the &lt;code&gt;dplyr&lt;/code&gt;, &lt;code&gt;tidyr&lt;/code&gt; and &lt;code&gt;stringr&lt;/code&gt; packages. This involves dealing with common problems with patent data such as concatenated fields, white space and creating counts of data fields. Part 1 is intended for those starting out using R and assumes no prior knowledge of R.&lt;/li&gt;
+&lt;li&gt;In part 2 we produce an infographic from the data using &lt;a href=&#34;https://infogr.am/app/#/library&#34;&gt;infogr.am&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This article is now a chapter in the &lt;a href=&#34;https://wipo-analytics.github.io/&#34;&gt;WIPO Manual on Open Source Patent Analytics&lt;/a&gt;. You can read the chapter in electronic book format &lt;a href=&#34;https://wipo-analytics.github.io/patent-infographics-with-r.html&#34;&gt;here&lt;/a&gt; and find all the materials including presentations at the &lt;a href=&#34;https://github.com/wipo-analytics&#34;&gt;WIPO Analytics Github homepage&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;getting-started&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Getting Started&lt;/h2&gt;
+&lt;p&gt;To start with we need to ensure that RStudio and R for your operating system are installed by following the instructions on the RStudio website &lt;a href=&#34;https://www.rstudio.com/products/rstudio/download/&#34;&gt;here&lt;/a&gt;. Do not forget to follow the link to also &lt;a href=&#34;https://cran.rstudio.com&#34;&gt;install R for your operating system&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;When working in RStudio it is good practice to work with projects. This will keep all of the files for a project in the same folder. To create a project go to File, New Project and create a project. Call the project something like infographic. Any file you create and save for the project will now be listed under the Files tab in RStudio.&lt;/p&gt;
+&lt;p&gt;R works using packages (libraries) and there are around 7,490 of them for a whole range of purposes. We will use just a few of them. To install a package we use the following. Copy and paste the code into the Console and press enter.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;tidyverse&amp;quot;)  # the group of packages you will need&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Packages can also be installed by selecting the Packages tab and typing the name of the package.&lt;/p&gt;
+&lt;p&gt;To load the packages (libraries) use the following or check the tick box in the Packages pane.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readr)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(ggplot2)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We are now ready to go.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;load-a-.csv-file-using-readr&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Load a .csv file using &lt;code&gt;readr&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;We will work with the &lt;code&gt;pizza_medium_clean&lt;/code&gt; dataset in the online &lt;a href=&#34;https://github.com/wipo-analytics/opensource-patent-analytics/tree/master/2_datasets&#34;&gt;Github Manual repository&lt;/a&gt;. If manually downloading a file remember to click on the file name and select &lt;code&gt;Raw&lt;/code&gt; to download the actual file.&lt;/p&gt;
+&lt;p&gt;We can use the easy to use &lt;code&gt;read_csv()&lt;/code&gt; function from the &lt;code&gt;readr&lt;/code&gt; package to quickly read in our pizza data directly from the Github repository. Note the &lt;code&gt;raw&lt;/code&gt; at the beginning of the filename.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readr)
+pizza &amp;lt;- read_csv(&amp;quot;https://github.com/wipo-analytics/opensource-patent-analytics/blob/master/2_datasets/pizza_medium_clean/pizza.csv?raw=true&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;readr&lt;/code&gt; will display a warning for the file arising from its efforts to parse publication dates on import. We will ignore this as we will not be using this field.&lt;/p&gt;
+&lt;p&gt;As an alternative to importing directly from Github download the file and in RStudio use &lt;code&gt;File &amp;gt; Import Dataset &amp;gt; From .csv&lt;/code&gt;. If you experience problems with direct import of a file the File &amp;gt; Import Dataset approach will give you a range of easy to use controls for figuring this out (e.g. where .csv is actually a tab separated file).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;viewing-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Viewing Data&lt;/h2&gt;
+&lt;p&gt;We can view data in a variety of ways.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;In the console:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pizza&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 9,996 x 31
+##    applicants_cleaned    applicants_clean… applicants_orga… applicants_original
+##    &amp;lt;chr&amp;gt;                 &amp;lt;chr&amp;gt;             &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;              
+##  1 &amp;lt;NA&amp;gt;                  People            &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;               
+##  2 Ventimeglia Jamie Jo… People            &amp;lt;NA&amp;gt;             Ventimeglia Jamie …
+##  3 Cordova Robert; Mart… People            &amp;lt;NA&amp;gt;             Cordova Robert;Mar…
+##  4 Lazarillo De Tormes … Corporate         Lazarillo De To… LAZARILLO DE TORME…
+##  5 &amp;lt;NA&amp;gt;                  People            &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;               
+##  6 Depoortere, Thomas    People            &amp;lt;NA&amp;gt;             DEPOORTERE, Thomas 
+##  7 Frisco Findus Ag      Corporate         Frisco Findus Ag FRISCO-FINDUS AG   
+##  8 Bicycle Tools Incorp… Corporate         Bicycle Tools I… Bicycle Tools Inco…
+##  9 Castiglioni, Carlo    People            &amp;lt;NA&amp;gt;             CASTIGLIONI, CARLO 
+## 10 &amp;lt;NA&amp;gt;                  People            &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;               
+## # ... with 9,986 more rows, and 27 more variables: inventors_cleaned &amp;lt;chr&amp;gt;,
+## #   inventors_original &amp;lt;chr&amp;gt;, ipc_class &amp;lt;chr&amp;gt;, ipc_codes &amp;lt;chr&amp;gt;,
+## #   ipc_names &amp;lt;chr&amp;gt;, ipc_original &amp;lt;chr&amp;gt;, ipc_subclass_codes &amp;lt;chr&amp;gt;,
+## #   ipc_subclass_detail &amp;lt;chr&amp;gt;, ipc_subclass_names &amp;lt;chr&amp;gt;,
+## #   priority_country_code &amp;lt;chr&amp;gt;, priority_country_code_names &amp;lt;chr&amp;gt;,
+## #   priority_data_original &amp;lt;chr&amp;gt;, priority_date &amp;lt;chr&amp;gt;,
+## #   publication_country_code &amp;lt;chr&amp;gt;, publication_country_name &amp;lt;chr&amp;gt;,
+## #   publication_date &amp;lt;chr&amp;gt;, publication_date_original &amp;lt;chr&amp;gt;,
+## #   publication_day &amp;lt;int&amp;gt;, publication_month &amp;lt;int&amp;gt;, publication_number &amp;lt;chr&amp;gt;,
+## #   publication_number_espacenet_links &amp;lt;chr&amp;gt;, publication_year &amp;lt;int&amp;gt;,
+## #   title_cleaned &amp;lt;chr&amp;gt;, title_nlp_cleaned &amp;lt;chr&amp;gt;,
+## #   title_nlp_multiword_phrases &amp;lt;chr&amp;gt;, title_nlp_raw &amp;lt;chr&amp;gt;,
+## #   title_original &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;In Environment click on the blue arrow to see in the environment. Keep clicking to open a new window with the data.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Use the &lt;code&gt;View()&lt;/code&gt; command (for data.frames and tables)&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;View(pizza)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If possible use the View() command or environment. The difficulty with the console is that large amounts of data will simply stream past.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;identifying-types-of-object&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Identifying Types of Object&lt;/h2&gt;
+&lt;p&gt;We often want to know what type of object we are working with and more details about the object so we know what to do later. Here are some of the most common commands for obtaining information about objects.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;class(pizza)  ## type of object
+names(pizza)  ## names of variables
+str(pizza)  ## structure of object
+dim(pizza)  ## dimensions of the object&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The most useful command in this list is &lt;code&gt;str()&lt;/code&gt; because this allows us to access the structure of the object and see its type.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;str(pizza, max.level = 1)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;str()&lt;/code&gt; is particularly useful because we can see the names of the fields (vectors) and their type. Most patent data is a character vector with dates forming integers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;working-with-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Working with Data&lt;/h2&gt;
+&lt;p&gt;We will often want to select aspects of our data to focus on a specific set of columns or to create a graph. We might also want to add information, notably numeric counts.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;dplyr&lt;/code&gt; package provides a set of very handy functions for selecting, adding and counting data. The &lt;code&gt;tidyr&lt;/code&gt; and &lt;code&gt;stringr&lt;/code&gt; packages are sister packages that contain a range of other useful functions for working with our data. We have covered some of these in other chapters on graphing using R but will go through them quickly and then pull them together into a function that we can use across our dataset.&lt;/p&gt;
+&lt;div id=&#34;select&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Select&lt;/h3&gt;
+&lt;p&gt;In this case we will start by using the &lt;code&gt;select()&lt;/code&gt; function to limit the data to specific columns. We can do this using their names or their numeric position (best for large number of columns e.g. 1:31). In &lt;code&gt;dplyr&lt;/code&gt;, unlike most R packages, existing character columns do not require &lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+pizza_number &amp;lt;- select(pizza, publication_number, publication_year)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We now have a new data.frame that contains two columns. One with the year and one with the publication number. Note that we have created a new object called pizza_number using &lt;code&gt;&amp;lt;-&lt;/code&gt; and that after &lt;code&gt;select()&lt;/code&gt; we have named our original data and the columns we want. A fundamental feature of select is that it will drop columns that we do not name. So it is best to create a new object using &lt;code&gt;&amp;lt;-&lt;/code&gt; if you want to keep your original data for later work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;adding-data-with-mutate&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Adding data with &lt;code&gt;mutate()&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;mutate()&lt;/code&gt; is a &lt;code&gt;dplyr&lt;/code&gt; function that allows us to add data based on existing data in our data frame, for example to perform a calculation. In the case of patent data we normally lack a numeric field to use for counts. We can however assign a value to our publication field by using sum() and the number 1 as follows.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+pizza_number &amp;lt;- mutate(pizza_number, n = sum(publication_number = 1))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When we view &lt;code&gt;pizza_number&lt;/code&gt; we now have a value of 1 in the column &lt;code&gt;n&lt;/code&gt; for each publication number.&lt;/p&gt;
+&lt;p&gt;Note that in patent data a priority, application, publication or family number may occur multiple times and we would want to reduce the dataset to distinct records. For that we would use &lt;code&gt;n_distinct(pizza_number$publication_number)&lt;/code&gt; from &lt;code&gt;dplyr&lt;/code&gt; or &lt;code&gt;unique(pizza_number$publication_number)&lt;/code&gt; from base R. Because the publication numbers are unique we can proceed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;counting-data-using-count&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Counting data using &lt;code&gt;count()&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;At the moment, we have multiple instances of the same year (where a patent publication occurs in that year). We now want to calculate how many of our documents were published in each year. To do that we will use the &lt;code&gt;dplyr&lt;/code&gt; function &lt;code&gt;count()&lt;/code&gt;. We will use the publication_year and add &lt;code&gt;wt =&lt;/code&gt; (for weight) with &lt;code&gt;n&lt;/code&gt; as the value to count.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+pizza_total &amp;lt;- count(pizza_number, publication_year, wt = n)
+pizza_total&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 58 x 2
+##    publication_year    nn
+##               &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt;
+##  1             1940    1.
+##  2             1954    1.
+##  3             1956    1.
+##  4             1957    1.
+##  5             1959    1.
+##  6             1962    1.
+##  7             1964    2.
+##  8             1966    1.
+##  9             1967    1.
+## 10             1968    8.
+## # ... with 48 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When we now examine pizza_total, we will see the publication year and a summed value for the records in that year.&lt;/p&gt;
+&lt;p&gt;This raises the question of how we know that R has calculated the count correctly. We already know that there are 9996 records in the pizza dataset. To check our count is correct we can simply use sum and select the column we want to sum using &lt;code&gt;$&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+sum(pizza_total$nn)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 9996&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So, all is good and we can move on. The &lt;code&gt;$&lt;/code&gt; sign is one of the main ways of subsetting to tell R that we want to work with a specific column (the others are “[” and “[[”).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;rename-a-field-with-rename&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Rename a field with &lt;code&gt;rename()&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Next we will use &lt;code&gt;rename()&lt;/code&gt; from &lt;code&gt;dplyr&lt;/code&gt; to rename the fields. Note that understanding which field require quote marks can take some effort. In this case renaming the character vector publication_year as “pubyear” requires quotes while renaming the numeric vector “n” does not.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+pizza_total &amp;lt;- rename(pizza_total, pubyear = publication_year, publications = nn) %&amp;gt;% 
+    print()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 58 x 2
+##    pubyear publications
+##      &amp;lt;int&amp;gt;        &amp;lt;dbl&amp;gt;
+##  1    1940           1.
+##  2    1954           1.
+##  3    1956           1.
+##  4    1957           1.
+##  5    1959           1.
+##  6    1962           1.
+##  7    1964           2.
+##  8    1966           1.
+##  9    1967           1.
+## 10    1968           8.
+## # ... with 48 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;make-a-quickplot-with-qplot&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Make a quickplot with &lt;code&gt;qplot()&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Using the &lt;code&gt;qplot()&lt;/code&gt; function in &lt;code&gt;ggplot2&lt;/code&gt; we can now draw a quick line graph. Note that qplot() is unusual in R because the data (pizza_total) appears after the coordinates. We will specify that we want a line using &lt;code&gt;geom =&lt;/code&gt; (if geom is left out it will be a scatter plot). This will give us an idea of what our plot might look like in our infographic and actions we might want to take on the data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
+qplot(x = pubyear, y = publications, data = pizza_total, geom = &amp;quot;line&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2016-04-20-infographics_files/figure-html/qplot-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![](images_foot/infogram/fig1_infographic.png)---&gt;
+&lt;p&gt;The plot reveals a data cliff in recent years. This normally reflects a lack of data for the last 2-3 years as recent documents feed through the system en route to publication.&lt;/p&gt;
+&lt;p&gt;It is a good idea to remove the data cliff by cutting the data 2-3 years prior to the present. In some cases two years is sufficient, but 3 years is a good rule of thumb.&lt;/p&gt;
+&lt;p&gt;We also have long tail of data with limited data from 1940 until the late 1970s. Depending on our purposes with the analysis we might want to keep this data (for historical analysis) or to focus in on a more recent period.&lt;/p&gt;
+&lt;p&gt;We will limit our data to specific values using the &lt;code&gt;dplyr&lt;/code&gt; function &lt;code&gt;filter()&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;filter-data-using-filter&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Filter data using &lt;code&gt;filter()&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;In contrast with &lt;code&gt;select()&lt;/code&gt; which works with columns, &lt;code&gt;filter()&lt;/code&gt; in &lt;code&gt;dplyr&lt;/code&gt; works with rows. In this case we need to filter on the values in the pubyear column. To remove the data prior to 1990 we will use the greater than or equal to operator &lt;code&gt;&amp;gt;=&lt;/code&gt; on the pubyear column and we will use the less than or equal to &lt;code&gt;&amp;lt;=&lt;/code&gt; operator on the values after 2012.&lt;/p&gt;
+&lt;p&gt;One strength of &lt;code&gt;filter()&lt;/code&gt; in &lt;code&gt;dplyr&lt;/code&gt; is that it is easy to filter on multiple values in the same expression (unlike the very similar filter function in base R). The use of &lt;code&gt;filter()&lt;/code&gt; will also remove the 30 records where the year is recorded as NA (Not Available). We will write this file to disk using the simple &lt;code&gt;write_csv()&lt;/code&gt; from &lt;code&gt;readr&lt;/code&gt;. To use &lt;code&gt;write_csv()&lt;/code&gt; we first name our data (&lt;code&gt;pizza_total&lt;/code&gt;) and then provide a file name with a .csv extension. In this case and other examples below we have used a descriptive file name bearing in mind that Windows systems have limitations on the length and type of characters that can be used in file names.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+library(readr)
+pizza_total &amp;lt;- filter(pizza_total, pubyear &amp;gt;= 1990, pubyear &amp;lt;= 2012)
+write_csv(pizza_total, &amp;quot;pizza_total_1990_2012.csv&amp;quot;)
+pizza_total&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 23 x 2
+##    pubyear publications
+##      &amp;lt;int&amp;gt;        &amp;lt;dbl&amp;gt;
+##  1    1990         139.
+##  2    1991         154.
+##  3    1992         212.
+##  4    1993         201.
+##  5    1994         162.
+##  6    1995         173.
+##  7    1996         180.
+##  8    1997         186.
+##  9    1998         212.
+## 10    1999         290.
+## # ... with 13 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When we print pizza_total to the console we will see that the data now covers the period 1990-2012. When using &lt;code&gt;filter()&lt;/code&gt; on values in this way it is important to remember to apply this filter to any subsequent operations on the data (such as applicants) so that it matches the same data period.&lt;/p&gt;
+&lt;p&gt;To see our .csv file we can head over to the Files tab and, assuming that we have created a project, the file will now appear in the list of project files. Clicking on the file name will display the raw unformatted data in RStudio.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;simplify-code-with-pipes&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Simplify code with pipes &lt;code&gt;%&amp;gt;%&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;So far we have handled the code one line at a time. But, one of the great strengths of using a programming language is that we can run multiple lines of code together. There are two basic ways that we can do this.&lt;/p&gt;
+&lt;p&gt;We will create a new temporary object &lt;code&gt;df&lt;/code&gt; to demonstrate this.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;The standard way&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+library(ggplot2)
+df &amp;lt;- select(pizza, publication_number, publication_year)
+df &amp;lt;- mutate(df, n = sum(publication_number = 1))
+df &amp;lt;- count(df, publication_year, wt = n)
+df &amp;lt;- rename(df, pubyear = publication_year, publications = nn)
+df &amp;lt;- filter(df, pubyear &amp;gt;= 1990, pubyear &amp;lt;= 2012)
+qplot(x = pubyear, y = publications, data = df, geom = &amp;quot;line&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The code we have just created is six lines long. If we select all of this code and run it in one go it will produce our graph.&lt;/p&gt;
+&lt;p&gt;One feature of this code is that each time we run a function on the object total we name it at the start of each function (e.g. mutate(df…)) and then we overwrite the object.&lt;/p&gt;
+&lt;p&gt;We can save quite a lot of typing and reduce the complexity of the code using the pipe operator introduced by the the &lt;code&gt;magrittr&lt;/code&gt; package and then adopted in Hadley Wickham’s data wrangling and tidying packages.&lt;/p&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Using pipes &lt;code&gt;%&amp;gt;%&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Pipes are now a very popular way of writing R code because they simplify writing R code and speed it up. The most popular pipe is &lt;code&gt;%&amp;gt;%&lt;/code&gt; which means “this” then “that”. In this case we are going to create a new temporary object &lt;code&gt;df1&lt;/code&gt; by first applying select to pizza, then mutate, count, rename and filter. Note that we only name our dataset once (in &lt;code&gt;select()&lt;/code&gt;) and we do not need to keep overwriting the object.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+library(ggplot2)
+df1 &amp;lt;- select(pizza, publication_number, publication_year) %&amp;gt;% mutate(n = sum(publication_number = 1)) %&amp;gt;% 
+    count(publication_year, wt = n) %&amp;gt;% rename(pubyear = publication_year, publications = nn) %&amp;gt;% 
+    filter(pubyear &amp;gt;= 1990, pubyear &amp;lt;= 2012) %&amp;gt;% qplot(x = pubyear, y = publications, 
+    data = ., geom = &amp;quot;line&amp;quot;) %&amp;gt;% print()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2016-04-20-infographics_files/figure-html/piped-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;!---![](images_foot/infogram/fig2_infographic_qplot.png)---&gt;
+&lt;p&gt;In the standard code we typed &lt;code&gt;df&lt;/code&gt; nine times to arrive at the same result. Using pipes we typed df1 once. Of greater importance is that the use of pipes simplifies the structure of R code by introducing a basic “this” then “that” logic which makes it easier to understand.&lt;/p&gt;
+&lt;p&gt;One point to note about this code is that &lt;code&gt;qplot()&lt;/code&gt; requires us to name our data (in this case &lt;code&gt;df1&lt;/code&gt;). However, &lt;code&gt;df1&lt;/code&gt; is actually the final output of the code and does not exist as an input object before the final line is run. So, if we attempt to use &lt;code&gt;data = df1&lt;/code&gt; in &lt;code&gt;qplot()&lt;/code&gt; we will receive an error message. The way around this is to use &lt;code&gt;.&lt;/code&gt; in place of our data object. That way &lt;code&gt;qplot()&lt;/code&gt; will know we want to graph the outputs of the earlier code. Finally, we need to add an explicit call to &lt;code&gt;print()&lt;/code&gt; to display the graph (without this the code will work but we will not see the graph).&lt;/p&gt;
+&lt;p&gt;If we now inspect the structure of the df1 object (using &lt;code&gt;str(df1)&lt;/code&gt;) in the console, it will be a list. The reason for this is that it is an object with mixed components, including a data.frame with our data plus additional data setting out the contents of the plot. As there is no direct link between R and our infographics software this will create problems for us later because the infographics software won’t know how to interpret the list object. So, it is generally a good idea to use a straight data.frame by excluding the call to &lt;code&gt;qplot&lt;/code&gt; and adding it later when needed as follows.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+library(ggplot2)
+df2 &amp;lt;- select(pizza, publication_number, publication_year) %&amp;gt;% mutate(n = sum(publication_number = 1)) %&amp;gt;% 
+    count(publication_year, wt = n) %&amp;gt;% rename(pubyear = publication_year, publications = nn) %&amp;gt;% 
+    filter(pubyear &amp;gt;= 1990, pubyear &amp;lt;= 2012) %&amp;gt;% print()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 23 x 2
+##    pubyear publications
+##      &amp;lt;int&amp;gt;        &amp;lt;dbl&amp;gt;
+##  1    1990         139.
+##  2    1991         154.
+##  3    1992         212.
+##  4    1993         201.
+##  5    1994         162.
+##  6    1995         173.
+##  7    1996         180.
+##  8    1997         186.
+##  9    1998         212.
+## 10    1999         290.
+## # ... with 13 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that in this case the only change is that we need to explicitly include the reference to the df2 data frame as the data argument in the call to &lt;code&gt;qplot()&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
+qplot(x = pubyear, y = publications, data = df2, geom = &amp;quot;line&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2016-04-20-infographics_files/figure-html/df2_qplot-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;harmonising-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Harmonising data&lt;/h2&gt;
+&lt;p&gt;One challenge with creating multiple tables from a baseline dataset is keeping track of subdatasets. At the moment we have two basic objects we will be working with:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;code&gt;pizza&lt;/code&gt; - our raw dataset&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pizza_total&lt;/code&gt; - created via &lt;code&gt;pizza_number&lt;/code&gt; limited to 1990_2012.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In the remainder of the chapter we will want to create some additional datasets from our pizza dataset. These are:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Country trends&lt;/li&gt;
+&lt;li&gt;Applicants&lt;/li&gt;
+&lt;li&gt;International Patent Classification (IPC) Class&lt;/li&gt;
+&lt;li&gt;Phrases&lt;/li&gt;
+&lt;li&gt;Google&lt;/li&gt;
+&lt;li&gt;Google IPC&lt;/li&gt;
+&lt;li&gt;Google phrases&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We need to make sure that any data that we generate from our raw dataset matches the period for the &lt;code&gt;pizza_total&lt;/code&gt; dataset. If we do not do this there is a risk that we will generate subdatasets with counts for the raw pizza dataset.&lt;/p&gt;
+&lt;p&gt;To handle this we will use &lt;code&gt;filter()&lt;/code&gt; to create a new baseline dataset with an unambiguous name.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+pizza_1990_2012 &amp;lt;- rename(pizza, pubyear = publication_year) %&amp;gt;% filter(pubyear &amp;gt;= 
+    1990, pubyear &amp;lt;= 2012)
+pizza_1990_2012&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 8,262 x 31
+##    applicants_cleaned  applicants_clean… applicants_organ… applicants_original 
+##    &amp;lt;chr&amp;gt;               &amp;lt;chr&amp;gt;             &amp;lt;chr&amp;gt;             &amp;lt;chr&amp;gt;               
+##  1 &amp;lt;NA&amp;gt;                People            &amp;lt;NA&amp;gt;              &amp;lt;NA&amp;gt;                
+##  2 Lazarillo De Torme… Corporate         Lazarillo De Tor… LAZARILLO DE TORMES…
+##  3 &amp;lt;NA&amp;gt;                People            &amp;lt;NA&amp;gt;              &amp;lt;NA&amp;gt;                
+##  4 Depoortere, Thomas  People            &amp;lt;NA&amp;gt;              DEPOORTERE, Thomas  
+##  5 Frisco Findus Ag    Corporate         Frisco Findus Ag  FRISCO-FINDUS AG    
+##  6 Bicycle Tools Inco… Corporate         Bicycle Tools In… Bicycle Tools Incor…
+##  7 Castiglioni, Carlo  People            &amp;lt;NA&amp;gt;              CASTIGLIONI, CARLO  
+##  8 &amp;lt;NA&amp;gt;                People            &amp;lt;NA&amp;gt;              &amp;lt;NA&amp;gt;                
+##  9 Bujalski, Wlodzimi… People            &amp;lt;NA&amp;gt;              BUJALSKI, WLODZIMIE…
+## 10 Ehrno Flexible A/S… Corporate; People Ehrno Flexible A… &amp;quot;EHRNO FLEXIBLE A/S…
+## # ... with 8,252 more rows, and 27 more variables: inventors_cleaned &amp;lt;chr&amp;gt;,
+## #   inventors_original &amp;lt;chr&amp;gt;, ipc_class &amp;lt;chr&amp;gt;, ipc_codes &amp;lt;chr&amp;gt;,
+## #   ipc_names &amp;lt;chr&amp;gt;, ipc_original &amp;lt;chr&amp;gt;, ipc_subclass_codes &amp;lt;chr&amp;gt;,
+## #   ipc_subclass_detail &amp;lt;chr&amp;gt;, ipc_subclass_names &amp;lt;chr&amp;gt;,
+## #   priority_country_code &amp;lt;chr&amp;gt;, priority_country_code_names &amp;lt;chr&amp;gt;,
+## #   priority_data_original &amp;lt;chr&amp;gt;, priority_date &amp;lt;chr&amp;gt;,
+## #   publication_country_code &amp;lt;chr&amp;gt;, publication_country_name &amp;lt;chr&amp;gt;,
+## #   publication_date &amp;lt;chr&amp;gt;, publication_date_original &amp;lt;chr&amp;gt;,
+## #   publication_day &amp;lt;int&amp;gt;, publication_month &amp;lt;int&amp;gt;, publication_number &amp;lt;chr&amp;gt;,
+## #   publication_number_espacenet_links &amp;lt;chr&amp;gt;, pubyear &amp;lt;int&amp;gt;,
+## #   title_cleaned &amp;lt;chr&amp;gt;, title_nlp_cleaned &amp;lt;chr&amp;gt;,
+## #   title_nlp_multiword_phrases &amp;lt;chr&amp;gt;, title_nlp_raw &amp;lt;chr&amp;gt;,
+## #   title_original &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this case we start with a call to &lt;code&gt;rename()&lt;/code&gt; to make this consistent with our pizza_total table and then use a pipe to filter the data on the year. Note here that when filtering raw data on a set of values it is important to inspect it first to check that the field is clean (e.g. not concatenated). If for some reason your data is concatenated (which happens quite a lot with patent data) then lookup &lt;code&gt;?tidyr::separate_rows&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We are now in a position to create our country trends table.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;country-trends-using-spread&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Country Trends using &lt;code&gt;spread()&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;There are two basic data formats: long and wide. Our pizza dataset is in long format because each column is a variable (e.g. &lt;code&gt;publication_country&lt;/code&gt;) and each row in &lt;code&gt;publication_country&lt;/code&gt; contains a country name. This is the most common and useful data format.&lt;/p&gt;
+&lt;p&gt;However, in some cases, such as &lt;code&gt;infogr.am&lt;/code&gt; our visualisation software will expect the data to be in wide format. In this case each country name would become a variable (column name) with the years forming the rows and the number of records per year the observations. The key to this is the &lt;code&gt;tidyr()&lt;/code&gt; function &lt;code&gt;spread()&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;As above we will start off by using &lt;code&gt;select()&lt;/code&gt; to create a table with the fields that we want. We will then use &lt;code&gt;mutate()&lt;/code&gt; to add a numeric field and then count up that data. To illustrate the process run this code (we will not create an object).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+select(pizza_1990_2012, publication_country_name, publication_number, pubyear) %&amp;gt;% 
+    mutate(n = sum(publication_number = 1)) %&amp;gt;% count(publication_country_name, pubyear, 
+    wt = n) %&amp;gt;% print()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 223 x 3
+##    publication_country_name pubyear    nn
+##    &amp;lt;chr&amp;gt;                      &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt;
+##  1 Canada                      1990   19.
+##  2 Canada                      1991   49.
+##  3 Canada                      1992   66.
+##  4 Canada                      1993   59.
+##  5 Canada                      1994   50.
+##  6 Canada                      1995   39.
+##  7 Canada                      1996   36.
+##  8 Canada                      1997   45.
+##  9 Canada                      1998   46.
+## 10 Canada                      1999   47.
+## # ... with 213 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When we run this code we will see the results in long format. We now want to take our &lt;code&gt;publication_country_name&lt;/code&gt; column and spread it to form columns with &lt;code&gt;nn&lt;/code&gt; as the values.&lt;/p&gt;
+&lt;p&gt;In using spread note that it takes a data argument (&lt;code&gt;pizza_1990_2012&lt;/code&gt;), a key (&lt;code&gt;publication_country_name&lt;/code&gt;), and value column (&lt;code&gt;nn&lt;/code&gt;) (created from &lt;code&gt;count()&lt;/code&gt;). We are using pipes so the data only needs to be named in the first line. For additional arguments see &lt;code&gt;?spread()&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+library(tidyr)
+country_totals &amp;lt;- select(pizza_1990_2012, publication_country_name, publication_number, 
+    pubyear) %&amp;gt;% mutate(n = sum(publication_number = 1)) %&amp;gt;% count(publication_country_name, 
+    pubyear, wt = n) %&amp;gt;% spread(publication_country_name, nn)
+country_totals&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 23 x 17
+##    pubyear Canada China `Eurasian Patent… `European Paten… Germany Israel Japan
+##      &amp;lt;int&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;             &amp;lt;dbl&amp;gt;            &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+##  1    1990    19.   NA                NA               22.      2.    NA    NA 
+##  2    1991    49.   NA                NA               29.      2.    NA    NA 
+##  3    1992    66.   NA                NA               36.      2.     1.   NA 
+##  4    1993    59.   NA                NA               29.      2.    NA    NA 
+##  5    1994    50.   NA                NA               26.      5.    NA    NA 
+##  6    1995    39.   NA                NA               29.      2.     1.   NA 
+##  7    1996    36.    1.               NA               27.      1.     1.   NA 
+##  8    1997    45.   NA                NA               34.      1.    NA    NA 
+##  9    1998    46.   NA                NA               36.      1.    NA    17.
+## 10    1999    47.    2.                2.              60.      4.    NA    26.
+## # ... with 13 more rows, and 9 more variables: `Korea, Republic of` &amp;lt;dbl&amp;gt;,
+## #   Mexico &amp;lt;dbl&amp;gt;, `Patent Co-operation Treaty` &amp;lt;dbl&amp;gt;, Portugal &amp;lt;dbl&amp;gt;, `Russian
+## #   Federation` &amp;lt;dbl&amp;gt;, Singapore &amp;lt;dbl&amp;gt;, `South Africa` &amp;lt;dbl&amp;gt;, Spain &amp;lt;dbl&amp;gt;,
+## #   `United States of America` &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We now have data in wide format.&lt;/p&gt;
+&lt;p&gt;In some cases, such as infogr.am, visualisation software may expect the country names to be the name of rows and the column names to be years . We can modify our call to &lt;code&gt;spread()&lt;/code&gt; by replacing the &lt;code&gt;publication_country_name&lt;/code&gt; with &lt;code&gt;pubyear&lt;/code&gt;. Then we will write the data to disk for use in our infographic.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+library(readr)
+country_totals &amp;lt;- select(pizza_1990_2012, publication_country_name, publication_number, pubyear) %&amp;gt;%
+  mutate(n = sum(publication_number = 1)) %&amp;gt;% 
+  count(publication_country_name, pubyear, wt = n) %&amp;gt;% # note n
+  spread(pubyear, nn) # note nn
+country_totals&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 16 x 24
+##    publication_country… `1990` `1991` `1992` `1993` `1994` `1995` `1996` `1997`
+##    &amp;lt;chr&amp;gt;                 &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;
+##  1 Canada                  19.    49.    66.    59.    50.    39.    36.    45.
+##  2 China                   NA     NA     NA     NA     NA     NA      1.    NA 
+##  3 Eurasian Patent Org…    NA     NA     NA     NA     NA     NA     NA     NA 
+##  4 European Patent Off…    22.    29.    36.    29.    26.    29.    27.    34.
+##  5 Germany                  2.     2.     2.     2.     5.     2.     1.     1.
+##  6 Israel                  NA     NA      1.    NA     NA      1.     1.    NA 
+##  7 Japan                   NA     NA     NA     NA     NA     NA     NA     NA 
+##  8 Korea, Republic of      NA     NA     NA      1.    NA     NA      1.     1.
+##  9 Mexico                  NA     NA     NA     NA     NA     NA     NA     NA 
+## 10 Patent Co-operation…     8.    13.    31.    16.    20.    22.    23.    26.
+## 11 Portugal                NA     NA     NA     NA     NA     NA     NA     NA 
+## 12 Russian Federation      NA     NA     NA     NA     NA     NA     NA      5.
+## 13 Singapore               NA     NA     NA     NA     NA     NA     NA     NA 
+## 14 South Africa             2.     3.     3.     3.     3.     1.     9.     7.
+## 15 Spain                   NA     NA     NA     NA     NA     NA     NA     NA 
+## 16 United States of Am…    86.    58.    73.    91.    58.    79.    81.    67.
+## # ... with 15 more variables: `1998` &amp;lt;dbl&amp;gt;, `1999` &amp;lt;dbl&amp;gt;, `2000` &amp;lt;dbl&amp;gt;,
+## #   `2001` &amp;lt;dbl&amp;gt;, `2002` &amp;lt;dbl&amp;gt;, `2003` &amp;lt;dbl&amp;gt;, `2004` &amp;lt;dbl&amp;gt;, `2005` &amp;lt;dbl&amp;gt;,
+## #   `2006` &amp;lt;dbl&amp;gt;, `2007` &amp;lt;dbl&amp;gt;, `2008` &amp;lt;dbl&amp;gt;, `2009` &amp;lt;dbl&amp;gt;, `2010` &amp;lt;dbl&amp;gt;,
+## #   `2011` &amp;lt;dbl&amp;gt;, `2012` &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write_csv(country_totals, &amp;quot;pizza_country_1990_2012.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To restore the data to long format we would need to use &lt;code&gt;gather()&lt;/code&gt; as the counterpart to &lt;code&gt;spread()&lt;/code&gt;. &lt;code&gt;gather()&lt;/code&gt; takes a dataset, a key for the name of the column we want to gather the countries into, a value for the numeric count (in this case n), and finally the positions of the columns to gather in. Note here that we need to look up the column positions in &lt;code&gt;country_totals&lt;/code&gt; (e.g. using &lt;code&gt;View()&lt;/code&gt;) or count the columns using &lt;code&gt;ncol(country_totals)&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+gather(country_totals, year, n, 2:24) %&amp;gt;% print()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 368 x 3
+##    publication_country_name     year      n
+##    &amp;lt;chr&amp;gt;                        &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt;
+##  1 Canada                       1990    19.
+##  2 China                        1990    NA 
+##  3 Eurasian Patent Organization 1990    NA 
+##  4 European Patent Office       1990    22.
+##  5 Germany                      1990     2.
+##  6 Israel                       1990    NA 
+##  7 Japan                        1990    NA 
+##  8 Korea, Republic of           1990    NA 
+##  9 Mexico                       1990    NA 
+## 10 Patent Co-operation Treaty   1990     8.
+## # ... with 358 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The combination of spread and gather work really well to prepare data in formats that are expected by other software. However, one of the main issues we encounter with patent data is that our data is not tidy because various fields are concatenated.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;tidying-data---separating-and-gathering&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Tidying data - Separating and Gathering&lt;/h2&gt;
+&lt;p&gt;In patent data we often see concatenated fields with a separator (normally a &lt;code&gt;;&lt;/code&gt;). These are typically applicant names, inventor names, International Patent Classification (IPC) codes, or document numbers (priority numbers, family numbers). We need to &lt;code&gt;tidy&lt;/code&gt; this data prior to data cleaning (such as cleaning names) or to prepare for analysis and visualisation. For more on the concept of tidy data read &lt;a href=&#34;http://vita.had.co.nz/papers/tidy-data.pdf&#34;&gt;Hadley Wickham’s Tidy Data article&lt;/a&gt;. The new &lt;a href=&#34;http://r4ds.had.co.nz/tidy-data.html&#34;&gt;R for Data Science book&lt;/a&gt; by Garrett Grolemund and Hadley Wickham (see Chapter 12) is also strongly recommended.&lt;/p&gt;
+&lt;p&gt;To tidy patent data we will typically need to do two things.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;Separate the data so that each cell contains a unique data point (e.g. a name, code or publication number). This normally involves separating data into columns.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Gathering the data back in. This involves transforming the data in the columns we have created into rows.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Separating data into columns is very easy in tools such as Excel. However, gathering the data back into separate rows is remarkably difficult. Happily, this is very easy to do in R with the &lt;code&gt;tidyr&lt;/code&gt; package.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;tidyr&lt;/code&gt; package contains three functions that are very useful when working with patent data. When dealing with concatenated fields in columns the key function is &lt;code&gt;separate_rows&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Here we will work with the &lt;code&gt;applicants_cleaned&lt;/code&gt; field in the pizza dataset. This field contains concatenated names with a &lt;code&gt;;&lt;/code&gt; as the separator. For example, on lines 1_9 there are single applicant names or NA values. However, on lines 10 and line 59 we see:&lt;/p&gt;
+&lt;p&gt;Ehrno Flexible A/S; Stergaard, Ole Farrell Brian; Mcnulty John; Vishoot Lisa&lt;/p&gt;
+&lt;p&gt;The problem here is that when we are dealing with thousands of lines of applicant names we don’t know how many names might be concatenated into each cell as a basis for separating the data into columns. Once we had split the columns (for example using Text to Columns in Excel) we would then need to work out how to gather the columns into rows. The &lt;code&gt;separate_rows()&lt;/code&gt; function from &lt;code&gt;tidyr&lt;/code&gt; makes light work of this problem. To use the function we name the dataset, the column we want to separate into rows and the separator (sep).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+library(tidyr)
+pizza1 &amp;lt;- separate_rows(pizza_1990_2012, applicants_cleaned, sep = &amp;quot;;&amp;quot;)
+pizza1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 12,729 x 31
+##    applicants_cleaned applicants_cleane… applicants_organ… applicants_original 
+##    &amp;lt;chr&amp;gt;              &amp;lt;chr&amp;gt;              &amp;lt;chr&amp;gt;             &amp;lt;chr&amp;gt;               
+##  1 &amp;lt;NA&amp;gt;               People             &amp;lt;NA&amp;gt;              &amp;lt;NA&amp;gt;                
+##  2 Lazarillo De Torm… Corporate          Lazarillo De Tor… LAZARILLO DE TORMES…
+##  3 &amp;lt;NA&amp;gt;               People             &amp;lt;NA&amp;gt;              &amp;lt;NA&amp;gt;                
+##  4 Depoortere, Thomas People             &amp;lt;NA&amp;gt;              DEPOORTERE, Thomas  
+##  5 Frisco Findus Ag   Corporate          Frisco Findus Ag  FRISCO-FINDUS AG    
+##  6 Bicycle Tools Inc… Corporate          Bicycle Tools In… Bicycle Tools Incor…
+##  7 Castiglioni, Carlo People             &amp;lt;NA&amp;gt;              CASTIGLIONI, CARLO  
+##  8 &amp;lt;NA&amp;gt;               People             &amp;lt;NA&amp;gt;              &amp;lt;NA&amp;gt;                
+##  9 Bujalski, Wlodzim… People             &amp;lt;NA&amp;gt;              BUJALSKI, WLODZIMIE…
+## 10 Ehrno Flexible A/S Corporate; People  Ehrno Flexible A… &amp;quot;EHRNO FLEXIBLE A/S…
+## # ... with 12,719 more rows, and 27 more variables: inventors_cleaned &amp;lt;chr&amp;gt;,
+## #   inventors_original &amp;lt;chr&amp;gt;, ipc_class &amp;lt;chr&amp;gt;, ipc_codes &amp;lt;chr&amp;gt;,
+## #   ipc_names &amp;lt;chr&amp;gt;, ipc_original &amp;lt;chr&amp;gt;, ipc_subclass_codes &amp;lt;chr&amp;gt;,
+## #   ipc_subclass_detail &amp;lt;chr&amp;gt;, ipc_subclass_names &amp;lt;chr&amp;gt;,
+## #   priority_country_code &amp;lt;chr&amp;gt;, priority_country_code_names &amp;lt;chr&amp;gt;,
+## #   priority_data_original &amp;lt;chr&amp;gt;, priority_date &amp;lt;chr&amp;gt;,
+## #   publication_country_code &amp;lt;chr&amp;gt;, publication_country_name &amp;lt;chr&amp;gt;,
+## #   publication_date &amp;lt;chr&amp;gt;, publication_date_original &amp;lt;chr&amp;gt;,
+## #   publication_day &amp;lt;int&amp;gt;, publication_month &amp;lt;int&amp;gt;, publication_number &amp;lt;chr&amp;gt;,
+## #   publication_number_espacenet_links &amp;lt;chr&amp;gt;, pubyear &amp;lt;int&amp;gt;,
+## #   title_cleaned &amp;lt;chr&amp;gt;, title_nlp_cleaned &amp;lt;chr&amp;gt;,
+## #   title_nlp_multiword_phrases &amp;lt;chr&amp;gt;, title_nlp_raw &amp;lt;chr&amp;gt;,
+## #   title_original &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Our original dataset contained 8,262 rows. Our new dataset split on applicant names contains 12,729 rows. The function has moved our target column from column 1 to column 31 in the data frame. We can easily move it back to inspect.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+pizza1 &amp;lt;- select(pizza1, 31, 1:30)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;separate_rows()&lt;/code&gt; has done a great job but one of the problems with concatenated names is extra white space around the separator. We will deal with this next.&lt;/p&gt;
+&lt;div id=&#34;trimming-with-stringr&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Trimming with &lt;code&gt;stringr&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;If we inspect the bottom of the column by subsetting into it using &lt;code&gt;$&lt;/code&gt; we will see that a lot of the names have a leading whitespace space. This results from the separate exercise where the &lt;code&gt;;&lt;/code&gt; is actually &lt;code&gt;;space&lt;/code&gt;. Take a look at the last few rows of the data using &lt;code&gt;tail()&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tail(pizza1$applicants_cleaned, 20)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;Yahoo! Inc&amp;quot;                        &amp;quot;Clarcor Inc&amp;quot;                      
+##  [3] &amp;quot;Holden Jeffrey A&amp;quot;                  &amp;quot; Vengroff Darren E&amp;quot;               
+##  [5] &amp;quot;Casper Jeffrey L&amp;quot;                  &amp;quot; Erickson Braden J&amp;quot;               
+##  [7] &amp;quot; Oppenheimer Alan A&amp;quot;               &amp;quot; Ray Madonna M&amp;quot;                   
+##  [9] &amp;quot; Weber Jean L&amp;quot;                     &amp;quot;Pandey Neena&amp;quot;                     
+## [11] &amp;quot; Sharma Sudhanshu&amp;quot;                 &amp;quot; Verizon Patent And Licensing Inc&amp;quot;
+## [13] &amp;quot;Pandey Neena&amp;quot;                      &amp;quot; Sharma Sudhanshu&amp;quot;                
+## [15] &amp;quot;Brown Michael&amp;quot;                     &amp;quot; Urban Scott&amp;quot;                     
+## [17] &amp;quot;Brown Michael&amp;quot;                     &amp;quot; Urban Scott&amp;quot;                     
+## [19] &amp;quot;Cole Lorin R&amp;quot;                      &amp;quot; Middleton Scott W&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is a big issue because any counts that we make later on using the applicants_cleaned field will treat “Oppenheimer Alan A” and &amp;quot; Oppenheimer Alan A&amp;quot; as separate names when they should be grouped together.&lt;/p&gt;
+&lt;p&gt;We can address this in a couple of ways. One approach is to recognise that actually our separator is not a simple &lt;code&gt;&amp;quot;;&amp;quot;&lt;/code&gt; but &lt;code&gt;&amp;quot;;space&amp;quot;&lt;/code&gt; in our call to &lt;code&gt;separate_rows()&lt;/code&gt;. In that case the call to &lt;code&gt;separate_rows()&lt;/code&gt; would actually be &lt;code&gt;sep = &amp;quot;; &amp;quot;&lt;/code&gt;. We will add a line of code to illustrate the impact of this change.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tmp &amp;lt;- separate_rows(pizza_1990_2012, applicants_cleaned, sep = &amp;quot;; &amp;quot;)
+tail(tmp$applicants_cleaned, 20)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;Yahoo! Inc&amp;quot;                       &amp;quot;Clarcor Inc&amp;quot;                     
+##  [3] &amp;quot;Holden Jeffrey A&amp;quot;                 &amp;quot;Vengroff Darren E&amp;quot;               
+##  [5] &amp;quot;Casper Jeffrey L&amp;quot;                 &amp;quot;Erickson Braden J&amp;quot;               
+##  [7] &amp;quot;Oppenheimer Alan A&amp;quot;               &amp;quot;Ray Madonna M&amp;quot;                   
+##  [9] &amp;quot;Weber Jean L&amp;quot;                     &amp;quot;Pandey Neena&amp;quot;                    
+## [11] &amp;quot;Sharma Sudhanshu&amp;quot;                 &amp;quot;Verizon Patent And Licensing Inc&amp;quot;
+## [13] &amp;quot;Pandey Neena&amp;quot;                     &amp;quot;Sharma Sudhanshu&amp;quot;                
+## [15] &amp;quot;Brown Michael&amp;quot;                    &amp;quot;Urban Scott&amp;quot;                     
+## [17] &amp;quot;Brown Michael&amp;quot;                    &amp;quot;Urban Scott&amp;quot;                     
+## [19] &amp;quot;Cole Lorin R&amp;quot;                     &amp;quot;Middleton Scott W&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Another way to address this, is to use the &lt;code&gt;str_trim()&lt;/code&gt; function from the &lt;code&gt;stringr&lt;/code&gt; package.&lt;/p&gt;
+&lt;p&gt;We can address this problem using a function from the &lt;code&gt;stringr&lt;/code&gt; package &lt;code&gt;str_trim()&lt;/code&gt;. We have a choice with &lt;code&gt;str_trim()&lt;/code&gt; on whether to trim the whitespace on the right, left or both. Here we will choose both.&lt;/p&gt;
+&lt;p&gt;Because we are seeking to modify an existing column (not to create a new vector or data.frame) we will use &lt;code&gt;$&lt;/code&gt; to select the column and as the data for the &lt;code&gt;str_trim()&lt;/code&gt; function. That will apply the function to the applicants column in pizza1.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(stringr)
+pizza1$applicants_cleaned &amp;lt;- str_trim(pizza1$applicants_cleaned, side = &amp;quot;both&amp;quot;)
+tail(pizza1$applicants_cleaned, 20)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;Yahoo! Inc&amp;quot;                       &amp;quot;Clarcor Inc&amp;quot;                     
+##  [3] &amp;quot;Holden Jeffrey A&amp;quot;                 &amp;quot;Vengroff Darren E&amp;quot;               
+##  [5] &amp;quot;Casper Jeffrey L&amp;quot;                 &amp;quot;Erickson Braden J&amp;quot;               
+##  [7] &amp;quot;Oppenheimer Alan A&amp;quot;               &amp;quot;Ray Madonna M&amp;quot;                   
+##  [9] &amp;quot;Weber Jean L&amp;quot;                     &amp;quot;Pandey Neena&amp;quot;                    
+## [11] &amp;quot;Sharma Sudhanshu&amp;quot;                 &amp;quot;Verizon Patent And Licensing Inc&amp;quot;
+## [13] &amp;quot;Pandey Neena&amp;quot;                     &amp;quot;Sharma Sudhanshu&amp;quot;                
+## [15] &amp;quot;Brown Michael&amp;quot;                    &amp;quot;Urban Scott&amp;quot;                     
+## [17] &amp;quot;Brown Michael&amp;quot;                    &amp;quot;Urban Scott&amp;quot;                     
+## [19] &amp;quot;Cole Lorin R&amp;quot;                     &amp;quot;Middleton Scott W&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that when using &lt;code&gt;str_trim()&lt;/code&gt; we use subsetting to modify the applicants column in place. There is possibly a more efficient way of doing this with pipes but this appears difficult because the data.frame needs to exist for &lt;code&gt;str_trim()&lt;/code&gt; to act on in place or we end up with a vector of applicant names rather than a data.frame. A solution to this problem is provided on Stack Overflow&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In practice, the most efficient solution in this case is to recognise that the separator for &lt;code&gt;separate_rows&lt;/code&gt; is &lt;code&gt;&amp;quot;;space&amp;quot;&lt;/code&gt;. However, that will not always be true making the tools in &lt;code&gt;stringr&lt;/code&gt; invaluable. To learn more about string manipulation in R try &lt;a href=&#34;http://r4ds.had.co.nz/strings.html&#34;&gt;Chapter 14 of R for Data Science by Garrett Grolemund and Hadley Wickham&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We can tie the steps so far together using pipes into the following simpler code that we will become the applicants table for use in the infographic. We will add a call to rename and rename applicants_cleaned to tidy up.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+library(tidyr)
+library(stringr)
+applicants &amp;lt;- rename(pizza, pubyear = publication_year) %&amp;gt;% filter(pubyear &amp;gt;= 1990, 
+    pubyear &amp;lt;= 2012) %&amp;gt;% separate_rows(applicants_cleaned, sep = &amp;quot;; &amp;quot;) %&amp;gt;% rename(applicants = applicants_cleaned) %&amp;gt;% 
+    select(31, 1:30)  # moves separated column to the beginning
+applicants&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 12,729 x 31
+##    title_original applicants applicants_clea… applicants_orga… applicants_orig…
+##    &amp;lt;chr&amp;gt;          &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;           
+##  1 PIZZA          &amp;lt;NA&amp;gt;       People           &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;            
+##  2 IMPROVED PIZZA Lazarillo… Corporate        Lazarillo De To… LAZARILLO DE TO…
+##  3 Pizza separat… &amp;lt;NA&amp;gt;       People           &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;            
+##  4 Pizza separat… Depoorter… People           &amp;lt;NA&amp;gt;             DEPOORTERE, Tho…
+##  5 PIZZA PREPARA… Frisco Fi… Corporate        Frisco Findus Ag FRISCO-FINDUS AG
+##  6 Pizza Cutter   Bicycle T… Corporate        Bicycle Tools I… Bicycle Tools I…
+##  7 PIZZA BOX      Castiglio… People           &amp;lt;NA&amp;gt;             CASTIGLIONI, CA…
+##  8 PIZZA BOX      &amp;lt;NA&amp;gt;       People           &amp;lt;NA&amp;gt;             &amp;lt;NA&amp;gt;            
+##  9 MORE ATTRACTI… Bujalski,… People           &amp;lt;NA&amp;gt;             BUJALSKI, WLODZ…
+## 10 PIZZA PACKAGI… Ehrno Fle… Corporate; Peop… Ehrno Flexible … &amp;quot;EHRNO FLEXIBLE…
+## # ... with 12,719 more rows, and 26 more variables: inventors_cleaned &amp;lt;chr&amp;gt;,
+## #   inventors_original &amp;lt;chr&amp;gt;, ipc_class &amp;lt;chr&amp;gt;, ipc_codes &amp;lt;chr&amp;gt;,
+## #   ipc_names &amp;lt;chr&amp;gt;, ipc_original &amp;lt;chr&amp;gt;, ipc_subclass_codes &amp;lt;chr&amp;gt;,
+## #   ipc_subclass_detail &amp;lt;chr&amp;gt;, ipc_subclass_names &amp;lt;chr&amp;gt;,
+## #   priority_country_code &amp;lt;chr&amp;gt;, priority_country_code_names &amp;lt;chr&amp;gt;,
+## #   priority_data_original &amp;lt;chr&amp;gt;, priority_date &amp;lt;chr&amp;gt;,
+## #   publication_country_code &amp;lt;chr&amp;gt;, publication_country_name &amp;lt;chr&amp;gt;,
+## #   publication_date &amp;lt;chr&amp;gt;, publication_date_original &amp;lt;chr&amp;gt;,
+## #   publication_day &amp;lt;int&amp;gt;, publication_month &amp;lt;int&amp;gt;, publication_number &amp;lt;chr&amp;gt;,
+## #   publication_number_espacenet_links &amp;lt;chr&amp;gt;, pubyear &amp;lt;int&amp;gt;,
+## #   title_cleaned &amp;lt;chr&amp;gt;, title_nlp_cleaned &amp;lt;chr&amp;gt;,
+## #   title_nlp_multiword_phrases &amp;lt;chr&amp;gt;, title_nlp_raw &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We will want to create a plot with the applicants data in our infographic software. For that we need to introduce a field to count on. We might also want to establish a cut off point based on the number of records per applicant.&lt;/p&gt;
+&lt;p&gt;In this code we will simply print the applicants ranked in descending order. The second to last line of the code provides a filter on the number of records. This value can be changed after inspecting the data. The final line omits NA values (otherwise the top result) where an applicant name is not available.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyr)
+library(dplyr)
+applicant_count &amp;lt;- select(applicants, applicants, publication_number) %&amp;gt;% mutate(n = sum(publication_number = 1)) %&amp;gt;% 
+    count(applicants, wt = n) %&amp;gt;% arrange(desc(nn)) %&amp;gt;% filter(nn &amp;gt;= 1) %&amp;gt;% na.omit()
+applicant_count&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6,178 x 2
+##    applicants                              nn
+##    &amp;lt;chr&amp;gt;                                &amp;lt;dbl&amp;gt;
+##  1 Graphic Packaging International, Inc  154.
+##  2 Kraft Foods Holdings, Inc             132.
+##  3 Google Inc                            123.
+##  4 Microsoft Corporation                  88.
+##  5 The Pillsbury Company                  83.
+##  6 General Mills, Inc                     77.
+##  7 Nestec                                 77.
+##  8 The Procter &amp;amp; Gamble Company           59.
+##  9 Pizza Hut, Inc                         57.
+## 10 Yahoo! Inc                             54.
+## # ... with 6,168 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If we inspect applicant count using &lt;code&gt;View(applicant_count)&lt;/code&gt; we have 6,178 rows. That is far too many to display in an infographic. So, next we will filter the data on the value for the top ten (54). Then we will write the data to a .csv file using the simple &lt;code&gt;write_csv()&lt;/code&gt; from &lt;code&gt;readr&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+library(tidyr)
+library(readr)
+applicant_count &amp;lt;- select(applicants, applicants, publication_number) %&amp;gt;% mutate(n = sum(publication_number = 1)) %&amp;gt;% 
+    count(applicants, wt = n) %&amp;gt;% arrange(desc(nn)) %&amp;gt;% filter(nn &amp;gt;= 54) %&amp;gt;% na.omit()
+applicant_count&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 10 x 2
+##    applicants                              nn
+##    &amp;lt;chr&amp;gt;                                &amp;lt;dbl&amp;gt;
+##  1 Graphic Packaging International, Inc  154.
+##  2 Kraft Foods Holdings, Inc             132.
+##  3 Google Inc                            123.
+##  4 Microsoft Corporation                  88.
+##  5 The Pillsbury Company                  83.
+##  6 General Mills, Inc                     77.
+##  7 Nestec                                 77.
+##  8 The Procter &amp;amp; Gamble Company           59.
+##  9 Pizza Hut, Inc                         57.
+## 10 Yahoo! Inc                             54.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write_csv(applicant_count, &amp;quot;pizza_applicants_1990_2012.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When we inspect &lt;code&gt;applicant_count&lt;/code&gt; we will see that Graphic Packaging International is the top result with 154 results with Google ranking third with 123 results followed by Microsoft. This could suggest that Google and Microsoft are suddenly entering the market for online pizza sales or pizza making software or, as is more likely, that there are uses other uses of the word pizza in patent data that we are not aware of.&lt;/p&gt;
+&lt;p&gt;As part of our infographic we will want to explore this intriguing result in more detail. We can do this by creating a subdataset for Google using &lt;code&gt;filter()&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;selecting-applicants-using-filter&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Selecting applicants using &lt;code&gt;filter()&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;As we saw above, while &lt;code&gt;select()&lt;/code&gt; functions with columns, &lt;code&gt;filter()&lt;/code&gt; from &lt;code&gt;dplyr&lt;/code&gt; works with rows. Here we will filter the data to select the rows in the applicants column that contain Google Inc. and then write that to a .csv for use in our infographic. Note the use of double &lt;code&gt;==&lt;/code&gt; and the quotes around “Google Inc”.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+library(readr)
+google &amp;lt;- filter(applicants, applicants == &amp;quot;Google Inc&amp;quot;)
+google&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 123 x 31
+##    title_original applicants applicants_clea… applicants_orga… applicants_orig…
+##    &amp;lt;chr&amp;gt;          &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;           
+##  1 Location base… Google Inc Corporate; Peop… Google Inc       Hafsteinsson Gu…
+##  2 AUTHORITATIVE… Google Inc Corporate        Google Inc       GOOGLE INC.     
+##  3 Location-Base… Google Inc Corporate; Peop… Google Inc       GOOGLE INC.;HAF…
+##  4 Controlling t… Google Inc Corporate; Peop… Google Inc       GOOGLE, INC.;BE…
+##  5 METHOD AND SY… Google Inc Corporate        Google Inc       GOOGLE INC.     
+##  6 Routing queri… Google Inc Corporate        Google Inc       GOOGLE INC.     
+##  7 METHODS AND S… Google Inc Corporate        Google Inc       GOOGLE INC.     
+##  8 Aspect-based … Google Inc Corporate; Peop… Google Inc       Reis George;Goo…
+##  9 Interpreting … Google Inc Corporate        Google Inc       GOOGLE INC.     
+## 10 Interpreting … Google Inc Corporate        Google Inc       GOOGLE INC.     
+## # ... with 113 more rows, and 26 more variables: inventors_cleaned &amp;lt;chr&amp;gt;,
+## #   inventors_original &amp;lt;chr&amp;gt;, ipc_class &amp;lt;chr&amp;gt;, ipc_codes &amp;lt;chr&amp;gt;,
+## #   ipc_names &amp;lt;chr&amp;gt;, ipc_original &amp;lt;chr&amp;gt;, ipc_subclass_codes &amp;lt;chr&amp;gt;,
+## #   ipc_subclass_detail &amp;lt;chr&amp;gt;, ipc_subclass_names &amp;lt;chr&amp;gt;,
+## #   priority_country_code &amp;lt;chr&amp;gt;, priority_country_code_names &amp;lt;chr&amp;gt;,
+## #   priority_data_original &amp;lt;chr&amp;gt;, priority_date &amp;lt;chr&amp;gt;,
+## #   publication_country_code &amp;lt;chr&amp;gt;, publication_country_name &amp;lt;chr&amp;gt;,
+## #   publication_date &amp;lt;chr&amp;gt;, publication_date_original &amp;lt;chr&amp;gt;,
+## #   publication_day &amp;lt;int&amp;gt;, publication_month &amp;lt;int&amp;gt;, publication_number &amp;lt;chr&amp;gt;,
+## #   publication_number_espacenet_links &amp;lt;chr&amp;gt;, pubyear &amp;lt;int&amp;gt;,
+## #   title_cleaned &amp;lt;chr&amp;gt;, title_nlp_cleaned &amp;lt;chr&amp;gt;,
+## #   title_nlp_multiword_phrases &amp;lt;chr&amp;gt;, title_nlp_raw &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write_csv(google, &amp;quot;google_1990_2012.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that the correct result for the period 1990 to 2012 for Google is 123 records from 191 records across the whole pizza dataset. The correct result will be achieved only where you use the filtered, separated and trimmed data we created in the applicants data frame.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;generating-ipc-tables&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Generating IPC Tables&lt;/h2&gt;
+&lt;p&gt;In the next step we will want to generate two tables containing International Patent Classification (IPC) data. IPC codes and the Cooperative Patent Classification (CPC, not present in this dataset) provide information on the technologies involved in a patent document. The IPC is hierarchical and proceeds from the general class level to the detailed group and subgroup level. Experience reveals that the majority of patent documents receive more than one IPC code to more fully describe the technological aspects of patent documents.&lt;/p&gt;
+&lt;p&gt;The pizza dataset contains IPC codes on the class and the subclass level in concatenated fields. One important consideration in using IPC data is that the descriptions are long and can be difficult for non-specialists to grasp. This can make visualising the data difficult and often requires manual efforts to edit labels for display.&lt;/p&gt;
+&lt;p&gt;We now want to generate three IPC tables.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;A general IPC table for the pizza dataset&lt;/li&gt;
+&lt;li&gt;A general IPC table for the Google dataset&lt;/li&gt;
+&lt;li&gt;A more detailed IPC subclass table for the Google dataset&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For ease of presentation in an infographic we will use the &lt;code&gt;ipc_class&lt;/code&gt; field. For many patent analytics purposes this will be too general. However it has the advantage of being easy to visualise.&lt;/p&gt;
+&lt;p&gt;To generate the table we can use a generic function based on the code developed for dealing with the applicants data. We will call the function patent_count().&lt;/p&gt;
+&lt;!--- updated to tidyeval in 2018. Note that the whitespace was not trimmed in the earlier version due to an oversight and counts will now be higher.. and correct... as a result. ---&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;patent_count &amp;lt;- function(data, col, count_col, sep, n_results) {
+    p_count &amp;lt;- dplyr::select(data, !!col, !!count_col) %&amp;gt;% tidyr::separate_rows(col, 
+        sep = sep) %&amp;gt;% dplyr::mutate(`:=`(!!col, stringr::str_trim(.[[col]], side = &amp;quot;both&amp;quot;))) %&amp;gt;% 
+        dplyr::mutate(n = sum(count_col = 1)) %&amp;gt;% dplyr::group_by(`:=`(!!col, .[[col]])) %&amp;gt;% 
+        dplyr::tally(sort = TRUE) %&amp;gt;% dplyr::rename(records = nn) %&amp;gt;% na.omit() %&amp;gt;% 
+        head(n_results)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;patent_count()&lt;/code&gt; function is based on the the code we developed for applicants. It contains variations to make it work as a function. The function takes four arguments:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;col = the concatenated column that we want to split and gather back in&lt;/li&gt;
+&lt;li&gt;col_count = a column for generating counts (in this dataset the publication_number)&lt;/li&gt;
+&lt;li&gt;n_results = the number of results we want to see in the new table (typically 10 or 20 for visualisation). This is equivalent to the number of rows that you want to see.&lt;/li&gt;
+&lt;li&gt;sep = the separator to use to separate the data in col. With patent data this is almost always “;” (as &lt;code&gt;;space&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;To generate the &lt;code&gt;ipc_class&lt;/code&gt; data we can do the following and then write the file to .csv. Note that we have set the number of results &lt;code&gt;n_results&lt;/code&gt; to 10.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pizza_ipc_class &amp;lt;- patent_count(data = pizza_1990_2012, col = &amp;quot;ipc_class&amp;quot;, count_col = &amp;quot;publication_number&amp;quot;, 
+    n_results = 10, sep = &amp;quot;;&amp;quot;)
+pizza_ipc_class&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 10 x 2
+##    ipc_class                                           records
+##    &amp;lt;chr&amp;gt;                                                 &amp;lt;dbl&amp;gt;
+##  1 A21: Baking                                           2233.
+##  2 A23: Foods Or Foodstuffs                              1843.
+##  3 B65: Conveying                                        1383.
+##  4 G06: Computing                                        1326.
+##  5 A47: Furniture                                         932.
+##  6 H04: Electric Communication Technique                  747.
+##  7 H05: Electric Techniques Not Otherwise Provided For    613.
+##  8 F24: Heating                                           512.
+##  9 A61: Medical Or Veterinary Science                     318.
+## 10 G07: Checking                                          226.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write_csv(pizza_ipc_class, &amp;quot;pizza_ipcclass_1990_2012.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that this dataset is based on the main &lt;code&gt;pizza_1990_2012&lt;/code&gt; dataset (including cases where no applicant name is available). The reason we have not used the applicants dataset is because that dataset will duplicate the IPC field for each split of an applicant name. As a result it will over count the IPCs by the number of applicants on a document name. As this suggests, it is important to be careful when working with data that has been tidied because of the impact on other counts.&lt;/p&gt;
+&lt;p&gt;This problem does not apply in the case of our Google data because the only applicant listed in that data is Google (excluding co-applicants). We can therefore safely use the Google dataset to identify the IPC codes.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;google_ipc_class &amp;lt;- patent_count(data = google, col = &amp;quot;ipc_class&amp;quot;, count_col = &amp;quot;publication_number&amp;quot;, 
+    n_results = 10, sep = &amp;quot;;&amp;quot;)
+google_ipc_class&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 7 x 2
+##   ipc_class                             records
+##   &amp;lt;chr&amp;gt;                                   &amp;lt;dbl&amp;gt;
+## 1 G06: Computing                           105.
+## 2 H04: Electric Communication Technique     17.
+## 3 G01: Measuring                            14.
+## 4 G09: Educating                            11.
+## 5 G10: Musical Instruments                   7.
+## 6 A63: Sports                                1.
+## 7 G08: Signalling                            1.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write_csv(google_ipc_class, &amp;quot;google_ipcclass_1990_2012.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There are only 7 classes and as we might expect they are dominated by computing. We might want to dig into this in a little more detail and so let’s also create an IPC subclass field.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;google_ipc_subclass &amp;lt;- patent_count(data = google, col = &amp;quot;ipc_subclass_detail&amp;quot;, count_col = &amp;quot;publication_number&amp;quot;, 
+    n_results = 10, sep = &amp;quot;;&amp;quot;)
+google_ipc_subclass&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 10 x 2
+##    ipc_subclass_detail                                                  records
+##    &amp;lt;chr&amp;gt;                                                                  &amp;lt;dbl&amp;gt;
+##  1 G06F: Electric Digital Data Processing                                   89.
+##  2 G06Q: Data Processing Systems Or Methods, Specially Adapted For Adm…     24.
+##  3 G01C: Measuring Distances, Levels Or Bearings                            14.
+##  4 G09B: Educational Or Demonstration Appliances                             9.
+##  5 G10L: Speech Analysis Or Synthesis                                        7.
+##  6 H04W: Wireless Communication Networks                                     7.
+##  7 G09G: Arrangements Or Circuits For Control Of Indicating Devices Us…      5.
+##  8 H04B: Transmission                                                        4.
+##  9 H04L: Transmission Of Digital Information, E.G. Telegraphic Communi…      4.
+## 10 H04M: Telephonic Communication                                            4.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write_csv(google_ipc_subclass, &amp;quot;google_ipcsubclass_1990_2012.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We now have the data on technology areas that we need to understand our data. The next and final step is to generate data from the text fields.&lt;/p&gt;
+&lt;div id=&#34;phrases-tables&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Phrases Tables&lt;/h3&gt;
+&lt;p&gt;We will be using data from words and phrases in the titles of patent documents for use in a word cloud in our infographic. It is possible to generate this type of data in R directly using the &lt;code&gt;tm&lt;/code&gt; and &lt;code&gt;NLP&lt;/code&gt; packages. Our pizza dataset already contains a title field broken down into phrases using Vantagepoint software and so we will use that. We will use the field &lt;code&gt;title_nlp_multiword_phrases&lt;/code&gt; as phrases are generally more informative than individual words. Once again we will use our general &lt;code&gt;patent_count()&lt;/code&gt; function although experimentation may be needed to identify the number of phrases that visualise well in a word cloud.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pizza_phrases &amp;lt;- patent_count(data = pizza_1990_2012, col = &amp;quot;title_nlp_multiword_phrases&amp;quot;, 
+    count_col = &amp;quot;publication_number&amp;quot;, n_results = 15, sep = &amp;quot;;&amp;quot;)
+pizza_phrases&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 15 x 2
+##    title_nlp_multiword_phrases records
+##    &amp;lt;chr&amp;gt;                         &amp;lt;dbl&amp;gt;
+##  1 Food Product                   179.
+##  2 Microwave Ovens                137.
+##  3 Making Same                     48.
+##  4 conveyor Oven                   46.
+##  5 Crust Pizza                     44.
+##  6 microwave Heating               41.
+##  7 Bakery Product                  40.
+##  8 pizza Box                       40.
+##  9 Microwave Cooking               39.
+## 10 Pizza Oven                      37.
+## 11 pizza Dough                     35.
+## 12 Cook Food                       34.
+## 13 Baked Product                   33.
+## 14 Related Method                  32.
+## 15 Food Item                       29.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write_csv(pizza_phrases, &amp;quot;pizza_phrases_1990_2012.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we do the same with the Google data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;google_phrases &amp;lt;- patent_count(data = google, col = &amp;quot;title_nlp_multiword_phrases&amp;quot;, 
+    count_col = &amp;quot;publication_number&amp;quot;, n_results = 15, sep = &amp;quot;;&amp;quot;)
+google_phrases&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 15 x 2
+##    title_nlp_multiword_phrases           records
+##    &amp;lt;chr&amp;gt;                                   &amp;lt;dbl&amp;gt;
+##  1 Digital Map System                        10.
+##  2 conversion Path Performance Measures       9.
+##  3 Mobile Device                              8.
+##  4 Search Results                             8.
+##  5 Geographical Relevance                     4.
+##  6 Local Search Results                       4.
+##  7 Location Prominence                        4.
+##  8 Network Speech Recognizers                 4.
+##  9 Processing Queries                         4.
+## 10 Search Query                               4.
+## 11 aspect-Based Sentiment Summarization       3.
+## 12 authoritative Document Identification      3.
+## 13 Business Listings Search                   3.
+## 14 Content Providers                          3.
+## 15 indexing Documents                         3.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write_csv(google_phrases, &amp;quot;google_phrases_1990_2012.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We now have the following .csv files.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;code&gt;pizza_total_1990_2012&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pizza_country_1990_2012&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pizza_applicants_1990_2012&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pizza_ipcclass_1990_2012&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pizza_phrases_1990_2012&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Google_1990_2012&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Google_ipclass_1990_2012&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Google_ipcsubclass_1990_2012&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Google_phrases-1990_2012&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-an-infographic-in-infogr.am&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Creating an infographic in infogr.am&lt;/h2&gt;
+&lt;p&gt;If you are starting this chapter here then download the datasets we will be using as a single zip file from the Manual repository &lt;a href=&#34;https://github.com/wipo-analytics/opensource-patent-analytics/blob/master/2_datasets/infographic/infographic.zip?raw=true&#34;&gt;here&lt;/a&gt; and then unzip the file.&lt;/p&gt;
+&lt;p&gt;We first need to sign up for a free account with &lt;a href=&#34;https://infogr.am/&#34;&gt;infogr.am&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/infogram/fig1_infogram_front.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;We will then see a page with some sample infographics to provide ideas to get you started.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/infogram/fig2_infogram_login.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt; Click on one of the infograms with a graph such as Trends in Something and then click inside the graph box itself and select the edit button in the top right.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/infogram/fig3_infogram_findedit.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;This will open up a data panel with the toy data displayed.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;images/infogram/fig4_infogram_datapanel.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;We want to replace this data by choosing the upload button and selecting our &lt;code&gt;pizza_country_1990_2012.csv&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/infogram/fig5_infogram_panelgraph.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;We now have a decent looking graph for our country trends data where we can see the number of records per country and year by hovering over the relevant data points. While some of the countries with low frequency data are crunched at the bottom (and would be better displayed in a separate graph), hovering over the data or over a country name will display the relevant country activity. We will therefore live with this.&lt;/p&gt;
+&lt;p&gt;We now want to start adding story elements by clicking on the edit button in the title. Next we can start adding new boxes using the menu icons on the right. Here we have changed the title, added a simple body text for the data credit and then a quote from someone describing themselves as the Head of Pizza Analytics.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/infogram/fig6_infogram_paneltext.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Next we need to start digging into the data using our IPC, applicants and phrases data.&lt;/p&gt;
+&lt;p&gt;To work with our IPC class data we will add a bar chart and load the data. To do this select the graph icon in the right and then Bar. Once again we will choose edit and then load our &lt;code&gt;pizza_ipcclass_1990_2012&lt;/code&gt; dataset. Then we can add a descriptive text box. We can then continue to add elements as follows:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;applicants bar chart&lt;/li&gt;
+&lt;li&gt;pizza phrases by selecting graph and word cloud&lt;/li&gt;
+&lt;li&gt;Google ipc-subclass&lt;/li&gt;
+&lt;li&gt;Google word cloud.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;One useful approach to developing an infographic is to start by adding the images and then add titles and text boxes to raise key points. In infogram new text boxes appear below existing boxes but can be repositioned by dragging and dropping boxes onto each other.&lt;/p&gt;
+&lt;p&gt;One nice feature of infogram is that it is easy to share the infographic with others through a url, an embed code or on facebook or via twitter.&lt;/p&gt;
+&lt;p&gt;At the end of the infographic it is a good idea to provide a link where the reader can obtain more information, such as the full report or the underlying data. In this case we will add a link to the Tableau workbook on pizza patent activity that we developed in an earlier &lt;a href=&#34;https://public.tableau.com/profile/wipo.open.source.patent.analytics.manual#!/vizhome/pizzapatents/Overview&#34;&gt;chapter&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Our final infographic should look something like &lt;a href=&#34;https://infogr.am/trends_in_something&#34;&gt;this&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;round-up&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Round Up&lt;/h3&gt;
+&lt;p&gt;In this chapter we have concentrated on using R to tidy patent data in order to create an online infographic using free software. Using our trusty pizza patent data from WIPO Patentscope we walked through the process of wrangling and tidying patent data first using short lines of code that we then combined into a reusable function. As this introduction to tidying data in R has hopefully revealed, R and packages such as &lt;code&gt;dplyr&lt;/code&gt;, &lt;code&gt;tidyr&lt;/code&gt; and &lt;code&gt;stringr&lt;/code&gt; provide very useful tools for working with patent data, and they are free and well supported.&lt;/p&gt;
+&lt;p&gt;In the final part of the chapter we used the data we had generated in RStudio to create an infographic using infogr.am that we then shared online. Infogram is just one of a number of online infographic services and it is well worth trying other services such as &lt;a href=&#34;https://www.easel.ly&#34;&gt;easel.ly&lt;/a&gt; to find a service that meets your needs.&lt;/p&gt;
+&lt;p&gt;As regular users of R will already know, it is already possible to produce all of these graphics (such as word clouds) directly in R using tools such as &lt;code&gt;ggplot2&lt;/code&gt;, &lt;code&gt;plotly&lt;/code&gt; and word clouds using packages such as &lt;code&gt;wordcloud&lt;/code&gt;. Some of these topics have been covered in other chapters and for more on text mining and word clouds in R see this recent article on &lt;a href=&#34;http://www.r-bloggers.com/building-wordclouds-in-r/&#34;&gt;R-bloggers&lt;/a&gt;. None of the infographic services we viewed appeared to offer an API that would enable a direct connection with R. There also seems to be a gap in R’s packages where infographics might sit with this &lt;a href=&#34;http://www.r-bloggers.com/r-how-to-layout-and-design-an-infographic/&#34;&gt;2015 R-bloggers article&lt;/a&gt; providing a walk through on how to create a basic infographic.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/25975827/how-to-feed-the-result-of-a-pipe-chain-magrittr-to-an-object&#34; class=&#34;uri&#34;&gt;http://stackoverflow.com/questions/25975827/how-to-feed-the-result-of-a-pipe-chain-magrittr-to-an-object&lt;/a&gt;&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
   </channel>

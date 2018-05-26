@@ -1,35 +1,481 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Excel on Paul Oldham&#39;s Blog</title>
-    <link>https://www.pauloldham.net/tags/excel/</link>
-    <description>Recent content in Excel on Paul Oldham&#39;s Blog</description>
+    <title>Excel on Paul Oldham&#39;s Analytics Blog</title>
+    <link>/tags/excel/</link>
+    <description>Recent content in Excel on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Tue, 06 Feb 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://www.pauloldham.net/tags/excel/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/excel/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>An Update on Importing Excel Data in R</title>
-      <link>https://www.pauloldham.net/importing-excel-data-into-r-updated/</link>
+      <link>/importing-excel-data-into-r-updated/</link>
       <pubDate>Tue, 06 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/importing-excel-data-into-r-updated/</guid>
-      <description>Introduction Import Directly from the RStudio Menu Reading an Excel file from a URL Tidying column names with janitor Exporting to Excel Round Up   Introduction Back in 2015 I wrote a long blog post on importing Excel tables into R. Happily for everyone this is now a lot easier than it was. This post provides an update on importing spreadsheets into R and exporting from R to Excel.</description>
+      <guid>/importing-excel-data-into-r-updated/</guid>
+      <description>&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#import-directly-from-the-rstudio-menu&#34;&gt;Import Directly from the RStudio Menu&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#reading-an-excel-file-from-a-url&#34;&gt;Reading an Excel file from a URL&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#tidying-column-names-with-janitor&#34;&gt;Tidying column names with &lt;code&gt;janitor&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#exporting-to-excel&#34;&gt;Exporting to Excel&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#round-up&#34;&gt;Round Up&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Back in 2015 I wrote a long blog post on &lt;a href=&#34;https://www.pauloldham.net/reading-writing-excel-files-r/&#34;&gt;importing Excel tables into R&lt;/a&gt;. Happily for everyone this is now a lot easier than it was. This post provides an update on importing spreadsheets into R and exporting from R to Excel. I’ll also cover reading an excel file into R from a url as that seems to be an ongoing struggle.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;import-directly-from-the-rstudio-menu&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Import Directly from the RStudio Menu&lt;/h2&gt;
+&lt;p&gt;The big change is that it is now very easy to import from Excel using the RStudio Menu: &lt;code&gt;File &amp;gt; Import Dataset &amp;gt; From Excel&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/file_import.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Next, navigate to the file that you want to import and select it. You will then see something like this.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/import_panel.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;One point to bear in mind is that the import will often default to the name &lt;code&gt;dataset&lt;/code&gt; so that you need to make sure you enter a meaningful name for the dataset.&lt;/p&gt;
+&lt;p&gt;If your workbook has multiple sheets then you can choose a sheet number using &lt;code&gt;Sheet&lt;/code&gt;, choose the maximum number of rows or skip rows if you have a bunch of filler junk in the top rows. Regular Excel users may also want to select columns by Range.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/import_panel_options.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;You can also click on a column and choose to skip it or change the format.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/skip_col.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;It is worth bearing in mind that if you are importing a number of worksheets you can easily lose track. I sometimes use the approach of copying the import chunk into an Rmarkdown document to keep track of what I am doing and where a file came from.&lt;/p&gt;
+&lt;p&gt;When copying chunks note the small clipboard icon in the top right above the chunk that will copy the chunk to the clipboard for pasting into the console or an R markdown code chunk to document your import steps for the future. My approach when working with multiple sheets is to create an R markdown file and copy and paste the import code into chunks that I then save. That allows “future me”, to borrow from Hadley Wickham, to understand where the datasets came from.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/import_panel_chunk.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;As we can see from importing the file behind the scenes RStudio is using the &lt;code&gt;readxl&lt;/code&gt; library to import the file.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;readxl&lt;/code&gt; will commonly generate warning messages during the import process. For example this dataset generated a long long string of warnings that looked like this.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“Expecting logical in AH5501 / R5501C34: got ‘Aaptos suberitoides’Expecting logical in AH5502 / R5502C34: got ’Abdopus abaculus’Expecting logical in AH5503 / R5503C34: got ’Abdopus aculeatus’Expecting logical in AH5504 / R5504C34: got ’Abralia armata’Expecting logical in AH5505 / R5505C34: got ’Abraliopsis hoylei’Expecting logical in AH5506 / R5506C34: got ’Abudefduf bengalensis’Expecting logical in AH5507 / R5507C34: got ’Abudefduf sexfasciatus’”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;These warnings arise because &lt;code&gt;readxl&lt;/code&gt; guesses the column type by reading the top 1000 rows for each column. However, where a column contains a mix of numbers or characters this can lead to an &lt;code&gt;expecting logical/expecting integer&lt;/code&gt; type of error. A lot of the time this is not actually a problem. However, it is important to pay attention to the warnings because they may indicate an actual problem with your data (such as lines spilling across rows).&lt;/p&gt;
+&lt;p&gt;To fix this there are a number of options to try.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. Use the guess_max argument&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Use the &lt;code&gt;guess_max&lt;/code&gt; argument to increase the number of rows that are read to guess the column type. The default is 1000 and here we reset it to 2000. In the case of our example dataset this didn’t work because the problems appeared lower down but it often will. You can add an &lt;code&gt;n_max&lt;/code&gt; value (shown below as NULL) where you know the maximum number of rows.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readxl)
+taxonomy &amp;lt;- read_excel(&amp;quot;/Users/pauloldham17inch/Desktop/open_source_master/asean/data-taxonomy/taxonomy_final.xlsx&amp;quot;, 
+    guess_max = min(2000, n_max = NULL))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;An alternative to this approach is simply to set &lt;code&gt;min&lt;/code&gt; as the maximum number of rows. The issue here is that you would of course need to already have opened the spreadsheet to identify the number of rows, but there is no reason not to simply guess large.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readxl)
+taxonomy &amp;lt;- read_excel(&amp;quot;/Users/pauloldham17inch/Desktop/taxonomy_final.xlsx&amp;quot;, 
+    guess_max = min(8400, n_max = NULL))
+taxonomy&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 8,400 x 50
+##    scientificname  type  genusorabove specificepithet parsed authorsparsed
+##    &amp;lt;chr&amp;gt;           &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;           &amp;lt;lgl&amp;gt;  &amp;lt;lgl&amp;gt;        
+##  1 abramis brama   SCIE… Abramis      brama           TRUE   TRUE         
+##  2 acanthamoeba p… SCIE… Acanthamoeba polyphaga       TRUE   TRUE         
+##  3 acaudina molpa… SCIE… Acaudina     molpadioides    TRUE   TRUE         
+##  4 acipenser dabr… SCIE… Acipenser    dabryanus       TRUE   TRUE         
+##  5 acipenser fulv… SCIE… Acipenser    fulvescens      TRUE   TRUE         
+##  6 acipenser mika… SCIE… Acipenser    mikadoi         TRUE   TRUE         
+##  7 acipenser oxyr… SCIE… Acipenser    oxyrinchus      TRUE   TRUE         
+##  8 acipenser ruth… SCIE… Acipenser    ruthenus        TRUE   TRUE         
+##  9 acipenser schr… SCIE… Acipenser    schrencki       TRUE   TRUE         
+## 10 acrocalanus gr… SCIE… Acrocalanus  gracilis        TRUE   TRUE         
+## # ... with 8,390 more rows, and 44 more variables: canonicalname &amp;lt;chr&amp;gt;,
+## #   canonicalnamewithmarker &amp;lt;chr&amp;gt;, canonicalnamecomplete &amp;lt;chr&amp;gt;,
+## #   rankmarker &amp;lt;chr&amp;gt;, gbif_id &amp;lt;chr&amp;gt;, db &amp;lt;chr&amp;gt;, match &amp;lt;chr&amp;gt;,
+## #   multiple_matches &amp;lt;lgl&amp;gt;, pattern_match &amp;lt;lgl&amp;gt;, uri &amp;lt;chr&amp;gt;, kingdom &amp;lt;chr&amp;gt;,
+## #   phylum &amp;lt;chr&amp;gt;, class &amp;lt;chr&amp;gt;, order &amp;lt;chr&amp;gt;, family &amp;lt;chr&amp;gt;, genus &amp;lt;chr&amp;gt;,
+## #   species &amp;lt;chr&amp;gt;, kingdom_id &amp;lt;chr&amp;gt;, phylum_id &amp;lt;chr&amp;gt;, class_id &amp;lt;chr&amp;gt;,
+## #   order_id &amp;lt;chr&amp;gt;, family_id &amp;lt;chr&amp;gt;, genus_id &amp;lt;chr&amp;gt;, species_id &amp;lt;chr&amp;gt;,
+## #   query &amp;lt;chr&amp;gt;, scientificname1 &amp;lt;chr&amp;gt;, required_fields_check &amp;lt;dbl&amp;gt;,
+## #   environment_aphia_worms &amp;lt;chr&amp;gt;, name_aphia_worms &amp;lt;chr&amp;gt;,
+## #   aphiaid_worms &amp;lt;dbl&amp;gt;, accepted_name_aphia_worms &amp;lt;chr&amp;gt;,
+## #   valid_aphiaid_worms &amp;lt;dbl&amp;gt;, status_aphia_worms &amp;lt;chr&amp;gt;,
+## #   taxonmatch_matchcount_worms &amp;lt;dbl&amp;gt;, taxonmatch_note_worms &amp;lt;chr&amp;gt;,
+## #   species1 &amp;lt;chr&amp;gt;, match1 &amp;lt;lgl&amp;gt;, environment &amp;lt;chr&amp;gt;, marine &amp;lt;chr&amp;gt;,
+## #   brackish &amp;lt;chr&amp;gt;, freshwater &amp;lt;chr&amp;gt;, terrestrial &amp;lt;chr&amp;gt;,
+## #   noenvironment &amp;lt;chr&amp;gt;, worms_id &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;2. Specify the column types &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If that doesn’t work for you then a third option is to work out what the format should be and pass it as a string. Arguably, this should be the first option. However, it can also be the most time consuming.&lt;/p&gt;
+&lt;p&gt;A toy example is the following data frame that we can write to excel (see below on writing files).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(writexl)
+df &amp;lt;- tibble(a = c(1,2,3), 
+             b = c(&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;), 
+             c = c(TRUE, FALSE, TRUE), 
+             d = c(&amp;quot;2017-12-10&amp;quot;, &amp;quot;20170815&amp;quot;, &amp;quot;2017_06_12&amp;quot;)) %&amp;gt;%
+  writexl::write_xlsx(., &amp;quot;df.xlsx&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When we read this in we specify the column types. Note that in this case we need to use the term “text” rather than the familiar “character” or we get an error.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df &amp;lt;- read_excel(&amp;quot;/Users/pauloldham17inch/blog/content/post/df.xlsx&amp;quot;, col_names = TRUE, 
+    col_types = c(&amp;quot;numeric&amp;quot;, &amp;quot;text&amp;quot;, &amp;quot;logical&amp;quot;, &amp;quot;text&amp;quot;))
+df&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 4
+##       a b     c     d         
+##   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;lgl&amp;gt; &amp;lt;chr&amp;gt;     
+## 1    1. a     TRUE  2017-12-10
+## 2    2. b     FALSE 20170815  
+## 3    3. c     TRUE  2017_06_12&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The documentation for read_excel (&lt;code&gt;?read_excel&lt;/code&gt;) sets out quite a few other options. For example we could specify the format of some columns and leave the function to guess the others. That would look like this.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df &amp;lt;- read_excel(&amp;quot;/Users/pauloldham17inch/blog/content/post/df.xlsx&amp;quot;, col_names = TRUE, 
+    col_types = c(&amp;quot;guess&amp;quot;, &amp;quot;guess&amp;quot;, &amp;quot;logical&amp;quot;, &amp;quot;guess&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;3. Convert all columns to a single type&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For a dataset with a lot of columns trying to work out the column types or writing &lt;code&gt;guess, logical, character&lt;/code&gt; can rapidly become painful. Depending on your needs it may be easier to simply use the &lt;code&gt;col_types = &amp;quot;text&amp;quot;&lt;/code&gt; for all columns and change them where needed later using &lt;code&gt;as.character()&lt;/code&gt;, &lt;code&gt;as.logical()&lt;/code&gt;, &lt;code&gt;as.numeric()&lt;/code&gt; or &lt;code&gt;as.Date()&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readxl)
+taxonomy &amp;lt;- read_excel(&amp;quot;/Users/pauloldham17inch/Desktop/taxonomy_final.xlsx&amp;quot;, 
+    col_types = &amp;quot;text&amp;quot;)
+taxonomy&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 8,400 x 50
+##    scientificname  type  genusorabove specificepithet parsed authorsparsed
+##    &amp;lt;chr&amp;gt;           &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;           &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;        
+##  1 abramis brama   SCIE… Abramis      brama           TRUE   TRUE         
+##  2 acanthamoeba p… SCIE… Acanthamoeba polyphaga       TRUE   TRUE         
+##  3 acaudina molpa… SCIE… Acaudina     molpadioides    TRUE   TRUE         
+##  4 acipenser dabr… SCIE… Acipenser    dabryanus       TRUE   TRUE         
+##  5 acipenser fulv… SCIE… Acipenser    fulvescens      TRUE   TRUE         
+##  6 acipenser mika… SCIE… Acipenser    mikadoi         TRUE   TRUE         
+##  7 acipenser oxyr… SCIE… Acipenser    oxyrinchus      TRUE   TRUE         
+##  8 acipenser ruth… SCIE… Acipenser    ruthenus        TRUE   TRUE         
+##  9 acipenser schr… SCIE… Acipenser    schrencki       TRUE   TRUE         
+## 10 acrocalanus gr… SCIE… Acrocalanus  gracilis        TRUE   TRUE         
+## # ... with 8,390 more rows, and 44 more variables: canonicalname &amp;lt;chr&amp;gt;,
+## #   canonicalnamewithmarker &amp;lt;chr&amp;gt;, canonicalnamecomplete &amp;lt;chr&amp;gt;,
+## #   rankmarker &amp;lt;chr&amp;gt;, gbif_id &amp;lt;chr&amp;gt;, db &amp;lt;chr&amp;gt;, match &amp;lt;chr&amp;gt;,
+## #   multiple_matches &amp;lt;chr&amp;gt;, pattern_match &amp;lt;chr&amp;gt;, uri &amp;lt;chr&amp;gt;, kingdom &amp;lt;chr&amp;gt;,
+## #   phylum &amp;lt;chr&amp;gt;, class &amp;lt;chr&amp;gt;, order &amp;lt;chr&amp;gt;, family &amp;lt;chr&amp;gt;, genus &amp;lt;chr&amp;gt;,
+## #   species &amp;lt;chr&amp;gt;, kingdom_id &amp;lt;chr&amp;gt;, phylum_id &amp;lt;chr&amp;gt;, class_id &amp;lt;chr&amp;gt;,
+## #   order_id &amp;lt;chr&amp;gt;, family_id &amp;lt;chr&amp;gt;, genus_id &amp;lt;chr&amp;gt;, species_id &amp;lt;chr&amp;gt;,
+## #   query &amp;lt;chr&amp;gt;, scientificname1 &amp;lt;chr&amp;gt;, required_fields_check &amp;lt;chr&amp;gt;,
+## #   environment_aphia_worms &amp;lt;chr&amp;gt;, name_aphia_worms &amp;lt;chr&amp;gt;,
+## #   aphiaid_worms &amp;lt;chr&amp;gt;, accepted_name_aphia_worms &amp;lt;chr&amp;gt;,
+## #   valid_aphiaid_worms &amp;lt;chr&amp;gt;, status_aphia_worms &amp;lt;chr&amp;gt;,
+## #   taxonmatch_matchcount_worms &amp;lt;chr&amp;gt;, taxonmatch_note_worms &amp;lt;chr&amp;gt;,
+## #   species1 &amp;lt;chr&amp;gt;, match1 &amp;lt;chr&amp;gt;, environment &amp;lt;chr&amp;gt;, marine &amp;lt;chr&amp;gt;,
+## #   brackish &amp;lt;chr&amp;gt;, freshwater &amp;lt;chr&amp;gt;, terrestrial &amp;lt;chr&amp;gt;,
+## #   noenvironment &amp;lt;chr&amp;gt;, worms_id &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With our toy dataset we could easily change the columns that are our target as needed.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df$a &amp;lt;- as.numeric(df$a)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dates can be troublesome and in cases where you need to format date fields the &lt;a href=&#34;http://lubridate.tidyverse.org/&#34;&gt;&lt;code&gt;lubridate&lt;/code&gt;&lt;/a&gt; package will really make your life a whole lot easier.&lt;/p&gt;
+&lt;p&gt;In our toy dataset while the dates are all in YYYYMMDD format (and those in your dataset may not be) the separators are different. Using &lt;code&gt;as.Date()&lt;/code&gt; won’t work for the second and third dates.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;as.Date(df$d)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;However, this problem is easily handled by &lt;code&gt;lubridate::as_date&lt;/code&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(lubridate)
+df$e &amp;lt;- lubridate::as_date(df$d)
+df&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 5
+##       a b     c     d          e         
+##   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;lgl&amp;gt; &amp;lt;chr&amp;gt;      &amp;lt;date&amp;gt;    
+## 1    1. a     TRUE  2017-12-10 2017-12-10
+## 2    2. b     FALSE 20170815   2017-08-15
+## 3    3. c     TRUE  2017_06_12 2017-06-12&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Charlotte Wickham offers an incredibly useful DataCamp course &lt;a href=&#34;https://www.datacamp.com/courses/working-with-dates-and-times-in-r&#34;&gt;Working with Dates and Times in R&lt;/a&gt; that will have you up and running in no time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;reading-an-excel-file-from-a-url&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Reading an Excel file from a URL&lt;/h2&gt;
+&lt;p&gt;In the 2015 post on importing Excel I wrote:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“It is faster to simply download the file to your drive, or swim the Atlantic ocean, than to successfully download an excel file on http: or, in particular https:. So maybe ask yourself what is the path of least resistance and run with that.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As far as I can tell the situation is not radically different now. However, this is something that lots of people have logically wanted to do. By the power of Stack Overflow, a solution can be found. &lt;a href=&#34;https://stackoverflow.com/users/1327739/lukea&#34;&gt;Luke A&lt;/a&gt; provided the following answer to this &lt;a href=&#34;https://stackoverflow.com/questions/41368628/read-excel-file-from-a-url-using-the-readxl-package&#34;&gt;question&lt;/a&gt; on downloading excel files.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readxl)
+library(httr)
+packageVersion(&amp;quot;readxl&amp;quot;)
+# [1] ‘0.1.1’
+
+GET(url1, write_disk(tf &amp;lt;- tempfile(fileext = &amp;quot;.xls&amp;quot;)))
+df &amp;lt;- read_excel(tf, 2L)
+str(df)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This code uses the &lt;code&gt;httr&lt;/code&gt; package to read in a .xls file from a url that is written to disk and then passed to &lt;code&gt;readxl&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We can wrap this into a small function with some adjustments. In this case we use &lt;code&gt;str_detect&lt;/code&gt; to detect whether the file type is included in the URL. Note that this will not address those cases (such as Google Drive) where the Excel file type is not included (see the &lt;a href=&#34;https://github.com/tidyverse/googledrive&#34;&gt;googledrive package&lt;/a&gt;). Nor will it detect other Excel file types such as &lt;code&gt;.xlsm&lt;/code&gt; for macro enabled workbooks. As this suggests the task is more complex than it might at first appear. This small function addresses common use cases but will not address all use cases.&lt;/p&gt;
+&lt;p&gt;The function assumes that the file extension is contained in the URL and will spot that for us, in the case of a zip extension it will download and attempt to extract the file and if all else fails, we can provide the file extension. the &lt;code&gt;...&lt;/code&gt; informs us that other arguments such as &lt;code&gt;col_types =&lt;/code&gt; can be passed to the function and will be picked up by &lt;code&gt;read_excel&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;readxl_online &amp;lt;- function(url, type = NULL, ...) {
+    test &amp;lt;- stringr::str_detect(url, &amp;quot;[.]xls|[.]zip&amp;quot;)
+    if (test == FALSE) {
+        print(message(&amp;quot;Expecting file extension of type .xlsx, .xls or .zip. Check the URL or the data source for the correct file extension and use the type argument&amp;quot;))
+    }
+    # test for individual file extensions for xls use look forward, xls not
+    # followed by x
+    t1 &amp;lt;- stringr::str_detect(url, &amp;quot;[.]xlsx&amp;quot;)
+    t2 &amp;lt;- stringr::str_detect(url, &amp;quot;[.]xls(?!x)&amp;quot;)
+    tz &amp;lt;- stringr::str_detect(url, &amp;quot;[.]zip&amp;quot;)
+    if (t1 == TRUE) {
+        type = &amp;quot;.xlsx&amp;quot;
+    }
+    if (t2 == TRUE) {
+        type = &amp;quot;.xls&amp;quot;
+    }
+    if (tz == TRUE) {
+        httr::GET(url, write_disk(&amp;quot;tmp.zip&amp;quot;, overwrite = TRUE))
+        tmp &amp;lt;- unzip(&amp;quot;tmp.zip&amp;quot;)
+        # On osx more than one file name is returned, select first element.
+        df &amp;lt;- readxl::read_excel(tmp[[1]])
+        return(df)
+    }
+    if (!is.null(type)) {
+        type = type
+        
+    }
+    df &amp;lt;- httr::GET(url, write_disk(paste0(&amp;quot;tmp&amp;quot;, type), overwrite = TRUE))
+    df &amp;lt;- readxl::read_excel(paste0(&amp;quot;tmp&amp;quot;, type))
+    
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is not perfect, but it is a start. We can now run a test on different data types to see if it will work. These urls are all from excel files on Github. Github file urls are actually placeholders and so we need to follow the link and copy the Raw file url (see raw=true in the url). Note also that these urls are all &lt;code&gt;https:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The .xls case:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dfxls &amp;lt;- readxl_online(&amp;quot;https://github.com/wipo-analytics/opensource-patent-analytics/blob/master/2_datasets/pizza_all_24294/patentscope_pizza_1940_2005_9659.xls?raw=true&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The xlsx case:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dfxlsx &amp;lt;- readxl_online(&amp;quot;https://github.com/wipo-analytics/opensource-patent-analytics/blob/master/2_datasets/ewaste/ewaste.xlsx?raw=true&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The zip file case:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dfzip &amp;lt;- readxl_online(&amp;quot;https://github.com/poldham/opensource-patent-analytics/blob/master/2_datasets/taxonomy_final.zip?raw=true&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It is always a good thing if functions fail fast and provide a helpful message.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;error &amp;lt;- readxl_online(&amp;quot;https://www.google.co.uk/&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This prints the expected message.&lt;/p&gt;
+&lt;p&gt;“Expecting file extension of type .xlsx, .xls or .zip. Check the URL or the data source for the correct file extension and use the type argument”&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;tidying-column-names-with-janitor&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Tidying column names with &lt;code&gt;janitor&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;One issue once you have your data in R is that column names in excel files often contain mixed case names and spaces or other characters such as brackets that can be awkward to work with in R. To solve that an easy option is to use the recent &lt;code&gt;janitor&lt;/code&gt; package.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;janitor&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For this we need an excel worksheet with noisy names. For R coding Blue Peter fans…“Here is one we prepared earlier”.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;noisycols &amp;lt;- read_excel(&amp;quot;/Users/pauloldham17inch/blog/content/post/noisydf.xlsx&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;noisy(yes)&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;really_,Noisy;!&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;EVEN noisier !?*$!&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;OMG- I_can’t-***//believe?it|&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;these&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;are&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;not&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;the&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;noisiest&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;column&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;names&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;in&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;the&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;world,&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;just&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;tribute&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NANA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NANANANA&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(janitor)
+noisycols1 &amp;lt;- janitor::clean_names(noisycols)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;noisy_yes&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;really_noisy&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;even_noisier&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;omg_i_can_t_believe_it&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;these&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;are&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;not&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;the&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;noisiest&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;column&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;names&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;in&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;the&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;world,&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;just&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;a&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;tribute&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NANA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NANANANA&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;This does a very good job of cleaning up names but may not always catch everything. If you have particular needs the &lt;a href=&#34;https://github.com/tidyverse/stringr&#34;&gt;&lt;code&gt;stringr&lt;/code&gt;&lt;/a&gt; package (now installed with the &lt;code&gt;tidyverse&lt;/code&gt;) is the go to package. Try the &lt;code&gt;str_replace_all&lt;/code&gt; function.&lt;/p&gt;
+&lt;p&gt;If you need more help try the &lt;a href=&#34;https://www.rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf&#34;&gt;Basic Regular Expressions Cheatsheet in R&lt;/a&gt; or the chapter on strings in Hadley Wickham’s book &lt;a href=&#34;http://r4ds.had.co.nz/strings.html&#34;&gt;R for Data Science&lt;/a&gt;. Charlotte Wickham also offers a Data Camp course on &lt;a href=&#34;https://www.datacamp.com/courses/string-manipulation-in-r-with-stringr&#34;&gt;String Manipulation in R with stringr&lt;/a&gt;. When it comes to working with strings &lt;code&gt;stringr&lt;/code&gt; is your friend and if that doesn’t solve the problem then try the &lt;code&gt;stringi&lt;/code&gt; package that powers &lt;code&gt;stringr&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;exporting-to-excel&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Exporting to Excel&lt;/h2&gt;
+&lt;p&gt;In the earlier post I wrote about using &lt;code&gt;write.xlsx()&lt;/code&gt; from the &lt;code&gt;xlsx&lt;/code&gt; package. That is still a very good option. However, as a personal preference I have now switched over to the &lt;code&gt;writexl&lt;/code&gt; package as I find it easier to remember and use. It is also an &lt;a href=&#34;https://github.com/ropensci/writexl&#34;&gt;ROpenSci package&lt;/a&gt; and I use a lot of ROpenSci packages. &lt;code&gt;writexl&lt;/code&gt; has the added bonus that Clippy appears in the documentation to brighten up your day… or drive you insane… as the case may be. So, if you prefer to be a curmudgeon about Clippy you may want to use the xlsx package.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;writexl&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We simply specify the file and the name of the file we want to write. An additional argument &lt;code&gt;col_names = TRUE&lt;/code&gt; is set to TRUE by default so you only need to specify that if you want the value to be FALSE.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(writexl)
+writexl::write_xlsx(df, path = &amp;quot;df.xlsx&amp;quot;, col_names = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can also now write multiple sheets by specifying the data frames in a list and passing them to write_xlsx.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(writexl)
+tmp &amp;lt;- list(df, noisycols1)
+write_xlsx(tmp, &amp;quot;tmp.xlsx&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;round-up&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Round Up&lt;/h2&gt;
+&lt;p&gt;There we have it. Reading and writing Excel files in R is now way way easier than it was just a couple of years ago thanks to the dedicated work of those behind &lt;code&gt;readxl&lt;/code&gt; (Hadley Wickham and Jenny Bryan) and &lt;code&gt;writexl&lt;/code&gt; by Jeroen Ooms and John McNamara. Other packages will take you to the same place but these are my go to packages. Community contributions are helping to solve the mystery of reading Excel files from urls and we might hope that at some point &lt;code&gt;readxl&lt;/code&gt; may address this problem.&lt;/p&gt;
+&lt;p&gt;If you would like to learn more on importing data into R then try the DataCamp course on &lt;a href=&#34;https://www.datacamp.com/tracks/importing-cleaning-data-with-r&#34;&gt;Importing Data &amp;amp; Cleaning with R&lt;/a&gt; that covers Excel.&lt;/p&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
       <title>Reading and Writing an Excel File in R</title>
-      <link>https://www.pauloldham.net/reading-writing-excel-files-r/</link>
+      <link>/reading-writing-excel-files-r/</link>
       <pubDate>Thu, 30 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/reading-writing-excel-files-r/</guid>
-      <description>This post was updated in 2018 and you can read it here
-The CRAN Project has the following to say about importing Excel files into R.
-“The first piece of advice is to avoid doing so if possible! If you have access to Excel, export the data you want from Excel in tab-delimited or comma-separated form, and use read.delim or read.csv to import it into R. (You may need to use read.</description>
+      <guid>/reading-writing-excel-files-r/</guid>
+      <description>&lt;p&gt;This post was updated in 2018 and you can read it &lt;a href=&#34;http://www.pauloldham.net/importing-excel-data-into-r-updated/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;http://cran.r-project.org/doc/manuals/r-release/R-data.html#Reading-Excel-spreadsheets&#34;&gt;CRAN Project&lt;/a&gt; has the following to say about importing Excel files into R.&lt;/p&gt;
+&lt;p&gt;“The first piece of advice is to avoid doing so if possible! If you have access to Excel, export the data you want from Excel in tab-delimited or comma-separated form, and use read.delim or read.csv to import it into R. (You may need to use read.delim2 or read.csv2 in a locale that uses comma as the decimal point.).”&lt;/p&gt;
+&lt;p&gt;This is very sound advice. The best option when dealing with Excel is generally to use &lt;code&gt;save as&lt;/code&gt; to save the file as a .csv and then import it into R. However, there are a number of ways of reading an Excel file into R. We will deal with two of them in this walk through focusing on the patent datasets in our &lt;a href=&#34;https://drive.google.com/open?id=0B4piiKOCkRPDNThTWU1QQVYyRnM&amp;amp;authuser=0&#34;&gt;open access patent datasets folder&lt;/a&gt;. Download the GitHub .zip file &lt;a href=&#34;https://github.com/poldham/opensource-patent-analytics/blob/master/2_datasets/datasets.zip?raw=true&#34;&gt;here&lt;/a&gt;. Feel free to use your own dataset.&lt;/p&gt;
+&lt;p&gt;One challenge with R and Excel files is that no one package seems to do everything that you want. In particular, reading from URLs is a bit of a minefield particularly on secure connections (&lt;code&gt;https:&lt;/code&gt;). If this walk through doesn’t meet your needs then try this R-bloggers &lt;a href=&#34;http://www.r-bloggers.com/read-excel-files-from-r/&#34;&gt;overview&lt;/a&gt; on the range of available packages. The &lt;a href=&#34;http://www.r-bloggers.com/search/excel&#34;&gt;R-bloggers excel topic listing&lt;/a&gt; also has lots of useful articles covering working with Excel in more depth than this short article. To find additional help try &lt;a href=&#34;http://stackoverflow.com/questions/tagged/r&#34;&gt;stackoverflow&lt;/a&gt;. We will focus on:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Using the &lt;a href=&#34;http://www.r-bloggers.com/importexport-data-to-and-from-xlsx-files/&#34;&gt;xlsx&lt;/a&gt; package&lt;/li&gt;
+&lt;li&gt;Testing the new &lt;a href=&#34;http://blog.rstudio.org/2015/04/15/readxl-0-1-0/&#34;&gt;readxl&lt;/a&gt; package&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;To read an Excel file into R first install the package or tick the box in the Packages list to load it or load the library.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;xlsx&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Load the library&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(xlsx)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: rJava&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: xlsxjars&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can use your own local excel file but we will use the file &lt;a href=&#34;https://drive.google.com/file/d/0B4piiKOCkRPDNWhrdGxXc0YwTk0/view?usp=sharing&#34;&gt;wipotrends&lt;/a&gt; in the &lt;a href=&#34;https://drive.google.com/open?id=0B4piiKOCkRPDNWhrdGxXc0YwTk0&amp;amp;authuser=0&#34;&gt;patent dataset folder&lt;/a&gt; for this example. Other test Excel datasets in the folder are &lt;a href=&#34;https://drive.google.com/open?id=0B4piiKOCkRPDZGZ4dlJsVEN4TEk&amp;amp;authuser=0&#34;&gt;ewaste&lt;/a&gt; and &lt;a href=&#34;https://drive.google.com/open?id=0B4piiKOCkRPDMUVSaFJtdXlOX28&amp;amp;authuser=0&#34;&gt;solarcooking&lt;/a&gt;. Download the file and save it to your computer. Then copy the local file path.&lt;/p&gt;
+&lt;div id=&#34;reading-a-local-file&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Reading a local file&lt;/h2&gt;
+&lt;p&gt;We will use a file called &lt;a href=&#34;https://drive.google.com/open?id=0B4piiKOCkRPDNWhrdGxXc0YwTk0&amp;amp;authuser=0&#34;&gt;wipotrends&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Let’s open the file up to inspect it briefly. We will see that it contains one worksheet and that the column headings begin at row 5. To load it into R we will use the &lt;code&gt;read.xlxs&lt;/code&gt; function and specify arguments to tell R where to look for and handle the data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;wipotrends &amp;lt;- read.xlsx(&amp;quot;/Users/pauloldham17inch/Desktop/open_source_master/2_datasets/wipo/wipotrends.xlsx&amp;quot;, sheetIndex = 1, startRow = 5, endRow = 23, as.data.frame = TRUE, header=TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;sheetIndex = n&lt;/code&gt; tells R to import the first worksheet (working numerically). &lt;code&gt;startRow = n&lt;/code&gt; tells R where to start reading the data (if not the first row). &lt;code&gt;endRow = n&lt;/code&gt; tells R where to stop reading the data. Note that in this case the data stops at row 23 from the first row. You do not need to specify this value but in some cases R will read in NA values for extra rows below the actual data (try excluding &lt;code&gt;endRow =&lt;/code&gt; and reimport the data to test this) &lt;code&gt;as.data.frame =&lt;/code&gt; tells R whether to convert the data into a data frame. Generally this is a good thing. The default will import the data as a list. &lt;code&gt;header = TRUE&lt;/code&gt; tells R whether or not there are column headings in the start row.&lt;/p&gt;
+&lt;p&gt;In general it is good practice in your work to create Excel workbooks with 1 sheet and headings in the first row. However, as we can see from the WIPO example, reality tends to be different. That means that it is important to inspect and clean the data before hand. Keep a copy of the original file for reference by creating a .zip file. Other things to consider are:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Checking for corrupted characters and correcting them using find and replace in Excel or Open Office (see this &lt;a href=&#34;https://youtu.be/YYaMEbJW7Qw?list=PLsZOGmKUMi54n8R06U1HmxNywt0bAFays&#34;&gt;video&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Tidy up column names by removing characters such as ‘&#39; or brackets that could cause problems (for example R will generally import &lt;code&gt;inventor(s)&lt;/code&gt; as &lt;code&gt;inventor.s&lt;/code&gt;). Consider removing blank spaces in column titles or replacing with’_’ and regularising the case (e.g. all lower case ). This will make life easier later.&lt;/li&gt;
+&lt;li&gt;Dealing with any leading or trailing spaces using TRIM() in Excel or Open Office.&lt;/li&gt;
+&lt;li&gt;Filling blank cells with NA (see this quick &lt;a href=&#34;https://youtu.be/40isuia2w3w?list=PLsZOGmKUMi54n8R06U1HmxNywt0bAFays&#34;&gt;video&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Any formulas, such as column or row sum functions, may not be wanted and could cause confusion when you run your own calculations.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The above preparation steps will generally take a few minutes but can save a lot of work later on. Jeff Leek provides a very good guide to preparatory steps in &lt;a href=&#34;https://leanpub.com/datastyle&#34;&gt;The Elements of Data Analytic Style&lt;/a&gt; and we will be following these steps in our patent analysis work.&lt;/p&gt;
+&lt;p&gt;Let’s take a look at the other available arguments by calling up the description.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;?read.xlsx()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The range of arguments is below.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;read.xlsx(file, sheetIndex, sheetName=NULL, rowIndex=NULL,   startRow=NULL, endRow=NULL, colIndex=NULL,   as.data.frame=TRUE, header=TRUE, colClasses=NA,   keepFormulas=FALSE, encoding=&amp;quot;unknown&amp;quot;, ...)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Because Excel workbooks often contain more than one sheet, R needs to know where to find the right sheet. This is generally easy to do by number rather than name using &lt;code&gt;sheetName =&lt;/code&gt;. &lt;code&gt;Row index =&lt;/code&gt; will indicate the rows that you want to extract (if there are specific rows).&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;startRow =&lt;/code&gt; will indicate whether to start reading into R from the first row or from a later row. Quite often there are spaces or explanatory text in the top row or rows. It pays to examine the dataset first and count the rows. As a matter of good practice use the first rows for column headings only and put other material elsewhere (a readme text file or a new worksheet called readme).&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;endRow =&lt;/code&gt; argument specifies where to stop reading the data.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;colIndex&lt;/code&gt; - indicates the columns that you want to extract. NULL is the default and will import all columns.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;as.data.frame = TRUE&lt;/code&gt; helpfully tells R to create a data frame. If not then a List will be created.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;header = TRUE or FALSE&lt;/code&gt; specifies whether the columns have names. In this case if we had not started at &lt;code&gt;startRow = 5&lt;/code&gt;, the header would have appeared as “Figure.A.1.1.1.Trend.in.patent.applications.worldwide” followed by more text. To try this for yourself change the startRow to 1 and reimport the data giving wipotrends a different name.&lt;/p&gt;
+&lt;p&gt;Let’s take a look at &lt;code&gt;wipotrends&lt;/code&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;wipotrends&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    Year Applications Growth.rate....
+## 1  1995      1047700              NA
+## 2  1996      1088800             3.9
+## 3  1997      1163400             6.9
+## 4  1998      1214900             4.4
+## 5  1999      1269000             4.5
+## 6  2000      1377800             8.6
+## 7  2001      1456500             5.7
+## 8  2002      1443300            -0.9
+## 9  2003      1485800             2.9
+## 10 2004      1570100             5.7
+## 11 2005      1703600             8.5
+## 12 2006      1794300             5.3
+## 13 2007      1866000             4.0
+## 14 2008      1914800             2.6
+## 15 2009      1846800            -3.6
+## 16 2010      1987600             7.6
+## 17 2011      2149000             8.1
+## 18 2012      2347700             9.2&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In reviewing &lt;code&gt;wipotrends&lt;/code&gt; note that the row numbers refer to data rows (we have excluded the padding in rows 1 -4). If we were spending time with this data we might also want to turn the columns to lowercase and &lt;code&gt;growth rate&lt;/code&gt; to &lt;code&gt;growth_rate&lt;/code&gt; (but see below on &lt;code&gt;readxl&lt;/code&gt;).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;writing-excel-files&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Writing Excel Files&lt;/h2&gt;
+&lt;p&gt;It is generally better to write a .csv file rather than an Excel file because the results can be used in a wider range of tools (including Excel) and will be cleaner (see below). However, to write an Excel file with the new data frame use the &lt;code&gt;write.xlsx()&lt;/code&gt; function. Before running the command it is generally a good idea to use the command &lt;code&gt;getwd()&lt;/code&gt; to display the working directory you are in so that you know where the file will be saved. To change the directory to a new location use &lt;code&gt;setwd(&amp;quot;yourpathtofile&amp;quot;)&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write.xlsx(wipotrends, &amp;quot;yourfilenamepath_new.xlsx&amp;quot;, sheetName=&amp;quot;Sheet1&amp;quot;, col.names = TRUE, row.names = TRUE, append = FALSE, showNA = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This will create a new file called wipotrends_new. Note three points here:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Give your file a &lt;strong&gt;new name&lt;/strong&gt; if writing into the same directory. Otherwise R will overwrite your existing file. Assuming you don’t want to overwrite the original give the new file a sensible name.&lt;/li&gt;
+&lt;li&gt;If you select &lt;code&gt;row.names = FALSE&lt;/code&gt; R will write a new column with row numbers (in this case)&lt;/li&gt;
+&lt;li&gt;Selecting &lt;code&gt;showNA = TRUE&lt;/code&gt; will fill any blank cells with NA. That is useful when coming back into R to tidy up and select data. Blank cells are the enemy of calculations and it is better to fill the cells with a value where possible.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;writing-excel-to-csv&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Writing Excel to CSV&lt;/h2&gt;
+&lt;p&gt;While Excel is popular in reality it is better to use .csv when using or sharing data across a range of software tools. To write results into .csv use &lt;code&gt;write.csv()&lt;/code&gt;. Call up the description for write.csv with ?write.csv in console. See the .csv walk through for further details.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write.csv(wipotrends, file = &amp;quot;yourfilenamepath_new.csv&amp;quot;, row.names = FALSE)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;using-the-readxl-package&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Using the Readxl package&lt;/h1&gt;
+&lt;p&gt;readxl is a new package from RStudio and is still a work in progress. We will cover it here because as the package develops it will become more popular and you are more likely to use it.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;readxl&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readxl)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At the moment readxl version 0.1.0 has two functions.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;code&gt;excel_sheets(path)&lt;/code&gt; where path is the path to the xls/xlsx file. This function will list all the sheets in an excel spreadsheet to help you select the sheet that you want to import.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For example, if we add a couple of random sheets to wipotrends and then use &lt;code&gt;excel_sheets(&amp;quot;myfilenamepath&amp;quot;)&lt;/code&gt; will provide names that look something like this:&lt;/p&gt;
+&lt;p&gt;[1] “Sheet1” “my sheet” “another sheet”&lt;/p&gt;
+&lt;p&gt;This is very helpful if you don’t know how many sheets are in a workbook or you want to call them by name. 2. &lt;code&gt;read_excel()&lt;/code&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readxl)
+read_wipo &amp;lt;- read_excel(&amp;quot;/Users/pauloldham17inch/Desktop/WIPO_Training/training_datasets/wipo/wipotrends.xlsx&amp;quot;, col_names = TRUE, na = &amp;quot;&amp;quot;,  skip = 5)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When we read in this file and print it to the console we will notice something unusual.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;read_wipo&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 17 x 3
+##    `1995` `1047700`   X__1
+##     &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;
+##  1  1996.  1088800.  3.90 
+##  2  1997.  1163400.  6.90 
+##  3  1998.  1214900.  4.40 
+##  4  1999.  1269000.  4.50 
+##  5  2000.  1377800.  8.60 
+##  6  2001.  1456500.  5.70 
+##  7  2002.  1443300. -0.900
+##  8  2003.  1485800.  2.90 
+##  9  2004.  1570100.  5.70 
+## 10  2005.  1703600.  8.50 
+## 11  2006.  1794300.  5.30 
+## 12  2007.  1866000.  4.00 
+## 13  2008.  1914800.  2.60 
+## 14  2009.  1846800. -3.60 
+## 15  2010.  1987600.  7.60 
+## 16  2011.  2149000.  8.10 
+## 17  2012.  2347700.  9.20&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That is while we have specified that &lt;code&gt;col_names = TRUE&lt;/code&gt; and &lt;code&gt;skip = 5&lt;/code&gt; the function has not returned the column names in the dataset. While this is a bit puzzling ( the package was released less than a month ago), it suggests that it is still a work in progress. Unless this is a glitch with our data then one option would be to specify &lt;code&gt;col_names = FALSE&lt;/code&gt; and then rename the &lt;code&gt;X0   X1   X2&lt;/code&gt; column names that are generated. readr is under active development and you can follow its progress &lt;a href=&#34;%22https://github.com/hadley/readxl%22&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is a useful reminder of one of the important principles of clean and tidy data. The first row should contain the column names.&lt;/p&gt;
+&lt;p&gt;Bear in mind that readxl may struggle with reading dates correctly, but expect that to also change in the future.&lt;/p&gt;
+&lt;p&gt;At the time of writing there is no &lt;code&gt;write_excel&lt;/code&gt; function but expect that to change.&lt;/p&gt;
+&lt;p&gt;The main advantage of &lt;code&gt;read_excel&lt;/code&gt; (as with &lt;code&gt;read_csv&lt;/code&gt; in the &lt;code&gt;readr&lt;/code&gt; package) is that the data imports into an easy to print object with three attributes a &lt;code&gt;tbl_df&lt;/code&gt; a &lt;code&gt;tbl&lt;/code&gt; and a &lt;code&gt;data.frame&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you are using &lt;code&gt;dplyr&lt;/code&gt; and &lt;code&gt;tidyr&lt;/code&gt; (and we assume that you will be) then the creation of a tbl_df makes life much easier.&lt;/p&gt;
+&lt;p&gt;In summary, readxl is a welcome development for those who prefer using Excel (or are forced too), but it is very recent. It’s main strength is the ability to easily see what worksheets are in a workbook and also the automatic creation of a data frame or data frame table at the time of import. The absence of a write function will hopefully encourage hardened Excel uses to adopt comma separated or tab delimited files as their standard and to take advantage of the fuller functionality of the &lt;code&gt;readr&lt;/code&gt; package. You know it makes sense.&lt;/p&gt;
+&lt;div id=&#34;reading-excel-files-from-url-locations&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Reading Excel files from URL locations&lt;/h2&gt;
+&lt;p&gt;It is faster to simply download the file to your drive, or swim the Atlantic ocean, than to successfully download an excel file on http: or, in particular https:. So maybe ask yourself what is the path of least resistance and run with that.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;getting-help-and-further-resources&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Getting Help and Further Resources&lt;/h2&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;For additional functionality experiment with the very useful &lt;strong&gt;XLConnect&lt;/strong&gt; package in Packages. Read the documentation on &lt;a href=&#34;http://cran.r-project.org/web/packages/XLConnect/index.html&#34;&gt;CRAN&lt;/a&gt;. This adds a lot of functionality in working with Excel files in R.&lt;/li&gt;
+&lt;li&gt;See the R-bloggers &lt;a href=&#34;http://www.r-bloggers.com/read-excel-files-from-r/&#34;&gt;overview&lt;/a&gt; article on the range of packages for working with Excel files.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Paul Oldham&lt;/li&gt;
+&lt;li&gt;Updated 13/05/2015&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
     </item>
     
   </channel>

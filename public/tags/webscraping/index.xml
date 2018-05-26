@@ -1,25 +1,429 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Webscraping on Paul Oldham&#39;s Blog</title>
-    <link>https://www.pauloldham.net/tags/webscraping/</link>
-    <description>Recent content in Webscraping on Paul Oldham&#39;s Blog</description>
+    <title>Webscraping on Paul Oldham&#39;s Analytics Blog</title>
+    <link>/tags/webscraping/</link>
+    <description>Recent content in Webscraping on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Mon, 08 Jan 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://www.pauloldham.net/tags/webscraping/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/webscraping/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Dr. Evil meets the robotstxt package</title>
-      <link>https://www.pauloldham.net/using-robotstxt-in-r/</link>
+      <link>/using-robotstxt-in-r/</link>
       <pubDate>Mon, 08 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/using-robotstxt-in-r/</guid>
-      <description>I am fairly new to webscraping in R using rvest and one question is whether a site gives permission for scraping. This information is often contained in the robots.txt file on a website. So, I’m briefly going to explore the ROpenSci robotstxt package by Peter Meissner. robotstxt provides easy access to the robots.txt file for a domain from R.
-I’m slowly working on a new R data package for underwater geographic feature names as part of a Norwegian Research Council funded project biospolar on innovation involving biodiversity in marine polar areas.</description>
+      <guid>/using-robotstxt-in-r/</guid>
+      <description>&lt;p&gt;I am fairly new to webscraping in R using &lt;a href=&#34;https://github.com/hadley/rvest&#34;&gt;rvest&lt;/a&gt; and one question is whether a site gives permission for scraping. This information is often contained in the robots.txt file on a website. So, I’m briefly going to explore the &lt;a href=&#34;https://ropensci.org/&#34;&gt;ROpenSci&lt;/a&gt; &lt;a href=&#34;https://github.com/ropenscilabs/robotstxt&#34;&gt;robotstxt&lt;/a&gt; package by &lt;a href=&#34;https://github.com/petermeissnerpackage&#34;&gt;Peter Meissner&lt;/a&gt;. &lt;a href=&#34;https://github.com/ropenscilabs/robotstxt&#34;&gt;robotstxt&lt;/a&gt; provides easy access to the robots.txt file for a domain from R.&lt;/p&gt;
+&lt;p&gt;I’m slowly working on a new R data package for underwater geographic feature names as part of a Norwegian Research Council funded project &lt;code&gt;biospolar&lt;/code&gt; on innovation involving biodiversity in marine polar areas. One of the main data sources for the package is the &lt;a href=&#34;https://www.gebco.net/data_and_products/undersea_feature_names/&#34;&gt;General Bathymetric Chart of the Oceans or GEBCO Gazeteer&lt;/a&gt;. I’m also going to be bringing in data from the &lt;a href=&#34;https://vents-data.interridge.org/&#34;&gt;Interridge database of hydrothermal vents&lt;/a&gt; and so wanted to understand whether I am just free to go ahead.&lt;/p&gt;
+&lt;p&gt;The robots.txt content is advisory, and well we could always choose to be Dr. Evil. If my wife would let me have a cat it would definitely be called Mr. Bigglesworth. But it strikes me that building a package for a data source that tries to prohibit scraping might not be a brilliant idea.&lt;/p&gt;
+&lt;p&gt;There are a bunch of functions in the &lt;code&gt;robotstxt&lt;/code&gt; package but I’m just going to use the main one &lt;code&gt;robotstxt()&lt;/code&gt;. Take a look at the &lt;a href=&#34;https://cran.r-project.org/web/packages/robotstxt/vignettes/using_robotstxt.html&#34;&gt;vignette&lt;/a&gt; for more information. For a very quick check on whether scraping on a path is allowed try the &lt;code&gt;paths_allowed()&lt;/code&gt; function. I’ll come back to that at the end.&lt;/p&gt;
+&lt;p&gt;The first place I am going to look is the main GEBCO domain.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(robotstxt)
+gebco &amp;lt;- robotstxt(&amp;quot;https://www.gebco.net&amp;quot;)
+gebco&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## $domain
+## [1] &amp;quot;https://www.gebco.net&amp;quot;
+## 
+## $text
+## [1] &amp;quot;Sitemap: https://www.gebco.net/sitemap.xml \r\n\r\nUser-agent: *\r\nHost: www.gebco.net\r\nDisallow: /cgi-bin/\r\nDisallow: /perl/\r\nDisallow: /css/\r\nDisallow: /js/\r\nDisallow: /_mm/\r\nDisallow: /_notes/\r\n\n[... 36 lines omitted ...]&amp;quot;
+## 
+## $bots
+## [1] &amp;quot;*&amp;quot;                &amp;quot;Googlebot&amp;quot;        &amp;quot;Googlebot-Image&amp;quot; 
+## [4] &amp;quot;Googlebot-Mobile&amp;quot;
+## 
+## $comments
+## [1] line    comment
+## &amp;lt;0 rows&amp;gt; (or 0-length row.names)
+## 
+## $permissions
+##                         field useragent     value
+## 1                    Disallow         * /cgi-bin/
+## 2                    Disallow         *    /perl/
+## 3                    Disallow         *     /css/
+## 4                    Disallow         *      /js/
+## 5                    Disallow         *     /_mm/
+## 6                    Disallow         *  /_notes/
+## 7                                                
+## 8 [...  31 items omitted ...]                    
+## 
+## $crawl_delay
+## [1] field     useragent value    
+## &amp;lt;0 rows&amp;gt; (or 0-length row.names)
+## 
+## $host
+##   field useragent         value
+## 1  Host         * www.gebco.net
+## 
+## $sitemap
+##     field useragent                             value
+## 1 Sitemap         * https://www.gebco.net/sitemap.xml
+## 
+## $other
+## [1] field     useragent value    
+## &amp;lt;0 rows&amp;gt; (or 0-length row.names)
+## 
+## $robexclobj
+## &amp;lt;Robots Exclusion Protocol Object&amp;gt;
+## $check
+## function (paths = &amp;quot;/&amp;quot;, bot = &amp;quot;*&amp;quot;) 
+## {
+##     spiderbar::can_fetch(obj = self$robexclobj, path = paths, 
+##         user_agent = bot)
+## }
+## &amp;lt;bytecode: 0x7fe14a9149f0&amp;gt;
+## &amp;lt;environment: 0x7fe14a914088&amp;gt;
+## 
+## attr(,&amp;quot;class&amp;quot;)
+## [1] &amp;quot;robotstxt&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This returns a list from the robots txt where the main bit I am interested in is the data frame under gebco$permissions.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;field&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;useragent&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;*&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/cgi-bin/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;*&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/perl/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;*&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/css/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;*&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/js/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;*&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/_mm/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;*&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/_notes/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;*&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/_baks/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;*&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/MMWIP/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/cgi-bin/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/perl/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/css/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/js/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/_mm/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/_notes/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/_baks/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/MMWIP/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/*templates&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;*/log.gif&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/*_baks&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/*_notes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/js&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;*.csi&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;*.vcf&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot-Image&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/cgi-bin/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot-Image&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/perl/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot-Image&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/css/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot-Image&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/js/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot-Image&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/_mm/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot-Image&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/_notes/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot-Image&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/_baks/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot-Image&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/MMWIP/&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot-Image&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;*/log.gif&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot-Mobile&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/*templates&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot-Mobile&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;*/log.gif&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot-Mobile&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/*_baks&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Disallow&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Googlebot-Mobile&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;/*_notes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;What is of interest here are the entries under Value which can be a bit difficult to interpret. With the help of the handy &lt;a href=&#34;https://en.wikipedia.org/wiki/Robots_exclusion_standard&#34;&gt;Wikipedia article on the Robots Exclusion Standard&lt;/a&gt; I can see that:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Disallow + *&lt;/code&gt; means to stay out of the website altogether.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Disallow + /xyz&lt;/code&gt; means to stay out of the specific directories.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Disallow Googlebot&lt;/code&gt; means that the named bot should stay out of either the website or (as in this case) specific directories. Note that Googlebot appears to be in the naughty seat because the site is more specific about what it should stay out of while others would be free to enter?&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;However, the GEBCO data files that I am interested in are not hosted on the gebco.net domain but on the &lt;a href=&#34;https://www.ngdc.noaa.gov/&#34;&gt;NOAA National Centers for Environmental Information domain&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;noaa &amp;lt;- robotstxt(domain = &amp;quot;https://www.ngdc.noaa.gov&amp;quot;)
+noaa&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## $domain
+## [1] &amp;quot;https://www.ngdc.noaa.gov&amp;quot;
+## 
+## $text
+## [1] &amp;quot;User-agent: *\nCrawl-delay: 60\nDisallow: /cgi-bin\nDisallow: /dmsp/cgi-bin\nDisallow: /dmsp/data\nDisallow: /dmsp/include\nDisallow: /dmsp/protected\nDisallow: /eog\nDisallow: /geomag/cdroms\nDisallow: /geomag/data\n\n[... 67 lines omitted ...]&amp;quot;
+## 
+## $bots
+## [1] &amp;quot;*&amp;quot;                                                                                            
+## [2] &amp;quot;LinkChecker&amp;quot;                                                                                  
+## [3] &amp;quot;siteimprove&amp;quot;                                                                                  
+## [4] &amp;quot;Mozilla/5.0(compatible;MSIE10.0;WindowsNT6.1;Trident/6.0)LinkCheckbySiteimprove.com&amp;quot;          
+## [5] &amp;quot;Mozilla/5.0(compatible;MSIE10.0;WindowsNT6.1;Trident/6.0)SiteCheck-sitecrawlbySiteimprove.com&amp;quot;
+## [6] &amp;quot;HTMLValidatorbysiteimprove.com/1.3&amp;quot;                                                           
+## 
+## $comments
+## [1] line    comment
+## &amp;lt;0 rows&amp;gt; (or 0-length row.names)
+## 
+## $permissions
+##                         field useragent           value
+## 1                    Disallow         *        /cgi-bin
+## 2                    Disallow         *   /dmsp/cgi-bin
+## 3                    Disallow         *      /dmsp/data
+## 4                    Disallow         *   /dmsp/include
+## 5                    Disallow         * /dmsp/protected
+## 6                    Disallow         *            /eog
+## 7                                                      
+## 8 [...  73 items omitted ...]                          
+## 
+## $crawl_delay
+##         field useragent value
+## 1 Crawl-delay         *    60
+## 
+## $host
+## [1] field     useragent value    
+## &amp;lt;0 rows&amp;gt; (or 0-length row.names)
+## 
+## $sitemap
+## [1] field     useragent value    
+## &amp;lt;0 rows&amp;gt; (or 0-length row.names)
+## 
+## $other
+## [1] field     useragent value    
+## &amp;lt;0 rows&amp;gt; (or 0-length row.names)
+## 
+## $robexclobj
+## &amp;lt;Robots Exclusion Protocol Object&amp;gt;
+## $check
+## function (paths = &amp;quot;/&amp;quot;, bot = &amp;quot;*&amp;quot;) 
+## {
+##     spiderbar::can_fetch(obj = self$robexclobj, path = paths, 
+##         user_agent = bot)
+## }
+## &amp;lt;bytecode: 0x7fe14a9149f0&amp;gt;
+## &amp;lt;environment: 0x7fe14c9fefe0&amp;gt;
+## 
+## attr(,&amp;quot;class&amp;quot;)
+## [1] &amp;quot;robotstxt&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The NOAA robotstxt provides some different information. For example, NOAA specifies a crawl delay of 60 seconds which tells me to build in a delay of 60 seconds to a call.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;noaa$text&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## User-agent: *
+## Crawl-delay: 60
+## Disallow: /cgi-bin
+## Disallow: /dmsp/cgi-bin
+## Disallow: /dmsp/data
+## Disallow: /dmsp/include
+## Disallow: /dmsp/protected
+## Disallow: /eog
+## Disallow: /geomag/cdroms
+## Disallow: /geomag/data
+## Disallow: /geomag/EMM/data
+## Disallow: /geomag/pmag/datafiles
+## Disallow: /geomag/WMM/data
+## Disallow: /globe
+## Disallow: /hazard/data
+## Disallow: /hazard/img 
+## Disallow: /IAGA/cgi-bin
+## Disallow: /idb
+## Disallow: /ionosonde
+## Disallow: /mgg/cgi-bin
+## Disallow: /mgg/curator/data
+## Disallow: /mgg/curator/userfiles
+## Disallow: /mgg/dat
+## Disallow: /mgg/ecs/data
+## Disallow: /mgg/gdas/data
+## Disallow: /mgg/geology/data
+## Disallow: /mgg/geology/odp/data
+## Disallow: /mgg/grids/data
+## Disallow: /mgg/oracle
+## Disallow: /mgg/tmp
+## Disallow: /mgg/trk
+## Disallow: /ngdc/cgi-bin
+## Disallow: /ngdc/hn
+## Disallow: /ngdc/Counter
+## Disallow: /ngdc/NOAAServer/adm
+## Disallow: /ngdc/NOAAServer/converters
+## Disallow: /ngdc/NOAAServer/gif
+## Disallow: /ngdc/NOAAServer/java
+## Disallow: /ngdc/NOAAServer/lib
+## Disallow: /ngdc/NOAAServer_N
+## Disallow: /ngdc/Store
+## Disallow: /nmmr
+## Disallow: /nndc
+## Disallow: /paleo
+## Disallow: /riwebapp/rest
+## Disallow: /seg/cgi-bin
+## Disallow: /stp/bin
+## Disallow: /stp/cgi-bin
+## Disallow: /stp/drap/data
+## Disallow: /stp/include
+## Disallow: /stp/image
+## Disallow: /stp/images
+## Disallow: /stp/include
+## Disallow: /stp/iono/drap
+## Disallow: /stp/iono/ustec/products
+## Disallow: /stp/satellite/poes/dataaccess.html
+## Disallow: /stp/satellite/goes/dataaccess.html
+## Disallow: /sxi/servlet/sxibrowse
+## Disallow: /sxi/servlet/sximovie
+## Disallow: /sxi/servlet/sxisearch
+## Disallow: /stp/IONO/ionosonde
+## Disallow: /thredds
+## Disallow: /wdc/cgi-bin
+## 
+## 
+## User-agent: LinkChecker
+## Disallow:
+## 
+## User-agent: siteimprove
+## Disallow: /
+## User-agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0) LinkCheck by Siteimprove.com
+## Disallow: /
+## User-agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0) SiteCheck-sitecrawl by Siteimprove.com
+## Disallow: /
+## User-agent: HTML Validator by siteimprove.com/1.3
+## Disallow: /&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We then see a list of disallowed directories and in this case I am interested in the &lt;code&gt;https://www.ngdc.noaa.gov/gazetteer/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The dir I am interested in for the package is not on the list so I think I am free to go ahead… yay!&lt;/p&gt;
+&lt;p&gt;If I wanted to do this more quickly I would use the &lt;code&gt;paths_allowed()&lt;/code&gt; function.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;paths_allowed(&amp;quot;https://www.ngdc.noaa.gov/gazetteer/&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] TRUE&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So, there we have it. If we prefer to be good web scraping citizens rather than the Dr. Evil of web scraping in R then the &lt;code&gt;robotstxt&lt;/code&gt; package will help us out. On the other hand we could just be evil and see what happens. I’m off to stroke Mr. Bigglesworth.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

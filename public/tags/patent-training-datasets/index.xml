@@ -1,26 +1,64 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Patent Training Datasets on Paul Oldham&#39;s Blog</title>
-    <link>https://www.pauloldham.net/tags/patent-training-datasets/</link>
-    <description>Recent content in Patent Training Datasets on Paul Oldham&#39;s Blog</description>
+    <title>Patent Training Datasets on Paul Oldham&#39;s Analytics Blog</title>
+    <link>/tags/patent-training-datasets/</link>
+    <description>Recent content in Patent Training Datasets on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Fri, 07 Aug 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://www.pauloldham.net/tags/patent-training-datasets/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/patent-training-datasets/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Patent Datasets</title>
-      <link>https://www.pauloldham.net/patent-datasets/</link>
+      <link>/patent-datasets/</link>
       <pubDate>Fri, 07 Aug 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/patent-datasets/</guid>
-      <description>One problem for people seeking to learn patent analytics is a lack of access to patent data from different sources.
-In this article I introduce the patent datasets developed for the WIPO Open Source Patent Analytics Project as training sets for patent analytics. The datasets will be used in the walkthroughs. The datasets will grow over time but we will briefly introduce them and explain how to access them.
-The datasets are housed at the project GitHub repository.</description>
+      <guid>/patent-datasets/</guid>
+      <description>&lt;!---update the datasets locations---&gt;
+&lt;p&gt;One problem for people seeking to learn patent analytics is a lack of access to patent data from different sources.&lt;/p&gt;
+&lt;p&gt;In this article I introduce the patent datasets developed for the &lt;a href=&#34;https://github.com/wipo-analytics&#34;&gt;WIPO Open Source Patent Analytics Project&lt;/a&gt; as training sets for patent analytics. The datasets will be used in the walkthroughs. The datasets will grow over time but we will briefly introduce them and explain how to access them.&lt;/p&gt;
+&lt;p&gt;The datasets are housed at the project &lt;a href=&#34;https://github.com/wipo-analytics/opensource-patent-analytics/tree/master/2_datasets&#34;&gt;GitHub repository&lt;/a&gt;. To download individual files click on the link and then select raw to download the file.&lt;/p&gt;
+&lt;div id=&#34;the-datasets&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The datasets&lt;/h2&gt;
+&lt;p&gt;The datasets are intended to illustrate the range of possibilities for patent data including some of the challenges that may be encountered in cleaning and analysing patent data. They are also drawn from different sources.&lt;/p&gt;
+&lt;div id=&#34;pizza-patent-datasets&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Pizza patent datasets&lt;/h3&gt;
+&lt;p&gt;Almost everyone likes pizza and it is easy to search a patent database for the term “pizza”. It is also an area of patent activity that encompasses a wide range of technologies such as pizza ovens, pizza boxes, pizza cutters and pizza toppings etc. It is therefore useful for demonstrating ways of interrogating patent data for particular topics.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;code&gt;pizza_small&lt;/code&gt; is a very small 26 row dataset created by downloading the first page of results from the &lt;a href=&#34;http://worldwide.espacenet.com/?locale=en_EP&#34;&gt;European Patent Office espacenet database&lt;/a&gt; for a smart search on “pizza”. It’s a quick and easy test dataset.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pizza_medium&lt;/code&gt; was created from a sample of data from a search of the &lt;a href=&#34;http://www.wipo.int/patentscope/en/&#34;&gt;WIPO Patentscope database&lt;/a&gt; for the term “pizza” and contains 9,996 rows of data. It is intended to illustrate the data format from Patentscope and to allow work on a medium sized dataset. Note that the format varies from the espacenet format and presents different challenges. An important feature of Patentscope data from a statistical standpoint is that the field marked &lt;code&gt;publication_number&lt;/code&gt; in the original data lacks a two letter kind code and is therefore an &lt;code&gt;application_number&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;pizza_medium_clean&lt;/code&gt; dataset is a precleaned version of the &lt;code&gt;pizza_medium&lt;/code&gt; dataset. Specifically, the applicants and inventors field have already been cleaned along with corrupted characters and other common cleaning tasks. This makes it easier to work with the data and this dataset is the core dataset in the Manual. As above, note that the Patentscope publication_number field more properly refers to an application number in the absence of a kind code.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pizza_sliced&lt;/code&gt; is a set of five .csv files for a search of pizza on &lt;a href=&#34;http://worldwide.espacenet.com/searchResults?ST=singleline&amp;amp;locale=en_EP&amp;amp;submitted=true&amp;amp;DB=worldwide.espacenet.com&amp;amp;query=pizza&amp;amp;Submit=Search&#34;&gt;espacenet&lt;/a&gt;. It is designed to illustrate issues involved in loading multiple files into R. It also illustrates problems with character corruption and the importance of pre-cleaning data before analysis.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pizza_lens_1000&lt;/code&gt; is a raw dataset of 1000 records including the term pizza downloaded from &lt;a href=&#34;https://www.lens.org/lens/&#34;&gt;The Lens&lt;/a&gt; database. The dataset has not been cleaned.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;patent-landscape-reports-datasets&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Patent Landscape Reports datasets&lt;/h3&gt;
+&lt;p&gt;Three datasets are drawn from the &lt;a href=&#34;http://www.wipo.int/patentscope/en/programs/patent_landscapes/&#34;&gt;WIPO Patent Landscape Reports&lt;/a&gt;. The datasets address different topics, present a variety of fields and formats and are different sizes. Each dataset is linked to a detailed patent landscape report that provides an insight into approaches to patent analytics.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;code&gt;ewaste&lt;/code&gt; presents the results of research for a &lt;a href=&#34;http://www.wipo.int/patentscope/en/programs/patent_landscapes/reports/ewaste.html&#34;&gt;report&lt;/a&gt; on patent activity for electronic waste recycling and its implications for developing countries.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;solar_cooking&lt;/code&gt; presents the data supporting a &lt;a href=&#34;http://www.wipo.int/patentscope/en/programs/patent_landscapes/reports/solar_cooking.html&#34;&gt;report&lt;/a&gt; on technologies that use solar energy as the source for cooking and pasteurizing food.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ritonavir&lt;/code&gt; presents the data for a patent &lt;a href=&#34;http://www.wipo.int/patentscope/en/programs/patent_landscapes/reports/ritonavir.html&#34;&gt;report&lt;/a&gt; on patent activity for the HIV antiretroviral drug Ritonavir in the field of pharmaceuticals. The dataset illustrates specific activity around issues such as dosage and also the problem of ‘evergreening’ in patent activity.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;other-datasets&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Other datasets&lt;/h3&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;code&gt;wipo&lt;/code&gt; is a single Excel sheet of data on trends in patent applications and growth rates from the &lt;a href=&#34;http://www.wipo.int/ipstats/en/wipi/&#34;&gt;WIPO World Intellectual Property Indicators - 2014 Edition&lt;/a&gt;. The data is used for simple graphing in tools such as R and illustrates the need to skip rows when reading data into analytics tools.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;WIPO_sequence_data&lt;/code&gt;. This dataset contains a small sample of the sequence data from the year 2000 available free of charge from the &lt;a href=&#34;https://patentscope.wipo.int/search/en/sequences.jsf&#34;&gt;WIPO Patentscope database&lt;/a&gt;. This dataset can be used to explore analysis of patent sequence data.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/poldham/opensource-patent-analytics/tree/master/2_datasets/synbio_patents&#34;&gt;Synthetic biology&lt;/a&gt;. This is a sample of data from Thomson Innovation developed by Paul Oldham for research on patent activity involving synthetic biology. The data has been extensively cleaned in VantagePoint from Search Technology Inc. and is intended to illustrate the use of data from a commercial patent database.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;round-up&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Round Up&lt;/h3&gt;
+&lt;p&gt;The datasets section of the project provides a series of useful training sets from a variety of sources and displaying a variety of features. These are open access datasets that can be used to test different approaches but please credit their sources. More datasets may be added to the online version of the Manual in due course. We are particularly interested in sample data from STN, QuestelOrbit, PATSTAT or other data providers that can be used as training sets.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
     </item>
     
   </channel>

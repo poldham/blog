@@ -130,7 +130,7 @@ Below we will briefly show how to use the `placement`, `ggmap` and newer `google
 
 Next let's take a quick look at the source data. When we send the addresses to the Google Maps API with `placement` it will return the original search terms in a column called `locations`. To make our life easier we renamed the original column in our source dataset. Note that the records field refers to the number of publications associated with an address and will allow us to size dots on any map we produce with the results. We can import the data directly from Github. 
 
-```{r import_affiliation, eval=FALSE}
+```{r import_affiliation, eval=FALSE, echo=TRUE}
 affiliation_records <- read_csv("https://github.com/wipo-analytics/data-handbook/raw/master/affiliation_records.csv")
 ```
 

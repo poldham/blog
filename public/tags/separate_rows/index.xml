@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Separate_rows on Paul Oldham&#39;s Blog</title>
+    <title>Separate_rows on Paul Oldham&#39;s Analytics Blog</title>
     <link>/tags/separate_rows/</link>
-    <description>Recent content in Separate_rows on Paul Oldham&#39;s Blog</description>
+    <description>Recent content in Separate_rows on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Sat, 10 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/separate_rows/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/separate_rows/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,9 +18,127 @@
       <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>/dealing-with-concatenated-data-fields-in-r/</guid>
-      <description>In this post I want to talk about concateted fields… er what on earth are you talking about…. you know the spreadsheets or data frames with cells lumped together stuff, like this.
-INSERT concatenated
-tibble::tibble(messy = c(&amp;quot;this is not the messiest; only a man could be this messy&amp;quot;, &amp;quot;mess; in the world&amp;quot;, &amp;quot;it&amp;#39;s just; a; tribute; honestly&amp;quot;)) ## # A tibble: 3 x 1 ## messy ## &amp;lt;chr&amp;gt; ## 1 this is not the messiest; only a man could be this messy ## 2 mess; in the world ## 3 it&amp;#39;s just; a; tribute; honestly Or, if we wanted something a bit more real world we could take this list of author of scientific articles from south east asia working on marine organisms</description>
+      <description>&lt;p&gt;In this post I want to talk about concateted fields… er what on earth are you talking about…. you know the spreadsheets or data frames with cells lumped together stuff, like this.&lt;/p&gt;
+&lt;p&gt;INSERT concatenated&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tibble::tibble(messy = c(&amp;quot;this is not the messiest; only a man could be this messy&amp;quot;, &amp;quot;mess; in the world&amp;quot;, &amp;quot;it&amp;#39;s just; a; tribute; honestly&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 1
+##   messy                                                   
+##   &amp;lt;chr&amp;gt;                                                   
+## 1 this is not the messiest; only a man could be this messy
+## 2 mess; in the world                                      
+## 3 it&amp;#39;s just; a; tribute; honestly&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Or, if we wanted something a bit more real world we could take this list of author of scientific articles from south east asia working on marine organisms&lt;/p&gt;
+&lt;p&gt;INSERT er… ugh. The messiness of this matters if you like counting stuff properly because your data just won’t count properly. I mean this is just totally wrong.&lt;/p&gt;
+&lt;p&gt;insert wrong count&lt;/p&gt;
+&lt;p&gt;So, this post is about lumped to&lt;/p&gt;
+&lt;p&gt;and the things that we need to think about along the way.&lt;/p&gt;
+&lt;p&gt;I commonly work with text fields in data from the scientific and patent literature. That means that I run into the problem with columns containing multiple items separated by a semi colon or a comma that are linked to a key field (such as an article DOI or a patent publication number).&lt;/p&gt;
+&lt;p&gt;In this short post, and in case anyone else is running into this problem, I want to quickly document a short function that will help to solve the problem.&lt;/p&gt;
+&lt;div id=&#34;the-problem&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The problem&lt;/h3&gt;
+&lt;p&gt;I am a big fan of the concept of Tidy Data as developed by Hadley Wickham in [this paper]. Tidy data basically means that each column of a data frame or table is for one category of data (such as authors) and each cell in the table contains one observation for that category (a single author name).&lt;/p&gt;
+&lt;p&gt;Real world data does not behave like this and we can see this in some data I have been working with from &lt;a href=&#34;&#34;&gt;Clarivate Analytics&lt;/a&gt; &lt;em&gt;Web of Science&lt;/em&gt; involving marine species for South East Asia.&lt;/p&gt;
+&lt;p&gt;We can see in this code that I have added the optional &lt;code&gt;readr&lt;/code&gt; &lt;code&gt;trimws&lt;/code&gt; argument. This is not the default when importing from the RStudio menu but can help you to avoid problems.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ✔ ggplot2 2.2.1.9000     ✔ purrr   0.2.4     
+## ✔ tibble  1.4.2          ✔ dplyr   0.7.5     
+## ✔ tidyr   0.8.0          ✔ stringr 1.3.1     
+## ✔ readr   1.1.1          ✔ forcats 0.3.0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Conflicts ───────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;wos_asean_marine &amp;lt;- read_csv(&amp;quot;~/Desktop/open_source_master/asean_report/data/wos_asean_marine_6659.csv&amp;quot;, trim_ws = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Parsed with column specification:
+## cols(
+##   .default = col_character(),
+##   times_cited = col_integer(),
+##   number_of_authors = col_integer(),
+##   publication_year = col_integer(),
+##   number_of_author_affiliations_name_only = col_integer()
+## )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## See spec(...) for full column specifications.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s pick a couple of columns.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test &amp;lt;- wos_asean_marine %&amp;gt;% select(authors_fullname_useme_updated, isi_unique_article_identifier)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;authors_fullname_useme_updated&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;isi_unique_article_identifier&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Dieu Tien Bui; Tien Dat Pham; Yoshino, Kunihiko&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000399475800004&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Arias, Cova R; Bakenhaster, Micah D; Bullard, Stephen A; Dang, Binh T; Halanych, Kenneth M; Orelis-Ribeiro, Raphael&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000398874800015&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Atopkin, D M; Beloded, A Yu; Besprozvannykh, V V; Ermolenko, A V; Ngo, H D; Van Ha, N; Van Tang, N&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000398794800008&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Dittrich, Carolin; Roedel, Mark-Oliver; Struck, Ulrich&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000399737500006&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Alfaro, Andrea C; Hilton, Zoe; King, Nick; Le, D Viet; Pook, Chris; Ragg, Norman L C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000396054700041&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Bui Huu Tai; Dan Thuy Hang; Hoang Le Tuan Anh; Hyun, Kim Seung; Kim, Sun Yeou; Kim, Young-A; Le Thi Huyen; Nguyen Van Dau; NGUYEN, Xuan Nhiem; PHAM, Van Cuong; Quang, Tran Hong; Subedi, Lalita; Van Kiem, Phan; Van Minh, Chau&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000397550400005&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Boyd, Claude E; Engle, Carole R; Hang Ngo Minh; Huynh Quoc Tinh; McNevin, Aaron; Paungkaew, Duangchai; Racine, Phoebe; Viriyatum, Rawee&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000398564700004&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;CUTTING, Simon Michael; HUYNH, Hong Anh; Le, P H; Nguyen, Anh H; Nguyen, Anh T V; Pham, Cuong K; Tran Thi Thanh Hien; Tuan-Nghia Phan; Van Doan, C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000398817000001&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Chavatte, Jean-Marc; Landau, Irene; Okumura, C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000395176100034&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Cuong, Nguyen Xuan; Nguyen Thi Phuong Chi; Nguyen Van Thanh; Nguyen, Hai-Dang; NGUYEN, Hoai Nam; NINH, Thi Ngoc; Pham Thi Mai Huong; Thung, Do-Cong; Van Kiem, Phan; Van Minh, Chau&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000395364000012&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;We can see here that the author field contains concatenated authors separated by a semicolon linked to the record id.&lt;/p&gt;
+&lt;p&gt;The first problem with this is that we can’t clean it or count it properly. The second problem is that if we export the separated data to a tool like Tableau, the id field that we may use to check our counts (in this case the isi_unique_article identifier) will not count properly for reasons that are less obvious ( and are because it is not reading them in properly).&lt;/p&gt;
+&lt;p&gt;In dealing with the first problem the &lt;code&gt;tidyr&lt;/code&gt; package and the &lt;code&gt;separate_rows&lt;/code&gt; function comes to our rescue. The second function is base R &lt;code&gt;trimws&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;separate_trim &amp;lt;- function(x, col = NULL, sep = NULL, id = NULL){
+  df &amp;lt;- x %&amp;gt;% tidyr::separate_rows(col, sep = &amp;quot;;&amp;quot;)
+  df[[col]] &amp;lt;- trimws(df[[col]], which = &amp;quot;both&amp;quot;)
+  df[[id]] &amp;lt;- trimws(df[[id]], which = &amp;quot;both&amp;quot;)
+  df
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This function takes the column in the dataset that we want to break into individual rows and then trims the possible white space at the front or the end of the name string.&lt;/p&gt;
+&lt;p&gt;Let’s look at the difference that this makes to the counts of the number of authors&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test %&amp;gt;% separate_rows(., &amp;quot;authors_fullname_useme_updated&amp;quot;, sep = &amp;quot;;&amp;quot;) %&amp;gt;% group_by(authors_fullname_useme_updated) %&amp;gt;% tally() %&amp;gt;% count()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 1
+##      nn
+##   &amp;lt;int&amp;gt;
+## 1 18623&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s do the same thing with trimmed data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test %&amp;gt;%
+  separate_trim(., &amp;quot;authors_fullname_useme_updated&amp;quot;, sep = &amp;quot;;&amp;quot;, id = &amp;quot;isi_unique_article_identifier&amp;quot;) %&amp;gt;%
+  group_by(authors_fullname_useme_updated) %&amp;gt;%
+  tally() %&amp;gt;% count()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 1
+##      nn
+##   &amp;lt;int&amp;gt;
+## 1 17625&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The difference is a spectacular 1000 names.&lt;/p&gt;
+&lt;p&gt;The ability to propertly deconcatenate a column with cells that contain multiple observations is not wildly exciting. However,&lt;/p&gt;
+&lt;/div&gt;
+</description>
     </item>
     
   </channel>

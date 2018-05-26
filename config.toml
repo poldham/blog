@@ -1,6 +1,6 @@
 baseurl = "https://www.pauloldham.net"
 languageCode = "en-us"
-title = "Paul Oldham's Blog"
+title = "Paul Oldham's Analytics Blog"
 theme = "hugo-lithium-theme"
 author = "Paul Oldham"
 discusShortname = "pauloldham"
@@ -22,6 +22,11 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 [[menu.main]]
     name = "@junglepaul"
     url = "https://twitter.com/junglepaul"
+[[menu.main]]
+    name = "r-bloggers"
+    url = "https://www.r-bloggers.com"    
+    
+     
 
 [params]
     description = "Patent Analytics, Bibliometrics and Data Visualization"
