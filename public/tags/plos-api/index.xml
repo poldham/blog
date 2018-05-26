@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Plos Api on Paul Oldham&#39;s Analytics Blog</title>
-    <link>/tags/plos-api/</link>
+    <link>https://www.pauloldham.net/tags/plos-api/</link>
     <description>Recent content in Plos Api on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Tue, 27 Oct 2015 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/tags/plos-api/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.pauloldham.net/tags/plos-api/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Exploring Scientific Literature with rplos</title>
-      <link>/rplos-walkthrough/</link>
+      <link>https://www.pauloldham.net/rplos-walkthrough/</link>
       <pubDate>Tue, 27 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>/rplos-walkthrough/</guid>
+      <guid>https://www.pauloldham.net/rplos-walkthrough/</guid>
       <description>&lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;In this chapter we look at the use of the &lt;a href=&#34;https://github.com/ropensci/rplos&#34;&gt;&lt;code&gt;rplos&lt;/code&gt;&lt;/a&gt; package from &lt;a href=&#34;https://ropensci.org&#34;&gt;rOpenSci&lt;/a&gt; to access the scientific literature from the &lt;a href=&#34;https://www.plos.org&#34;&gt;Public Library of Science&lt;/a&gt; using the &lt;a href=&#34;http://api.plos.org/solr/faq/&#34;&gt;PLOS Search API&lt;/a&gt;.&lt;/p&gt;

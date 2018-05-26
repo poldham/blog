@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R on Paul Oldham&#39;s Analytics Blog</title>
-    <link>/categories/r/</link>
+    <link>https://www.pauloldham.net/categories/r/</link>
     <description>Recent content in R on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Wed, 23 May 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.pauloldham.net/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Creating A Bibliography with rcrossref</title>
-      <link>/creating-a-bibliography-with-rcrossref/</link>
+      <link>https://www.pauloldham.net/creating-a-bibliography-with-rcrossref/</link>
       <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>/creating-a-bibliography-with-rcrossref/</guid>
+      <guid>https://www.pauloldham.net/creating-a-bibliography-with-rcrossref/</guid>
       <description>&lt;p&gt;In this article we will look at how to create a bibliography using the &lt;code&gt;rcrossref&lt;/code&gt; package in R with RStudio. To help us get started we will also look at how to reference any R packages that you use in your work with &lt;code&gt;knitr&lt;/code&gt;. The article is part of work in progress for the WIPO Handbook on Patent Analytics. Comments and suggestions are welcome.&lt;/p&gt;
 &lt;p&gt;Many of us will have spent an unreasonable amount of our time struggling to create bibliographies for a thesis, publication or reports. Software such as Endnote (Clarivate Analytics), Mendeley (Elsevier) and Zotero provide options for creating and managing bibliographic data. From experience, this generally involves masses of hours fiddling around with reference formats and so on before and after submission for publication.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.crossref.org/&#34;&gt;Crossref&lt;/a&gt; is a non-profit organisation that provides metadata on over 96 million publications in the form of information on the authors, titles, organisations, funding and so on. It is not a full text database but is increasingly providing access to abstracts and links to full texts.&lt;/p&gt;
@@ -57,12 +57,12 @@ library(rcrossref)&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;the-rcrossref-addin&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;The rcrossref Addin&lt;/h3&gt;
 &lt;p&gt;RStudio includes a button at the top of the screen called Addins. It’s here:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/rcrossref/addin.gif&#34; width=&#34;400px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/rcrossref/addin.gif&#34; width=&#34;400px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The standard version of rcrossref includes an addin that allows you to search for references using dois (document identifiers). I’ll come back to that. However, the add in for the development version does more thanks to great work by &lt;a href=&#34;https://github.com/haozhu233&#34;&gt;Hao Zhu&lt;/a&gt; of &lt;a href=&#34;https://github.com/haozhu233/giphyr&#34;&gt;giphyr&lt;/a&gt; fame. In response to a request on github &lt;a href=&#34;https://github.com/ropensci/rcrossref/issues/148&#34;&gt;here&lt;/a&gt;, Hao Zhu created a new version of the rcrossref addin that we will use now.&lt;/p&gt;
 &lt;p&gt;From the Addins menu select Add Rcrossref Citations and a panel will open up. In the development version we can type in the name of an article and then Add to My Citations and Done when we are finished as we see in this example. I’ll look up one I can remember.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/rcrossref/addarticle.gif&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/rcrossref/addarticle.gif&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can also use document identifiers. Here is one of mine on the completely bonkers subject of global climate engineering or geoengineering with doi: 10.1098/rsta.2014.0065.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/rcrossref/doi.gif&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/rcrossref/doi.gif&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The rcrossref add in creates a new file in your RStudio project directory (assuming you are using projects which is a very good thing), called crossref.bib. Once this file is created any time that you use the Addin it will add references rather than overwrite the file. So, this can be a very good way to build up a bibliography using rcrossref.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;adding-citations-in-rmarkdown&#34; class=&#34;section level3&#34;&gt;
@@ -139,10 +139,10 @@ library(rcrossref)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Counting Patent First Filings the Tidy Way with R</title>
-      <link>/counting-patent-first-filings/</link>
+      <link>https://www.pauloldham.net/counting-patent-first-filings/</link>
       <pubDate>Fri, 11 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>/counting-patent-first-filings/</guid>
+      <guid>https://www.pauloldham.net/counting-patent-first-filings/</guid>
       <description>&lt;p&gt;This article provides an in depth introduction to counting patent first filings or priority counts. It is a work in progress chapter for the WIPO Patent Analytics Handbook focusing on advanced patent analytics and builds on the introductory &lt;a href=&#34;https://wipo-analytics.github.io/&#34;&gt;WIPO Manual on Open Source Patent Analytics&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Counting first filings is an important subject for patent statistics because the first filing of a patent application marks the date that is closest to investment in research and development leading to the invention. For this reason it is widely used by economists and statisticians as a proxy indicator for the analysis of trends in science and technology.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; For patent applicants, the first filing, and the priority date that defines it, can be the difference between success and failure. An applicant with priority in the filing of an application for the same invention as their competitor will win in a dispute, and potentially win in multiple countries around the world. Millions, and in some cases hundreds of millions, of dollars may ride on who holds priority over an invention.&lt;/p&gt;
 &lt;p&gt;For such an important subject, remarkably little has been written on the practical aspects of counting patents by priority or, as is more intuitive, first filings. The international patent priority system has its origins in the &lt;a href=&#34;http://www.wipo.int/treaties/en/ip/paris/summary_paris.html&#34;&gt;1883 Paris Convention for the Protection of Industrial Property&lt;/a&gt; and basically means that inventors in contracting states to the Convention have a twelve month period from the date of filing their invention to file in other contracting states. During that period any filing in a contracting state will be treated as if it was filed on the same date as the original filing and will enjoy priority over other competing claims to the same invention.&lt;/p&gt;
@@ -194,7 +194,7 @@ numbers &amp;lt;- read_csv(&amp;quot;https://github.com/wipo-analytics/drones_da
 &lt;p&gt;We will only be working with the priority number and the application number, but as a general principle it is useful to understand the relationship between these fields which can be simply described as follows.&lt;/p&gt;
 &lt;p&gt;priority number &amp;gt; application number &amp;gt; publication number &amp;gt; family members&lt;/p&gt;
 &lt;p&gt;We can get a clearer understanding of the relationship between these numbers by looking at the front page of a patent document from our dataset using the popular &lt;a href=&#34;mailto:esp@cenet&#34;&gt;esp@cenet&lt;/a&gt; database. You can access this example &lt;a href=&#34;https://worldwide.espacenet.com/publicationDetails/biblio?FT=D&amp;amp;date=20151210&amp;amp;DB=EPODOC&amp;amp;locale=en_EP&amp;amp;CC=US&amp;amp;NR=2015357831A1&amp;amp;KC=A1&amp;amp;ND=4&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/priority/witricity.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/priority/witricity.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can see that the front page or biblio of a patent record contains a large amount of information. It is typically this information that is used to generate patent statistics. For our purposes we can see that the priority numbers field consists of one or more priority numbers. We might expect that there would only be one priority number as the original filing for the invention. However that is often not the case as we will discuss below.&lt;/p&gt;
 &lt;p&gt;From the front page we can see that if we proceed up from the priority numbers the first priority number in the list exactly matches the application number on the front page. This tells us that this is the first filing for this particular application. This application is then published as US2015357831A1.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; We can clearly see the relationship we described above&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;priority number &amp;gt; application number &amp;gt; publication number&lt;/code&gt;&lt;/p&gt;
@@ -224,7 +224,7 @@ numbers[1,] %&amp;gt;%
 ##   &amp;lt;chr&amp;gt;                    &amp;lt;chr&amp;gt;                   
 ## 1 US2016578323F 2016-09-20 US2016578323F 2016-09-20&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;However, the patent system is an international system. A patent applicant may choose to file for patent rights in up to 152 contracting parties to the &lt;a href=&#34;http://www.wipo.int/pct/en/&#34;&gt;Patent Cooperation Treaty&lt;/a&gt; (although applications in all member states is unusual). As the applications are submitted in multiple countries additional priority numbers will appear in the record. An example of this is provided below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/priority/japan.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/priority/japan.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In this case we can see that the earliest priority number is for Japan (JP20150122335 20150617) and the second priority number is for WO (the Patent Cooperation Treaty) and incorporates the country code of the first filing JP into the new priority number (WO2016JP67809 20160615). The Patent Cooperation Treaty is the vehicle through which applicants can submit applications in multiple countries. In this case we can see that the applicant from Japan has chosen to pursue an application in the United States using the Patent Cooperation Treaty (WO) resulting in the application number US201615322008 20160615 filed in 2016 that was then published as &lt;a href=&#34;https://worldwide.espacenet.com/publicationDetails/biblio?FT=D&amp;amp;date=20170518&amp;amp;DB=EPODOC&amp;amp;locale=en_EP&amp;amp;CC=US&amp;amp;NR=2017137104A1&amp;amp;KC=A1&amp;amp;ND=4&#34;&gt;US2017137104A1&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;From this we might be tempted to assume that the earliest priority will always appear at the front of the list of priorities. However, this assumption is not safe as we will see below where the first filing appears at the end of the list of priorities. We will be on safer ground by identifying the earliest date in the sequence.&lt;/p&gt;
 &lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
@@ -474,7 +474,7 @@ earliest&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let’s quickly graph this data. Here we are using the popular R graphing package ggplot2 to draw quick graphs of the data. To learn more about using &lt;code&gt;ggplot2&lt;/code&gt; try the excellent &lt;a href=&#34;http://www.cookbook-r.com/Graphs/&#34;&gt;R Graphics Cookbook by Winston Chang&lt;/a&gt; which is available in open access form online. A step by step walk through on using ggplot2 to visualise patent data is available in this &lt;a href=&#34;https://www.pauloldham.net/graphing-patent-data-with-ggplot2-part2/&#34;&gt;article&lt;/a&gt;. If you prefer using Excel or Tableau then write the file to a .csv and then open it in your tool of choice. You can do this simply with the following line of code.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;readr::write_csv(earliest_unique, &amp;quot;earliest_unique.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;ggplot2 is quite a lot more involved than working with Tableau, Excel or other tools but provides a powerful way to control graphing. Let’s take a quick look at the data.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note that graphs of priority data display a characteristic data cliff the closer that we move towards the present. This reflects the fact that patent applications are normally published at least 24 months after they were originally filed. This data cliff can easily mislead an audience into believing that interest in a technology has suddenly collapsed when in reality we are missing or only have partial data for the period. It is therefore important to pull the year range back to accommodate this. Depending on your data it is sensible to pull back the year by at least two years and possibly three years.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;earliest_unique %&amp;gt;% 
   select(-n) %&amp;gt;% 
@@ -485,7 +485,7 @@ earliest&lt;/code&gt;&lt;/pre&gt;
   ggplot(., aes(x = year, y = n)) +
   geom_line() +
   labs(title = &amp;quot;Trends in First Filings of Patent Applications for Drone Technology&amp;quot;, x = &amp;quot;priority year&amp;quot;, y = &amp;quot;first filings&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note the speed bump in the data around 2008 that is likely to reflect the impact of the financial crisis with filings relating to drone technology before accelerating rapidly in recent years.&lt;a href=&#34;#fn7&#34; class=&#34;footnoteRef&#34; id=&#34;fnref7&#34;&gt;&lt;sup&gt;7&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;In this dataset we can also gain an insight into the countries driving this trend by ranking them in a bar graph for the same period.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggthemes)
@@ -503,7 +503,7 @@ earliest_unique %&amp;gt;%
   theme_igray() +
   scale_fill_tableau(&amp;quot;tableau20&amp;quot;) +
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-05-11-counting-patent-first-filings_files/figure-html/echo-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-05-11-counting-patent-first-filings_files/figure-html/echo-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note here that the United States emerges first in the top 5 followed by Japan, France, Korea and the Patent Cooperation Treaty (WO). It is important to bear in mind here that WO records will typically be filed through national offices, although no priority number will be present, as we can see in the references to country codes inside the WO priority documents.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;earliest_unique %&amp;gt;% 
   filter(priority_country == &amp;quot;WO&amp;quot;) %&amp;gt;% 
@@ -640,197 +640,11 @@ results&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
-      <title>Useful Blogdown Tips</title>
-      <link>/useful-blogdown-tips/</link>
-      <pubDate>Sat, 07 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/useful-blogdown-tips/</guid>
-      <description>&lt;p&gt;Many of the things you need to know about Blogdown are in the excellent blogdown book… and there are lots of tutorials out there. Here I’m going to compile some of the various posts providing tips, and add some of my own.&lt;/p&gt;
-&lt;div id=&#34;transferring-to-blogdown&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Transferring to blogdown&lt;/h3&gt;
-&lt;p&gt;The blogdown book provides a very good description of how to move from Github or Wordpress to Blogdown with Netlify. But if you want to stay with Blogdown here are a few very useful posts:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;setting-up-redirects&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Setting up redirects&lt;/h3&gt;
-&lt;p&gt;If you get quite a bit of traffic on your old site then rather than simply delete it you will want to redirect. There seem to be two basic choices here:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;A hard permanent redirect&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;A soft (http refresh)&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I used this in the end as I was unsure about the permanent redirect&lt;/p&gt;
-&lt;p&gt;I used this option of the time being and found an easy to use Jekyll plugin&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Netlify provides guidance on setting up redirects&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;including-images&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Including Images&lt;/h3&gt;
-&lt;p&gt;I use the standard knitr approach of setting up the and then&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#knitr::include_graphics()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;However, this may not suit your needs and xxxx has come up with a very useful ADD IMAGES ADD IN&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;including-video&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Including Video&lt;/h3&gt;
-&lt;p&gt;This is a matter of becoming familiar with HUGO short codes. This will add a facebook video.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;twitter-cards&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Twitter cards&lt;/h3&gt;
-&lt;p&gt;Twitter cards were a mystery to me until I read the xxxx post by xxxx. Make sure that you follow the code carefully replacing the authors code with your own.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;making-giphy-images-work&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Making Giphy images work&lt;/h3&gt;
-&lt;p&gt;xxxx post used static images and I wanted to play withh animated gifs. I struggled a bit but in the end this worked for me.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;adding-a-bibliography&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Adding a bibliography&lt;/h3&gt;
-&lt;/div&gt;
-&lt;div id=&#34;register-your-blog-with-google&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Register your blog with Google&lt;/h3&gt;
-&lt;p&gt;Don’t forget to register your blog with Google (to ask them to index it or no one will find it). Also set up Google Analytics and add the code to XXXX so that you can see if and where people are visiting,&lt;/p&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Escaping concatenated data hell in R...deconcatenate and trim</title>
-      <link>/dealing-with-concatenated-data-fields-in-r/</link>
-      <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/dealing-with-concatenated-data-fields-in-r/</guid>
-      <description>&lt;p&gt;In this post I want to talk about concateted fields… er what on earth are you talking about…. you know the spreadsheets or data frames with cells lumped together stuff, like this.&lt;/p&gt;
-&lt;p&gt;INSERT concatenated&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tibble::tibble(messy = c(&amp;quot;this is not the messiest; only a man could be this messy&amp;quot;, &amp;quot;mess; in the world&amp;quot;, &amp;quot;it&amp;#39;s just; a; tribute; honestly&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 1
-##   messy                                                   
-##   &amp;lt;chr&amp;gt;                                                   
-## 1 this is not the messiest; only a man could be this messy
-## 2 mess; in the world                                      
-## 3 it&amp;#39;s just; a; tribute; honestly&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Or, if we wanted something a bit more real world we could take this list of author of scientific articles from south east asia working on marine organisms&lt;/p&gt;
-&lt;p&gt;INSERT er… ugh. The messiness of this matters if you like counting stuff properly because your data just won’t count properly. I mean this is just totally wrong.&lt;/p&gt;
-&lt;p&gt;insert wrong count&lt;/p&gt;
-&lt;p&gt;So, this post is about lumped to&lt;/p&gt;
-&lt;p&gt;and the things that we need to think about along the way.&lt;/p&gt;
-&lt;p&gt;I commonly work with text fields in data from the scientific and patent literature. That means that I run into the problem with columns containing multiple items separated by a semi colon or a comma that are linked to a key field (such as an article DOI or a patent publication number).&lt;/p&gt;
-&lt;p&gt;In this short post, and in case anyone else is running into this problem, I want to quickly document a short function that will help to solve the problem.&lt;/p&gt;
-&lt;div id=&#34;the-problem&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;The problem&lt;/h3&gt;
-&lt;p&gt;I am a big fan of the concept of Tidy Data as developed by Hadley Wickham in [this paper]. Tidy data basically means that each column of a data frame or table is for one category of data (such as authors) and each cell in the table contains one observation for that category (a single author name).&lt;/p&gt;
-&lt;p&gt;Real world data does not behave like this and we can see this in some data I have been working with from &lt;a href=&#34;&#34;&gt;Clarivate Analytics&lt;/a&gt; &lt;em&gt;Web of Science&lt;/em&gt; involving marine species for South East Asia.&lt;/p&gt;
-&lt;p&gt;We can see in this code that I have added the optional &lt;code&gt;readr&lt;/code&gt; &lt;code&gt;trimws&lt;/code&gt; argument. This is not the default when importing from the RStudio menu but can help you to avoid problems.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────────────── tidyverse 1.2.1 ──&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## ✔ ggplot2 2.2.1.9000     ✔ purrr   0.2.4     
-## ✔ tibble  1.4.2          ✔ dplyr   0.7.5     
-## ✔ tidyr   0.8.0          ✔ stringr 1.3.1     
-## ✔ readr   1.1.1          ✔ forcats 0.3.0&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## ── Conflicts ────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;wos_asean_marine &amp;lt;- read_csv(&amp;quot;~/Desktop/open_source_master/asean_report/data/wos_asean_marine_6659.csv&amp;quot;, trim_ws = TRUE)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Parsed with column specification:
-## cols(
-##   .default = col_character(),
-##   times_cited = col_integer(),
-##   number_of_authors = col_integer(),
-##   publication_year = col_integer(),
-##   number_of_author_affiliations_name_only = col_integer()
-## )&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## See spec(...) for full column specifications.&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Let’s pick a couple of columns.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test &amp;lt;- wos_asean_marine %&amp;gt;% select(authors_fullname_useme_updated, isi_unique_article_identifier)&lt;/code&gt;&lt;/pre&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th align=&#34;left&#34;&gt;authors_fullname_useme_updated&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;isi_unique_article_identifier&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Dieu Tien Bui; Tien Dat Pham; Yoshino, Kunihiko&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000399475800004&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Arias, Cova R; Bakenhaster, Micah D; Bullard, Stephen A; Dang, Binh T; Halanych, Kenneth M; Orelis-Ribeiro, Raphael&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000398874800015&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Atopkin, D M; Beloded, A Yu; Besprozvannykh, V V; Ermolenko, A V; Ngo, H D; Van Ha, N; Van Tang, N&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000398794800008&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Dittrich, Carolin; Roedel, Mark-Oliver; Struck, Ulrich&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000399737500006&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Alfaro, Andrea C; Hilton, Zoe; King, Nick; Le, D Viet; Pook, Chris; Ragg, Norman L C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000396054700041&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Bui Huu Tai; Dan Thuy Hang; Hoang Le Tuan Anh; Hyun, Kim Seung; Kim, Sun Yeou; Kim, Young-A; Le Thi Huyen; Nguyen Van Dau; NGUYEN, Xuan Nhiem; PHAM, Van Cuong; Quang, Tran Hong; Subedi, Lalita; Van Kiem, Phan; Van Minh, Chau&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000397550400005&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Boyd, Claude E; Engle, Carole R; Hang Ngo Minh; Huynh Quoc Tinh; McNevin, Aaron; Paungkaew, Duangchai; Racine, Phoebe; Viriyatum, Rawee&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000398564700004&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;CUTTING, Simon Michael; HUYNH, Hong Anh; Le, P H; Nguyen, Anh H; Nguyen, Anh T V; Pham, Cuong K; Tran Thi Thanh Hien; Tuan-Nghia Phan; Van Doan, C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000398817000001&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Chavatte, Jean-Marc; Landau, Irene; Okumura, C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000395176100034&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Cuong, Nguyen Xuan; Nguyen Thi Phuong Chi; Nguyen Van Thanh; Nguyen, Hai-Dang; NGUYEN, Hoai Nam; NINH, Thi Ngoc; Pham Thi Mai Huong; Thung, Do-Cong; Van Kiem, Phan; Van Minh, Chau&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000395364000012&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;We can see here that the author field contains concatenated authors separated by a semicolon linked to the record id.&lt;/p&gt;
-&lt;p&gt;The first problem with this is that we can’t clean it or count it properly. The second problem is that if we export the separated data to a tool like Tableau, the id field that we may use to check our counts (in this case the isi_unique_article identifier) will not count properly for reasons that are less obvious ( and are because it is not reading them in properly).&lt;/p&gt;
-&lt;p&gt;In dealing with the first problem the &lt;code&gt;tidyr&lt;/code&gt; package and the &lt;code&gt;separate_rows&lt;/code&gt; function comes to our rescue. The second function is base R &lt;code&gt;trimws&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;separate_trim &amp;lt;- function(x, col = NULL, sep = NULL, id = NULL){
-  df &amp;lt;- x %&amp;gt;% tidyr::separate_rows(col, sep = &amp;quot;;&amp;quot;)
-  df[[col]] &amp;lt;- trimws(df[[col]], which = &amp;quot;both&amp;quot;)
-  df[[id]] &amp;lt;- trimws(df[[id]], which = &amp;quot;both&amp;quot;)
-  df
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This function takes the column in the dataset that we want to break into individual rows and then trims the possible white space at the front or the end of the name string.&lt;/p&gt;
-&lt;p&gt;Let’s look at the difference that this makes to the counts of the number of authors&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test %&amp;gt;% separate_rows(., &amp;quot;authors_fullname_useme_updated&amp;quot;, sep = &amp;quot;;&amp;quot;) %&amp;gt;% group_by(authors_fullname_useme_updated) %&amp;gt;% tally() %&amp;gt;% count()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 1
-##      nn
-##   &amp;lt;int&amp;gt;
-## 1 18623&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Let’s do the same thing with trimmed data.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test %&amp;gt;%
-  separate_trim(., &amp;quot;authors_fullname_useme_updated&amp;quot;, sep = &amp;quot;;&amp;quot;, id = &amp;quot;isi_unique_article_identifier&amp;quot;) %&amp;gt;%
-  group_by(authors_fullname_useme_updated) %&amp;gt;%
-  tally() %&amp;gt;% count()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 1
-##      nn
-##   &amp;lt;int&amp;gt;
-## 1 17625&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The difference is a spectacular 1000 names.&lt;/p&gt;
-&lt;p&gt;The ability to propertly deconcatenate a column with cells that contain multiple observations is not wildly exciting. However,&lt;/p&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
       <title>An Update on Importing Excel Data in R</title>
-      <link>/importing-excel-data-into-r-updated/</link>
+      <link>https://www.pauloldham.net/importing-excel-data-into-r-updated/</link>
       <pubDate>Tue, 06 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/importing-excel-data-into-r-updated/</guid>
+      <guid>https://www.pauloldham.net/importing-excel-data-into-r-updated/</guid>
       <description>&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
@@ -849,17 +663,17 @@ results&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;import-directly-from-the-rstudio-menu&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Import Directly from the RStudio Menu&lt;/h2&gt;
 &lt;p&gt;The big change is that it is now very easy to import from Excel using the RStudio Menu: &lt;code&gt;File &amp;gt; Import Dataset &amp;gt; From Excel&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/excel/file_import.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/file_import.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Next, navigate to the file that you want to import and select it. You will then see something like this.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/excel/import_panel.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/import_panel.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;One point to bear in mind is that the import will often default to the name &lt;code&gt;dataset&lt;/code&gt; so that you need to make sure you enter a meaningful name for the dataset.&lt;/p&gt;
 &lt;p&gt;If your workbook has multiple sheets then you can choose a sheet number using &lt;code&gt;Sheet&lt;/code&gt;, choose the maximum number of rows or skip rows if you have a bunch of filler junk in the top rows. Regular Excel users may also want to select columns by Range.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/excel/import_panel_options.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/import_panel_options.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;You can also click on a column and choose to skip it or change the format.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/excel/skip_col.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/skip_col.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It is worth bearing in mind that if you are importing a number of worksheets you can easily lose track. I sometimes use the approach of copying the import chunk into an Rmarkdown document to keep track of what I am doing and where a file came from.&lt;/p&gt;
 &lt;p&gt;When copying chunks note the small clipboard icon in the top right above the chunk that will copy the chunk to the clipboard for pasting into the console or an R markdown code chunk to document your import steps for the future. My approach when working with multiple sheets is to create an R markdown file and copy and paste the import code into chunks that I then save. That allows “future me”, to borrow from Hadley Wickham, to understand where the datasets came from.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/excel/import_panel_chunk.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/import_panel_chunk.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;As we can see from importing the file behind the scenes RStudio is using the &lt;code&gt;readxl&lt;/code&gt; library to import the file.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;readxl&lt;/code&gt; will commonly generate warning messages during the import process. For example this dataset generated a long long string of warnings that looked like this.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1144,109 +958,11 @@ write_xlsx(tmp, &amp;quot;tmp.xlsx&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
-      <title>tidy text mining in parallel</title>
-      <link>/tidy-text-mining-in-parallel/</link>
-      <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tidy-text-mining-in-parallel/</guid>
-      <description>&lt;p&gt;I have been involved with text mining for quite a few years and I am a big fan of tidy text mining in R as popularised by Julia Silge and Daniel Robinson in &lt;a href=&#34;https://www.tidytextmining.com/&#34;&gt;Text Mining in R: A Tidy Approach&lt;/a&gt;. What I really like about tidy text mining is that we can keep track of the files where a word, a sentence or paragraph come from. This really matters when we want to join the results of tidy text mining to other data such as taxonomic information on species or to maps, or both. The transparency of the tidytext approach, when compared for example with machine learning approaches, also really appeals to me in terms of reproducibility and understandibility.&lt;/p&gt;
-&lt;p&gt;One of the big constraints with text mining in R (or Python) is that everything runs on a single core. This can result in long waits or crashes when working at the scale of a few thousand documents or more. So, I have been investigating possible solutions for text mining in parallel in R.&lt;/p&gt;
-&lt;p&gt;The story so far. I will try and highlight some useful tutorials that you may want to follow up on.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;doParallel &lt;a href=&#34;http://blog.aicry.com/r-parallel-computing-in-5-minutes/&#34;&gt;walk through&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;parallel&lt;/li&gt;
-&lt;li&gt;partools &lt;a href=&#34;https://matloff.wordpress.com/2015/08/05/partools-a-sensible-r-package-for-large-data-sets/&#34;&gt;walk through&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/vertica/DistributedR&#34;&gt;distributedR&lt;/a&gt; from Vertica Analytics&lt;/li&gt;
-&lt;li&gt;foreach&lt;/li&gt;
-&lt;li&gt;sparklyr &lt;a href=&#34;https://spark.rstudio.com/guides/textmining/&#34;&gt;walk through&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;multidplyr&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In this post I’m going to use Hadley Wickham’s &lt;a href=&#34;https://github.com/hadley/multidplyr&#34;&gt;multidplyr&lt;/a&gt; package for parallesing tidyverse code… since its a tidy approach that I am looking for. In exploring the options for parallelising text mining I’ve also found that this is an easy way in to exploring the issues and it works.&lt;/p&gt;
-&lt;div id=&#34;getting-started&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Getting Started&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/hadley/multidplyr&#34;&gt;multidplyr&lt;/a&gt; has not received a lot of attention compared with other tidyverse related packages and the last commit on Github was a year ago. This raises the question of whether HW is adopting an “if it ain’t broke don’t fix it” approach or whether it is unlikely to go further. Only Hadley can answer that question.&lt;/p&gt;
-&lt;p&gt;multidplyr is not on CRAN so we need to install from github&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;devtools&amp;quot;)
-devtools::install_github(&amp;quot;hadley/multidplyr&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We will also be needing some other packages&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;tidytext&amp;quot;)
-install.packages(&amp;quot;tidyverse&amp;quot;)
-install.packages(&amp;quot;readtext&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(multidplyr)
-library(tidytext)
-library(tidyverse)
-library(readtext)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Let’s work with some actual texts to illustrate. One challenge with R can be finding an easy way to read in texts… in this case a zipped file with a bunch of text files without unzipping the file first (as it may be huge). We can do this easily with &lt;a href=&#34;https://github.com/quanteda/readtext&#34;&gt;&lt;code&gt;readtext&lt;/code&gt;&lt;/a&gt; by Kenneth Benoit at my alma mater, the LSE.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;readtext::readtext()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If you receive an error through mixed encoding in the files the encoding argument will frequently address problems e.g encoding = “UTF8” and display a helpful message for the problem files. We are using text files here but the function also handles xml, pdf and word documents and is a good allround function.&lt;/p&gt;
-&lt;div id=&#34;a-cluster-in-one-line&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;A cluster in one line&lt;/h3&gt;
-&lt;p&gt;Multidplyr involves setting up a cluster and partitioning a data.frame into a &lt;code&gt;party_df&lt;/code&gt; before assigning packages, values and expressions to the nodes.&lt;/p&gt;
-&lt;p&gt;The first part of this process can be handled in one line with a set of inbuilt defaults,&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(multidplyr)
-test &amp;lt;- partition(full_texts)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If we now take a look at test2 we find that it is a &lt;code&gt;party_df&lt;/code&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;class(test)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Behind the scenes the call to partition creates a default cluster (7 nodes) and randomly assigns the rows to groups across the nodes in the cluster. The code below shows the default arguments with the call to cluster generating a default cluster with 7 nodes.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;partition(.data, ..., cluster = get_default_cluster())&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The next step involves assigning packages to the cluster and values or expressions. We can do this using the pipe.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test &amp;lt;- partition(full_texts) %&amp;gt;%
-  cluster_library(c(&amp;quot;tidyverse&amp;quot;, &amp;quot;tidytext&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;So, to get started with multidplyr we simply need the following lines of code.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;So, it is remarkably easy to set up. Next we need something to text mine the texts for. Here we will use a vector of country names.&lt;/p&gt;
-&lt;p&gt;THERE IS SOMETHING WRONG WITH THIS AS ONLY SHOWING 422 results suggesting it is only finding the first of the terms not all of them&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;country &amp;lt;- c(&amp;quot;brunei|cambodia|burma|indonesia|laos|lao|malaysia|philippines|singapore|thailand|vietnam&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We now pass this object to the nodes using &lt;code&gt;cluster_assign_value&lt;/code&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test &amp;lt;- partition(full_texts) %&amp;gt;%
-  cluster_library(c(&amp;quot;tidyverse&amp;quot;, &amp;quot;tidytext&amp;quot;)) %&amp;gt;%
-  cluster_assign_value(&amp;quot;country&amp;quot;, country)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We can now do a quick bit of text mining on the cluster. The question we will ask here is which of the documents contain one of our country names. We will use &lt;code&gt;str_detect&lt;/code&gt; from &lt;code&gt;stringr&lt;/code&gt; which will return a logical value that we will place in a new column called country. At the end of the process we will collect the results into a new data frame.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;start &amp;lt;- proc.time() # start timer
-test2 &amp;lt;- test %&amp;gt;%
-  mutate(text, country = str_detect(text, country)) %&amp;gt;% 
-  collect()
-time_taken &amp;lt;- proc.time() - start # calculate time
-time_taken&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Having loaded in our sample texts we will want to set up our local cluster. There are a number of steps to this and I am following this really useful post by &lt;a href=&#34;http://www.business-science.io/code-tools/2016/12/18/multidplyr.html&#34;&gt;Matt Dancho&lt;/a&gt; as the most useful of the walkthroughs I have found so far. You might also find this blog post by &lt;a href=&#34;http://blog.aicry.com/multidplyr-dplyr-meets-parallel-processing/index.html&#34;&gt;Adam Harasimowicz&lt;/a&gt; useful.&lt;/p&gt;
-&lt;p&gt;As explained in Matt Dancho’s post and the package vignette the basic steps are&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;Find out how many cores you have on your machine&lt;/li&gt;
-&lt;li&gt;Set up a local cluster&lt;/li&gt;
-&lt;li&gt;Partitition your data frame onto the cluster (a grouped_df)&lt;/li&gt;
-&lt;li&gt;Assign packages, functions, values and expressions to the nodes in the cluster&lt;/li&gt;
-&lt;li&gt;Run your code and collect the data&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Step 1: How many cores&lt;/p&gt;
-&lt;p&gt;Step 2: Set up a local cluster&lt;/p&gt;
-&lt;p&gt;You can use as many cores as you have available. But if you use all of them bear in mind that the machine may grind to a halt.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cluster &amp;lt;- multidplyr::create_cluster(cores = 6)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Step 3: Partition your data frame&lt;/p&gt;
-&lt;p&gt;Step 4: Assign Packages, Functions, Values and Expressions&lt;/p&gt;
-&lt;p&gt;You can chain the assignments together here we will break them up a bit&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;groupeddf %&amp;gt;%
-    multidplyr::cluster_library(&amp;quot;tidyverse&amp;quot;) %&amp;gt;%
-    multidplyr::cluster_library(&amp;quot;tidytext&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;It is often helpful to assign values to the nodes on the cluster&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt; groupeddf %&amp;gt;%
-    multidplyr::cluster_assign_value(value, as.name(value))&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;a-simpler-approach&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;A simpler approach&lt;/h3&gt;
-&lt;p&gt;In practice &lt;code&gt;multidplyr&lt;/code&gt; has some sensible defaults that makes using it more accessible.&lt;/p&gt;
-&lt;p&gt;We can combine the partition step and the cluster step into one line as follows. Note here that behind the scenes the call to partition will randomly partition the rows across nodes after creating a default cluster with 7 nodes.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test &amp;lt;- partition(full_texts, cluster = get_default_cluster())&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Dr. Evil meets the robotstxt package</title>
-      <link>/using-robotstxt-in-r/</link>
+      <link>https://www.pauloldham.net/using-robotstxt-in-r/</link>
       <pubDate>Mon, 08 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/using-robotstxt-in-r/</guid>
+      <guid>https://www.pauloldham.net/using-robotstxt-in-r/</guid>
       <description>&lt;p&gt;I am fairly new to webscraping in R using &lt;a href=&#34;https://github.com/hadley/rvest&#34;&gt;rvest&lt;/a&gt; and one question is whether a site gives permission for scraping. This information is often contained in the robots.txt file on a website. So, I’m briefly going to explore the &lt;a href=&#34;https://ropensci.org/&#34;&gt;ROpenSci&lt;/a&gt; &lt;a href=&#34;https://github.com/ropenscilabs/robotstxt&#34;&gt;robotstxt&lt;/a&gt; package by &lt;a href=&#34;https://github.com/petermeissnerpackage&#34;&gt;Peter Meissner&lt;/a&gt;. &lt;a href=&#34;https://github.com/ropenscilabs/robotstxt&#34;&gt;robotstxt&lt;/a&gt; provides easy access to the robots.txt file for a domain from R.&lt;/p&gt;
 &lt;p&gt;I’m slowly working on a new R data package for underwater geographic feature names as part of a Norwegian Research Council funded project &lt;code&gt;biospolar&lt;/code&gt; on innovation involving biodiversity in marine polar areas. One of the main data sources for the package is the &lt;a href=&#34;https://www.gebco.net/data_and_products/undersea_feature_names/&#34;&gt;General Bathymetric Chart of the Oceans or GEBCO Gazeteer&lt;/a&gt;. I’m also going to be bringing in data from the &lt;a href=&#34;https://vents-data.interridge.org/&#34;&gt;Interridge database of hydrothermal vents&lt;/a&gt; and so wanted to understand whether I am just free to go ahead.&lt;/p&gt;
 &lt;p&gt;The robots.txt content is advisory, and well we could always choose to be Dr. Evil. If my wife would let me have a cat it would definitely be called Mr. Bigglesworth. But it strikes me that building a package for a data source that tries to prohibit scraping might not be a brilliant idea.&lt;/p&gt;
@@ -1304,8 +1020,8 @@ gebco&lt;/code&gt;&lt;/pre&gt;
 ##     spiderbar::can_fetch(obj = self$robexclobj, path = paths, 
 ##         user_agent = bot)
 ## }
-## &amp;lt;bytecode: 0x7fbb2ad18df0&amp;gt;
-## &amp;lt;environment: 0x7fbb2ad18488&amp;gt;
+## &amp;lt;bytecode: 0x7fb767c2d1f0&amp;gt;
+## &amp;lt;environment: 0x7fb767c2c888&amp;gt;
 ## 
 ## attr(,&amp;quot;class&amp;quot;)
 ## [1] &amp;quot;robotstxt&amp;quot;&lt;/code&gt;&lt;/pre&gt;
@@ -1563,8 +1279,8 @@ noaa&lt;/code&gt;&lt;/pre&gt;
 ##     spiderbar::can_fetch(obj = self$robexclobj, path = paths, 
 ##         user_agent = bot)
 ## }
-## &amp;lt;bytecode: 0x7fbb2ad18df0&amp;gt;
-## &amp;lt;environment: 0x7fbb2d0193e0&amp;gt;
+## &amp;lt;bytecode: 0x7fb767c2d1f0&amp;gt;
+## &amp;lt;environment: 0x7fb764fc4be0&amp;gt;
 ## 
 ## attr(,&amp;quot;class&amp;quot;)
 ## [1] &amp;quot;robotstxt&amp;quot;&lt;/code&gt;&lt;/pre&gt;
@@ -1657,10 +1373,10 @@ noaa&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Creating an Infographic with infogram</title>
-      <link>/infographics/</link>
+      <link>https://www.pauloldham.net/infographics/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>/infographics/</guid>
+      <guid>https://www.pauloldham.net/infographics/</guid>
       <description>&lt;p&gt;In this article we will use RStudio to prepare patent data for visualisation in an infographic using the online software tool &lt;a href=&#34;https://infogram.com/?rc=paid0sem0branded0search0&amp;amp;gclid=EAIaIQobChMIw6KgvMiq2AIViLvtCh2fpgxhEAAYASAAEgKR2PD_BwE&#34;&gt;infogram&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Infographics are a popular way of presenting data in a way that is easy for a reader to understand without reading a long report. Infographics are well suited to presenting summaries of data with simple messages about key findings. A good infographic can encourage the audience to read a detailed report and is a tool for engagement with audiences during presentations of the findings of patent research.&lt;/p&gt;
 &lt;p&gt;Some patent offices have already been creating infographics as part of their reports to policy makers and other clients. The Instituto Nacional de Propiedade Industrial (INPI) in Brazil produces regular two page &lt;a href=&#34;http://www.inpi.gov.br/menu-servicos/informacao/radares-tecnologicos&#34;&gt;Technology Radar&lt;/a&gt; (Radar Tecnologico) consisting of charts and maps that briefly summarise more detailed research on subjects such as &lt;a href=&#34;http://www.inpi.gov.br/menu-servicos/arquivos-cedin/n08_radar_tecnologico_nano_residuos_versao_resumida_ingles_atualizada_20160122.pdf&#34;&gt;Nanotechnology in Waste Management&lt;/a&gt;. &lt;a href=&#34;http://www.wipo.int/patentscope/en/programs/patent_landscapes/&#34;&gt;WIPO Patent Landscape Reports&lt;/a&gt;, which go into depth on patent activity for a particular area, are accompanied by one page infographics that have proved very popular such as the infographic accompanying a recent report on &lt;a href=&#34;http://www.wipo.int/export/sites/www/patentscope/en/programs/patent_landscapes/reports/documents/assistivedevices_infographic.pdf&#34;&gt;assistive devices&lt;/a&gt;.&lt;/p&gt;
@@ -1819,7 +1535,7 @@ pizza_total &amp;lt;- rename(pizza_total, pubyear = publication_year, publicatio
 &lt;p&gt;Using the &lt;code&gt;qplot()&lt;/code&gt; function in &lt;code&gt;ggplot2&lt;/code&gt; we can now draw a quick line graph. Note that qplot() is unusual in R because the data (pizza_total) appears after the coordinates. We will specify that we want a line using &lt;code&gt;geom =&lt;/code&gt; (if geom is left out it will be a scatter plot). This will give us an idea of what our plot might look like in our infographic and actions we might want to take on the data.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
 qplot(x = pubyear, y = publications, data = pizza_total, geom = &amp;quot;line&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2016-04-20-infographics_files/figure-html/qplot-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2016-04-20-infographics_files/figure-html/qplot-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![](images_foot/infogram/fig1_infographic.png)---&gt;
 &lt;p&gt;The plot reveals a data cliff in recent years. This normally reflects a lack of data for the last 2-3 years as recent documents feed through the system en route to publication.&lt;/p&gt;
 &lt;p&gt;It is a good idea to remove the data cliff by cutting the data 2-3 years prior to the present. In some cases two years is sufficient, but 3 years is a good rule of thumb.&lt;/p&gt;
@@ -1881,7 +1597,7 @@ df1 &amp;lt;- select(pizza, publication_number, publication_year) %&amp;gt;% mut
     count(publication_year, wt = n) %&amp;gt;% rename(pubyear = publication_year, publications = nn) %&amp;gt;% 
     filter(pubyear &amp;gt;= 1990, pubyear &amp;lt;= 2012) %&amp;gt;% qplot(x = pubyear, y = publications, 
     data = ., geom = &amp;quot;line&amp;quot;) %&amp;gt;% print()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2016-04-20-infographics_files/figure-html/piped-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2016-04-20-infographics_files/figure-html/piped-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![](images_foot/infogram/fig2_infographic_qplot.png)---&gt;
 &lt;p&gt;In the standard code we typed &lt;code&gt;df&lt;/code&gt; nine times to arrive at the same result. Using pipes we typed df1 once. Of greater importance is that the use of pipes simplifies the structure of R code by introducing a basic “this” then “that” logic which makes it easier to understand.&lt;/p&gt;
 &lt;p&gt;One point to note about this code is that &lt;code&gt;qplot()&lt;/code&gt; requires us to name our data (in this case &lt;code&gt;df1&lt;/code&gt;). However, &lt;code&gt;df1&lt;/code&gt; is actually the final output of the code and does not exist as an input object before the final line is run. So, if we attempt to use &lt;code&gt;data = df1&lt;/code&gt; in &lt;code&gt;qplot()&lt;/code&gt; we will receive an error message. The way around this is to use &lt;code&gt;.&lt;/code&gt; in place of our data object. That way &lt;code&gt;qplot()&lt;/code&gt; will know we want to graph the outputs of the earlier code. Finally, we need to add an explicit call to &lt;code&gt;print()&lt;/code&gt; to display the graph (without this the code will work but we will not see the graph).&lt;/p&gt;
@@ -1908,7 +1624,7 @@ df2 &amp;lt;- select(pizza, publication_number, publication_year) %&amp;gt;% mut
 &lt;p&gt;Note that in this case the only change is that we need to explicitly include the reference to the df2 data frame as the data argument in the call to &lt;code&gt;qplot()&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
 qplot(x = pubyear, y = publications, data = df2, geom = &amp;quot;line&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2016-04-20-infographics_files/figure-html/df2_qplot-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2016-04-20-infographics_files/figure-html/df2_qplot-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;harmonising-data&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Harmonising data&lt;/h2&gt;
@@ -2415,17 +2131,17 @@ google_phrases&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Creating an infographic in infogr.am&lt;/h2&gt;
 &lt;p&gt;If you are starting this chapter here then download the datasets we will be using as a single zip file from the Manual repository &lt;a href=&#34;https://github.com/wipo-analytics/opensource-patent-analytics/blob/master/2_datasets/infographic/infographic.zip?raw=true&#34;&gt;here&lt;/a&gt; and then unzip the file.&lt;/p&gt;
 &lt;p&gt;We first need to sign up for a free account with &lt;a href=&#34;https://infogr.am/&#34;&gt;infogr.am&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/infogram/fig1_infogram_front.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/infogram/fig1_infogram_front.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We will then see a page with some sample infographics to provide ideas to get you started.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/infogram/fig2_infogram_login.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt; Click on one of the infograms with a graph such as Trends in Something and then click inside the graph box itself and select the edit button in the top right.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/infogram/fig3_infogram_findedit.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/infogram/fig2_infogram_login.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt; Click on one of the infograms with a graph such as Trends in Something and then click inside the graph box itself and select the edit button in the top right.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/infogram/fig3_infogram_findedit.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This will open up a data panel with the toy data displayed.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;images/infogram/fig4_infogram_datapanel.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We want to replace this data by choosing the upload button and selecting our &lt;code&gt;pizza_country_1990_2012.csv&lt;/code&gt; file.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/infogram/fig5_infogram_panelgraph.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/infogram/fig5_infogram_panelgraph.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We now have a decent looking graph for our country trends data where we can see the number of records per country and year by hovering over the relevant data points. While some of the countries with low frequency data are crunched at the bottom (and would be better displayed in a separate graph), hovering over the data or over a country name will display the relevant country activity. We will therefore live with this.&lt;/p&gt;
 &lt;p&gt;We now want to start adding story elements by clicking on the edit button in the title. Next we can start adding new boxes using the menu icons on the right. Here we have changed the title, added a simple body text for the data credit and then a quote from someone describing themselves as the Head of Pizza Analytics.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/infogram/fig6_infogram_paneltext.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/infogram/fig6_infogram_paneltext.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Next we need to start digging into the data using our IPC, applicants and phrases data.&lt;/p&gt;
 &lt;p&gt;To work with our IPC class data we will add a bar chart and load the data. To do this select the graph icon in the right and then Bar. Once again we will choose edit and then load our &lt;code&gt;pizza_ipcclass_1990_2012&lt;/code&gt; dataset. Then we can add a descriptive text box. We can then continue to add elements as follows:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
@@ -2456,10 +2172,10 @@ google_phrases&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Exploring Scientific Literature with rplos</title>
-      <link>/rplos-walkthrough/</link>
+      <link>https://www.pauloldham.net/rplos-walkthrough/</link>
       <pubDate>Tue, 27 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>/rplos-walkthrough/</guid>
+      <guid>https://www.pauloldham.net/rplos-walkthrough/</guid>
       <description>&lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;In this chapter we look at the use of the &lt;a href=&#34;https://github.com/ropensci/rplos&#34;&gt;&lt;code&gt;rplos&lt;/code&gt;&lt;/a&gt; package from &lt;a href=&#34;https://ropensci.org&#34;&gt;rOpenSci&lt;/a&gt; to access the scientific literature from the &lt;a href=&#34;https://www.plos.org&#34;&gt;Public Library of Science&lt;/a&gt; using the &lt;a href=&#34;http://api.plos.org/solr/faq/&#34;&gt;PLOS Search API&lt;/a&gt;.&lt;/p&gt;
@@ -2987,10 +2703,10 @@ library(swirl)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Accessing Patent Data with the Lens</title>
-      <link>/lens/</link>
+      <link>https://www.pauloldham.net/lens/</link>
       <pubDate>Sun, 26 Jul 2015 00:00:00 +0000</pubDate>
       
-      <guid>/lens/</guid>
+      <guid>https://www.pauloldham.net/lens/</guid>
       <description>&lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;In this article we provide a brief introduction to &lt;a href=&#34;https://www.lens.org/lens/&#34;&gt;The Lens&lt;/a&gt; patent database as a free source of data for patent analytics.&lt;/p&gt;
@@ -3000,9 +2716,9 @@ library(swirl)&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;getting-started&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Getting Started&lt;/h2&gt;
 &lt;p&gt;To get the most out of the Lens the first step is to sign up for an account from the front page.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/lens/fig1_front.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig1_front.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It is possible to begin searching directly from the front page. However, selecting the small button next to the search box takes you to the search controls.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/lens/fig2_controls.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig2_controls.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;As we can see we can use boolean queries, for searching a range of fields including the full text, title, abstract or claims (a major plus). We can also select one or multiple jurisdictions. In addition the results can be refined to patent applications or grants, and there are options for full text or one doc per family (which greatly reduces the number of results).&lt;/p&gt;
 &lt;p&gt;We used our standard query “pizza”, all jurisdictions, and one document per family. We turned stemming off.&lt;/p&gt;
 &lt;p&gt;Our search for pizza returned 13,714 families from a total of 29,617 publications containing the term in the full text. This approach assists with refining searches by reducing duplication.&lt;/p&gt;
@@ -3011,18 +2727,18 @@ library(swirl)&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Check the arrow next to Document as in the image below. When the mouse hovers over the arrow a menu will pop up. Choose &lt;code&gt;Top 10k Results&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;In the box displaying the name of the collection above the results press the + arrow to add the 10,000 documents to the Collection.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;/images/lens/fig3_addtocollection.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig3_addtocollection.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Once you understand this process it is easy to add documents to collections. One very nice feature of the Lens is that when a collection has been created we can share it with others using the &lt;code&gt;Share&lt;/code&gt; button. Users have the option of maintaining a private collection or publicly sharing. The URL for the collection we just generated is &lt;a href=&#34;https://www.lens.org/lens/collection/9606&#34; class=&#34;uri&#34;&gt;https://www.lens.org/lens/collection/9606&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We could imagine that for more restricted searches, and taking confidentiality issues into account, this could be a useful way of sharing patent data with colleagues. One useful addition would be the ability to share with groups based on email addresses or something similar (although that may be possible by choosing a private link and sharing it).&lt;/p&gt;
 &lt;p&gt;Using the small icons above &lt;code&gt;Document&lt;/code&gt; on the left we can save our query for later use, limit the data to simple families or expand to publications, and download the data.&lt;/p&gt;
 &lt;p&gt;There are two main options for downloading data. The first is to download 1000 records by selecting the export button above &lt;code&gt;Document&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;When we select the export button we will be presented with a choice on the number of records to export and whether to export in JSON (for programmatic use), RIS for bibliographic software or .csv for use in tools such as Excel or other programmes.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/lens/fig4_exportoptions.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig4_exportoptions.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The outputs of the export are clean and clear about what they represent when compared with some patent databases. A &lt;code&gt;url&lt;/code&gt; link to the relevant file on the Lens is also provided which can assist in reviewing documents.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/lens/fig5_export.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig5_export.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The JSON output (in the lower right of the image above) is also nice and clean.&lt;/p&gt;
 &lt;p&gt;The second route to exporting data is to download up to 10,000 results using the collections. When we select the &lt;code&gt;Work Area&lt;/code&gt; icon at the top of the screen and select &lt;code&gt;Collections&lt;/code&gt; we will see a new screen with a range of icons next to an individual collection.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/lens/fig5a_export_collection.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig5a_export_collection.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;When we select the download icon we can now download the 10,000 records in the collection in either .csv, ris or JSON formats. This is very easy to use once you understand how to navigate the interface.&lt;/p&gt;
 &lt;p&gt;We also have an option to upload documents into a collection using the upload button and then enter comma separated identifiers. However, at the time of writing we were not able to make this very useful function work.&lt;/p&gt;
 &lt;/div&gt;
@@ -3036,44 +2752,44 @@ library(swirl)&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;visualisation&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Visualisation&lt;/h2&gt;
 &lt;p&gt;The Lens makes good use of online visualisation options using &lt;a href=&#34;http://www.highcharts.com&#34;&gt;Highcharts&lt;/a&gt; and HTML5. To access the visualisations choose the small icon on the right above the &lt;code&gt;Sort by&lt;/code&gt; pull down menu.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/lens/fig6_visual.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig6_visual.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We now see a set of charts for our results. Using the up icon in the top right of each image we can get an expanded view and work with the charts. The Lens uses the Highcharts Javascript library and a very nice feature of this approach is that it the visuals are interactive and can be used to refine search results. In the image below we have opened the applicants image. As an aside, note that each image can be copied as an iframe to embed in your own web page.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/lens/fig7_applicants.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig7_applicants.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This suggests that Google is the top user of the word pizza in the patent system with &lt;a href=&#34;https://www.lens.org/lens/collection/9608&#34;&gt;880 documents in 353 families&lt;/a&gt;. We can then select the top result and the charts will regenerate focusing on our selection (in this case Google). To view the results we need to select the results button (the first on the right above the charts) to see the following.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/lens/fig8_google.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig8_google.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;What is very useful about is that it is easy to create a &lt;a href=&#34;https://www.lens.org/lens/collection/9608&#34;&gt;new collection&lt;/a&gt; for an applicant of interest, to download the results or select areas of a portfolio based on a jurisdiction or technology area or to explore highly cited patents. In short, we can easily dig into the data.&lt;/p&gt;
 &lt;p&gt;Other interesting features of the chart area are references to authors, DOIs, and PubMed Ids for exploration of data extracted from the documents. This reflects the interest at the Lens in researching the relationship between basic scientific research and innovation. Accessing the literature related information requires opening a chart (for example authors) and selecting the top result and the moving into the results view. We then select one of the results such as &lt;a href=&#34;https://www.lens.org/lens/patent/US_8200847_B2/citations#c/publications&#34;&gt;Voice Actions On Computing Devices&lt;/a&gt; and the Citations tab. This reveals a publication from a workshop on Wireless Geographical Information Systems from 2003 as we can see below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/lens/fig9_crossref.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig9_crossref.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;An impressive feature of this approach is the effort that has been made to link the citation data to the publication using &lt;a href=&#34;http://www.crossref.org&#34;&gt;crossref&lt;/a&gt;. According to the documentation around 15 million non-patent literature citations have been linked so far. Note that one additional feature of the Lens download data is that it includes a non-patent literature citation field. For example, downloading the &lt;a href=&#34;https://www.lens.org/lens/collection/9608&#34;&gt;google pizza portfolio&lt;/a&gt; and a search for the citation above will reveal the citation but without the added value of the DOI. As such, the download provided the raw NPL data.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;working-with-texts&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Working with texts&lt;/h2&gt;
 &lt;p&gt;In common with other free databases, the Lens is not designed to allow downloads of multiple full texts. However, you can access the full text of documents, including .pdf files, and you can make notes that will be stored with a collection in your account. The image below provides an example of our ongoing efforts to understand why Google is so dominant in the results of searches for pizza in patent documents.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/lens/fig10_notes.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig10_notes.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;patseq&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;PatSeq&lt;/h2&gt;
 &lt;p&gt;One important focus of the development of the Lens has been DNA sequence data including an &lt;a href=&#34;https://www.lens.org/about/&#34;&gt;ongoing series of articles&lt;/a&gt; on the interpretation and significance of sequence data in patent activity.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/lens/fig11_patseq.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig11_patseq.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Patseq includes a number of tools.&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;PatSeq data permits access to patent documents disclosing sequences available for bulk download from a growing number of countries. This is a very useful site for obtaining sequence data. Note that you will need to request access to download sequence data in your account area.&lt;/li&gt;
 &lt;li&gt;Species finder and keyword search focuses on searching documents that contain a sequence for a species name or key term.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;/images/lens/fig12_patseq_species.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig12_patseq_species.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;A series of patent portfolios have been generated for some major plant and animal species, e.g. rice, maize, humans, chickens etc. That can be downloaded as collections.&lt;/p&gt;
 &lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;The PatSeq Explorer allows the exploration of sequence data for four genomes (at present), notably the human and mouse genome for animals and the soybean, maize and rice genome for plants.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;/images/lens/fig13_patseq_explorer.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig13_patseq_explorer.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This is an area where researchers with &lt;a href=&#34;http://www.cambia.org/daisy/cambia/home.html&#34;&gt;Cambia&lt;/a&gt;, the non-profit organisation behind the Lens, have invested considerable effort and it is well worth reading the research articles listed on the Cambia and Lens websites on this topic. PatSeq Analyzer is closely related to the Explorer and presently provides details on the genomes mentioned above with a detailed summary of sequences by document including the region, sequence, transcript, single nucleotide polymorphisms (SNPs) and grants with sequences in the patent claims.&lt;/p&gt;
 &lt;ol start=&#34;4&#34; style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;PatSeq Finder&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;The PatSeq Finder allows a user to enter a DNA or amino acid sequence into the search box and find applications and grants with identical or similar sequences. We selected a sequence at random from the WIPO Patentscope sequence listings browser &lt;a href=&#34;http://www.wipo.int/patentscope/search/en/detail.jsf?LANGUAGE=ENG&amp;amp;KEY=16/026850&amp;amp;ELEMENT_SET=F&#34;&gt;W016/026850&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/lens/fig14_seq_explorer.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig14_seq_explorer.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;After processing we will see a list of results that can be downloaded in a variety of formats. The results indicate that our random sequence does not appear in the claims of a granted patent or a patent application but does appear in a number of applications and grants. Further details are provided by hovering over the individual entries and additional controls are available for similarity and other scores to refine the results.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/lens/fig15_seq_results.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig15_seq_results.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;As far as we could tell, while the data can be downloaded, it is not presently possible to generate a collection of documents from the results of the PatSeq Finder.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;round-up&#34; class=&#34;section level2&#34;&gt;
@@ -3087,10 +2803,10 @@ library(swirl)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Graphing Patent Data with ggplot2 part2</title>
-      <link>/graphing-patent-data-with-ggplot2-part2/</link>
+      <link>https://www.pauloldham.net/graphing-patent-data-with-ggplot2-part2/</link>
       <pubDate>Mon, 20 Jul 2015 00:00:00 +0000</pubDate>
       
-      <guid>/graphing-patent-data-with-ggplot2-part2/</guid>
+      <guid>https://www.pauloldham.net/graphing-patent-data-with-ggplot2-part2/</guid>
       <description>&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
@@ -3398,7 +3114,7 @@ low &amp;lt;- filter(pcy, group == 1)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The geometric object is basically the form we want to see the data in plus any additional conditions we might want to set.&lt;/p&gt;
 &lt;p&gt;For a bar graph (histogram) we would specify &lt;code&gt;t&lt;/code&gt; and &lt;code&gt;+&lt;/code&gt; for the &lt;code&gt;geom&lt;/code&gt; for a bar graph. Inside the &lt;code&gt;geom_bar()&lt;/code&gt; function we can add some additional details.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;t + geom_histogram(colour = &amp;quot;white&amp;quot;, fill = &amp;quot;red&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig1_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig1_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!--- this is not looking as I had expected!---&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig1_gplot2-1.png)---&gt;
 &lt;p&gt;When we press command enter (or enter &lt;code&gt;t&lt;/code&gt; in the console) we will now see a bar chart.&lt;/p&gt;
@@ -3416,22 +3132,22 @@ low &amp;lt;- filter(pcy, group == 1)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;l &amp;lt;- ggplot(pt, aes(pubyear, nn, weight = nn))&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;To view this we now specify the geom as line:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;l + geom_line()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig2_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig2_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig2_gplot2-1.png)---&gt;
 &lt;p&gt;We now have a line graph. Let’s imagine that we wanted to change this to a point (scatter plot).&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;l + geom_point()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig3_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig3_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig3_gplot2-1.png)---&gt;
 &lt;p&gt;However, now we would like to have a line and a scatterplot.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;l + geom_point() + 
   geom_line()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig4_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig4_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig4_gplot2-1.png)---&gt;
 &lt;p&gt;This will then draw a line through our scatterplot points. For the sake of illustration we could add another geom to our list to convert to an area graph.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;l + geom_point() + 
   geom_line() + 
   geom_area()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig5_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig5_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig5_gplot2-1.png)---&gt;
 &lt;p&gt;There is clearly not much point in using this combination because the area geom obliterates the other geoms. But, it illustrates that we can play around with adding and removing geometric objects without going back and changing our base object. We are simply adding and removing layers specifying the geometric object(s) we want to see in the plot.&lt;/p&gt;
 &lt;p&gt;For readers following this article from the previous Tableau Public article note that our area graph is the same as in panel 1 of the Tableau Public version &lt;a href=&#34;https://public.tableau.com/views/pizzapatents/Overview?:embed=y&amp;amp;:display_count=yes&amp;amp;:showTabs=y&#34;&gt;here&lt;/a&gt;. To reproduce that in R we will start using themes from the ggthemes package. We will start by creating a base object with no fill specified in &lt;code&gt;l1&lt;/code&gt;.&lt;/p&gt;
@@ -3442,18 +3158,18 @@ low &amp;lt;- filter(pcy, group == 1)&lt;/code&gt;&lt;/pre&gt;
   scale_fill_tableau(&amp;quot;tableau20&amp;quot;) +
   theme(legend.position=&amp;quot;none&amp;quot;)
 l2&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig6_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig6_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig6_gplot2-1.png)---&gt;
 &lt;p&gt;That is very close to the filled graph in our &lt;a href=&#34;https://public.tableau.com/views/pizzapatents/Overview?:embed=y&amp;amp;:display_count=yes&amp;amp;:showTabs=y&#34;&gt;Tableau Public workbook&lt;/a&gt;. A range of themes are available as part of ggthemes the package and are well worth exploring.&lt;/p&gt;
 &lt;p&gt;For illustration, we could add information that augments our understanding of the data. First, we could add a line. Second, we could add a rug to the plot. A rug adds a line for each of the observations in the data.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;l2 + geom_line() +
   geom_rug()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig7_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig7_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig7_gplot2-1.png)---&gt;
 &lt;p&gt;What has happened here is that the addition of geom_rug has added a line to the left and the bottom for each of the observations. Thus, on the x axis, each year gets a tick. On the y axis each observation (value) in the data gains a tick.&lt;/p&gt;
 &lt;p&gt;What is clear from this is that we do not need a rug for the year. So, let’s change that.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;l2 + geom_rug(sides = &amp;quot;l&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig8_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig8_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig8_gplot2-1.png)---&gt;
 &lt;p&gt;In this case we have specified that the rug should appear on the left (the other options are t, r, b for top, right and bottom respectively).&lt;/p&gt;
 &lt;p&gt;A rug plot is useful for spotting outliers in the data. In this case it is telling us where the observations that make up the area plot are concentrated over the years. However, again for illustration, we could also use a different dataset to add a rug layer. Let’s try this with our publication country year or &lt;code&gt;pcy&lt;/code&gt; table.&lt;/p&gt;
@@ -3469,7 +3185,7 @@ l2&lt;/code&gt;&lt;/pre&gt;
   geom_line(data = pcy, aes(pubyear, nn, weight = nn, colour = pubcode)) +
   theme_igray() + scale_color_tableau(palette = &amp;quot;tableau20&amp;quot;)
 co&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig9_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig9_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig9_gplot2-1.png)---&gt;
 &lt;p&gt;To view the graph type &lt;code&gt;co&lt;/code&gt; in the console. Note that we have used pubcode (for the two letter country code), rather than the full country name because the graphic is easier to read.&lt;/p&gt;
 &lt;p&gt;We could add to this graphic in at least two ways. Let’s try adding a trend line.&lt;/p&gt;
@@ -3479,12 +3195,12 @@ co&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;What we would like to know here is the trend for pizza patent publications using a regression (see &lt;code&gt;?geom_smooth()&lt;/code&gt; and &lt;code&gt;?stat_smooth()&lt;/code&gt; for further details).&lt;/p&gt;
 &lt;p&gt;To do that we will work with &lt;code&gt;co&lt;/code&gt; as follows by changing geom_line() on the pt data to geom_point() for a scatter plot and then adding a &lt;code&gt;geom_smooth()&lt;/code&gt;. By default &lt;code&gt;geom_smooth()&lt;/code&gt; will draw a grey area indicating the standard error interval (se). That interval is set to 0.95 by default. We can do this quite easily by adding &lt;code&gt;geom_smooth()&lt;/code&gt; to &lt;code&gt;co&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;co + geom_smooth()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig10_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig10_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig10_gplot2-1.png)---&gt;
 &lt;p&gt;We will now see a message telling us what is happening “geom_smooth: method=”auto&amp;quot; and size of largest group is &amp;lt;1000, so using loess. Use ‘method = x’ to change the smoothing method.&amp;quot;&lt;/p&gt;
 &lt;p&gt;If we leave the standard error interval for the trend line on then our graph becomes hard to understand. We can turn it off we can set an argument inside as follows.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;co + geom_smooth(se = FALSE)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig11_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig11_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig11_gplot2-1.png)---&gt;
 &lt;p&gt;To experiment with an alternative method try &lt;code&gt;+ geom_smooth(method = &amp;quot;lm&amp;quot;, se = FALSE)&lt;/code&gt; for a linear model and look up &lt;code&gt;?geom_smooth&lt;/code&gt; and associated &lt;code&gt;?stat_smooth&lt;/code&gt;. We would of course want to add a label for the trend line but we will come to labels below. &lt;strong&gt;&lt;em&gt;Add label&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;/div&gt;
@@ -3499,7 +3215,7 @@ co&lt;/code&gt;&lt;/pre&gt;
   labs(title = &amp;quot;Patentscope Pizza Patents&amp;quot;,
           x = &amp;quot;Publication Year&amp;quot;,
           y = &amp;quot;Publication Count&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig12_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig12_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;%7B%7B%20site.baseurl%20%7D%7D/images/fggplot2/fig12_gplot2-1.png&#34; alt=&#34;_config.yml&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;_config.yml&lt;/p&gt;
@@ -3521,7 +3237,7 @@ co&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ct &amp;lt;- ggplot(pc, aes(pubcode, weight = nn, fill = pubcode))&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Next we set the geom, in this case for &lt;code&gt;geom_bar()&lt;/code&gt;. Because the x axis will have country code labels we will remove the legend using &lt;code&gt;guides(fill=FALSE)&lt;/code&gt;. Note that the legend arises from &lt;code&gt;fill=pubcode&lt;/code&gt; in the base object. Alternative ways of removing a legend include &lt;code&gt;scale_fill_discrete(guide = FALSE)&lt;/code&gt; or &lt;code&gt;theme(legend.position=&amp;quot;none&amp;quot;)&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ct + geom_bar() + guides(fill=FALSE)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig13_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig13_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig13_gplot2-1.png)---&gt;
 &lt;p&gt;Note here that if we changed &lt;code&gt;fill = pubcode&lt;/code&gt; in &lt;code&gt;ct&lt;/code&gt; to &lt;code&gt;colour = pubcode&lt;/code&gt; then the countries would be outlined with colour. Try this, then select Enter at the end of the line to update the object.&lt;/p&gt;
 &lt;p&gt;Following Edward Tufte we could also try a simpler approach. To do that we apply &lt;code&gt;theme_tufte()&lt;/code&gt; from &lt;code&gt;ggthemes&lt;/code&gt; and change the font to Helvetica, or something other than the default Serif in this theme, by specifying the &lt;code&gt;base_family&lt;/code&gt;.&lt;/p&gt;
@@ -3529,7 +3245,7 @@ co&lt;/code&gt;&lt;/pre&gt;
   theme_tufte(base_family = &amp;quot;Helvetica&amp;quot;) +
   guides(fill=FALSE)
 ct1&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig14_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig14_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig14_gplot2-1.png)---&gt;
 &lt;p&gt;This is a nice simple example of removing clutter to focus in on what matters: presenting the data. We can also apply the tableau theme for consistency with our trends plots. In this case we will use &lt;code&gt;theme(legend.position=&amp;quot;none&amp;quot;)&lt;/code&gt; to turn off the legend.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ct2 &amp;lt;- ct + geom_bar() +
@@ -3537,7 +3253,7 @@ ct1&lt;/code&gt;&lt;/pre&gt;
   scale_color_tableau(&amp;quot;tableau20&amp;quot;) +
   theme(legend.position=&amp;quot;none&amp;quot;)
 ct2&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig15_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig15_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig15_gplot2-1.png)---&gt;
 &lt;p&gt;A range of other options for controlling fonts and legends with practical demonstrations can be found on &lt;a href=&#34;http://www.cookbook-r.com/Graphs/&#34;&gt;Winston Chang’s R Graphics Cookbook website&lt;/a&gt;. Adjusting line weight and backgrounds can contribute to bringing data to the fore while minimising noise and what Tufte in The Visualisation of Quantitative Information called “chart junk”.&lt;/p&gt;
 &lt;/div&gt;
@@ -3545,7 +3261,7 @@ ct2&lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;Adding labels to columns&lt;/h3&gt;
 &lt;p&gt;We can also add the values to our bars for our new object . We can achieve this using &lt;code&gt;geom_text&lt;/code&gt;. In this case we needed to specify the y axis again inside &lt;code&gt;geom_text&lt;/code&gt;. &lt;code&gt;vjust&lt;/code&gt; specifies the vertical justification with the horizontal being &lt;code&gt;hjust&lt;/code&gt;. In this case we have also specified the font size in &lt;code&gt;geom_text()&lt;/code&gt; as 12.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ct2 + geom_text(aes(y = nn, label = nn, size = 12), vjust= -0.2)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig16_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig16_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig16_gplot2-1.png)---&gt;
 &lt;p&gt;￼If we wanted to make this more closely resemble the country count chart from our earlier Tableau workbook (a stacked horizontal bar chart) we would need to swap around the axes. To do that we add &lt;code&gt;coord_flip()&lt;/code&gt; to flip around x and y and then we adjust the labelling to use &lt;code&gt;hjust&lt;/code&gt; for horizontal justification rather than &lt;code&gt;vjust&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;To create the ranked bar we need to use the function &lt;code&gt;reorder()&lt;/code&gt; with either the x or the y axis. In this case it is the x axis. We need to specify both x and the y inside &lt;code&gt;reorder()&lt;/code&gt; for this to work. In other cases you may need to go back to your original data table to adjust the data.&lt;/p&gt;
@@ -3562,7 +3278,7 @@ ct2&lt;/code&gt;&lt;/pre&gt;
   theme(legend.position=&amp;quot;none&amp;quot;) +
   labs(title=&amp;quot;Patentscope Pizza Patents&amp;quot;, x = &amp;quot;Publication Country&amp;quot;, y = &amp;quot;Publication Count&amp;quot;)
 ctr&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig17_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig17_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig17_gplot2-1.png)---&gt;
 &lt;p&gt;There is room for improvement here, such as the colour of the country names (or replacing them with actual names) and adjusting the font size to more closely match the axis fonts. It can also be tricky to ensure that the highest value (in this case the label for the US) stays inside the plot. However, it is pretty close. Turning now to our patent country year table &lt;code&gt;pcr&lt;/code&gt; we will look at some other chart forms and coordinate systems.&lt;/p&gt;
 &lt;/div&gt;
@@ -3578,7 +3294,7 @@ ctr&lt;/code&gt;&lt;/pre&gt;
   theme(legend.position=&amp;quot;none&amp;quot;) +
   labs(title=&amp;quot;Patentscope Pizza Patents&amp;quot;, x = &amp;quot;Publication Country&amp;quot;, y = &amp;quot;Publication Count&amp;quot;)
 ctd&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig18_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig18_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig18_gplot2-1.png)---&gt;
 &lt;p&gt;Note here that one limitation of this dot plot is the adjustment of &lt;code&gt;hjust&lt;/code&gt; where smaller numbers appear closer to the dots than larger numbers. This suggests a need for experimentation with &lt;code&gt;hjust&lt;/code&gt; and possibly the size and assessing whether to retain the labels. Options for recolouring labels might also be considered.&lt;/p&gt;
 &lt;/div&gt;
@@ -3593,7 +3309,7 @@ ctd&lt;/code&gt;&lt;/pre&gt;
   theme(legend.position=&amp;quot;none&amp;quot;) +
   labs(title=&amp;quot;Patentscope Pizza Patents&amp;quot;, x = &amp;quot;Publication Country&amp;quot;, y = &amp;quot;Publication Count&amp;quot;)
 ctb&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig19_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig19_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig19_gplot2-1.png)---&gt;
 &lt;p&gt;This is a very basic balloon plot and plots of this type could be readily adapted to represent a wide variety of patent data.&lt;/p&gt;
 &lt;/div&gt;
@@ -3603,7 +3319,7 @@ ctb&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sb &amp;lt;- ggplot(pcy, aes(pubyear, weight = nn, fill = pubcode)) +
   geom_bar(binwidth = 1)
 sb&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig20_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig20_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig20_gplot2-1.png)---&gt;
 &lt;p&gt;In practice a filled graph of this type could reasonably be described as a mess. This arises from the number of countries involved and the default colors. It is in fact less clear than the line plot by country created above. Stacked plots also suffer from problems with the order of the data and the legend. That is, as we saw above, simpler is generally better in conveying information.&lt;/p&gt;
 &lt;p&gt;It is not a good idea to attempt to prettify a bad graph because it will still be a bad graph. Indeed we encounter multiple issues if we attempt to improve this stacked bar. We will illustrate this with the &lt;code&gt;main&lt;/code&gt; table we created earlier.&lt;/p&gt;
@@ -3613,7 +3329,7 @@ sb&lt;/code&gt;&lt;/pre&gt;
 &lt;/ol&gt;
 &lt;p&gt;We are presently using fill on the pubcode, but what if we specified a colour for the borders of the data.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sm + geom_bar(binwidth = 1, colour = &amp;quot;black&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig21_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig21_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig21_gplot2-1.png)---&gt;
 &lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;The order of the bars&lt;/li&gt;
@@ -3624,13 +3340,13 @@ sb&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sm + geom_bar(binwidth=1, colour=&amp;quot;black&amp;quot;) +
   theme_igray() +
   scale_fill_tableau(&amp;quot;tableau20&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig22_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig22_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig22_gplot2-1.png)---&gt;
 &lt;p&gt;We can also start to work on the line colour and the line weight in the function to try to clarify the plot.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sm + geom_bar(binwidth = 1, colour = &amp;quot;gray&amp;quot;, size = .25) +
   theme_igray(base_family = &amp;quot;Helvetica&amp;quot;) +
   scale_fill_tableau(&amp;quot;tableau20&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig23_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig23_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig23_gplot2-1.png)---&gt;
 &lt;p&gt;That is an improvement of sorts. We could then do the same for the other tables while noting that a means will be needed to ensure that different colours are used on the countries across the summary plots.&lt;/p&gt;
 &lt;p&gt;As this suggests stacked bar charts present communication difficulties. That is they take quite a lot of work to get right and the ultimate result may still be difficult for a reader to interpret.&lt;/p&gt;
@@ -3640,7 +3356,7 @@ sb&lt;/code&gt;&lt;/pre&gt;
    theme_igray(base_family = &amp;quot;Helvetica&amp;quot;) +
    scale_fill_tableau(&amp;quot;tableau20&amp;quot;)
 sm&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig24_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig24_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig24_gplot2-1.png)---&gt;
 &lt;p&gt;That looks promising but note that the order of the stack is not correct and can give a misleading impression. Thus the order should be descending from US, WO, CA, EP, KR. At the time of writing an easy way of adjusting this has not been identified. As such, significant energy could be expended attempting to improve what is essentially a bad graph.&lt;/p&gt;
 &lt;/div&gt;
@@ -3662,14 +3378,14 @@ sm&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If we choose &lt;code&gt;facet_grid&lt;/code&gt; we will see a line of plots. The main issue that arises here is adjusting the labelling on the x axis. We can do that by adding &lt;code&gt;scale_x_continuous&lt;/code&gt; and specifying the breaks and values we want to see. We could also as needed change the labels by adding to the function like this &lt;code&gt;scale_x_continuous(breaks = c(1970, 2010), labels = c(label1, label2))&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;f + facet_grid(~pubcode, shrink = TRUE) +
   scale_x_continuous(breaks = c(1970, 2010))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig25_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig25_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig25_gplot2-1.png)---&gt;
 &lt;p&gt;However, the above plot suffers from being too vertical and the labels remain squashed. In future it may be possible to adjust this (using &lt;code&gt;+ theme(panel.margin.x = unit(5, &amp;quot;lines&amp;quot;)&lt;/code&gt; but at the time of writing this did not appear to be working) (see this &lt;a href=&#34;http://stackoverflow.com/questions/12252750/alter-just-horizontal-spacing-between-facets-ggplot2&#34;&gt;Stackoverflow discussion&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;An alternative option for a clearer plot might be to use the groups that we created in the data table to facet on.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;f + facet_grid(pubcode~group, shrink = TRUE) +
   theme(legend.position = &amp;quot;none&amp;quot;) +
   scale_x_continuous(breaks = c(1970, 2010))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig26_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig26_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig26_gplot2-1.png)---&gt;
 &lt;p&gt;That is an improvement, as we can see the three groups, but note that the countries are ordered alphabetically rather than by group.&lt;/p&gt;
 &lt;/div&gt;
@@ -3678,25 +3394,25 @@ sm&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;To create a more reasonable plot we can use &lt;code&gt;facet_wrap()&lt;/code&gt;. Note that the position of the group has been reversed to &lt;code&gt;group~pubcode&lt;/code&gt; to achieve this plot.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;f + facet_wrap(group~pubcode) +
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig27_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig27_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig27_gplot2-1.png)---&gt;
 &lt;p&gt;What we now see is a facet plot that is ordered from group 1 to group 3. This is pretty good.&lt;/p&gt;
 &lt;p&gt;While we would generally want to drop some of the smallest values, to improve this type of plot we might try freeing up the scales. In this case we focus on the y axis by specifying &lt;code&gt;free_y&lt;/code&gt; with the alternative being &lt;code&gt;free_x&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;f + facet_wrap(group~pubcode, scales =&amp;quot;free_y&amp;quot;) +
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig28_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig28_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig28_gplot2-1.png)---&gt;
 &lt;p&gt;This removes the compression and gives each individual plot its own scale. The default for facets is to show the highest values at the bottom right (the default of argument &lt;code&gt;as.table&lt;/code&gt;). If we specify &lt;code&gt;as.table = FALSE&lt;/code&gt; the facets will show the higher values (in group 3) first. This might improve the plot.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;f + facet_wrap(group~pubcode, scales =&amp;quot;free_y&amp;quot;, as.table = FALSE) +
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig29_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig29_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig29_gplot2-1.png)---&gt;
 &lt;p&gt;Note that this still presents some problems as ideally the highest value (the US) would appear first and then read in descending order across from left to right. There appear to be some limitations to the controls possible in &lt;code&gt;facet_wrap&lt;/code&gt; and also our data structure.&lt;/p&gt;
 &lt;p&gt;We will revert to the ascending order but keep the free y axis. We could if we wished add a regression to show the trend by country by adding &lt;code&gt;geom_smooth()&lt;/code&gt;. We will remove the standard error area by specifying &lt;code&gt;se = FALSE&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;f + facet_wrap(group~pubcode, scales =&amp;quot;free_y&amp;quot;, as.table = TRUE) +
   geom_smooth(se = FALSE) +
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig30_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig30_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig30_gplot2-1.png)---&gt;
 &lt;p&gt;In running this code we will receive a message for each plot informing us of the smoothing method that is being used.&lt;/p&gt;
 &lt;p&gt;The issue we encounter here is that a number of countries in group 1 and group 2 have very sparse results with no corresponding meaningful trend to display. In practice we would drop group 1 entirely and focus on group 2 and 3. To conclude, let’s do that.&lt;/p&gt;
@@ -3710,7 +3426,7 @@ sm&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;g1 + facet_wrap(group~pubcode, scales =&amp;quot;free_y&amp;quot;, as.table = TRUE) +
   geom_smooth(se = FALSE) +
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig32_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig32_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig32_gplot2-1.png)---&gt;
 &lt;p&gt;That is a considerable improvement and we will stop there. One limitation of facet wrap is that it appears that renaming the labels, to leave only the country codes, is not possible (although using labeller may provides solutions). It may also be the case that we would prefer to drop some of the other countries with low scores from group 2. We could do that by applying a filter on pubcode. We could also add some labels to the overall plot.&lt;/p&gt;
 &lt;/div&gt;
@@ -3732,7 +3448,7 @@ sm&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The first step is to create an object as a stacked chart. In this case we attribute a single value to the x axis, specify the y axis as percent and then the fill as publication code. This creates a stacked bar chart.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;o1 &amp;lt;- ggplot(pc, aes(x=1, y = percent, fill = pubcode)) + geom_bar(stat = &amp;quot;identity&amp;quot;)
 o1&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig33_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig33_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig33_gplot2-1.png)---&gt;
 &lt;p&gt;If we view this it will be a stacked bar. In the second step we create the pie chart by specifying the polar coordinate and &lt;code&gt;theta = y&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;y &amp;lt;- o1 + coord_polar(theta = &amp;quot;y&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
@@ -3741,7 +3457,7 @@ o1&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;z &amp;lt;- y + geom_bar(stat = &amp;quot;identity&amp;quot;, colour = &amp;quot;black&amp;quot;) +
   guides(fill=guide_legend(override.aes=list(colour=NA)))
 z&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig34_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig34_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig34_gplot2-1.png)---&gt;
 &lt;p&gt;Then remove the various tick marks&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;z &amp;lt;- z +
@@ -3750,7 +3466,7 @@ z&lt;/code&gt;&lt;/pre&gt;
           axis.text.y=element_blank()
           )
 z&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig35_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig35_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig35_gplot2-1.png)---&gt;
 &lt;p&gt;We need to work out the position of the labels that we would like to see on the pie, and in particular the mid-point of each pie. This can be found as the cumulative sum &lt;code&gt;cumsum&lt;/code&gt; of the variable we used for the slices. That is percent expressed as &lt;code&gt;pc$percent&lt;/code&gt; to state the data frame and the column we want in the &lt;code&gt;percent&lt;/code&gt; table.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;y.breaks &amp;lt;- cumsum(pc$percent) - pc$percent/2&lt;/code&gt;&lt;/pre&gt;
@@ -3761,7 +3477,7 @@ z&lt;/code&gt;&lt;/pre&gt;
         breaks=y.breaks,
         labels=pc$pubcode)
 q&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig36_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig36_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig36_gplot2-1.png)---&gt;
 &lt;p&gt;Thanks to Mathematical Coffee we now have a functional pie chart of the percentage share of pizza patent documents. The only issue with this plot is that some of the labels on the smaller values are crunched. That could however be addressed by filtering rows in accordance with the groups on the &lt;code&gt;pc&lt;/code&gt; table, as we did above for &lt;code&gt;pcy&lt;/code&gt;, to remove the overlap.&lt;/p&gt;
 &lt;/div&gt;
@@ -3775,7 +3491,7 @@ q&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cx1 &amp;lt;- ggplot(cx, aes(x = pubcode, y = nn, fill= pubcode)) +
   geom_bar(stat=&amp;quot;identity&amp;quot;)
 cx1&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig37_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig37_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig37_gplot2-1.png)---&gt;
 &lt;p&gt;We them add a &lt;code&gt;coord_polar&lt;/code&gt; specifying theta in this case as x (the pubcode). The remainder of the code is thematic.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cx1 + coord_polar(theta=&amp;quot;x&amp;quot;) +
@@ -3783,7 +3499,7 @@ cx1&lt;/code&gt;&lt;/pre&gt;
    theme(legend.position=&amp;quot;none&amp;quot;) +
    labs(x = &amp;quot;Publication Country&amp;quot;, y = &amp;quot;Publication Count&amp;quot;, 
         title  = &amp;quot;Pizza Patent Publications by Country&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig38_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig38_gplot2-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig38_gplot2-1.png)---&gt;
 &lt;p&gt;In the R Graphics Cookbook, Winston Chang adds three observations about coxcomb plots. The first is that for y variables the smallest value is mapped to the centre of the plot, rather than a data value of 0 being mapped to a radius of 0. Second, for a continuous x (or theta) the smallest and largest values are merged. Third, theta values of polar coordinates do not wrap around. As such changes would need to be made to the limits of the plot (see Chang 2013: 200-203 for discussion).&lt;/p&gt;
 &lt;/div&gt;
@@ -3818,350 +3534,11 @@ cx1&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
-      <title>Wrangling Pizza Patents in R</title>
-      <link>/wrangling-pizza-patents-in-r/</link>
-      <pubDate>Thu, 25 Jun 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/wrangling-pizza-patents-in-r/</guid>
-      <description>&lt;div id=&#34;TOC&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#getting-started-with-r&#34;&gt;Getting Started with R&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#getting-started&#34;&gt;Getting Started&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#about-the-pizza-patent-dataset&#34;&gt;About the pizza patent dataset&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#reading-in-the-data&#34;&gt;Reading in the Data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#creating-a-numeric-field&#34;&gt;Creating a numeric field&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#renaming-columns&#34;&gt;Renaming Columns&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#selecting-columns-for-plotting&#34;&gt;Selecting Columns for plotting&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#creating-counts&#34;&gt;Creating Counts&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#total-by-year&#34;&gt;Total by Year&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#round-up&#34;&gt;Round Up&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-&lt;p&gt;This is the first part of a two part article on using R and the &lt;code&gt;ggplot2&lt;/code&gt; package to visualise patent data. In a previous article we looked at visualising pizza related patent activity in Tableau Public. In this article we look at how to wrangle our &lt;code&gt;pizza&lt;/code&gt; dataset using &lt;code&gt;dplyr&lt;/code&gt; package in RStudio to prepare the data for graphing. This is intended as a gentle introduction and you do not need to know anything about R to follow this article. You will however need to install &lt;a href=&#34;http://www.rstudio.com/products/rstudio/&#34;&gt;RStudio Desktop&lt;/a&gt; for your operating system (see below).&lt;/p&gt;
-&lt;p&gt;Part 1 will introduce the basics of handling data in R in preparation for plotting and will then use the quick plot or &lt;code&gt;qplot&lt;/code&gt; function in &lt;code&gt;ggplot2&lt;/code&gt; to start graphing elements of the pizza patents dataset.&lt;/p&gt;
-&lt;p&gt;Part 2 will go into more depth on handling data in R and the use of ggplot2.&lt;/p&gt;
-&lt;p&gt;ggplot2 is an implementation of the theory behind the Grammar of Graphics. The theory was originally developed by Leland Wilkinson and reinterpreted with considerable success by Hadley Wickham at Rice University and RStudio. The basic idea behind the Grammar of Graphics is that any statistical graphic can be built using a set of simple layers consisting of:&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;A dataset containing the data we want to see (e.g x and y axes and data points)&lt;/li&gt;
-&lt;li&gt;A geometric object (or &lt;code&gt;geom&lt;/code&gt;) that defines the form we want to see (points, lines, shapes etc.) known as a &lt;code&gt;geom&lt;/code&gt;. Multiple &lt;code&gt;geoms&lt;/code&gt; can be used to build a graphic (e.g, points and lines etc.).&lt;/li&gt;
-&lt;li&gt;A coordinate system (e.g. a grid, a map etc.).&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;On top of these three basic components, the grammar includes statistical transformations (or &lt;code&gt;stats&lt;/code&gt;) describing the statistics to be applied to the data to create a bar chart or trend line. The grammar also describes the use of faceting (trellising) to break a dataset down into smaller components (see Part 2).&lt;/p&gt;
-&lt;p&gt;A very useful article explaining this approach is &lt;a href=&#34;http://vita.had.co.nz/papers/layered-grammar.pdf&#34;&gt;Hadley Wickham’s 2010 A Layered Grammar of Graphics&lt;/a&gt; (preprint) and is recommended reading.&lt;/p&gt;
-&lt;p&gt;The power of this approach is that it allows us to build complex graphs from simple layers while being able to control each element and understand what is happening. One way to think of this is as stripping back a graph to its basic elements and allowing you to decide what each element (layer) should contain and look like. In short, you get to decide what your graphs look like.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;ggplot2&lt;/code&gt; contains two main functions:&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;qplot (quick plot)&lt;/li&gt;
-&lt;li&gt;ggplot()&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The main difference between the two is that quick plot makes assumptions for you and, as the name suggests, is used for quick plots. In contrast, with ggplot we build graphics from scratch with helpful defaults that give us full control over what we see.&lt;/p&gt;
-&lt;p&gt;In this article we will start with qplot and increasingly merge into developing plots by adding layers in what could be called a ggplot kind of way. We will develop that further in the Part 2.&lt;/p&gt;
-&lt;div id=&#34;getting-started-with-r&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Getting Started with R&lt;/h2&gt;
-&lt;p&gt;This article assumes that you are new to using R. You do not need any knowledge of programming in R to follow this article. While you don’t need to know anything about R to follow the article, you may find it helpful to know that :&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;R is a statistical programming language. That can sound a bit intimidating. However, R can handle lots of other tasks a patent analyst might need such as cleaning and tidying data or text mining. This makes it a good choice for a patent analyst.&lt;/li&gt;
-&lt;li&gt;R works using packages (libraries) for performing tasks such as importing files, manipulating files and graphics. There are around 6,819 packages and they are open source (mainly it seems under the MIT licence). If you can think of it there is probably a package that meets (or almost meets) your analysis needs.&lt;/li&gt;
-&lt;li&gt;Packages contain functions that do things such as &lt;code&gt;read_csv()&lt;/code&gt; to read in a comma separated file.&lt;/li&gt;
-&lt;li&gt;The functions take arguments that tell them what you want to do, such as specifying the data to graph and the x and y axis e.g. qplot(x = , y = , data = my dataset).&lt;/li&gt;
-&lt;li&gt;If you want to learn more, or get stuck, there are a huge number of resources and free courses out there and RStudio lists some of the main resources on their website &lt;a href=&#34;http://www.rstudio.com/resources/training/online-learning/&#34;&gt;here&lt;/a&gt;. With R you are never alone.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;R is best learned by doing. The main trick with R is to install and load the packages that you will need and then to work with functions and their arguments. Given that most patent analysts are likely to be unfamiliar with R we will adopt the simplest approach possible to make sure it is clear what is going on at each step.&lt;/p&gt;
-&lt;p&gt;The first step is to install R and RStudio desktop for your operating system by following the links and instructions &lt;a href=&#34;http://www.rstudio.com/products/rstudio/download/&#34;&gt;here&lt;/a&gt; and making sure that you follow the link to install R. Follow this very useful &lt;a href=&#34;http://www.computerworld.com/article/2497143/business-intelligence/business-intelligence-beginner-s-guide-to-r-introduction.html?page=2&#34;&gt;Computerworld article&lt;/a&gt; to become familiar with what you are seeing. You may well want to follow the rest of that article. Inside R you can learn a lot by installing the &lt;code&gt;Swirl&lt;/code&gt; package that provides interactive tutorials for learning R. Details are provided in the resources at the end of the article.&lt;/p&gt;
-&lt;p&gt;The main thing you need to do to get started other than installing R and RStudio is to open RStudio and install some packages.&lt;/p&gt;
-&lt;p&gt;In this article we will use four packages:&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;code&gt;readr&lt;/code&gt; to quickly read in the pizza patent dataset as an easy to use data table.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;dplyr&lt;/code&gt; for quick addition and operations on the data to make it easier to graph.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;ggplot2&lt;/code&gt; or Grammar of Graphics 2 as the tool we will use for graphing.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;ggthemes&lt;/code&gt; provides very useful additional themes including Tufte range plots, the Economist and Tableau and can be accessed through &lt;a href=&#34;http://cran.r-project.org/web/packages/ggthemes/index.html&#34;&gt;CRAN&lt;/a&gt; or &lt;a href=&#34;https://github.com/jrnold/ggthemes&#34;&gt;Github&lt;/a&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div id=&#34;getting-started&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Getting Started&lt;/h2&gt;
-&lt;p&gt;If you don’t have these packages already then install each of them below by pressing command and Enter at the end of each line. As an alternative select &lt;strong&gt;&lt;em&gt;Packages &amp;gt; Install&lt;/em&gt;&lt;/strong&gt; in the pane displaying a tab called Packages. Then enter the names of the packages one at a time without the quotation marks.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;readr&amp;quot;)
-install.packages(&amp;quot;dplyr&amp;quot;)
-install.packages(&amp;quot;ggplot2&amp;quot;)
-install.packages(&amp;quot;ggthemes&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Then make sure the packages have loaded to make them available. Press command and enter at the end of each line below (or, if you are feeling brave, select them all and then click the icon marked Run).&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readr)
-library(dplyr)
-library(ggplot2)
-library(ggthemes)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;You are now good to go.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;about-the-pizza-patent-dataset&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;About the pizza patent dataset&lt;/h2&gt;
-&lt;p&gt;The pizza patents dataset is a set of 9,996 patent documents from the WIPO Patentscope database that make reference somewhere in the text to the term &lt;code&gt;pizza&lt;/code&gt;. Almost everybody likes pizza and this is simply a working dataset that we can use to learn how to work with different open source tools. This will also allow us over time to refine our understanding of patent activity involving the term pizza and hone in on actual pizza related technology. In previous walkthroughs we divided the &lt;code&gt;pizza&lt;/code&gt; dataset into a set of distinct data tables to enable analysis and visualisation using Tableau Public. You can download that dataset in .csv format &lt;a href=&#34;https://github.com/poldham/opensource-patent-analytics/blob/master/2_datasets/pizza_medium_clean/pizza_medium_clean.zip?raw=true&#34;&gt;here&lt;/a&gt;. These data tables are:&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;pizza (the core set)&lt;/li&gt;
-&lt;li&gt;applicants (a subdataset divided and cleaned on applicant names)&lt;/li&gt;
-&lt;li&gt;inventors (a subdataset divided and cleaned on inventor names)&lt;/li&gt;
-&lt;li&gt;ipc_class (a subdataset divided on ipc class names names)&lt;/li&gt;
-&lt;li&gt;applicants_ipc (a child dataset of applicants listing the IPC codes)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;In this article we will focus on the &lt;code&gt;pizza&lt;/code&gt; table as the core set. However, you may want to experiment with other sets.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;reading-in-the-data&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Reading in the Data&lt;/h2&gt;
-&lt;p&gt;We will use the &lt;code&gt;readr&lt;/code&gt; package to rapidly read in the pizza set to R (for other options see the in depth articles on reading in &lt;a href=&#34;&#34;&gt;.csv&lt;/a&gt; and &lt;a href=&#34;&#34;&gt;Excel&lt;/a&gt; files and the recent Getting your Data into R RStudio &lt;a href=&#34;http://www.rstudio.com/resources/webinars/&#34;&gt;webinar&lt;/a&gt;). &lt;code&gt;readr&lt;/code&gt; is nice and easy to use and creates a data table that we can easily view.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readr)
-library(dplyr)
-pizza &amp;lt;- read_csv(&amp;quot;https://github.com/poldham/opensource-patent-analytics/blob/master/2_datasets/pizza_medium_clean/pizza.csv?raw=true&amp;quot;) %&amp;gt;% 
-    select(-applicants_cleaned, -applicants_cleaned_type, -applicants_original, -inventors_cleaned, 
-        -inventors_original)  # drop cols with a multibyte string
-head(pizza)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 26
-##   applicants_organ… ipc_class ipc_codes ipc_names ipc_original ipc_subclass_co…
-##   &amp;lt;chr&amp;gt;             &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;           
-## 1 &amp;lt;NA&amp;gt;              A21: Bak… A21D 13/… A21D 13/… A21D 13/00;… A21D; A23L      
-## 2 &amp;lt;NA&amp;gt;              A21: Bak… A21B 3/13 A21B 3/1… A21B 3/13    A21B            
-## 3 &amp;lt;NA&amp;gt;              A21: Bak… A21C 15/… A21C 15/… A21C 15/04   A21C            
-## 4 Lazarillo De Tor… A21: Bak… A21D 13/… A21D 13/… A21D 13/00;… A21D; A23L      
-## 5 &amp;lt;NA&amp;gt;              B65: Con… B65D 21/… B65D 21/… B65D 21/032… B65D            
-## 6 &amp;lt;NA&amp;gt;              B65: Con… B65D 85/… B65D 85/… B65D 85/36   B65D            
-## # ... with 20 more variables: ipc_subclass_detail &amp;lt;chr&amp;gt;,
-## #   ipc_subclass_names &amp;lt;chr&amp;gt;, priority_country_code &amp;lt;chr&amp;gt;,
-## #   priority_country_code_names &amp;lt;chr&amp;gt;, priority_data_original &amp;lt;chr&amp;gt;,
-## #   priority_date &amp;lt;chr&amp;gt;, publication_country_code &amp;lt;chr&amp;gt;,
-## #   publication_country_name &amp;lt;chr&amp;gt;, publication_date &amp;lt;chr&amp;gt;,
-## #   publication_date_original &amp;lt;chr&amp;gt;, publication_day &amp;lt;int&amp;gt;,
-## #   publication_month &amp;lt;int&amp;gt;, publication_number &amp;lt;chr&amp;gt;,
-## #   publication_number_espacenet_links &amp;lt;chr&amp;gt;, publication_year &amp;lt;int&amp;gt;,
-## #   title_cleaned &amp;lt;chr&amp;gt;, title_nlp_cleaned &amp;lt;chr&amp;gt;,
-## #   title_nlp_multiword_phrases &amp;lt;chr&amp;gt;, title_nlp_raw &amp;lt;chr&amp;gt;,
-## #   title_original &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We now have a data table with the data. We can inspect this data in a variety of ways:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;1. View&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;See a separate table in a new tab. This is useful if you want to get a sense of the data or look for column numbers.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;View(pizza)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;2. head (for the bottom use &lt;code&gt;tail&lt;/code&gt;)&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;head&lt;/code&gt; allows you to see the top few rows or using &lt;code&gt;tail&lt;/code&gt; the bottom few rows.If you would like to see more rows add a number after the dataset name e.g. `head(pizza, 20).&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(pizza)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 26
-##   applicants_organ… ipc_class ipc_codes ipc_names ipc_original ipc_subclass_co…
-##   &amp;lt;chr&amp;gt;             &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;           
-## 1 &amp;lt;NA&amp;gt;              A21: Bak… A21D 13/… A21D 13/… A21D 13/00;… A21D; A23L      
-## 2 &amp;lt;NA&amp;gt;              A21: Bak… A21B 3/13 A21B 3/1… A21B 3/13    A21B            
-## 3 &amp;lt;NA&amp;gt;              A21: Bak… A21C 15/… A21C 15/… A21C 15/04   A21C            
-## 4 Lazarillo De Tor… A21: Bak… A21D 13/… A21D 13/… A21D 13/00;… A21D; A23L      
-## 5 &amp;lt;NA&amp;gt;              B65: Con… B65D 21/… B65D 21/… B65D 21/032… B65D            
-## 6 &amp;lt;NA&amp;gt;              B65: Con… B65D 85/… B65D 85/… B65D 85/36   B65D            
-## # ... with 20 more variables: ipc_subclass_detail &amp;lt;chr&amp;gt;,
-## #   ipc_subclass_names &amp;lt;chr&amp;gt;, priority_country_code &amp;lt;chr&amp;gt;,
-## #   priority_country_code_names &amp;lt;chr&amp;gt;, priority_data_original &amp;lt;chr&amp;gt;,
-## #   priority_date &amp;lt;chr&amp;gt;, publication_country_code &amp;lt;chr&amp;gt;,
-## #   publication_country_name &amp;lt;chr&amp;gt;, publication_date &amp;lt;chr&amp;gt;,
-## #   publication_date_original &amp;lt;chr&amp;gt;, publication_day &amp;lt;int&amp;gt;,
-## #   publication_month &amp;lt;int&amp;gt;, publication_number &amp;lt;chr&amp;gt;,
-## #   publication_number_espacenet_links &amp;lt;chr&amp;gt;, publication_year &amp;lt;int&amp;gt;,
-## #   title_cleaned &amp;lt;chr&amp;gt;, title_nlp_cleaned &amp;lt;chr&amp;gt;,
-## #   title_nlp_multiword_phrases &amp;lt;chr&amp;gt;, title_nlp_raw &amp;lt;chr&amp;gt;,
-## #   title_original &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;3. dimensions&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;This allows us to see how many rows there are (9996) and how many columns(31)&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(pizza)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 9996   26&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;4. Summary&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Provides a summary of the dataset columns including quick calculations on numeric fields and the class of vector.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(pizza)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  applicants_organisations  ipc_class          ipc_codes        
-##  Length:9996              Length:9996        Length:9996       
-##  Class :character         Class :character   Class :character  
-##  Mode  :character         Mode  :character   Mode  :character  
-##                                                                
-##                                                                
-##                                                                
-##                                                                
-##   ipc_names         ipc_original       ipc_subclass_codes ipc_subclass_detail
-##  Length:9996        Length:9996        Length:9996        Length:9996        
-##  Class :character   Class :character   Class :character   Class :character   
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character   
-##                                                                              
-##                                                                              
-##                                                                              
-##                                                                              
-##  ipc_subclass_names priority_country_code priority_country_code_names
-##  Length:9996        Length:9996           Length:9996                
-##  Class :character   Class :character      Class :character           
-##  Mode  :character   Mode  :character      Mode  :character           
-##                                                                      
-##                                                                      
-##                                                                      
-##                                                                      
-##  priority_data_original priority_date      publication_country_code
-##  Length:9996            Length:9996        Length:9996             
-##  Class :character       Class :character   Class :character        
-##  Mode  :character       Mode  :character   Mode  :character        
-##                                                                    
-##                                                                    
-##                                                                    
-##                                                                    
-##  publication_country_name publication_date   publication_date_original
-##  Length:9996              Length:9996        Length:9996              
-##  Class :character         Class :character   Class :character         
-##  Mode  :character         Mode  :character   Mode  :character         
-##                                                                       
-##                                                                       
-##                                                                       
-##                                                                       
-##  publication_day publication_month publication_number
-##  Min.   : 1.00   Min.   : 1.000    Length:9996       
-##  1st Qu.: 8.00   1st Qu.: 4.000    Class :character  
-##  Median :16.00   Median : 7.000    Mode  :character  
-##  Mean   :15.68   Mean   : 6.608                      
-##  3rd Qu.:23.00   3rd Qu.:10.000                      
-##  Max.   :31.00   Max.   :12.000                      
-##  NA&amp;#39;s   :30      NA&amp;#39;s   :30                          
-##  publication_number_espacenet_links publication_year title_cleaned     
-##  Length:9996                        Min.   :1940     Length:9996       
-##  Class :character                   1st Qu.:1999     Class :character  
-##  Mode  :character                   Median :2005     Mode  :character  
-##                                     Mean   :2003                       
-##                                     3rd Qu.:2009                       
-##                                     Max.   :2015                       
-##                                     NA&amp;#39;s   :30                         
-##  title_nlp_cleaned  title_nlp_multiword_phrases title_nlp_raw     
-##  Length:9996        Length:9996                 Length:9996       
-##  Class :character   Class :character            Class :character  
-##  Mode  :character   Mode  :character            Mode  :character  
-##                                                                   
-##                                                                   
-##                                                                   
-##                                                                   
-##  title_original    
-##  Length:9996       
-##  Class :character  
-##  Mode  :character  
-##                    
-##                    
-##                    
-## &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;5.The class of R object&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;class()&lt;/code&gt; is one of the most useful functions in R because it tells you what kind of object or vectors you are dealing with. R vectors are normally either character, numeric, or logical (TRUE, FALSE) but classes also include integers and factors. Most of the time patent data is of either the character type or a date.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;class(pizza)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;tbl_df&amp;quot;     &amp;quot;tbl&amp;quot;        &amp;quot;data.frame&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;4. &lt;code&gt;str&lt;/code&gt; - See the structure&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;As you become more familiar with R the function &lt;code&gt;str()&lt;/code&gt; becomes one of the most useful for examining the structure of your data. For example, using str we can see whether an object we are working with is a simple vector, a list of objects or a list that contains a set of data frames (e.g.) tables. If things don’t seem to be working then &lt;code&gt;class&lt;/code&gt; and &lt;code&gt;str&lt;/code&gt; will often help you to understand why not.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;str(pizza, max.level = 1)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;These options illustrate the range of ways that you can view the data before and during graphing. Mainly what will be needed is the column names but we also need to think about the column types.&lt;/p&gt;
-&lt;p&gt;If we inspect this data using &lt;code&gt;str(pizza)&lt;/code&gt; we will see that the bulk of the fields are character fields. One feature of patent data is that it rarely includes actual numeric fields (such as counts). Most fields are character fields such as names or alphanumeric values (such as publication numbers e.g. US20151234A1). Sometimes we see counts such as citing documents or family members but most of the time our fields are character fields or dates. A second common feature of patent data is that some fields are concatenated. That is the cells in a column contain more than one value (e.g. multiple inventor or applicant names etc.).&lt;/p&gt;
-&lt;p&gt;We will walk through how to deal with these common patent data issues in R in other articles. For now, we don’t need to worry about the form of data except that it is normally best to select a column (variable) that is not concatenated with multiple values to develop our counts. So as a first step we will quickly create a numeric field from the &lt;code&gt;publication_number&lt;/code&gt; field in &lt;code&gt;pizza&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;creating-a-numeric-field&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Creating a numeric field&lt;/h2&gt;
-&lt;p&gt;To create a numeric field for graphing we will need to do two things&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;add a column&lt;/li&gt;
-&lt;li&gt;assign each cell in that column a value that we can then count.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The most obvious field to use as the basis for counting in the pizza data is the &lt;code&gt;publication_number&lt;/code&gt; field because typically this contains unique alphanumeric identifiers.&lt;/p&gt;
-&lt;p&gt;To create a numeric field we will use the &lt;code&gt;dplyr&lt;/code&gt; package. &lt;code&gt;dplyr&lt;/code&gt; and its sister package &lt;code&gt;tidyr&lt;/code&gt; are some of the most useful packages available for working in R and come with a handy &lt;a href=&#34;http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf&#34;&gt;RStudio Cheatsheet&lt;/a&gt; and &lt;a href=&#34;http://www.rstudio.com/resources/webinars/archives/#&#34;&gt;webinar&lt;/a&gt;. To see what the functions in &lt;code&gt;dplyr&lt;/code&gt; are then click on its name in the packages pane.&lt;/p&gt;
-&lt;p&gt;Just for future reference the main functions are:&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;filter (to select rows in a data)&lt;/li&gt;
-&lt;li&gt;select (to select the columns you want to work with)&lt;/li&gt;
-&lt;li&gt;mutate (to add columns based on other columns)&lt;/li&gt;
-&lt;li&gt;arrange (to sort)&lt;/li&gt;
-&lt;li&gt;group_by( to group data)&lt;/li&gt;
-&lt;li&gt;count (to easily summarise data on a value)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;code&gt;dplyr&#39;s&lt;/code&gt; &lt;code&gt;mutate&lt;/code&gt; function allows us to add a new column based on the values contained in one or more of the other columns in the dataset. We will call this new variable &lt;code&gt;n&lt;/code&gt; and we could always rename it in the graphs later on. There are quite a variety of ways of creating counts in R but this is one of the easiest. The mutate function is really very useful and worth learning.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
-pizza &amp;lt;- mutate(pizza, record_count = sum(publication_number = 1))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;What we have done here is to tell R that we want to use the &lt;code&gt;mutate()&lt;/code&gt; function. We have then passed it a series of arguments consisting of:&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;our dataset = pizza&lt;/li&gt;
-&lt;li&gt;record_count = the result of the function sum() which is the sum of publication_number giving the value 1 to each number.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;pizza &amp;lt;-&lt;/code&gt; this tells R to create an object (a data frame) called &lt;code&gt;pizza&lt;/code&gt; containing the results. If you take a look in the Environment pane you will now see that pizza has 32 variables. Note that we have now modified the data we imported into R although the original data in the file remains the same. If we now use &lt;code&gt;View(pizza)&lt;/code&gt; we will see a new column called &lt;code&gt;record_count&lt;/code&gt; with a value of 1 for each entry.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div id=&#34;renaming-columns&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Renaming Columns&lt;/h3&gt;
-&lt;p&gt;We will be doing quite a lot of work with the &lt;code&gt;publication_country_name&lt;/code&gt; field, so let’s make our lives a bit easier by renaming it with the &lt;code&gt;dplyr&lt;/code&gt; function &lt;code&gt;rename()&lt;/code&gt;. We will also do the same for the &lt;code&gt;publication_country_code&lt;/code&gt; and publication_year. Note that it is easy to create labels for graphs with ggplot so we don’t need to worry about renaming column names too much. We can rename them again later if saving the file to a new &lt;code&gt;.csv&lt;/code&gt; file.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
-pizza &amp;lt;- rename(pizza, pubcountry = publication_country_name, pubcode = publication_country_code, 
-    pubyear = publication_year)
-head(pizza)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 27
-##   applicants_organ… ipc_class ipc_codes ipc_names ipc_original ipc_subclass_co…
-##   &amp;lt;chr&amp;gt;             &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;           
-## 1 &amp;lt;NA&amp;gt;              A21: Bak… A21D 13/… A21D 13/… A21D 13/00;… A21D; A23L      
-## 2 &amp;lt;NA&amp;gt;              A21: Bak… A21B 3/13 A21B 3/1… A21B 3/13    A21B            
-## 3 &amp;lt;NA&amp;gt;              A21: Bak… A21C 15/… A21C 15/… A21C 15/04   A21C            
-## 4 Lazarillo De Tor… A21: Bak… A21D 13/… A21D 13/… A21D 13/00;… A21D; A23L      
-## 5 &amp;lt;NA&amp;gt;              B65: Con… B65D 21/… B65D 21/… B65D 21/032… B65D            
-## 6 &amp;lt;NA&amp;gt;              B65: Con… B65D 85/… B65D 85/… B65D 85/36   B65D            
-## # ... with 21 more variables: ipc_subclass_detail &amp;lt;chr&amp;gt;,
-## #   ipc_subclass_names &amp;lt;chr&amp;gt;, priority_country_code &amp;lt;chr&amp;gt;,
-## #   priority_country_code_names &amp;lt;chr&amp;gt;, priority_data_original &amp;lt;chr&amp;gt;,
-## #   priority_date &amp;lt;chr&amp;gt;, pubcode &amp;lt;chr&amp;gt;, pubcountry &amp;lt;chr&amp;gt;,
-## #   publication_date &amp;lt;chr&amp;gt;, publication_date_original &amp;lt;chr&amp;gt;,
-## #   publication_day &amp;lt;int&amp;gt;, publication_month &amp;lt;int&amp;gt;, publication_number &amp;lt;chr&amp;gt;,
-## #   publication_number_espacenet_links &amp;lt;chr&amp;gt;, pubyear &amp;lt;int&amp;gt;,
-## #   title_cleaned &amp;lt;chr&amp;gt;, title_nlp_cleaned &amp;lt;chr&amp;gt;,
-## #   title_nlp_multiword_phrases &amp;lt;chr&amp;gt;, title_nlp_raw &amp;lt;chr&amp;gt;,
-## #   title_original &amp;lt;chr&amp;gt;, record_count &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;selecting-columns-for-plotting&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Selecting Columns for plotting&lt;/h3&gt;
-&lt;p&gt;We could now simply go ahead and work with pizza. However, for datasets with many columns or requiring different kinds of counts it can be much easier to simply select the columns we want to work with to reduce clutter. We can use the &lt;code&gt;select()&lt;/code&gt; function from &lt;code&gt;dplyr&lt;/code&gt; to do this.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
-p1 &amp;lt;- pizza %&amp;gt;% select(., pubcountry, pubcode, pubyear, record_count)
-head(p1)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 4
-##   pubcountry                 pubcode pubyear record_count
-##   &amp;lt;chr&amp;gt;                      &amp;lt;chr&amp;gt;     &amp;lt;int&amp;gt;        &amp;lt;dbl&amp;gt;
-## 1 United States of America   US         2009           1.
-## 2 United States of America   US         2014           1.
-## 3 United States of America   US         2013           1.
-## 4 European Patent Office     EP         2007           1.
-## 5 United States of America   US         2003           1.
-## 6 Patent Co-operation Treaty WO         2002           1.&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Note that &lt;code&gt;dplyr&lt;/code&gt; will exclude columns that are not mentioned when using select. This is one of the purposes of &lt;code&gt;select&lt;/code&gt; as a function. For that reason you will probably want to rename the object (in this case as p1). If we used the name &lt;code&gt;pizza&lt;/code&gt; for the object our original table would be reduced to the 4 columns specified by &lt;code&gt;select&lt;/code&gt;. Type &lt;code&gt;?select&lt;/code&gt; in the console for further details.&lt;/p&gt;
-&lt;p&gt;We now have a data frame with 9,996 rows and 4 variables (columns). Use &lt;code&gt;View(p1)&lt;/code&gt; or simply enter &lt;code&gt;p1&lt;/code&gt; into the console to take a look.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;creating-counts&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Creating Counts&lt;/h2&gt;
-&lt;p&gt;To make life even easier for ourselves we can use function &lt;code&gt;count()&lt;/code&gt; from &lt;code&gt;dplyr&lt;/code&gt; to group the data onto counts by different variables for graphing. Note that we could defer counting until later, however, this is a good opportunity to learn more about &lt;code&gt;dplyr&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Let’s go ahead and construct some counts using &lt;code&gt;p1&lt;/code&gt;. At the same time we will use quick plot (&lt;code&gt;qplot&lt;/code&gt;) for some exploratory plotting of the results. In the course of this R will show error warnings in red for missing values. We will be ignoring the warning because they are often R telling us things it things we need to know.&lt;/p&gt;
-&lt;div id=&#34;total-by-year&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Total by Year&lt;/h3&gt;
-&lt;p&gt;What if we wanted to know the overall total for our sample data by publication year. Try the following.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pt &amp;lt;- count(p1, pubyear, wt = record_count)
-head(pt)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 2
-##   pubyear     n
-##     &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt;
-## 1    1940    1.
-## 2    1954    1.
-## 3    1956    1.
-## 4    1957    1.
-## 5    1959    1.
-## 6    1962    1.&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If we now view &lt;code&gt;pt&lt;/code&gt; (either by using &lt;code&gt;View(pt)&lt;/code&gt;, noting the capital V, or clicking &lt;code&gt;pt&lt;/code&gt; in the Environment pane) we will see that R has dropped the country columns to present us with an overall total by year in &lt;code&gt;n&lt;/code&gt;. We now have a general overview of the data for graphing.&lt;/p&gt;
-&lt;p&gt;Let’s go ahead and quickly plot that using the &lt;code&gt;qplot()&lt;/code&gt; function.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;qplot(x = pubyear, y = n, data = pt, geom = &amp;quot;line&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2015-06-25-wrangling-pizza-patents-in-R_files/figure-html/fig1_ggplot1-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;round-up&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Round Up&lt;/h3&gt;
-&lt;p&gt;That’s it. You may feel at the end of this post that this was a lot of work to get to a very simple graph. But, in reality, it is the data preparation that takes the time. In the next post we will focus in on creating different kinds of graph in ggplot2 and some of the challenges that we encounter along the way.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Reading and Writing an Excel File in R</title>
-      <link>/reading-writing-excel-files-r/</link>
+      <link>https://www.pauloldham.net/reading-writing-excel-files-r/</link>
       <pubDate>Thu, 30 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>/reading-writing-excel-files-r/</guid>
+      <guid>https://www.pauloldham.net/reading-writing-excel-files-r/</guid>
       <description>&lt;p&gt;This post was updated in 2018 and you can read it &lt;a href=&#34;http://www.pauloldham.net/importing-excel-data-into-r-updated/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;http://cran.r-project.org/doc/manuals/r-release/R-data.html#Reading-Excel-spreadsheets&#34;&gt;CRAN Project&lt;/a&gt; has the following to say about importing Excel files into R.&lt;/p&gt;
 &lt;p&gt;“The first piece of advice is to avoid doing so if possible! If you have access to Excel, export the data you want from Excel in tab-delimited or comma-separated form, and use read.delim or read.csv to import it into R. (You may need to use read.delim2 or read.csv2 in a locale that uses comma as the decimal point.).”&lt;/p&gt;
@@ -4306,10 +3683,10 @@ read_wipo &amp;lt;- read_excel(&amp;quot;/Users/pauloldham17inch/Desktop/WIPO_Tr
     
     <item>
       <title>Importing CSV files into R</title>
-      <link>/importing-csv-files-into-r/</link>
+      <link>https://www.pauloldham.net/importing-csv-files-into-r/</link>
       <pubDate>Wed, 29 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>/importing-csv-files-into-r/</guid>
+      <guid>https://www.pauloldham.net/importing-csv-files-into-r/</guid>
       <description>&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#a-quick-2018-update&#34;&gt;A Quick 2018 Update&lt;/a&gt;&lt;/li&gt;

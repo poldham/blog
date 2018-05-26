@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Plotly on Paul Oldham&#39;s Analytics Blog</title>
-    <link>/tags/plotly/</link>
+    <link>https://www.pauloldham.net/tags/plotly/</link>
     <description>Recent content in Plotly on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Sat, 01 Aug 2015 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/tags/plotly/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.pauloldham.net/tags/plotly/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>An Introduction to Plotly for Patent Analytics</title>
-      <link>/an-introduction-to-plotly-for-patent-analytics/</link>
+      <link>https://www.pauloldham.net/an-introduction-to-plotly-for-patent-analytics/</link>
       <pubDate>Sat, 01 Aug 2015 00:00:00 +0000</pubDate>
       
-      <guid>/an-introduction-to-plotly-for-patent-analytics/</guid>
+      <guid>https://www.pauloldham.net/an-introduction-to-plotly-for-patent-analytics/</guid>
       <description>&lt;p&gt;In this article we provide a quick introduction to the online graphing service &lt;a href=&#34;http://plotly.com&#34;&gt;Plotly&lt;/a&gt; to create graphics for use in patent analysis.&lt;/p&gt;
 &lt;p&gt;Plotly is an online graphing service that allows you to import excel, text and other files for visualisation. It also has API services for R, Python, MATLAB and a Plotly Javascript Library. This means that you can send data directly to Plotly for visualisation. Plots can also be shared with team mates or publicly.&lt;/p&gt;
 &lt;p&gt;Plotly’s great strength is that it produces attractive interactive graphics that can easily be shared with colleagues or made public. It also has a wide variety of graph types including contour and heatmaps. For examples of graphs created with Plotly see the &lt;a href=&#34;https://plot.ly/feed/&#34;&gt;public gallery&lt;/a&gt;. However, we experienced significant difficulty in loading patent data into Plotly and we struggled to draw graphs that would take a couple of minutes if we used Tableau Public as our benchmark. This suggests a need for investment of more time in understanding the expectations of the tool to make best use of the service. It may also suggest that while Plotly can produce excellent graphics, the service may need to invest more time in explaining how ordinary human beings might format their data to meet its expectations. In short, as is often the case with open source tools, the basic documentation could be better. Do not let this put you off. Plotly is potentially a great tool for creating and sharing graphics. In the rest of this article we will help you get started as a basis for exploring Plotly on your own.&lt;/p&gt;
 &lt;div id=&#34;getting-started-with-plotly&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Getting Started with Plotly&lt;/h3&gt;
 &lt;p&gt;We need to start out by creating an account using the Create Account Button.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig1_plotly.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig1_plotly.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Next we will see an invitation to take a tour (which is worth doing) and Plotly helpfully points out that we can load files from Google Drive or Dropbox. We then select the Workspace option to begin work.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;importing-files&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Importing Files&lt;/h3&gt;
 &lt;p&gt;When you first arrive you will see a Workspace with a Grid (Plotly’s term for a table or worksheet).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig2_workspace.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig2_workspace.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the workspace you will see an Import Icon that provides a range of options for importing data. Don’t import anything yet! You can also copy data from a file and paste it into the Grid.&lt;/p&gt;
 &lt;p&gt;The reason not to use these options at the moment is that while the data may import fine first time, in other cases it will not. Using the options on this page you will receive no information if an import fails. We also encountered problems with saving data that had been pasted into the worksheet (even where it appeared to work). To avoid potential frustration head over to &lt;code&gt;Organize&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig3_import.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig3_import.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;From the Organize page select the New button and then Upload. Now select your local file. When you upload the file a status message will display and if all goes well then you will see a completed message. If not a red message will display informing you that there has been a problem (how you fix these problems is unclear)&lt;/p&gt;
 &lt;p&gt;For this experiment we used tow datasets from the Open Source Patent Analytics Manual &lt;a href=&#34;https://github.com/poldham/opensource-patent-analytics/tree/master/2_datasets&#34;&gt;data repository&lt;/a&gt;. When using the Github repository click on the file of interest until you see a &lt;code&gt;View Raw&lt;/code&gt; message. Then right click to download the data file from there. You can download them for your own use directly from the following links.&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
@@ -46,50 +46,50 @@
 &lt;div id=&#34;creating-a-graphic&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Creating a graphic&lt;/h2&gt;
 &lt;p&gt;We will start with the simple WIPO trends data by opening up that Grid&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig5_grid.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig5_grid.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note here that in the Grid we have options to select the x or y axis for plotting. There is also an Options menu that we will come back to.&lt;/p&gt;
 &lt;p&gt;The Type of plot can be changed by selecting the drop down menu as we can see below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig6_gtype.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig6_gtype.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Sticking with a line graph, when we create the plot we can add a title and then change the theme (in this case to Catherine).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig7_line.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig7_line.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We could also add a fit line by selecting the &lt;code&gt;FIT DATA&lt;/code&gt; menu icon. This will ask you to create a fit and then you have a range of preset functions or you can add your own. Here we have simply chosen the default Linear fit.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig8_fit.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig8_fit.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can then save the plot and use the export button to save the plot in a variety of formats and sizes. It is also very easy to add annotations using the Notes icon. Confusingly, the large blue Share button only seems to save the file and despite saving the plot we were not able to locate it again. While Plotly certainly looks nice, and appears to have attractive functions it is not intuitive and the difficulties involved in importing and sharing can be frustrating and time consuming. In short, time is needed to invest in and explore the potential of this tool.&lt;/p&gt;
 &lt;div id=&#34;adding-a-second-axis&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Adding a Second Axis&lt;/h3&gt;
 &lt;p&gt;If we go back to our original WIPO trends data we have a percentage score for the year on year change in patent applications. We might want to show this on a plot with a second axis for the percentage.&lt;/p&gt;
 &lt;p&gt;To do that select the percentage as a second item for the y axis.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig9_secondy.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig9_secondy.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;When we choose Line plot we will now see the two sets of data with the percentage trailing on the bottom. We now need to create a second y axis on the right and assignee the percentage data to that.&lt;/p&gt;
 &lt;p&gt;To do this select the Traces icon and a menu will pop up showing the data traces. Select Growth Rate % from the Traces menu. Then where you see Lines/Markers select the dot. This will prevent the percentage scores displaying as a line.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig11_addaxis.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig11_addaxis.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Next, select &lt;code&gt;New Axis/Subplot&lt;/code&gt; and a new screen will pop up. We have some choices here but will simply choose to create a new axis on the right.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig11_addyaxis.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig11_addyaxis.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The result will look something like this.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig12_result1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig12_result1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Our issue now is equalising the axes and changing the size of the points for the percentage scores. Finally we can add a title.&lt;/p&gt;
 &lt;p&gt;Before we go any further let’s note that we have a significant minus axis value of -3.6% in 2009 when patent applications declined. There is also a minus value in 2002.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig13_dip.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig13_dip.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;If we wanted to retain these values we would probably want to turn off the second set of grid lines. We would also want to resize the points.&lt;/p&gt;
 &lt;p&gt;To turn of the grid lines on the second y axis Click on the Axes icon and then from the &lt;code&gt;All Axes&lt;/code&gt; drop down select Y Axis 2, then Lines and Grid lines OFF. Also turn the Zero line to off unless you want to retain it.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig13_turnoffgrid.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig13_turnoffgrid.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;To resize the points we need to go back to traces and select Growth Rate from the list of Traces. Then choose the Style tab and change the marker size to something larger such as 8.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig13_resizepoint.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig13_resizepoint.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can simply type in the Axis labels and a title into the text boxes provided. By choosing the Legend icon we could turn the legend on or off. Note that while this graph could be seen as self explanatory it may not be for the reader. We can also simply drag the axes labels to a different position.&lt;/p&gt;
 &lt;p&gt;It is possible that we would want to remove the negative values from the plot (in that case the values would need to be explained in the accompanying text). To do that select &lt;code&gt;Axes&lt;/code&gt;, then &lt;code&gt;Y Axis2&lt;/code&gt; then in &lt;code&gt;Autorange&lt;/code&gt; choose &lt;code&gt;Non-negative&lt;/code&gt;to show only values over zero on the plot.&lt;/p&gt;
 &lt;p&gt;If we wished we could also apply a fit line by choosing the FIT DATA icon. We will choose Linear.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig13_final.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig13_final.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Finally, to finish off the plot we might want to add annotations using the NOTES icon. Simply click on the plus sign in the pop up menu for a new annotation and then select the arrow and text and move it into the position you want.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig13_final_annotated.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig13_final_annotated.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In this case we have added a couple of markers that may help to understand trends in activity. First, we have a dip in patent applications between 2001 and 2002. One possible explanation here is that this is a knock on effect of the collapse of the dot.com bubble where share prices reached a peak in 2000, declined rapidly and recovered before declining again into 2001. Patent data typically displays lag effects and it is reasonable to think that the decline in application activity from 2001 reflects these wider economic adjustments. Similarly, there is a significant dip in applications between 2008 and 2009 that it appears reasonable to assume reflects the knock on effects of the global economic crisis of 2007-2008. Note here that these are grosso modo way markers. We could choose to add other timeline style events or layer graphics to help understand the potential or actual relationships between wider economic activity and trends in patent applications worldwide.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;saving-and-sharing-sharing&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Saving and Sharing Sharing&lt;/h3&gt;
 &lt;p&gt;To save the plot we simply click Save. However, it is here that one of Plotly’s major strengths becomes apparent. As soon as we save the plot we can also invite others by email, we can create a public or private shareable link. For the collaborators, they must have a Plotly account already for this to work.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig13_email.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;The next option is to share a link. Note here that the default is to share a private link. To change that select the lock icon. The private link is particularly well suited for patent professionals. &lt;img src=&#34;/images/plotlyfigs/fig13_privatelink.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig13_email.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The next option is to share a link. Note here that the default is to share a private link. To change that select the lock icon. The private link is particularly well suited for patent professionals. &lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig13_privatelink.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;You could also grab an embed code to embed the plot in a web page&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig13_embed.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig13_embed.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Alternatively, surprise your friends and relatives by posting the plot on facebook or share with a wider audience on Twitter.&lt;/p&gt;
 &lt;p&gt;In this example we have focused on developing a very simple plot using plotly. In practice there are a wide range of possible plotting options with a range of tutorials provided &lt;a href=&#34;http://help.plot.ly/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
@@ -126,11 +126,11 @@
 &lt;p&gt;Let’s go and visit it online.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;response$url&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You will now see an online plot that should look like this.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig14_R_online.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig14_R_online.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;If we hover over the data points we will also see the data appear by country (to add a legend, edit graph and then Legends)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig15_R_interactivepng.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig15_R_interactivepng.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note here that the data table is also provided under the Data tab.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig15_R_interactivepng.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig15_R_interactivepng.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can also share the graph via social media, download the data, or edit the graph. Note that the default setting for a graph sent via the API appears to be public (with no obvious way to change that).&lt;/p&gt;
 &lt;p&gt;It is here that Plotly’s potential importance as a tool for sharing data and graphics becomes apparent.&lt;/p&gt;
 &lt;/div&gt;
