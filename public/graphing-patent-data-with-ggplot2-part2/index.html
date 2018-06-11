@@ -77,7 +77,7 @@
 
   <article class="article">
     
-    <span class="article-duration">43 min read</span>
+    <span class="article-duration">42 min read</span>
     
 
     <h1 class="article-title">Graphing Patent Data with ggplot2 part2</h1>
@@ -90,36 +90,9 @@
       <div id="TOC">
 <ul>
 <li><a href="#introduction">Introduction</a></li>
-<li><a href="#the-grammar-of-graphics">The Grammar of Graphics</a></li>
-<li><a href="#getting-started">Getting Started</a><ul>
-<li><a href="#loading-the-data">Loading the Data</a></li>
-<li><a href="#reviewing-and-preparing-the-dataset-with-dplyr">Reviewing and Preparing the Dataset with <code>dplyr</code></a></li>
-<li><a href="#creating-a-publication-country-table">Creating a Publication Country Table</a></li>
-<li><a href="#creating-a-publication-country-by-year-table">Creating a Publication Country by Year Table</a></li>
-</ul></li>
-<li><a href="#getting-going-with-ggplot-in-ggplot2">Getting Going with ggplot in ggplot2</a><ul>
-<li><a href="#establishing-the-base-object">Establishing the Base Object</a></li>
-<li><a href="#adding-a-geom">Adding a <code>geom</code></a></li>
-<li><a href="#changing-the-geom">Changing the Geom</a></li>
-<li><a href="#adding-a-trend-line">Adding a trend line</a></li>
-<li><a href="#statistical-transformations">Statistical Transformations</a></li>
-<li><a href="#adding-labels">Adding Labels</a></li>
-<li><a href="#publication-country-charts">Publication Country Charts</a></li>
-<li><a href="#a-bar-chart">A Bar chart</a></li>
-<li><a href="#adding-labels-to-columns">Adding labels to columns</a></li>
-<li><a href="#a-ranked-bar-chart">A Ranked Bar Chart</a></li>
-<li><a href="#a-dot-plot">A Dot Plot</a></li>
-<li><a href="#a-balloon-plot">A Balloon Plot</a></li>
-<li><a href="#a-stacked-bar-chart">A Stacked Bar Chart</a></li>
-<li><a href="#faceting">Faceting</a></li>
-<li><a href="#facet_wrap">facet_wrap</a></li>
-</ul></li>
-<li><a href="#pie-and-coxcomb-plots">Pie and Coxcomb Plots</a><ul>
+<li><a href="#the-grammar-of-graphics">The Grammar of Graphics</a><ul>
 <li><a href="#creating-a-pie-chart-aaaargh">Creating a Pie Chart (aaaargh)</a></li>
-<li><a href="#the-coxcomb-plot">The Coxcomb Plot</a></li>
 </ul></li>
-<li><a href="#round-up">Round Up</a></li>
-<li><a href="#useful-resources">Useful Resources</a></li>
 </ul>
 </div>
 
@@ -160,9 +133,7 @@
 <li>Winston Chang’s <a href="http://www.cookbook-r.com/Graphs/">R Graphics Cookbook website</a> is a very valuable practical guide to most things you will want to do with ggplot2. The full R Graphics Cookbook goes into a lot more detail and is an invaluable reference if you will be doing a lot of work with graphics in R. Those with budgets may also want to invest in Hadley Wickham’s book ggplot2 published by Springer.</li>
 <li>RStudio have developed a very helpful cheat sheet that you can download <a href="http://www.rstudio.com/wp-content/uploads/2015/05/ggplot2-cheatsheet.pdf">here</a> or view <a href="http://www.rstudio.com/resources/cheatsheets/">here</a>. We suggest downloading and printing the cheat sheet when using ggplot2.</li>
 </ol>
-</div>
-<div id="getting-started" class="section level2">
-<h2>Getting Started</h2>
+<p>##Getting Started</p>
 <p>If you don’t have these packages already then install each of them below by pressing command and Enter at the end of each line. As an alternative select <strong><em>Packages &gt; Install</em></strong> in the pane displaying a tab called Packages. Then enter the names of the packages one at a time without the quotation marks.</p>
 <pre class="r"><code>install.packages(&quot;readr&quot;)
 install.packages(&quot;dplyr&quot;)
@@ -174,14 +145,11 @@ library(dplyr)
 library(ggplot2)
 library(ggthemes)</code></pre>
 <p>You are now good to go.</p>
-<div id="loading-the-data" class="section level3">
-<h3>Loading the Data</h3>
+<p>###Loading the Data</p>
 <p>We will load the pizza dataset directly from the <a href="https://github.com/poldham/opensource-patent-analytics/tree/master/2_datasets/pizza_medium_clean">Github datasets repository</a> using <code>read_csv</code> from the <code>readr</code> package. If downloading from the repository note that it is the View Raw file that you want. If loading from a downloaded file include the full file path inside quotation marks.</p>
 <pre class="r"><code>pizza &lt;- read_csv(&quot;https://github.com/poldham/opensource-patent-analytics/blob/master/2_datasets/pizza_medium_clean/pizza.csv?raw=true&quot;)</code></pre>
 <p>As in Part 1 we will use <code>dplyr</code> to create a count field using the publication number, rename some of the fields and then select fields we want to count.</p>
-</div>
-<div id="reviewing-and-preparing-the-dataset-with-dplyr" class="section level3">
-<h3>Reviewing and Preparing the Dataset with <code>dplyr</code></h3>
+<p>###Reviewing and Preparing the Dataset with <code>dplyr</code></p>
 <p>Inspecting our data is a first step. Type <code>View(pizza)</code> in the console to see the table and <code>str(pizza)</code> to see its structure.</p>
 <p>In practice we have a number of issues that we will want to fix.</p>
 <ol style="list-style-type: decimal">
@@ -276,9 +244,7 @@ pt</code></pre>
 ## # ... with 33 more rows</code></pre>
 <p>This neatly demonstrates how easy it is to use mutate to add columns based on different calculations.</p>
 <p>The reason that we are focusing on adding counts to the publication total table is that when graphing later we can use these columns to split and order the graphics. This is particularly helpful because with patent data we normally have widely varying scores that produce crunched graphs. The availability of either buckets or percentages is very helpful for creating ranked bar charts or plots and faceting (trellis graphs). As we often want to see what happens with a graph before deciding how to proceed or drop data it is useful to have a ranking system. We can then filter the data using function at a later stage.</p>
-</div>
-<div id="creating-a-publication-country-table" class="section level3">
-<h3>Creating a Publication Country Table</h3>
+<p>###Creating a Publication Country Table</p>
 <p>We will follow the same procedure for the publication country table. However, in this case we will illustrate the use of pipes to simplify the process. We will use the most common pipe <code>%&gt;%</code>, which means “then”. This basically says, “this” then “that”. Select and run the code.</p>
 <!--- could probably use n() here. Note that if attempt to use n then it thinks it is the function.--->
 <pre class="r"><code>pc &lt;- count(p1, pubcountry, pubcode, wt = n) %&gt;%
@@ -337,9 +303,7 @@ print(pc)</code></pre>
 <p>Note that we have added the function <code>arrange</code> and given it the value of <code>n</code>. Arrange will sort a table on a column in ascending order by default and descending order using <code>desc</code> inside the function as in this case. Use <code>View(pc)</code> to take a look. To reverse the order try the code below.</p>
 <pre class="r"><code>pc &lt;- arrange(pc, nn)</code></pre>
 <p>This will arrange the <code>pc</code> data by the value of <code>n</code> in the default ascending order.</p>
-</div>
-<div id="creating-a-publication-country-by-year-table" class="section level3">
-<h3>Creating a Publication Country by Year Table</h3>
+<p>###Creating a Publication Country by Year Table</p>
 <p>For the publication country by year we do the same but retain all the columns.</p>
 <pre class="r"><code>pcy &lt;- count(p1, pubcountry, pubcode, pubyear, wt = n) %&gt;% ungroup()
 pcy</code></pre>
@@ -375,22 +339,16 @@ low &lt;- filter(pcy, group == 1)</code></pre>
 </ul>
 <p>We will be working through graph creation in a step wise direction so that you can see what is happening at each step. In the process we will create multiple objects. This is not the fastest way to proceed. However, it is transparent in mapping out the steps and the consequences of small chunks of code. Faster ways include using pipes as we have seen above. We have initially chosen the slower route to explain what is going on. However, you may want to experiment with pipes on some of the code at the end of this article.</p>
 <p>This section has usefully reminded us that data preparation is a fundamental step in any patent analysis task including visualisation. Choices made at this stage will determine the ease or difficulty with which we can perform particular visualisation tasks later. However, there is nothing to stop us returning to our data wrangling functions at a later stage. For example, we may well discover that the three bins we have created using <code>ntile</code> should be 4 or we might want to use a calculation to determine the number of bins. This need for adjustment is a normal part of data analysis. For more information on data wrangling in R using <code>dplyr</code> and <code>tidyr</code> see the <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">RStudio Data Wrangling Cheatsheet</a> and Garrett Grolemund’s excellent <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data Wrangling with R</a>.</p>
-</div>
-</div>
-<div id="getting-going-with-ggplot-in-ggplot2" class="section level2">
-<h2>Getting Going with ggplot in ggplot2</h2>
+<p>##Getting Going with ggplot in ggplot2</p>
 <p><code>ggplot()</code> basically builds graphics from separate layers. Those layers are added, adjusted and specified in the ggplot function using small chunks of code describing different elements of the graph. Essential background reading here is <a href="http://www.cookbook-r.com/Graphs/">Winston Chang’s Cookbook for R Graphics website</a> and book along with <a href="http://www.r-bloggers.com/search/ggplot2">R-bloggers posts on ggplot2</a>.</p>
-<div id="establishing-the-base-object" class="section level3">
-<h3>Establishing the Base Object</h3>
+<p>###Establishing the Base Object</p>
 <p>Most ggplot2 tutorials do not refer to a base object, possibly because it is obvious. However, this term was used in Hadley Wickham’s 2010 article <a href="http://vita.had.co.nz/papers/layered-grammar.pdf">A Layered Grammar of Graphics</a> and helps us to understand the layering process. The base object consists of the data we want to graph and the aesthetic mappings or <code>aes</code>. This is basically what we want to see on a graphic. Using the <code>pt</code> (totals) table we can create a base object <code>t</code> for total as follows.</p>
 <pre class="r"><code>t &lt;- ggplot(pt, aes(pubyear, weight = nn))</code></pre>
 <p>This follows the pattern of:</p>
 <p>data = pt, aesthetic mappings = (x = publication year, y = the sum of n)</p>
 <p>We now have a base object with the <code>aes</code> mappings. Bear in mind that we will need to change this base object for particular types of graph.</p>
 <p>If we enter <code>t</code> in the console now then we will see an error message <code>Error: No layers in plot</code>. That is because we haven’t defined how we want to see the data using a <code>geom</code>. So let’s add a <code>geom</code> now.</p>
-</div>
-<div id="adding-a-geom" class="section level3">
-<h3>Adding a <code>geom</code></h3>
+<p>###Adding a <code>geom</code></p>
 <p>The geometric object is basically the form we want to see the data in plus any additional conditions we might want to set.</p>
 <p>For a bar graph (histogram) we would specify <code>t</code> and <code>+</code> for the <code>geom</code> for a bar graph. Inside the <code>geom_bar()</code> function we can add some additional details.</p>
 <pre class="r"><code>t + geom_histogram(colour = &quot;white&quot;, fill = &quot;red&quot;)</code></pre>
@@ -402,12 +360,11 @@ low &lt;- filter(pcy, group == 1)</code></pre>
 <ol style="list-style-type: decimal">
 <li>Created a white outline around the bars using colour = “white”</li>
 <li>Created a fill using fill = “red”. The default is black.</li>
-<li>We have specified bindwidth = 1 because the default is the range divided by 30. This has been described as “perverse” by Hadley Wickham. It is intended to encourage thought and experimentation in binning data. In this case our base object is weighted to sum on the values of and we want to see the values in a bin for each year.</li>
+<li>We have specified bindwidth = 1 because the default is the range divided by 30. This
+has been described as “perverse” by Hadley Wickham. It is intended to encourage thought and experimentation in binning data. In this case our base object is weighted to sum on the values of and we want to see the values in a bin for each year.</li>
 <li>The default for counts in a bar chart is a count of cases (number of observations in the bin), not a count of values. For that reason we specified in the base object for the y axis (weight can also be written as ).</li>
 </ol>
-</div>
-<div id="changing-the-geom" class="section level3">
-<h3>Changing the Geom</h3>
+<p>###Changing the Geom</p>
 <p>If we wanted to change the <code>geom</code> to generate a different kind of graph, such as a line graph we would first need to make an adjustment to our base object. In this case we are specifying that the y axis is <code>n</code>.</p>
 <pre class="r"><code>l &lt;- ggplot(pt, aes(pubyear, nn, weight = nn))</code></pre>
 <p>To view this we now specify the geom as line:</p>
@@ -457,7 +414,8 @@ l2</code></pre>
 <p>What if we wanted to see the overall trend and the trend for each country on the same graphic? This might initially appear to be difficult because the total data is in the data table and the country year data is in the <code>pcy</code> table. However, they share the same columns and (thanks to Didzis Efferts answer to this stackoverflow question question) we can do that in two steps.</p>
 <ol style="list-style-type: decimal">
 <li>First we use the ggplot call for the data as before but add +geom_line() to draw the line graph for the total data.</li>
-<li>We add a second <code>geom_line()</code> and then specify the data that we want to use and its aesthetic mappings inside the function. We will stay with the tableau theme in <code>ggthemes</code> and adapt this for a line graph using <code>colour</code> rather than <code>fill</code>.</li>
+<li>We add a second <code>geom_line()</code> and then specify the data that we want to use and its aesthetic mappings inside the function. We will stay with the tableau theme in <code>ggthemes</code>
+and adapt this for a line graph using <code>colour</code> rather than <code>fill</code>.</li>
 </ol>
 <p>We will place that in an object called <code>co</code> for combined.</p>
 <pre class="r"><code>co &lt;- ggplot(pt, aes(pubyear, nn, weight = nn)) +
@@ -469,11 +427,10 @@ co</code></pre>
 <!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig9_gplot2-1.png)--->
 <p>To view the graph type <code>co</code> in the console. Note that we have used pubcode (for the two letter country code), rather than the full country name because the graphic is easier to read.</p>
 <p>We could add to this graphic in at least two ways. Let’s try adding a trend line.</p>
-</div>
-<div id="adding-a-trend-line" class="section level3">
-<h3>Adding a trend line</h3>
+<p>###Adding a trend line</p>
 <p>What we would like to know here is the trend for pizza patent publications using a regression (see <code>?geom_smooth()</code> and <code>?stat_smooth()</code> for further details).</p>
-<p>To do that we will work with <code>co</code> as follows by changing geom_line() on the pt data to geom_point() for a scatter plot and then adding a <code>geom_smooth()</code>. By default <code>geom_smooth()</code> will draw a grey area indicating the standard error interval (se). That interval is set to 0.95 by default. We can do this quite easily by adding <code>geom_smooth()</code> to <code>co</code>.</p>
+<p>To do that we will work with <code>co</code> as follows by changing geom_line() on the pt data to geom_point() for a scatter plot and then adding a <code>geom_smooth()</code>. By default <code>geom_smooth()</code>
+will draw a grey area indicating the standard error interval (se). That interval is set to 0.95 by default. We can do this quite easily by adding <code>geom_smooth()</code> to <code>co</code>.</p>
 <pre class="r"><code>co + geom_smooth()</code></pre>
 <p><img src="/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig10_gplot2-1.png" width="800px" style="display: block; margin: auto;" /></p>
 <!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig10_gplot2-1.png)--->
@@ -483,13 +440,9 @@ co</code></pre>
 <p><img src="/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig11_gplot2-1.png" width="800px" style="display: block; margin: auto;" /></p>
 <!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig11_gplot2-1.png)--->
 <p>To experiment with an alternative method try <code>+ geom_smooth(method = &quot;lm&quot;, se = FALSE)</code> for a linear model and look up <code>?geom_smooth</code> and associated <code>?stat_smooth</code>. We would of course want to add a label for the trend line but we will come to labels below. <strong><em>Add label</em></strong></p>
-</div>
-<div id="statistical-transformations" class="section level3">
-<h3>Statistical Transformations</h3>
+<p>###Statistical Transformations</p>
 <p>As this suggests there are a range of statistical transformations available in ggplot2 and some are used in the default settings (such as a bar chart and binwidth). Other options include stat_density(), stat_contour() and stat_quantile() with details listed in ggplot2 under Packages and on the second page of the <a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">RStudio Data Visualization cheatsheet</a>.</p>
-</div>
-<div id="adding-labels" class="section level3">
-<h3>Adding Labels</h3>
+<p>###Adding Labels</p>
 <p>To add labels use the function <code>labs()</code>. Note that the title= , x = and y = must be specified if you want to include labels. Otherwise R will not know what to do with the information.</p>
 <pre class="r"><code>co + geom_smooth(se = FALSE) + 
   labs(title = &quot;Patentscope Pizza Patents&quot;,
@@ -506,13 +459,9 @@ co</code></pre>
 <li>xlab(“New xlab”) 3. ylab(“New y lab”)</li>
 </ol>
 <p>We will go into more detail on legends below.</p>
-</div>
-<div id="publication-country-charts" class="section level3">
-<h3>Publication Country Charts</h3>
+<p>###Publication Country Charts</p>
 <p>To illustrate different types of charts we will now work with the publication country <code>pc</code> data frame that we created earlier.</p>
-</div>
-<div id="a-bar-chart" class="section level3">
-<h3>A Bar chart</h3>
+<p>###A Bar chart</p>
 <p>￼Again first we set the data and aesthetic mappings, specifying the publication country code as the fill (fill with colour) and color as pubcode.</p>
 <pre class="r"><code>ct &lt;- ggplot(pc, aes(pubcode, weight = nn, fill = pubcode))</code></pre>
 <p>Next we set the geom, in this case for <code>geom_bar()</code>. Because the x axis will have country code labels we will remove the legend using <code>guides(fill=FALSE)</code>. Note that the legend arises from <code>fill=pubcode</code> in the base object. Alternative ways of removing a legend include <code>scale_fill_discrete(guide = FALSE)</code> or <code>theme(legend.position=&quot;none&quot;)</code>.</p>
@@ -536,9 +485,7 @@ ct2</code></pre>
 <p><img src="/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig15_gplot2-1.png" width="800px" style="display: block; margin: auto;" /></p>
 <!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig15_gplot2-1.png)--->
 <p>A range of other options for controlling fonts and legends with practical demonstrations can be found on <a href="http://www.cookbook-r.com/Graphs/">Winston Chang’s R Graphics Cookbook website</a>. Adjusting line weight and backgrounds can contribute to bringing data to the fore while minimising noise and what Tufte in The Visualisation of Quantitative Information called “chart junk”.</p>
-</div>
-<div id="adding-labels-to-columns" class="section level3">
-<h3>Adding labels to columns</h3>
+<p>###Adding labels to columns</p>
 <p>We can also add the values to our bars for our new object . We can achieve this using <code>geom_text</code>. In this case we needed to specify the y axis again inside <code>geom_text</code>. <code>vjust</code> specifies the vertical justification with the horizontal being <code>hjust</code>. In this case we have also specified the font size in <code>geom_text()</code> as 12.</p>
 <pre class="r"><code>ct2 + geom_text(aes(y = nn, label = nn, size = 12), vjust= -0.2)</code></pre>
 <p><img src="/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig16_gplot2-1.png" width="800px" style="display: block; margin: auto;" /></p>
@@ -546,9 +493,7 @@ ct2</code></pre>
 <p>￼If we wanted to make this more closely resemble the country count chart from our earlier Tableau workbook (a stacked horizontal bar chart) we would need to swap around the axes. To do that we add <code>coord_flip()</code> to flip around x and y and then we adjust the labelling to use <code>hjust</code> for horizontal justification rather than <code>vjust</code>.</p>
 <p>To create the ranked bar we need to use the function <code>reorder()</code> with either the x or the y axis. In this case it is the x axis. We need to specify both x and the y inside <code>reorder()</code> for this to work. In other cases you may need to go back to your original data table to adjust the data.</p>
 <p>Depending on the font used you may have to change the <code>hjust</code> value or adjust the font size. Note that only the first four lines are essential to this code. The remainder are for our tableau theme and to hide the legend.</p>
-</div>
-<div id="a-ranked-bar-chart" class="section level3">
-<h3>A Ranked Bar Chart</h3>
+<p>###A Ranked Bar Chart</p>
 <pre class="r"><code>ctr &lt;- ggplot(pc, aes(x = reorder(pubcode, nn), y = nn, fill = pubcode)) + 
   geom_bar(stat = &quot;identity&quot;) +
   coord_flip() +
@@ -561,9 +506,7 @@ ctr</code></pre>
 <p><img src="/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig17_gplot2-1.png" width="800px" style="display: block; margin: auto;" /></p>
 <!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig17_gplot2-1.png)--->
 <p>There is room for improvement here, such as the colour of the country names (or replacing them with actual names) and adjusting the font size to more closely match the axis fonts. It can also be tricky to ensure that the highest value (in this case the label for the US) stays inside the plot. However, it is pretty close. Turning now to our patent country year table <code>pcr</code> we will look at some other chart forms and coordinate systems.</p>
-</div>
-<div id="a-dot-plot" class="section level3">
-<h3>A Dot Plot</h3>
+<p>###A Dot Plot</p>
 <p>For a simple dot plot of the same data we can make three changes. 1. We change fill to colour in the base object. 2. We change <code>geom_bar</code> to <code>geom_point</code> and specify the size of the dots. 3. For the labelled values we change hjust.</p>
 <pre class="r"><code>ctd &lt;- ggplot(pc, aes(x = reorder(pubcode, nn), y = nn, colour = pubcode)) + 
   geom_point(size = 3) +
@@ -577,9 +520,7 @@ ctd</code></pre>
 <p><img src="/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig18_gplot2-1.png" width="800px" style="display: block; margin: auto;" /></p>
 <!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig18_gplot2-1.png)--->
 <p>Note here that one limitation of this dot plot is the adjustment of <code>hjust</code> where smaller numbers appear closer to the dots than larger numbers. This suggests a need for experimentation with <code>hjust</code> and possibly the size and assessing whether to retain the labels. Options for recolouring labels might also be considered.</p>
-</div>
-<div id="a-balloon-plot" class="section level3">
-<h3>A Balloon Plot</h3>
+<p>###A Balloon Plot</p>
 <p>Another way or representing the data would be as a set of balloons sized on the number of records.</p>
 <pre class="r"><code>ctb &lt;- ggplot(pc, aes(x = pubcode, y = nn, size = nn)) + 
   geom_point(shape = 21, colour = &quot;black&quot;, fill = &quot;cornsilk&quot;) +
@@ -592,9 +533,7 @@ ctb</code></pre>
 <p><img src="/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig19_gplot2-1.png" width="800px" style="display: block; margin: auto;" /></p>
 <!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig19_gplot2-1.png)--->
 <p>This is a very basic balloon plot and plots of this type could be readily adapted to represent a wide variety of patent data.</p>
-</div>
-<div id="a-stacked-bar-chart" class="section level3">
-<h3>A Stacked Bar Chart</h3>
+<p>###A Stacked Bar Chart</p>
 <p>To create a stacked bar chart using our <code>pcy</code> data we can use the following. We will however rapidly run into some of the aesthetic problems that are common with stacked bar charts. In reading this section, consider whether a stacked bar chart is really the best way to represent the data.</p>
 <pre class="r"><code>sb &lt;- ggplot(pcy, aes(pubyear, weight = nn, fill = pubcode)) +
   geom_bar(binwidth = 1)
@@ -639,9 +578,7 @@ sm</code></pre>
 <p><img src="/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig24_gplot2-1.png" width="800px" style="display: block; margin: auto;" /></p>
 <!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig24_gplot2-1.png)--->
 <p>That looks promising but note that the order of the stack is not correct and can give a misleading impression. Thus the order should be descending from US, WO, CA, EP, KR. At the time of writing an easy way of adjusting this has not been identified. As such, significant energy could be expended attempting to improve what is essentially a bad graph.</p>
-</div>
-<div id="faceting" class="section level3">
-<h3>Faceting</h3>
+<p>###Faceting</p>
 <p>One of the problems we commonly encounter in patent analysis is that data is compressed by dominant players, whether these be countries, applicants or technology areas. One important approach to addressing this problem is to break the data out into multiple individual plots by faceting that data. The term faceting in ggplot is perhaps more familiar as the creation of trellis graphs.</p>
 <p>To facet our publication by country and year data from the graph above we will start by creating an object with the information below. We will leave out labels. We will however add a control that excludes the legend because it will be redundant and get in the way of the large plot we will be creating.</p>
 <pre class="r"><code>f &lt;- ggplot(pcy, aes(x = pubyear, y = nn, color = pubcode)) +
@@ -668,9 +605,7 @@ sm</code></pre>
 <p><img src="/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig26_gplot2-1.png" width="800px" style="display: block; margin: auto;" /></p>
 <!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig26_gplot2-1.png)--->
 <p>That is an improvement, as we can see the three groups, but note that the countries are ordered alphabetically rather than by group.</p>
-</div>
-<div id="facet_wrap" class="section level3">
-<h3>facet_wrap</h3>
+<p>###facet_wrap</p>
 <p>To create a more reasonable plot we can use <code>facet_wrap()</code>. Note that the position of the group has been reversed to <code>group~pubcode</code> to achieve this plot.</p>
 <pre class="r"><code>f + facet_wrap(group~pubcode) +
   theme(legend.position = &quot;none&quot;)</code></pre>
@@ -709,10 +644,7 @@ sm</code></pre>
 <p><img src="/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig32_gplot2-1.png" width="800px" style="display: block; margin: auto;" /></p>
 <!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig32_gplot2-1.png)--->
 <p>That is a considerable improvement and we will stop there. One limitation of facet wrap is that it appears that renaming the labels, to leave only the country codes, is not possible (although using labeller may provides solutions). It may also be the case that we would prefer to drop some of the other countries with low scores from group 2. We could do that by applying a filter on pubcode. We could also add some labels to the overall plot.</p>
-</div>
-</div>
-<div id="pie-and-coxcomb-plots" class="section level2">
-<h2>Pie and Coxcomb Plots</h2>
+<p>##Pie and Coxcomb Plots</p>
 <div id="creating-a-pie-chart-aaaargh" class="section level3">
 <h3>Creating a Pie Chart (aaaargh)</h3>
 <p>A pie chart is the plan view of a stacked bar chart using polar coordinates. Pie charts of the familiar variety are widely criticised because they are hard to accurately interpret. They also tend to become laden with what Edward Tufte called “chart junk”, such as 3D rendering, that distracts from the presentation and communication of the data. Edward Tufte has this to say about pie charts in The Visual Display of Quantitative Information:</p>
@@ -760,9 +692,7 @@ q</code></pre>
 <p><img src="/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig36_gplot2-1.png" width="800px" style="display: block; margin: auto;" /></p>
 <!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig36_gplot2-1.png)--->
 <p>Thanks to Mathematical Coffee we now have a functional pie chart of the percentage share of pizza patent documents. The only issue with this plot is that some of the labels on the smaller values are crunched. That could however be addressed by filtering rows in accordance with the groups on the <code>pc</code> table, as we did above for <code>pcy</code>, to remove the overlap.</p>
-</div>
-<div id="the-coxcomb-plot" class="section level3">
-<h3>The Coxcomb Plot</h3>
+<p>###The Coxcomb Plot</p>
 <p>A coxcomb plot is generally associated with Florence Nightingales representation of the causes of mortality among the British Army in the Korean War that can be viewed <a href="">here</a>.</p>
 <p>A coxcomb plot begins with a bar chart as follows. Note that we have chosen <code>n</code> for the y value from the table. We could have used percent.</p>
 <p>￼￼We will use a filtered version of the table that only contains group 3 results.</p>
@@ -782,10 +712,7 @@ cx1</code></pre>
 <p><img src="/post/2018-04-03-graphing-patent-data-with-ggplot2-part-2_files/figure-html/fig38_gplot2-1.png" width="800px" style="display: block; margin: auto;" /></p>
 <!---![_config.yml]({{ site.baseurl }}/images/fggplot2/fig38_gplot2-1.png)--->
 <p>In the R Graphics Cookbook, Winston Chang adds three observations about coxcomb plots. The first is that for y variables the smallest value is mapped to the centre of the plot, rather than a data value of 0 being mapped to a radius of 0. Second, for a continuous x (or theta) the smallest and largest values are merged. Third, theta values of polar coordinates do not wrap around. As such changes would need to be made to the limits of the plot (see Chang 2013: 200-203 for discussion).</p>
-</div>
-</div>
-<div id="round-up" class="section level2">
-<h2>Round Up</h2>
+<p>##Round Up</p>
 <p>In this article we have covered two main topics.</p>
 <ol style="list-style-type: decimal">
 <li>How to prepare data for graphing in R using the <code>dplyr</code> package.</li>
@@ -794,9 +721,7 @@ cx1</code></pre>
 <p>In this article we have not explored the full potential of visualisation options in ggplot2, such as heat maps and choropleth maps. These topics are regularly covered on sites such as <a href="http://www.r-bloggers.com">r-bloggers.com</a>. However, we have seen that it is possible to construct graphics from the bottom up using simple code and specifying the details we would like to see.</p>
 <p>We have seen that the great strength of ggplot2 is the ability to control all aspects of a graphic. However, in working with our sample data we have also seen that this can lead to complexity in terms of adjusting data such as arranging or labelling. While it will be possible to bundle the code into functions that could be reused, it is equally clear that significant time investments are involved in working towards publication quality graphics using ggplot2. Those time demands will diminish with improved familiarity but are nevertheless a significant factor.</p>
 <p>To go further with ggplot2 we provide a list of resources below. We also suggest installing R tutorials such as (install.packages(“swirl”)) and learning more about the use of pipes in <code>dplyr</code>.</p>
-</div>
-<div id="useful-resources" class="section level2">
-<h2>Useful Resources</h2>
+<p>##Useful Resources</p>
 <ol style="list-style-type: decimal">
 <li><a href="http://www.rstudio.com/wp-content/uploads/2015/05/ggplot2-cheatsheet.pdf">RStudio Cheatsheet</a></li>
 <li><a href="http://www.cookbook-r.com/Graphs/">R Graphics Cookbook</a> by Winston Chang</li>
@@ -809,6 +734,7 @@ cx1</code></pre>
 <li><a href="https://www.youtube.com/results?search_query=ggplot2">YouTube ggplot 2 videos</a></li>
 <li><a href="http://mathematicalcoffee.blogspot.co.uk/2014/06/ggpie-pie-graphs-in-ggplot2.html">Mathematical Coffee Blog Post on Creating a Pie Chart with ggplot2 an the ggpie code</a></li>
 </ol>
+</div>
 </div>
 
     </div>

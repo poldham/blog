@@ -2,24 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Plos Api on Paul Oldham&#39;s Analytics Blog</title>
-    <link>https://www.pauloldham.net/tags/plos-api/</link>
+    <link>/tags/plos-api/</link>
     <description>Recent content in Plos Api on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Tue, 27 Oct 2015 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://www.pauloldham.net/tags/plos-api/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/plos-api/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Exploring Scientific Literature with rplos</title>
-      <link>https://www.pauloldham.net/rplos-walkthrough/</link>
+      <link>/rplos-walkthrough/</link>
       <pubDate>Tue, 27 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/rplos-walkthrough/</guid>
-      <description>&lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Introduction&lt;/h2&gt;
+      <guid>/rplos-walkthrough/</guid>
+      <description>&lt;p&gt;##Introduction&lt;/p&gt;
 &lt;p&gt;In this chapter we look at the use of the &lt;a href=&#34;https://github.com/ropensci/rplos&#34;&gt;&lt;code&gt;rplos&lt;/code&gt;&lt;/a&gt; package from &lt;a href=&#34;https://ropensci.org&#34;&gt;rOpenSci&lt;/a&gt; to access the scientific literature from the &lt;a href=&#34;https://www.plos.org&#34;&gt;Public Library of Science&lt;/a&gt; using the &lt;a href=&#34;http://api.plos.org/solr/faq/&#34;&gt;PLOS Search API&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The Public Library of Science (PLOS) is the main champion of open access peer reviewed scientific publications and has published somewhere in the region of 140,000 articles. These articles are a fantastic resource. PLOS includes the following titles.&lt;/p&gt;
 &lt;ul&gt;
@@ -38,17 +37,11 @@
 &lt;p&gt;This article makes no assumptions about knowledge of R or programming. &lt;code&gt;rplos&lt;/code&gt; is a good place to start with learning how to access scientific literature in R using Application Programming Interfaces (APIs). Because &lt;code&gt;rplos&lt;/code&gt; is well organised and the data is very clean it is also a good place to learn some of the basics of working with data in R. This provides a good basis for working with the ROpenSci &lt;a href=&#34;https://github.com/ropensci/fulltext&#34;&gt;fulltext package&lt;/a&gt;. &lt;code&gt;fulltext&lt;/code&gt; allows you to retrieve scientific literature from multiple data sources and we will deal with that next.&lt;/p&gt;
 &lt;p&gt;We will also use this as an opportunity to introduce some of the popular packages for working with data in R, notably the family of packages for tidying and wrangling data developed by Hadley Wickham at RStudio (namely, &lt;code&gt;plyr&lt;/code&gt;, &lt;code&gt;dplyr&lt;/code&gt;, &lt;code&gt;stringr&lt;/code&gt; and &lt;code&gt;tidyr&lt;/code&gt;). We will only touch on these but we include then as everyday working packages that you will find useful in learning more about R.&lt;/p&gt;
 &lt;p&gt;The first step is to make sure that you have R and RStudio.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;install-r-and-rstudio&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Install R and RStudio&lt;/h2&gt;
+&lt;p&gt;##Install R and RStudio&lt;/p&gt;
 &lt;p&gt;To get up and running you need to install a version of R for your operating system. You can do that from &lt;a href=&#34;http://cran.rstudio.com/&#34;&gt;here&lt;/a&gt;. Then download RStudio Desktop for your operating system from &lt;a href=&#34;https://www.rstudio.com/products/rstudio/download/&#34;&gt;here&lt;/a&gt; using the installer for your system. Then open RStudio.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;create-a-project&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Create A Project&lt;/h2&gt;
+&lt;p&gt;##Create A Project&lt;/p&gt;
 &lt;p&gt;Projects are probably the best way of organising your work in RStudio. To create a new project select the dropdown menu in to top right where you see the blue R icon. Navigate to where you want to keep your R materials and give your project a name (e.g. rplos). Now you will be able to save you work into an rplos project folder and R will keep everything together when you save the project.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;install-packages&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Install Packages&lt;/h2&gt;
+&lt;p&gt;##Install Packages&lt;/p&gt;
 &lt;p&gt;First we need to install some packages to help us work with the data. This list of packages are common “go to” packages for daily use.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;rplos&amp;quot;)  #the main event
 install.packages(&amp;quot;readr&amp;quot;)  #for reading data
@@ -68,9 +61,7 @@ library(stringr)
 library(tm)
 library(XML)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Next let’s take a look at the wide range of functions that are available for searching using &lt;code&gt;rplos&lt;/code&gt; by moving over to the Packages tab in RStudio and clicking on &lt;code&gt;rplos&lt;/code&gt;. A very useful tutorial on using &lt;code&gt;rplos&lt;/code&gt; can be found &lt;a href=&#34;https://ropensci.org/tutorials/rplos_tutorial.html&#34;&gt;here&lt;/a&gt; and can be cited as “Scott Chamberlain, Carl Boettiger and Karthik Ram (2015). rplos: Interface to PLOS Journals search API. R package version 0.5.0 &lt;a href=&#34;https://github.com/ropensci/rplos&#34; class=&#34;uri&#34;&gt;https://github.com/ropensci/rplos&lt;/a&gt;”. If you are already comfortable working in R you might want to head to that introductory tutorial as this article contains a lot more in the way of explanation. However, we will also add some new examples and code for working with the results to add to the resource base for &lt;code&gt;rplos&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;key-functions-in-rplos&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Key functions in rplos&lt;/h2&gt;
+&lt;p&gt;##Key functions in rplos&lt;/p&gt;
 &lt;p&gt;R is an object oriented language meaning that it works on objects such as a vector, table, list, or matrix. These are easy to create. We then apply functions to the data from &lt;code&gt;base R&lt;/code&gt; or from packages we have installed for particular tasks.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;searchplos()&lt;/code&gt;, the basic function for searching plos&lt;/li&gt;
@@ -87,15 +78,11 @@ library(XML)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If you are new to R this will typically takes the form of a short piece of code that is structured like this.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;newobject &amp;lt;- function(yourdata, argument1, argument2, other_arguments)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;A new object is likely to be a table or list containing data. the sign &lt;code&gt;&amp;lt;-&lt;/code&gt; gets or passes the results of the function (such as seachplos) to the new object. To specify what we want we first include our data (&lt;code&gt;yourdata&lt;/code&gt;) and then one or more arguments which control what we get, such as the number of records or the title etc.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;data-fields-in-rplos&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Data Fields in rplos&lt;/h2&gt;
+&lt;p&gt;##Data Fields in rplos&lt;/p&gt;
 &lt;p&gt;There are quite a number of fields that can be searched with &lt;code&gt;rplos&lt;/code&gt; or used to refine a search. We will only use a few of them. To see the range of fields type &lt;code&gt;plosfields&lt;/code&gt; into the console and press Enter.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plosfields&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;For example, if we wanted to search the title, abstract and conclusions we would use these fields in building the query (see below). If we wanted to search everything but those fields we would probably use body. If we wanted to retrieve the references then we would include &lt;code&gt;reference&lt;/code&gt; in the fields. In &lt;code&gt;rplos&lt;/code&gt; a field is denoted by &lt;code&gt;fl =&lt;/code&gt; with the fields in quotes such as &lt;code&gt;fl = &amp;quot;title&amp;quot;&lt;/code&gt; and so on as we will see below.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;basic-searching-using-searchplos-navigating-and-exporting-data&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Basic Searching using &lt;code&gt;searchplos()&lt;/code&gt;, Navigating and Exporting Data&lt;/h2&gt;
+&lt;p&gt;##Basic Searching using &lt;code&gt;searchplos()&lt;/code&gt;, Navigating and Exporting Data&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;searchplos()&lt;/code&gt; is the basic &lt;code&gt;rplos&lt;/code&gt; search function and returns a list of document identifiers (DOIs) or other data fields. The basic search result is a set of DOIs that can be used for further work. To get help for a function, or to find working examples, use &lt;code&gt;?&lt;/code&gt; in front of the function in the console:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;`?`(searchplos)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This will bring up the help page for that function with a description of the arguments that are available and with examples at the bottom of the page.&lt;/p&gt;
@@ -124,15 +111,14 @@ p&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;p&lt;span class=&#34;math inline&#34;&gt;\(meta\)&lt;/span&gt; #type me in the console, do not cut and paste&lt;/p&gt;
 &lt;p&gt;When we type the $ a popup will appear and display two entries as tables for &lt;code&gt;meta&lt;/code&gt; and &lt;code&gt;data&lt;/code&gt;. Click on meta, then add another $ sign at the end. It will now display three items in purple (for vectors). Select &lt;code&gt;numFound&lt;/code&gt; and hey presto! As you work with RStudio you will notice that when you start to type a function name, lists of names will start to pop up. Type &lt;code&gt;search&lt;/code&gt; into the console but do not press enter and wait a moment. A list with three items should pop up with search {base}, searchpaths {base}, and searchplos {rplos}. This is really helpful because it saves a lot of typing. As you become more familiar with R it also helpfully displays what a function does and a reminder of its arguments. The soft brackets around {base} indicate the package where the function can be found (this can be useful for discovering functions when you get stuck).&lt;/p&gt;
 &lt;p&gt;Finally, you can also see the items in your project in the Environment pane. Click on the blue arrow for &lt;code&gt;p&lt;/code&gt; in the Environment pane under Values and you will see the structure of the data in &lt;code&gt;p&lt;/code&gt; and some of its content.&lt;/p&gt;
-&lt;div id=&#34;creating-a-new-object-and-writing-to-file&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Creating a New Object and Writing to File&lt;/h3&gt;
+&lt;p&gt;###Creating a New Object and Writing to File&lt;/p&gt;
 &lt;p&gt;Ok so we have a list with some results containing &lt;code&gt;meta&lt;/code&gt; and &lt;code&gt;data&lt;/code&gt;. We now want to export &lt;code&gt;data&lt;/code&gt; to a .csv file that we can work with in Excel or another programme.&lt;/p&gt;
 &lt;p&gt;While we will want to make a note of the total number of results in &lt;code&gt;meta&lt;/code&gt;, what we really want will be in &lt;code&gt;data&lt;/code&gt;. We can simply create a new object using the code above and assign it to a name using &lt;code&gt;&amp;lt;-&lt;/code&gt;. Note that there is no space here and &lt;code&gt;&amp;lt; -&lt;/code&gt; will not work.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dat &amp;lt;- p$data
 dat&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If we look at the class of this object (&lt;code&gt;class(dat)&lt;/code&gt;) we now have a data.frame (a table) that we can write to a .csv file to use later. We can do this easily using &lt;code&gt;write.csv()&lt;/code&gt; and start by naming the object we want to write (&lt;code&gt;dat&lt;/code&gt;) and then giving it a file name. Because we created an &lt;code&gt;rplos&lt;/code&gt; project in RStudio earlier (didn’t we), the file will be saved into the project folder. If you didn’t create a project or want to check the directory then use:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;getwd()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This will show your current working directory. If you do not see the name of your &lt;code&gt;rplos&lt;/code&gt; project then copy the full file path so that it looks something like this (don’t forget the “” around the path):&lt;/p&gt;
+&lt;p&gt;This will show your current working directory. If you do not see the name of your &lt;code&gt;rplos&lt;/code&gt; project then copy the full file path so that it looks something like this (don’t forget the &amp;quot;&amp;quot; around the path):&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;setwd(&amp;quot;/Users/pauloldham/Desktop/open_source_master/rplos&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ok, we now know where we are. So, let’s save the file.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write.csv(dat, &amp;quot;dat.csv&amp;quot;, row.names = FALSE)&lt;/code&gt;&lt;/pre&gt;
@@ -146,19 +132,14 @@ dat&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Finally, if we wanted to write the entire list &lt;code&gt;p&lt;/code&gt;, including &lt;code&gt;meta&lt;/code&gt; to file then we could use:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write.csv(p, &amp;quot;p.csv&amp;quot;, row.names = FALSE)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We have now retrieved some data containing pizza through the PLOS API using &lt;code&gt;rplos&lt;/code&gt; and we have written the data to a file as a table we can use later. We will now move on to some more sophisticated things we can do with &lt;code&gt;rplos&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;limit-by-journal&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Limit by journal&lt;/h2&gt;
+&lt;p&gt;##Limit by journal&lt;/p&gt;
 &lt;p&gt;As we have seen above, PLOS contains 7 journals and in &lt;code&gt;rplos&lt;/code&gt; the results for a search can be limited to specific journals such as PLOS ONE or PLOS Biology. Note that the short journal names appear to use the old format for PLOS consisting of mixed upper and lowercase characters (e.g. PLoSONE not PLOSONE). A nice easy way to find the short journal names is to use:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;journalnamekey()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Here we will limit the search to PLOS ONE by adding &lt;code&gt;fq =&lt;/code&gt; to the arguments and then the &lt;code&gt;cross_published_journal_key&lt;/code&gt; argument. Note that the &lt;code&gt;fq=&lt;/code&gt; argument takes the same options as &lt;code&gt;fl=&lt;/code&gt;. But, &lt;code&gt;fq =&lt;/code&gt; filters the results returned by PLOS to only those specified in &lt;code&gt;fq =&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pizza &amp;lt;- searchplos(q = &amp;quot;pizza&amp;quot;, fl = c(&amp;quot;id&amp;quot;, &amp;quot;publication_date&amp;quot;, &amp;quot;title&amp;quot;, &amp;quot;abstract&amp;quot;), fq = &amp;#39;cross_published_journal_key:PLoSONE&amp;#39;, start = 0, limit = 20)
 head(pizza$data)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We have retrieved 20 records here using &lt;code&gt;limit = 20&lt;/code&gt; (the default is 10). It is generally a good idea to start with a small number of results to test that we are getting what we expect back rather than lots of irrelevant data. What if we wanted to retrieve all of the results? Here we will need to do a bit more work using the meta field.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;obtaining-the-full-number-of-results&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Obtaining the full number of results&lt;/h2&gt;
+&lt;p&gt;##Obtaining the full number of results&lt;/p&gt;
 &lt;p&gt;One way to do this is to take our original number of results and then subset in to the data and create a new object containing the value for the number of records in &lt;code&gt;numFound&lt;/code&gt;. Note that the number of records for a particular query below may well have gone up by the time that you read this article.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;r &amp;lt;- pizza$meta$numFound&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;To run a new search we can now insert &lt;code&gt;r&lt;/code&gt; into the limit = value. This will be interpreted as the numeric value of &lt;code&gt;r&lt;/code&gt; (210).&lt;/p&gt;
@@ -170,9 +151,7 @@ r&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We can then run the query again using the value of &lt;code&gt;r&lt;/code&gt; in limit = :&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pizza &amp;lt;- searchplos(q = &amp;quot;pizza&amp;quot;, fl = c(&amp;quot;id&amp;quot;, &amp;quot;publication_date&amp;quot;, &amp;quot;title&amp;quot;, &amp;quot;abstract&amp;quot;), fq = &amp;#39;cross_published_journal_key:PLoSONE&amp;#39;, start = 0, limit = r) 
 head(pizza$data)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;obtaining-the-number-of-records-across-plos-journals&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Obtaining the number of records across PLOS Journals&lt;/h2&gt;
+&lt;p&gt;##Obtaining the number of records across PLOS Journals&lt;/p&gt;
 &lt;p&gt;That has returned the full 210 results for PLOS ONE. We could attempt to make life even easier by first getting the results across all PLOS journals. We do this by removing the &lt;code&gt;fq =&lt;/code&gt; argument limiting the data to PLOS ONE and saving the result in and object we will call &lt;code&gt;r1&lt;/code&gt;. Note that the number of records will probably have gone up by the time you read this.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;r1 &amp;lt;- searchplos(&amp;quot;pizza&amp;quot;, limit = 0)$meta$numFound
 r1&lt;/code&gt;&lt;/pre&gt;
@@ -180,16 +159,12 @@ r1&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pizza &amp;lt;- searchplos(q = &amp;quot;pizza&amp;quot;, fl = c(&amp;quot;id&amp;quot;, &amp;quot;publication_date&amp;quot;, &amp;quot;title&amp;quot;, &amp;quot;abstract&amp;quot;), fq = &amp;#39;cross_published_journal_key:PLoSONE&amp;#39;, start = 0, limit = r1)
 pizza$meta$numFound&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The answer is that the 210 results in PLOS ONE are returned from the total of 244 across the PLOS journals. Why? The reason this works is that &lt;code&gt;searchplos()&lt;/code&gt; initially pulls back all of the data from the PLOS API and then applies our entry in &lt;code&gt;fq =&lt;/code&gt; as a filter. So, in reality the full 244 records are fetched and then filtered down to the 210 from PLOS ONE. In this case, this makes our lives easier because we can use the results across PLOS journals and then restrict the data.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;writing-the-results-and-using-a-codebook&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Writing the results and using a codebook&lt;/h2&gt;
+&lt;p&gt;##Writing the results and using a codebook&lt;/p&gt;
 &lt;p&gt;We now have a total of 210 results for pizza. We can simply write the results to a .csv file.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write.csv(pizza, &amp;quot;plosone_pizza.csv&amp;quot;, row.names = FALSE)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As this illustrates, it is very easy to use &lt;code&gt;rplos()&lt;/code&gt; and rapidly create a file that can be used for other purposes.&lt;/p&gt;
 &lt;p&gt;When working in R you will often create multiple tables and take multiple steps. To keep track of what you do it is a good idea to create a text file as a codebook. Use the codebook to note down the important steps you take. The idea of a codebook is taken from Jeffrey Leek’s &lt;a href=&#34;https://leanpub.com/datastyle&#34;&gt;Elements of Data Analytic Sytle&lt;/a&gt; which provides a very accessible introduction to staying organised. To create a codebook in RStudio simply use &lt;code&gt;File &amp;gt; New File &amp;gt; Text File&lt;/code&gt;. This will open a text file that can be saved with your project. The codebook allows you to recall what actions you performed on the data months or years later. It also allows others to follow and reproduce your results and is important for &lt;a href=&#34;https://ropensci.org/blog/2014/06/09/reproducibility/&#34;&gt;reproducible research&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;proximity-searching&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Proximity Searching&lt;/h2&gt;
+&lt;p&gt;##Proximity Searching&lt;/p&gt;
 &lt;p&gt;We will typically want to carry out a search by first retrieving a rough working set of results to get a feel for the data and then experimenting until we are happy with the data to noise ratio (see this &lt;a href=&#34;http://rsta.royalsocietypublishing.org/content/372/2031/20140065&#34;&gt;article&lt;/a&gt; for an example).&lt;/p&gt;
 &lt;p&gt;In thinking about ways to refine our search criteria we can also use proximity searching. Proximity searching focuses on the distance between words that we are interested in. To read more about this use &lt;code&gt;?searchplos&lt;/code&gt; in the console and scroll down to example seven in the help list. We reproduce that example here using the words synthetic and biology as our terms.&lt;/p&gt;
 &lt;p&gt;We can set the proximity of terms using tilde &lt;code&gt;~&lt;/code&gt; and a value. For example, &lt;code&gt;~15&lt;/code&gt; will find instances of the terms synthetic and biology within 15 words of each other in the full texts of PLOS articles.&lt;/p&gt;
@@ -203,10 +178,8 @@ pizza$meta$numFound&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As a result, it is a good idea to try different approaches. Even if it is not possible to get to the bottom of any variance it is very useful to note it down in your codebook to highlight the issue to others who may try and repeat your work.&lt;/p&gt;
 &lt;p&gt;It is also important to emphasise that when using &lt;code&gt;rplos()&lt;/code&gt; it is possible to return a fragment of the text with the highlighted terms using &lt;code&gt;highplos()&lt;/code&gt; and the &lt;code&gt;hl.fragsize&lt;/code&gt; argument to set the horizon for the fragment of text around the search. This is particularly useful for text mining.&lt;/p&gt;
 &lt;p&gt;In many cases the most useful information comes from searching using phrases and multiple terms. Unlike words, phrases can articulate concepts. This generally makes them more useful than single words for searching for information.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;searching-using-multiple-phrases&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Searching Using Multiple Phrases&lt;/h2&gt;
-&lt;p&gt;To search by phrases we start by creating an object containing our phrases and put the phrases inside double quotation marks. If we do not use double quotation marks the search will look for documents containing both words rather than the complete phrase (e.g. synthetic AND biology rather than “synthetic biology”). Note that the code below will display “” as “&amp;quot; but you don’t need to enter the &lt;code&gt;\&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;##Searching Using Multiple Phrases&lt;/p&gt;
+&lt;p&gt;To search by phrases we start by creating an object containing our phrases and put the phrases inside double quotation marks. If we do not use double quotation marks the search will look for documents containing both words rather than the complete phrase (e.g. synthetic AND biology rather than “synthetic biology”). Note that the code below will display &amp;quot;&amp;quot; as &amp;quot;&amp;quot; but you don’t need to enter the &lt;code&gt;\&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;We will use the search query developed in this &lt;a href=&#34;http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0034368&#34;&gt;PLOS ONE article on synthetic biology&lt;/a&gt; in this example and retrieve the id, data, author, title and abstract across the PLOS journals.&lt;/p&gt;
 &lt;p&gt;First we create the search query. Note that we use &lt;code&gt;c()&lt;/code&gt;, for combine, to combine the list of terms into a vector inside the object called &lt;code&gt;s&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;s &amp;lt;- c(&amp;quot;\&amp;quot;synthetic biology\&amp;quot;&amp;quot;, &amp;quot;\&amp;quot;synthetic genomics\&amp;quot;&amp;quot;, &amp;quot;\&amp;quot;synthetic genome\&amp;quot;&amp;quot;, 
@@ -250,48 +223,34 @@ results&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We now have our data consisting of 1,405 records in a single data frame that we can view.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;View(results)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We could now simply write this to a .csv file. But there are a number of things that we might want to do first. Most of these tasks fall into the category of wrangling and tidying up data so that we can carry on working with it in R or other software such as Excel.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;tidying-and-organising-the-data&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Tidying and Organising the Data&lt;/h2&gt;
+&lt;p&gt;##Tidying and Organising the Data&lt;/p&gt;
 &lt;p&gt;Many useful data cleaning and organisational tasks can be easily performed using the &lt;code&gt;dplyr()&lt;/code&gt; and &lt;code&gt;tidyr()&lt;/code&gt; packages developed by Hadley Wickham at RStudio. Other important packages include &lt;code&gt;stringr()&lt;/code&gt;(for working with text strings), &lt;code&gt;plyr()&lt;/code&gt; and &lt;code&gt;reshape2()&lt;/code&gt; (general wrangling) and &lt;code&gt;lubridate()&lt;/code&gt; (for working with dates). These packages were developed by Hadley Wickham and colleagues with the specific aim of making it easier to work with data in R in a consistent way. We will mainly use &lt;code&gt;dplyr&lt;/code&gt; and &lt;code&gt;tidyr&lt;/code&gt; in the examples below and a very useful &lt;a href=&#34;https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf&#34;&gt;RStudio cheatsheet&lt;/a&gt; can help you with working with &lt;code&gt;dplyr&lt;/code&gt; and &lt;code&gt;tidyr&lt;/code&gt;.&lt;/p&gt;
-&lt;div id=&#34;renaming-a-column&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Renaming a column&lt;/h3&gt;
+&lt;p&gt;###Renaming a column&lt;/p&gt;
 &lt;p&gt;First we might want to tidy up by renaming a column. For example we might want to rename &lt;code&gt;.id&lt;/code&gt; to something more meaningful. We can use &lt;code&gt;rename()&lt;/code&gt; from &lt;code&gt;dplyr()&lt;/code&gt; to do that (see &lt;code&gt;?rename&lt;/code&gt;).&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;results &amp;lt;- rename(results, search_terms = .id)
 results&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;filling-blank-spaces&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Filling Blank Spaces&lt;/h2&gt;
+&lt;p&gt;##Filling Blank Spaces&lt;/p&gt;
 &lt;p&gt;It is good practice to fill blank cells with NA for “Not Available”&amp;quot; to avoid calculation problems. For example, as in the earlier example, we have some blank cells in the abstract field and there may be others somewhere else. Following this &lt;a href=&#34;http://r.789695.n4.nabble.com/How-to-convert-blanks-to-NA-td895155.html&#34;&gt;StackOverflow answer&lt;/a&gt; we can do this easily.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;results[results == &amp;quot;&amp;quot;] &amp;lt;- NA&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If for some reason we wanted to remove the NA values we can handle that at the time of exporting to a file (see above).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;converting-dates&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Converting Dates&lt;/h2&gt;
+&lt;p&gt;##Converting Dates&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;publication_date&lt;/code&gt; field is a character vector. We can easily turn this into a Date format that can be used in R and drop the T00:00:00 for time information using:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;results$publication_date &amp;lt;- as.Date(results$publication_date)
 head(results$publication_date)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;adding-columns&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Adding columns&lt;/h2&gt;
+&lt;p&gt;##Adding columns&lt;/p&gt;
 &lt;p&gt;When dealing with dates we might want to simply split the &lt;code&gt;publication_date&lt;/code&gt; field into three columns for year, month and day. We can do that using &lt;code&gt;separate()&lt;/code&gt; from &lt;code&gt;tidyr&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;results &amp;lt;- separate(results, publication_date, c(&amp;quot;year&amp;quot;, &amp;quot;month&amp;quot;, &amp;quot;day&amp;quot;), sep = &amp;quot;-&amp;quot;, 
     remove = FALSE)
 head(select(results, year, month, day))&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Here we have specified the data (results), the column we want to separate (results) and then the three new columns that we want to create by closing them in &lt;code&gt;c()&lt;/code&gt; and placing them in quotes. This creates three new columns. The &lt;code&gt;remove&lt;/code&gt; argument specifies whether we want to remove the original column (the default is TRUE) or keep it.&lt;/p&gt;
 &lt;p&gt;Because working with dates can be quite awkward (to put it mildly) it makes sense to have a range of options available to you early on in working with your data rather than having to go back to the beginning much later on.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;add-a-count&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Add a count&lt;/h2&gt;
-&lt;p&gt;One feature of pulling back literature from an API for scientific literature is that the fields tend to be character fields rather than numeric. Character vectors in R are quoted with “”. This can make life awkward if we want to start counting things later on. To add a count column we can use &lt;code&gt;mutate&lt;/code&gt; from the &lt;code&gt;dplyr()&lt;/code&gt; package to create a new column &lt;code&gt;number&lt;/code&gt;. &lt;code&gt;number&lt;/code&gt; is based on assigning the value 1 to the id columns using &lt;code&gt;mutate()&lt;/code&gt;. We are avoiding the term count because it is the name of a function &lt;code&gt;count()&lt;/code&gt;. There are other ways of doing this but this approach points to the very useful &lt;code&gt;mutate()&lt;/code&gt; function in &lt;code&gt;dplyr&lt;/code&gt; for adding a new variable.&lt;/p&gt;
+&lt;p&gt;##Add a count&lt;/p&gt;
+&lt;p&gt;One feature of pulling back literature from an API for scientific literature is that the fields tend to be character fields rather than numeric. Character vectors in R are quoted with &amp;quot;&amp;quot;. This can make life awkward if we want to start counting things later on. To add a count column we can use &lt;code&gt;mutate&lt;/code&gt; from the &lt;code&gt;dplyr()&lt;/code&gt; package to create a new column &lt;code&gt;number&lt;/code&gt;. &lt;code&gt;number&lt;/code&gt; is based on assigning the value 1 to the id columns using &lt;code&gt;mutate()&lt;/code&gt;. We are avoiding the term count because it is the name of a function &lt;code&gt;count()&lt;/code&gt;. There are other ways of doing this but this approach points to the very useful &lt;code&gt;mutate()&lt;/code&gt; function in &lt;code&gt;dplyr&lt;/code&gt; for adding a new variable.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
 results &amp;lt;- mutate(results, number = sum(id = 1))
 head(select(results, title, number))&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;When we view results we will now see a new column number that contains the value 1 for each entry.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;remove-a-column&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Remove a column&lt;/h2&gt;
+&lt;p&gt;##Remove a column&lt;/p&gt;
 &lt;p&gt;We will often end up with more data than we want, or create more columns than we need. The standard way to remove a column is to use the trusty &lt;code&gt;$&lt;/code&gt; to select the column and assign it to NULL.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;results$columnname &amp;lt;- NULL  #dummy example&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Another way of doing this, which can be used for multiple columns, is to use &lt;code&gt;select()&lt;/code&gt; from &lt;code&gt;dplyr&lt;/code&gt; (see &lt;code&gt;?select()&lt;/code&gt;). Select will only keep the columns that we name. We can do this using the column names or position. For example the following will keep the first 8 columns (1:8) but will drop the unnamed 9th column because the default is to drop columns that are not named. We could also write out the column names but using the position numbers is faster in this case.&lt;/p&gt;
@@ -304,16 +263,12 @@ length(test)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Select is also very useful for reordering columns. Let’s imagine that we wanted to move the &lt;code&gt;id&lt;/code&gt; column to the first column. We can simply put &lt;code&gt;id&lt;/code&gt; as the first entry in &lt;code&gt;select()&lt;/code&gt; and then the total columns to reorder.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test &amp;lt;- select(results, id, 1:9)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The select function is incredibly useful for rapidly organising data as we will see below.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;arranging-the-data&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Arranging the Data&lt;/h2&gt;
+&lt;p&gt;##Arranging the Data&lt;/p&gt;
 &lt;p&gt;We might want to arrange our rows (which can be quite difficult to do in base R). The &lt;code&gt;arrange()&lt;/code&gt; function in &lt;code&gt;dplyr&lt;/code&gt; makes this easy and arranges a column’s values in ascending order by default. Here we will specify descending &lt;code&gt;desc()&lt;/code&gt; because we want to see the most recent publications that mention our search terms at the top.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;results &amp;lt;- arrange(results, desc(publication_date))
 head(results$publication_date)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;When we use &lt;code&gt;View(results)&lt;/code&gt; we will see that the most recent data is at the top. We will also see that some of the titles towards the top are duplicates of the same article because they include all the terms in our search. So, the next thing we will want to do is to address duplicates.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;dealing-with-duplicates&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Dealing with Duplicates&lt;/h2&gt;
+&lt;p&gt;##Dealing with Duplicates&lt;/p&gt;
 &lt;p&gt;How you deal with duplicates depends on what you are trying to achieve. If you are attempting to develop data on trends then duplicates will result in overcounting unless you take steps to count only distinct records. Duplicates of the same data will also distort text mining of the frequencies of terms. So, from that perspective duplicates are bad. On the other hand. If we are interested in the use of terms over time within an emerging area of science and technology, then we might well want to look in detail at the use of particular terms. For example, synthetic genomics is an alternative term for synthetic biology favoured by the J. Craig Venter group. We could look at whether this term is more widely used. Do synthetic biologists also use terms such as engineering biology, genome engineering or the fashionable new genome editing technique? In these cases duplicate records using terms are good because shifts in language can be mapped over time. This suggests a need for a strategy that uses different data tables to answer different questions.&lt;/p&gt;
 &lt;p&gt;As we have already seen, it is very easy in R to create new objects (typically data.frames), take some kind of action, and write the data to a file. In thinking about duplicates we would probably first want to find out what we are dealing with by identifying unique records. There are multiple ways to do this, here are two:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;unique(results$id)  #displays unique DOIs (base R)&lt;/code&gt;&lt;/pre&gt;
@@ -324,16 +279,13 @@ head(results$publication_date)&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;We can spread the duplicate results across the table&lt;/li&gt;
 &lt;li&gt;We can identify and delete the duplicates.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div id=&#34;spreading-data-using-spread-from-tidyr&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Spreading data using &lt;code&gt;spread()&lt;/code&gt; from &lt;code&gt;tidyr&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;###Spreading data using &lt;code&gt;spread()&lt;/code&gt; from &lt;code&gt;tidyr&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Rather than simply deleting our duplicate DOIs, we could create new columns for each search term and its associated DOI. This will be useful because it will tell us which terms are associated with which records over time. This is easy to do with &lt;code&gt;spread()&lt;/code&gt; by providing a &lt;code&gt;key&lt;/code&gt; and a &lt;code&gt;value&lt;/code&gt; in the arguments. In this case, we want to use &lt;code&gt;search_terms&lt;/code&gt; as the &lt;code&gt;key&lt;/code&gt; (column names) to spread across the table and the DOIs in the &lt;code&gt;id&lt;/code&gt; column as the &lt;code&gt;value&lt;/code&gt; for the rows.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;spread_results &amp;lt;- spread(results, search_terms, id)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This creates a column for each search term with the relevant DOIs as the values. Note that the default is to drop the original column (in this case &lt;code&gt;search_terms&lt;/code&gt;) when creating the new columns. Things will go badly wrong if you try to keep the existing column because R will be simultaneously trying to spread the data, thus reducing the size of the table, and keep the table in the same size. So, we will leave the default to drop the column as is.&lt;/p&gt;
 &lt;p&gt;We now have a data.frame with 1098 rows and the search terms identified in each column. If we briefly inspect &lt;code&gt;spread_results&lt;/code&gt; on the terms at the end we can detect a potentially interesting pattern where some documents are only using terms such as synthetic genome or synthetic genomics while others are using only synthetic biology or a mix of terms.&lt;/p&gt;
 &lt;p&gt;We have now reduced our data to unique records while preserving our search terms as reference points. The limitation of this approach is that by spreading the DOIs across 4 columns we no longer have a tidy single column of DOIs.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;deleting-duplicates&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Deleting Duplicates&lt;/h3&gt;
+&lt;p&gt;###Deleting Duplicates&lt;/p&gt;
 &lt;p&gt;As an alternative, or complement, to spread we can use a logical TRUE/FALSE test to filter our dataset. There are a number of functions that perform logical tests in R (see also &lt;code&gt;which()&lt;/code&gt;, &lt;code&gt;%in%&lt;/code&gt;, &lt;code&gt;within()&lt;/code&gt;). In this case the most appropriate choice is probably &lt;code&gt;duplicated()&lt;/code&gt;. &lt;code&gt;duplicated()&lt;/code&gt; will mark duplicate records as TRUE and non-duplicated records as FALSE. We will add a column to our data using the trusty &lt;code&gt;$&lt;/code&gt; when creating the new column.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;results$duplicate &amp;lt;- duplicated(results$id)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If we use View(results) a new column will have been added to results. Records that are not duplicates are marked FALSE while records that are duplicates are marked TRUE. We now want to filter that table down to the results that are not duplicated (are FALSE) from our logical test. We will use &lt;code&gt;filter()&lt;/code&gt; from &lt;code&gt;dplyr&lt;/code&gt; (see above). While &lt;code&gt;select()&lt;/code&gt; works exclusively with columns &lt;code&gt;filter()&lt;/code&gt; works with rows and allows us to easily filter the data on the values contained in a row.&lt;/p&gt;
@@ -350,14 +302,9 @@ head(results$publication_date)&lt;/code&gt;&lt;/pre&gt;
 write_csv(spread_results, &amp;quot;spread_results.csv&amp;quot;)
 write_csv(unique_results, &amp;quot;unique_results.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ok, so we have now a dataset containing the records for a range of terms and we have come a long way. Quite a lot of this has been about what to do with PLOS data once we have accessed it in terms of turning it into tables that we can work with. In the next section we will look at how to restrict searches by section.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;restricting-searches-by-section&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Restricting searches by section&lt;/h2&gt;
+&lt;p&gt;##Restricting searches by section&lt;/p&gt;
 &lt;p&gt;The default for searching with &lt;code&gt;rplos&lt;/code&gt; is to search everything. This can produce many passing results and be overwhelming. There are quite a number of options for restricting searches in &lt;code&gt;rplos&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;by-author&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;By author&lt;/h2&gt;
+&lt;p&gt;##By author&lt;/p&gt;
 &lt;p&gt;In creating the results dataset above we included the &lt;code&gt;author&lt;/code&gt; field. However, there are some complexities to searching with author names and working with author data that it is important to understand. We will start by searching on author names and then look at how to process the data.&lt;/p&gt;
 &lt;p&gt;To restrict a search by author name we can use either the full name or the surname:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plosauthor(q = &amp;quot;Paul Oldham&amp;quot;, fl = c(&amp;quot;author&amp;quot;, &amp;quot;id&amp;quot;), fq = &amp;quot;doc_type:full&amp;quot;, 
@@ -423,16 +370,12 @@ full_authors$authors &amp;lt;- str_trim(full_authors$authors, side = &amp;quot;b
 &lt;p&gt;We will not go into depth on these topics, but generating this type of author list is an important step in enabling wider analytics and visualisation. While the code used to get to this list of authors may appear quite involved, once the basics are understood it can be used over and over again.&lt;/p&gt;
 &lt;p&gt;Let’s write that data to a .csv file to explore later.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write_csv(full_authors, &amp;quot;full_authors.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;title-search-using-plostitle&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Title search using &lt;code&gt;plostitle()&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;##Title search using &lt;code&gt;plostitle()&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;For a title search we can use &lt;code&gt;plostitle()&lt;/code&gt;. As above you may want to count the number of records first using:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;t &amp;lt;- plostitle(q = &amp;quot;synthetic biology&amp;quot;, limit = 0)$meta$numFound&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Then we run the search to return the number of results we would like. Here we have set it to the value of t above (11). We have limited the results to the data field by subsetting with $data.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;title &amp;lt;- plostitle(q = &amp;quot;synthetic biology&amp;quot;, fl = &amp;quot;title&amp;quot;, limit = t)$data&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;abstract-search-using-plosabstract&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Abstract search using &lt;code&gt;plosabstract()&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;##Abstract search using &lt;code&gt;plosabstract()&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;For confining the searches to abstracts we can use &lt;code&gt;plosabstract()&lt;/code&gt;. We will start with a quick count of records.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;a &amp;lt;- plosabstract(q = &amp;quot;synthetic biology&amp;quot;, limit = 0)$meta$numFound&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;To retrieve the results we could use the value of &lt;code&gt;a&lt;/code&gt;. As an alternative we could set it arbitrarily high and the correct results will be returned. Of course if we don’t know what the total number of results are then we will be unsure whether we have captured the universe. But, an arbitrary number can be useful for exploration.&lt;/p&gt;
@@ -442,9 +385,7 @@ abstract$data&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As before, we can easily create a new object containing the data.frame. In this case we will also include the meta data and then use &lt;code&gt;fill()&lt;/code&gt; from &lt;code&gt;tidyr()&lt;/code&gt; to fill down the &lt;code&gt;numFound&lt;/code&gt; field and the start with 0. Note that &lt;code&gt;meta&lt;/code&gt; will appear at the top of the list and will create a largely blank row. To avoid this, while keeping number of records for reference, we will use filter from &lt;code&gt;tidyr()&lt;/code&gt;. This short code will do that.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;abstract_df &amp;lt;- ldply(abstract, &amp;quot;[&amp;quot;, 1:2) %&amp;gt;% fill(numFound, start) %&amp;gt;% filter(.id == 
     &amp;quot;data&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;subject-area-using-plossubject&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Subject Area using &lt;code&gt;plossubject()&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;##Subject Area using &lt;code&gt;plossubject()&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;To search by subject area use &lt;code&gt;plossubject&lt;/code&gt;. The default return is 10 results of the total results. So, try starting with a search such as this to get an idea of how many results there are. In this case the query has been limited to PLOS ONE and full text articles.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sa &amp;lt;- plossubject(q = &amp;quot;\&amp;quot;synthetic+biology\&amp;quot;&amp;quot;, fq = list(&amp;quot;cross_published_journal_key:PLoSONE&amp;quot;, 
     &amp;quot;doc_type:full&amp;quot;))$meta$numFound&lt;/code&gt;&lt;/pre&gt;
@@ -453,9 +394,7 @@ abstract$data&lt;/code&gt;&lt;/pre&gt;
     &amp;quot;doc_type:full&amp;quot;), limit = 10)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As noted in the documentation, the results we return from the API and the results on the website are not necessarily the same because the settings used by PLOS on the website are not clear.&lt;/p&gt;
 &lt;p&gt;In this case we return 740 results while, at the time of writing, PLOS ONE lists 417 articles in the &lt;a href=&#34;http://www.plosone.org/browse/Synthetic+biology?startPage=0&amp;amp;filterAuthors=&amp;amp;filterSubjectsDisjunction=&amp;amp;filterArticleTypes=&amp;amp;pageSize=13&amp;amp;filterKeyword=&amp;amp;filterJournals=PLoSONE&amp;amp;query=&amp;amp;ELocationId=&amp;amp;id=&amp;amp;resultView=&amp;amp;sortValue=&amp;amp;unformattedQuery=*%3A*&amp;amp;sortKey=Most+views%2C+all+time&amp;amp;filterSubjects=Synthetic%20biology&amp;amp;volume=&amp;amp;&#34;&gt;Synthetic Biology subject area&lt;/a&gt;. This will merit clarification of the criteria for counts used on the PLOS website and the API returns.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;highlighting-terms-and-text-fragments-with-highplos&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Highlighting terms and text fragments with highplos()&lt;/h2&gt;
+&lt;p&gt;##Highlighting terms and text fragments with highplos()&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;highplos()&lt;/code&gt; is a great function for research in PLOS, particularly when combined with opening results in a browser using &lt;code&gt;highbrow()&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Highlighting will pull back a chunk of text with the search term highlighted with the emphasis &lt;em&gt; &lt;/em&gt; tag enclosing the individual words in a search phrase. It is possible that an entire phrase can be highlighted (see hl.usePhraseHighlighter) but this requires further exploration.&lt;/p&gt;
 &lt;p&gt;In this example we will simply use the term synthetic biology and then highlight the terms in the abstract &lt;code&gt;hl.fl =&lt;/code&gt; and limit this to 10 rows of results. We will also add the function &lt;code&gt;highbrow()&lt;/code&gt; (for highlight browse) at the end. This will open the results in our browser. In the examples we use a pipe (%&amp;gt;%) meaning &lt;code&gt;this %then% that&lt;/code&gt;. This means that we do not have to enter the name snippet into the highbrow function and simplifies the code.&lt;/p&gt;
@@ -464,16 +403,13 @@ abstract$data&lt;/code&gt;&lt;/pre&gt;
   highbrow() #launches the browser&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Note that in some cases, even though we are restricting to &lt;code&gt;doc-type:full&lt;/code&gt;, we retrieve entries with no data. In one case this is because we are highlighting terms in the abstract when the term appears in the full text. In a second case we have picked up a correction where one of the authors is at a synthetic biology centre but neither the abstract or text mention synthetic biology. So, bear in mind that some further exploration may be required to understand why particular results are being returned. These issues are minor and this is a great tool.&lt;/p&gt;
 &lt;p&gt;There are two additional options (arguments) for &lt;code&gt;highplos()&lt;/code&gt; that we can use. The first of these is snippets using &lt;code&gt;hl.snippets =&lt;/code&gt; and the second is &lt;code&gt;hl.fragsize =&lt;/code&gt;. Both can be used in conjunction with &lt;code&gt;highbrow()&lt;/code&gt;.&lt;/p&gt;
-&lt;div id=&#34;snippets-using-hl.snippets&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Snippets using hl.snippets&lt;/h3&gt;
+&lt;p&gt;###Snippets using hl.snippets&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;snippet &amp;lt;- highplos(q = &amp;#39;&amp;quot;synthetic biology&amp;quot;&amp;#39;, hl.fl = list(&amp;quot;title&amp;quot;, &amp;quot;abstract&amp;quot;), hl.snippets = 10, rows = 100) %&amp;gt;%
   highbrow()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The snippets argument is handy (the default value for a snippet is 1 but goes up to as many as you like). It become very interesting when we add &lt;code&gt;hl.mergeContiguous = &#39;true&#39;&lt;/code&gt;. This will display the entries captured in the order of the articles to provide a sense of its uses by the author(s).&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;highplos(q=&amp;#39;&amp;quot;synthetic biology&amp;quot;&amp;#39;, hl.fl = &amp;quot;abstract&amp;quot;, hl.snippets = 10, hl.mergeContiguous = &amp;#39;true&amp;#39;, rows = 10) %&amp;gt;%
   highbrow()&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;fragment-size-using-hl.fragsize&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;fragment size using hl.fragsize&lt;/h3&gt;
+&lt;p&gt;###fragment size using hl.fragsize&lt;/p&gt;
 &lt;p&gt;Greater control over what we are seeing is provided using the &lt;code&gt;hl.fragsize&lt;/code&gt; option. This allows us to specify the number of characters (including spaces) that we want to see in relation to our target terms.&lt;/p&gt;
 &lt;p&gt;In the first example we will highlight the phrase synthetic biology in the titles and abstracts and set the fragment size (using hl.fragsize ) to a high 500. This will return the first 500 characters including spaces rather than words. We will set the number of rows to a somewhat arbitrary 200. This can easily be pushed a lot higher but expect to wait for a few moments if you move this to 1000 rows.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;highplos(q = &amp;#39;&amp;quot;synthetic biology&amp;quot;&amp;#39;, hl.fl = list(&amp;quot;title&amp;quot;, &amp;quot;abstract&amp;quot;), hl.fragsize = 500, rows = 200) %&amp;gt;%
@@ -482,10 +418,7 @@ abstract$data&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;highplos(q = &amp;#39;&amp;quot;synthetic biology&amp;quot;&amp;#39;, hl.fl = list(&amp;quot;title&amp;quot;, &amp;quot;abstract&amp;quot;), hl.fragsize = 100, rows = 200) %&amp;gt;%
   highbrow()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;What is great about this is that we can easily control the amount of text that we are seeing and then select articles of interest to read straight from the browser. We can also start to think about ways to use this information for text mining to identify terms used in conjunction with synthetic biology or types of synthetic biology.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;get-the-full-text-of-one-or-more-articles&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Get the full text of one or more articles&lt;/h2&gt;
+&lt;p&gt;##Get the full text of one or more articles&lt;/p&gt;
 &lt;p&gt;We will finish this article by briefly demonstrating how to retrieve and save the full text of one or more articles. &lt;code&gt;rplos&lt;/code&gt; uses a combination of the &lt;code&gt;XML&lt;/code&gt; and the &lt;code&gt;tm&lt;/code&gt; (for text mining) package.&lt;/p&gt;
 &lt;p&gt;Retrieving full text should initially be used rather sparingly because you could pull back a lot of data in XML format that you may then struggle to process. So, it is probably best to start small.&lt;/p&gt;
 &lt;p&gt;Using the unique_results data that we created above we have a list of DOIs in the id field. We can create a vector of these using the following:&lt;/p&gt;
@@ -511,24 +444,18 @@ ft_parsed &amp;lt;- lapply(ft, function(x) {
 &lt;p&gt;We can also view the five texts in our corpus (be prepared for a lot of scrolling) by using lapply to read over the two texts as character.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lapply(tmcorpus[1:5], as.character)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;For more information see the &lt;a href=&#34;https://cran.r-project.org/web/packages/tm/vignettes/tm.pdf&#34;&gt;Ingo Feinerer (2015) Introduction to the tm package&lt;/a&gt; (also available in the tm documentation) from which the above is drawn.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;writing-a-corpus-to-disk&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Writing a corpus to disk&lt;/h2&gt;
+&lt;p&gt;##Writing a corpus to disk&lt;/p&gt;
 &lt;p&gt;To write a corpus we first need to create a folder where the files will be housed (otherwise they will simply be written into your project folder with everything else).&lt;/p&gt;
 &lt;p&gt;The easiest way to create a new folder is to head over to the Files Tab in RStudio (normally in the bottom right pane) and choose &lt;code&gt;New Folder&lt;/code&gt;. We will call it &lt;code&gt;tm&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Now use &lt;code&gt;getwd()&lt;/code&gt; and copy the file path into the following function, from the writeCorpus examples, adding &lt;code&gt;/tm&lt;/code&gt; at the end. It will look something like this but replace the path with your own, not forgetting the &lt;code&gt;/tm&lt;/code&gt;. Then press Enter.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;writeCorpus(tmcorpus, path = &amp;quot;/Users/paul/Desktop/open_source_master/rplos/tm&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;When you look in the tm folder inside rplos (use the Files tab in RStudio) you will now see five texts with the names 1 to 5. For more details, such as naming files and specifying file types, see &lt;code&gt;?writeCorpus&lt;/code&gt; and the tm package documentation.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;round-up&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Round Up&lt;/h2&gt;
+&lt;p&gt;##Round Up&lt;/p&gt;
 &lt;p&gt;In this chapter we have focused on using the &lt;code&gt;rplos&lt;/code&gt; package to access scientific articles from the Public Library of Science (PLOS). As we have seen, with short pieces of code it is easy to search and retrieve data from PLOS on a whole range of subjects whether it be pizza or synthetic biology.&lt;/p&gt;
 &lt;p&gt;One of the most powerful features of R is that it is quite easy to access free online data using APIs. &lt;code&gt;rplos&lt;/code&gt; is a very good starting point for learning how to retrieve data using an API because it is well written and the data that comes back is remarkably clean.&lt;/p&gt;
 &lt;p&gt;Perhaps the biggest challenge facing new users of R is what to do with data once you have retrieved it. This can result in many hours of frustration staring at a list or object with the data you need without the tools to access it and transform it into the format you need. In this article we have focused on using the &lt;code&gt;plyr&lt;/code&gt;, &lt;code&gt;dplyr&lt;/code&gt;, &lt;code&gt;tidyr&lt;/code&gt; and &lt;code&gt;stringr&lt;/code&gt; suite of packages to turn &lt;code&gt;rplos&lt;/code&gt; data into something you can use. These packages are rightly very popular for everyday work in R and becoming more familiar with them will reap rewards in learning R for practical work. At the close of the article we used the &lt;code&gt;tm&lt;/code&gt; (text mining) package to save the full text of articles. This is only a very small part of this package and &lt;code&gt;rplos&lt;/code&gt; provides some useful examples to begin text mining using &lt;code&gt;tm&lt;/code&gt; (see the &lt;code&gt;plos_fulltext()&lt;/code&gt; examples). R now has a rich range of text mining packages and we will address this in a future article.&lt;/p&gt;
 &lt;p&gt;In the meantime, if you would like to learn more about R try the resources below. If you would like to learn R inside R then try the very useful Swirl package (details below).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;resources&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;p&gt;##Resources&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;https://ropensci.org/&#34;&gt;rOpenSci&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.cookbook-r.com/&#34;&gt;Winston Chang’s R Cookbook&lt;/a&gt;&lt;/li&gt;
@@ -539,7 +466,6 @@ ft_parsed &amp;lt;- lapply(ft, function(x) {
 &lt;/ol&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;swirl&amp;quot;)
 library(swirl)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 </description>
     </item>
     

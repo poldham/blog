@@ -1,0 +1,138 @@
+---
+title: API Resources for the Scientific Literature in R and Python
+author: Paul Oldham
+date: '2018-06-11'
+slug: api-resources-for-scientific-literature
+description: Quick API resources for searching for scientific publications in R or Python.
+categories:
+  - R
+tags:
+  - abs
+  - nagoya protocol
+  - scientific publications
+  - APIs
+  - web service
+  - Python
+  - R
+bibliography: [apis.bib]
+nocite: |
+  @R-rorcid
+  @R-rcrossref
+  @R-crminer
+  @R-rplos
+  @R-fulltext
+  @R-rcoreoa
+  @R-easyPubMed
+  @R-rentrez
+---
+
+
+
+<p>This short post provides details on some of the main APIs (web services) that can be used to monitor and retrieve data from the scientific literature in either R or Python. We are using these packages and libraries as part of a GIZ supported project with the authorities in Kenya who are responsible for providing research permits. Kenya is famous for its biodiversity and the diversity of its communities. However, there is no single repository of publications arising from research in Kenya. We are looking to use APIs to automate retrieval of publications about Kenya and its biodiversity. Hopefully this should allow us to build an open access virtual repository of publications on Kenya to serve the needs of researchers and the wider community.</p>
+<p>We plan to use three main APIs for the Kenya project. There are many APIs out there but we will focus on those that aggregate data from different sources. I’ll add a few more that are also interesting.</p>
+<div id="main-apis" class="section level2">
+<h2>Main APIs</h2>
+<div id="crossref" class="section level3">
+<h3>Crossref</h3>
+<p>Crossref provides access to metadata on over 96 million scientific publications. It is not a full text search engine although abstracts are increasingly available as are links to full text versions of articles (which may well be paywalled).</p>
+<ol style="list-style-type: decimal">
+<li>The Crossref API: <a href="https://github.com/CrossRef/rest-api-doc" class="uri">https://github.com/CrossRef/rest-api-doc</a></li>
+<li>Rcrossref: <a href="https://github.com/ropensci/rcrossref" class="uri">https://github.com/ropensci/rcrossref</a>.</li>
+<li>Python: <a href="https://pypi.org/project/habanero/" class="uri">https://pypi.org/project/habanero/</a></li>
+</ol>
+<p>The rcrossref and python wrappers were both created by Scott Chamberlain and collaborators at the fantastic <a href="https://ropensci.org/">ROpenSci</a>. Note that searching on crossref is rather limited and so cannot really be used for statistical purposes (the search searches what they have available and that may be quite mixed) BUT crossref is still really useful. In particular it can be used to search for the names of researchers and to retrieve publication details or to enter a list of DOIs.</p>
+<p>A walkthrough on using rcrossref to access the scientific literature for Kenya is available <a href="https://poldham.github.io/abs/crossref.html">here</a>.</p>
+<p>For text retrieval and text mining, the <a href="https://github.com/ropensci/crminer">crminer</a> package by Scott Chamberlain is intended to facilitate access to full texts for text mining purposes from Crossref. You will also very probably want to check out Scott’s <a href="https://github.com/ropensci/fulltext">fulltext package</a> for text retrieval from a range of different APIs including some of those listed here.</p>
+</div>
+<div id="orcid" class="section level3">
+<h3>ORCID</h3>
+<p>ORCID provides unique identifiers for researchers and access to their public profiles. Where a researcher publishes an article with a DOI that is covered by Crossref (below), that DOI should automatically (with luck) be added to the researcher’s public profile. Note that you can only access the parts of an ORCID profile that a researcher chooses to make public.</p>
+<p>An example of an ORCID public profile is mine: <a href="https://orcid.org/0000-0002-1013-4390" class="uri">https://orcid.org/0000-0002-1013-4390</a></p>
+<p>Lists of publications can be retrieved using the API and can therefore be used to automate the creation of a repository of publications for a country without needing to chase the researcher through email.</p>
+<ol style="list-style-type: decimal">
+<li>ORCID API home page for creating an app: <a href="https://orcid.org/organizations/integrators/API" class="uri">https://orcid.org/organizations/integrators/API</a></li>
+<li>ORCID Python library: <a href="https://github.com/ORCID/python-orcid" class="uri">https://github.com/ORCID/python-orcid</a></li>
+<li>ORCID R Package: <a href="https://github.com/ropensci/rorcid" class="uri">https://github.com/ropensci/rorcid</a></li>
+</ol>
+<p>Note that when using a remote server the OAuth process (using the rorcid package) can be difficult because the API triggers a browser login. A way around this needs to be found.</p>
+</div>
+<div id="core.ac.uk" class="section level3">
+<h3><a href="https://core.ac.uk/">core.ac.uk/</a></h3>
+<p>Core is a full text database that aggregates scientific publications in open access repositories. It can be difficult to find due to the name. But it provides access to over 131 million open access articles. Taking Kenya as an example, a quick search for Kenya reveals 103,310 publications that contain Kenya somewhere in the text. The <a href="https://core.ac.uk/services">services page</a> provides details of the web service, what you can do and how to get started. You will need a free API key from <a href="https://core.ac.uk/api-keys/register">here</a>. Note the quotas and throttle accordingly.</p>
+<ol style="list-style-type: decimal">
+<li>Python notebook with examples: <a href="https://github.com/oacore/or2016-api-demo" class="uri">https://github.com/oacore/or2016-api-demo</a></li>
+<li>R Package rcoreaoa: <a href="https://github.com/ropensci/rcoreoa" class="uri">https://github.com/ropensci/rcoreoa</a></li>
+</ol>
+</div>
+</div>
+<div id="other-apis" class="section level2">
+<h2>Other APIs</h2>
+<p>The resources above should capture a lot. But here are some other major APIs that you may want to use.</p>
+<div id="springer-biomed-central-api" class="section level3">
+<h3><a href="https://www.biomedcentral.com/getpublished/indexing-archiving-and-access-to-data">Springer BioMed Central API</a></h3>
+<ol style="list-style-type: decimal">
+<li>BMC R package <a href="https://github.com/ropensci/bmc" class="uri">https://github.com/ropensci/bmc</a>. This package is not on CRAN. To install it use:</li>
+</ol>
+<pre class="r"><code>install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;ropensci/bmc&quot;)</code></pre>
+<p>I couldn’t easily identify a Python library or gist. If you know of one please add to the comments below.</p>
+</div>
+<div id="ncbi-pubmed" class="section level3">
+<h3><a href="https://www.ncbi.nlm.nih.gov/pubmed/">NCBI PubMed</a></h3>
+<ol style="list-style-type: decimal">
+<li>The <a href="https://github.com/ropensci/rentrez">rentrez</a> package and <a href="https://ropensci.org/tutorials/rentrez_tutorial/">walkthrough</a></li>
+<li>The <a href="https://github.com/cran/easyPubMed">easyPubMed</a> package in R:
+See the walkthrough by <a href="https://cran.r-project.org/web/packages/easyPubMed/vignettes/easyPM_vignette_html.html">Daniel Fantini</a></li>
+<li>For Python there is <a href="https://pypi.org/project/pubmed-lookup/">pubmed-lookup</a> and a gist for searching PubMed with Biopython is <a href="https://pypi.org/project/pubmed-lookup/">here</a></li>
+</ol>
+</div>
+<div id="public-library-of-science" class="section level3">
+<h3><a href="https://www.plos.org/">Public Library of Science</a></h3>
+<ol style="list-style-type: decimal">
+<li>Rplos package <a href="https://github.com/ropensci/rplos" class="uri">https://github.com/ropensci/rplos</a></li>
+<li>For Python a <a href="https://gist.github.com/drewbuschhorn/1077318">gist</a> is available providing examples of the use of the sunburnt library</li>
+</ol>
+<p>One of my walkthroughs, now a bit old but still working, for rplos is available <a href="https://www.pauloldham.net/rplos-walkthrough/">here</a>.</p>
+</div>
+<div id="biorxiv" class="section level3">
+<h3><a href="https://www.biorxiv.org/">bioRxiv</a></h3>
+<ol style="list-style-type: decimal">
+<li>For R the <a href="https://github.com/ropensci/fulltext">fulltext package</a> provides access to the texts of bioRxiv which has an RSS feed but does not appear to have an API.</li>
+</ol>
+<p>I wasn’t able to spot anything for Python and maybe its a matter of wrangling the RSS feed, so if you know of anything please add a comment.</p>
+<p>The <a href="https://www.biorxiv.org/alertsrss">Alerts/RSS</a> page provides details of the most recent 30 posts across categories and there is a Twitter feed by subject that people have tried to do interesting things with by creating a twitter bots.</p>
+</div>
+</div>
+<div id="round-up" class="section level2">
+<h2>Round Up</h2>
+<p>I hope you found this quick list useful. If you know of any other good resources in either R or Python please feel welcome to add a comment.</p>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2>References</h2>
+<div id="refs" class="references">
+<div id="ref-R-crminer">
+<p>Chamberlain, Scott. 2017a. <em>Crminer: Fetch ’Scholary’ Full Text from ’Crossref’</em>. <a href="https://CRAN.R-project.org/package=crminer" class="uri">https://CRAN.R-project.org/package=crminer</a>.</p>
+</div>
+<div id="ref-R-rcoreoa">
+<p>———. 2017b. <em>Rcoreoa: Client for the Core Api</em>. <a href="https://CRAN.R-project.org/package=rcoreoa" class="uri">https://CRAN.R-project.org/package=rcoreoa</a>.</p>
+</div>
+<div id="ref-R-fulltext">
+<p>———. 2018a. <em>Fulltext: Full Text of ’Scholarly’ Articles Across Many Data Sources</em>. <a href="https://CRAN.R-project.org/package=fulltext" class="uri">https://CRAN.R-project.org/package=fulltext</a>.</p>
+</div>
+<div id="ref-R-rorcid">
+<p>———. 2018b. <em>Rorcid: Interface to the ’Orcid.org’ ’Api’</em>. <a href="https://CRAN.R-project.org/package=rorcid" class="uri">https://CRAN.R-project.org/package=rorcid</a>.</p>
+</div>
+<div id="ref-R-rcrossref">
+<p>Chamberlain, Scott, Carl Boettiger, Ted Hart, and Karthik Ram. 2018. <em>Rcrossref: Client for Various ’Crossref’ ’Apis’</em>. <a href="https://github.com/ropensci/rcrossref" class="uri">https://github.com/ropensci/rcrossref</a>.</p>
+</div>
+<div id="ref-R-rplos">
+<p>Chamberlain, Scott, Carl Boettiger, and Karthik Ram. 2017. <em>Rplos: Interface to the Search ’Api’ for ’Plos’ Journals</em>. <a href="https://CRAN.R-project.org/package=rplos" class="uri">https://CRAN.R-project.org/package=rplos</a>.</p>
+</div>
+<div id="ref-R-easyPubMed">
+<p>Fantini, Damiano. 2018. <em>EasyPubMed: Search and Retrieve Scientific Publication Records from Pubmed</em>. <a href="https://CRAN.R-project.org/package=easyPubMed" class="uri">https://CRAN.R-project.org/package=easyPubMed</a>.</p>
+</div>
+<div id="ref-R-rentrez">
+<p>Winter, David. 2018. <em>Rentrez: ’Entrez’ in R</em>. <a href="https://CRAN.R-project.org/package=rentrez" class="uri">https://CRAN.R-project.org/package=rentrez</a>.</p>
+</div>
+</div>
+</div>

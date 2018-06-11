@@ -1,0 +1,62 @@
+---
+title: "Untitled"
+author: "Paul Oldham"
+date: "07/06/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+When working with patent data or scientific literature I normally use a combination of R with RStudio and VantagePoint from Search Technology Inc. When we start to work with datasets that are over 100,000 records or more we will commonly run into memory issues when using a quad core Mac with 16GB of RAM or similar. In situations where you need more power with VantagePoint (and it is RAM that you will actually need) an easy solution is to create a Virtual Machine on Google Cloud. 
+
+As we will see, this is really easy to do and the advantage of using Google Cloud is that you can easily scale up and scale down your memory needs at very low cost. When you have finished you can unregister VantagePoint and delete the virtual machine and revert to working with your laptop and desktop. I will also show you how to make life easier when you need more power again by creating a persistent disk that you can use when you create a new Virtual Machine. 
+
+### Getting Started
+
+You will need a google account and then go to Google Cloud and Register;
+
+INSERT IMAGE
+
+
+
+
+In this walkthrough we will set up VantagePoint to work in a virtual machine on Google Cloud. VantagePoint is a powerful tool for analytics and text mining. However, when working on a laptop with a quad core processor and 16GB of RAM you will often run into situations with larger datasets where you need more power. The key to this is the amount of RAM. 
+
+To solve this we will create a Google Cloud virtual machine that runs Vantage Point. 
+
+1. We create a Virtual Machine close to our location
+2. We configure the processors and RAM to more than we will probably need
+3. We add a windows server
+4. We add a persistent disk that we will use to store our datasets (this becomes important later on)
+5. We start up the virtual machine
+5. We download the RDP file (in my case for use with windows remote desktop)
+6. We make sure we save the password somewhere safe
+
+7. Make sure that the Microsoft Remote Desktop has the folder sharing enables
+8. Copy the VP start up file to the persisent disk
+9. Start up VP
+
+
+### Tips for Reducing Bottlenecks
+
+**Compress files for upload and download**
+
+The slowest part of this whole procedure is uploading and downloading data. This is one reason that you should choose a data centre that is as close to you as possible (in my case London) because it makes a big difference. You should also compress local files for transfer to the cloud machine using either zip or unzip. 
+
+**Store everything in persistent disks**
+
+If you work with gigabytes of data you will find that your hard drive will become full. To avoid this use one or more persistent disks. This will also leave you free to upscale or downscale your machine or even delete it when finished because persistent disks are ***not*** deleted when the machine is deleted. 
+
+*** Store all executables on a persistent disk**
+
+Because I normally delete machines when I am finished with them I store the executables on the persistent disk. For example you are likely to want to store the VP start up and also a free zip program on a persistent disk. If you need a spreadsheet try using Open Office and store that executable as it involves less messing around than 
+
+*** Store any thesaurii or scripts on a persistent disk**
+
+If you have home made thesaurii that you use regularly then you do not want to delete them each time you uninstall VP or delete a machine. Save them on a persistent disk and either access them in situ on the persistent disk or copy them over. If you store thesaurii you create on the main machine make sure to write a note to yourself to copy them over to the persistent disk (for that reason alone it is better to access the thesaurii folder on the persistent disk as you go along)
+
+
+
+

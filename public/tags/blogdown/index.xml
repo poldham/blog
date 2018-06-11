@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blogdown on Paul Oldham&#39;s Analytics Blog</title>
-    <link>https://www.pauloldham.net/tags/blogdown/</link>
+    <link>/tags/blogdown/</link>
     <description>Recent content in Blogdown on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Wed, 23 May 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://www.pauloldham.net/tags/blogdown/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/blogdown/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Creating A Bibliography with rcrossref</title>
-      <link>https://www.pauloldham.net/creating-a-bibliography-with-rcrossref/</link>
+      <link>/creating-a-bibliography-with-rcrossref/</link>
       <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/creating-a-bibliography-with-rcrossref/</guid>
+      <guid>/creating-a-bibliography-with-rcrossref/</guid>
       <description>&lt;p&gt;In this article we will look at how to create a bibliography using the &lt;code&gt;rcrossref&lt;/code&gt; package in R with RStudio. To help us get started we will also look at how to reference any R packages that you use in your work with &lt;code&gt;knitr&lt;/code&gt;. The article is part of work in progress for the WIPO Handbook on Patent Analytics. Comments and suggestions are welcome.&lt;/p&gt;
 &lt;p&gt;Many of us will have spent an unreasonable amount of our time struggling to create bibliographies for a thesis, publication or reports. Software such as Endnote (Clarivate Analytics), Mendeley (Elsevier) and Zotero provide options for creating and managing bibliographic data. From experience, this generally involves masses of hours fiddling around with reference formats and so on before and after submission for publication.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.crossref.org/&#34;&gt;Crossref&lt;/a&gt; is a non-profit organisation that provides metadata on over 96 million publications in the form of information on the authors, titles, organisations, funding and so on. It is not a full text database but is increasingly providing access to abstracts and links to full texts.&lt;/p&gt;
@@ -57,12 +57,12 @@ library(rcrossref)&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;the-rcrossref-addin&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;The rcrossref Addin&lt;/h3&gt;
 &lt;p&gt;RStudio includes a button at the top of the screen called Addins. It’s here:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/rcrossref/addin.gif&#34; width=&#34;400px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/rcrossref/addin.gif&#34; width=&#34;400px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The standard version of rcrossref includes an addin that allows you to search for references using dois (document identifiers). I’ll come back to that. However, the add in for the development version does more thanks to great work by &lt;a href=&#34;https://github.com/haozhu233&#34;&gt;Hao Zhu&lt;/a&gt; of &lt;a href=&#34;https://github.com/haozhu233/giphyr&#34;&gt;giphyr&lt;/a&gt; fame. In response to a request on github &lt;a href=&#34;https://github.com/ropensci/rcrossref/issues/148&#34;&gt;here&lt;/a&gt;, Hao Zhu created a new version of the rcrossref addin that we will use now.&lt;/p&gt;
 &lt;p&gt;From the Addins menu select Add Rcrossref Citations and a panel will open up. In the development version we can type in the name of an article and then Add to My Citations and Done when we are finished as we see in this example. I’ll look up one I can remember.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/rcrossref/addarticle.gif&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/rcrossref/addarticle.gif&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can also use document identifiers. Here is one of mine on the completely bonkers subject of global climate engineering or geoengineering with doi: 10.1098/rsta.2014.0065.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/rcrossref/doi.gif&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/rcrossref/doi.gif&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The rcrossref add in creates a new file in your RStudio project directory (assuming you are using projects which is a very good thing), called crossref.bib. Once this file is created any time that you use the Addin it will add references rather than overwrite the file. So, this can be a very good way to build up a bibliography using rcrossref.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;adding-citations-in-rmarkdown&#34; class=&#34;section level3&#34;&gt;
@@ -85,7 +85,7 @@ library(rcrossref)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You can read more about bibliographies on the RStudio site &lt;a href=&#34;https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html&#34;&gt;here&lt;/a&gt;. Yihui Xie’s &lt;a href=&#34;https://yihui.name/knitr/&#34;&gt;knitr website&lt;/a&gt; and &lt;a href=&#34;https://www.amazon.com/dp/1498716962/ref=cm_sw_su_dp&#34;&gt;book&lt;/a&gt; are great resources &lt;span class=&#34;citation&#34;&gt;(Xie 2016a)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;Bookdown users can find more information in the electronic version of the bookdown book right &lt;a href=&#34;https://bookdown.org/yihui/bookdown/citations.html&#34;&gt;here&lt;/a&gt; &lt;span class=&#34;citation&#34;&gt;(Xie 2016b)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;For blogdown users: &lt;a href=&#34;https://github.com/apreshill&#34;&gt;Alison Presmanes Hill&lt;/a&gt;, a co-author of blogdown, has written a very useful guide to citations in the minimal blogdown demo &lt;a href=&#34;https://github.com/rbind/blogdown-demo/blob/master/content/post/2017-08-28-adding-citations-to-posts.Rmd&#34;&gt;here&lt;/a&gt; that I used to write this article. It covers subjects such as using &lt;code&gt;nocite:&lt;/code&gt; in your YAML to avoid academic style citations for packages in the text. In the references below you will see that there all the packages used are included but without inline citation. You will very probably want to read the excellent blogdown book &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;here&lt;/a&gt; as well &lt;span class=&#34;citation&#34;&gt;(Xie, Thomas, and Hill 2017)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;Packages to help you navigate citations include &lt;a href=&#34;https://github.com/ropensci/RefManageR&#34;&gt;&lt;code&gt;RefManageR&lt;/code&gt;&lt;/a&gt;, &lt;a href=&#34;https://github.com/crsh/citr&#34;&gt;&lt;code&gt;citr&lt;/code&gt;&lt;/a&gt; and &lt;a href=&#34;https://github.com/romainfrancois/bibtex&#34;&gt;&lt;code&gt;bibtex&lt;/code&gt;&lt;/a&gt; and &lt;a href=&#34;https://github.com/ropensci/bib2df&#34;&gt;`bib2df&lt;/a&gt; you may well want to check them out. bib2df may be useful for cleaning up bibliography entries as it provides functions to convert a .bib file to a data.frame and back again.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; This list is not comprehensive and so if you know of any more please feel welcome to mention them below.&lt;/p&gt;
+&lt;p&gt;Packages to help you navigate citations include &lt;a href=&#34;https://github.com/ropensci/RefManageR&#34;&gt;&lt;code&gt;RefManageR&lt;/code&gt;&lt;/a&gt;, &lt;a href=&#34;https://github.com/crsh/citr&#34;&gt;&lt;code&gt;citr&lt;/code&gt;&lt;/a&gt; and &lt;a href=&#34;https://github.com/romainfrancois/bibtex&#34;&gt;&lt;code&gt;bibtex&lt;/code&gt;&lt;/a&gt; and &lt;a href=&#34;https://github.com/ropensci/bib2df&#34;&gt;`bib2df&lt;/a&gt; you may well want to check them out. bib2df may be useful for cleaning up bibliography entries as it provides functions to convert a .bib file to a data.frame and back again.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; This list is not comprehensive and so if you know of any more please feel welcome to mention them below.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;references&#34; class=&#34;section level1 unnumbered&#34;&gt;
 &lt;h1&gt;References&lt;/h1&gt;
@@ -100,10 +100,10 @@ library(rcrossref)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Francois, Romain. 2017. &lt;em&gt;Bibtex: Bibtex Parser&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=bibtex&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=bibtex&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-W_McLean_2017&#34;&gt;
-&lt;p&gt;McLean, Mathew W. 2017. “RefManageR: Import and Manage BibTeX and BibLaTeX References in R.” &lt;em&gt;The Journal of Open Source Software&lt;/em&gt; 2 (16). The Open Journal: 338. doi:&lt;a href=&#34;https://doi.org/10.21105/joss.00338&#34;&gt;10.21105/joss.00338&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;McLean, Mathew W. 2017. “RefManageR: Import and Manage BibTeX and BibLaTeX References in R.” &lt;em&gt;The Journal of Open Source Software&lt;/em&gt; 2 (16). The Open Journal: 338. &lt;a href=&#34;https://doi.org/10.21105/joss.00338&#34; class=&#34;uri&#34;&gt;https://doi.org/10.21105/joss.00338&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-Oldham_2014&#34;&gt;
-&lt;p&gt;Oldham, P., B. Szerszynski, J. Stilgoe, C. Brown, B. Eacott, and A. Yuille. 2014. “Mapping the Landscape of Climate Engineering.” &lt;em&gt;Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences&lt;/em&gt; 372 (2031). The Royal Society: 20140065–5. doi:&lt;a href=&#34;https://doi.org/10.1098/rsta.2014.0065&#34;&gt;10.1098/rsta.2014.0065&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Oldham, P., B. Szerszynski, J. Stilgoe, C. Brown, B. Eacott, and A. Yuille. 2014. “Mapping the Landscape of Climate Engineering.” &lt;em&gt;Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences&lt;/em&gt; 372 (2031). The Royal Society: 20140065–5. &lt;a href=&#34;https://doi.org/10.1098/rsta.2014.0065&#34; class=&#34;uri&#34;&gt;https://doi.org/10.1098/rsta.2014.0065&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-R-bib2df&#34;&gt;
 &lt;p&gt;Ottolinger, Philipp. n.d. &lt;em&gt;Bib2df: Parse a Bibtex File to a Data.frame&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=bib2df&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=bib2df&lt;/a&gt;.&lt;/p&gt;
@@ -115,24 +115,81 @@ library(rcrossref)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Wickham, Hadley, Jim Hester, and Winston Chang. 2018. &lt;em&gt;Devtools: Tools to Make Developing R Packages Easier&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=devtools&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=devtools&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-Dynamic_2016&#34;&gt;
-&lt;p&gt;Xie, Yihui. 2016a. &lt;em&gt;Dynamic Documents with R and Knitr&lt;/em&gt;. Chapman; Hall/CRC. doi:&lt;a href=&#34;https://doi.org/10.1201/b15166&#34;&gt;10.1201/b15166&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Xie, Yihui. 2016a. &lt;em&gt;Dynamic Documents with R and Knitr&lt;/em&gt;. Chapman; Hall/CRC. &lt;a href=&#34;https://doi.org/10.1201/b15166&#34; class=&#34;uri&#34;&gt;https://doi.org/10.1201/b15166&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-Xie_2016&#34;&gt;
-&lt;p&gt;———. 2016b. &lt;em&gt;Bookdown&lt;/em&gt;. CRC Press. doi:&lt;a href=&#34;https://doi.org/10.1201/9781315204963&#34;&gt;10.1201/9781315204963&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;———. 2016b. &lt;em&gt;Bookdown&lt;/em&gt;. CRC Press. &lt;a href=&#34;https://doi.org/10.1201/9781315204963&#34; class=&#34;uri&#34;&gt;https://doi.org/10.1201/9781315204963&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-R-knitr&#34;&gt;
 &lt;p&gt;———. 2018. &lt;em&gt;Knitr: A General-Purpose Package for Dynamic Report Generation in R&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=knitr&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=knitr&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-blogdown_2017&#34;&gt;
-&lt;p&gt;Xie, Yihui, Amber Thomas, and Alison Presmanes Hill. 2017. &lt;em&gt;Blogdown&lt;/em&gt;. Chapman; Hall/CRC. doi:&lt;a href=&#34;https://doi.org/10.1201/9781351108195&#34;&gt;10.1201/9781351108195&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Xie, Yihui, Amber Thomas, and Alison Presmanes Hill. 2017. &lt;em&gt;Blogdown&lt;/em&gt;. Chapman; Hall/CRC. &lt;a href=&#34;https://doi.org/10.1201/9781351108195&#34; class=&#34;uri&#34;&gt;https://doi.org/10.1201/9781351108195&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;At the time of writing install using devtools::install_github(“ottlngr/bib2df”)&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;At the time of writing install using devtools::install_github(“ottlngr/bib2df”)&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Useful Blogdown Tips</title>
+      <link>/useful-blogdown-tips/</link>
+      <pubDate>Sat, 07 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/useful-blogdown-tips/</guid>
+      <description>&lt;p&gt;Many of the things you need to know about Blogdown are in the excellent blogdown book… and there are lots of tutorials out there. Here I’m going to compile some of the various posts providing tips, and add some of my own.&lt;/p&gt;
+&lt;div id=&#34;transferring-to-blogdown&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Transferring to blogdown&lt;/h3&gt;
+&lt;p&gt;The blogdown book provides a very good description of how to move from Github or Wordpress to Blogdown with Netlify. But if you want to stay with Blogdown here are a few very useful posts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;setting-up-redirects&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Setting up redirects&lt;/h3&gt;
+&lt;p&gt;If you get quite a bit of traffic on your old site then rather than simply delete it you will want to redirect. There seem to be two basic choices here:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;A hard permanent redirect&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;A soft (http refresh)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I used this in the end as I was unsure about the permanent redirect&lt;/p&gt;
+&lt;p&gt;I used this option of the time being and found an easy to use Jekyll plugin&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Netlify provides guidance on setting up redirects&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;including-images&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Including Images&lt;/h3&gt;
+&lt;p&gt;I use the standard knitr approach of setting up the and then&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#knitr::include_graphics()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;However, this may not suit your needs and xxxx has come up with a very useful ADD IMAGES ADD IN&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;including-video&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Including Video&lt;/h3&gt;
+&lt;p&gt;This is a matter of becoming familiar with HUGO short codes. This will add a facebook video.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;twitter-cards&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Twitter cards&lt;/h3&gt;
+&lt;p&gt;Twitter cards were a mystery to me until I read the xxxx post by xxxx. Make sure that you follow the code carefully replacing the authors code with your own.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;making-giphy-images-work&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Making Giphy images work&lt;/h3&gt;
+&lt;p&gt;xxxx post used static images and I wanted to play withh animated gifs. I struggled a bit but in the end this worked for me.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;adding-a-bibliography&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Adding a bibliography&lt;/h3&gt;
+&lt;/div&gt;
+&lt;div id=&#34;register-your-blog-with-google&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Register your blog with Google&lt;/h3&gt;
+&lt;p&gt;Don’t forget to register your blog with Google (to ask them to index it or no one will find it). Also set up Google Analytics and add the code to XXXX so that you can see if and where people are visiting,&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>

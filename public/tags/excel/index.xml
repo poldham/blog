@@ -2,51 +2,47 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Excel on Paul Oldham&#39;s Analytics Blog</title>
-    <link>https://www.pauloldham.net/tags/excel/</link>
+    <link>/tags/excel/</link>
     <description>Recent content in Excel on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Tue, 06 Feb 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://www.pauloldham.net/tags/excel/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/excel/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>An Update on Importing Excel Data in R</title>
-      <link>https://www.pauloldham.net/importing-excel-data-into-r-updated/</link>
+      <link>/importing-excel-data-into-r-updated/</link>
       <pubDate>Tue, 06 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/importing-excel-data-into-r-updated/</guid>
+      <guid>/importing-excel-data-into-r-updated/</guid>
       <description>&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#import-directly-from-the-rstudio-menu&#34;&gt;Import Directly from the RStudio Menu&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#reading-an-excel-file-from-a-url&#34;&gt;Reading an Excel file from a URL&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#tidying-column-names-with-janitor&#34;&gt;Tidying column names with &lt;code&gt;janitor&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#exporting-to-excel&#34;&gt;Exporting to Excel&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#round-up&#34;&gt;Round Up&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
-&lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;##Introduction&lt;/p&gt;
 &lt;p&gt;Back in 2015 I wrote a long blog post on &lt;a href=&#34;https://www.pauloldham.net/reading-writing-excel-files-r/&#34;&gt;importing Excel tables into R&lt;/a&gt;. Happily for everyone this is now a lot easier than it was. This post provides an update on importing spreadsheets into R and exporting from R to Excel. I’ll also cover reading an excel file into R from a url as that seems to be an ongoing struggle.&lt;/p&gt;
-&lt;/div&gt;
 &lt;div id=&#34;import-directly-from-the-rstudio-menu&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Import Directly from the RStudio Menu&lt;/h2&gt;
 &lt;p&gt;The big change is that it is now very easy to import from Excel using the RStudio Menu: &lt;code&gt;File &amp;gt; Import Dataset &amp;gt; From Excel&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/file_import.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/file_import.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Next, navigate to the file that you want to import and select it. You will then see something like this.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/import_panel.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/import_panel.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;One point to bear in mind is that the import will often default to the name &lt;code&gt;dataset&lt;/code&gt; so that you need to make sure you enter a meaningful name for the dataset.&lt;/p&gt;
 &lt;p&gt;If your workbook has multiple sheets then you can choose a sheet number using &lt;code&gt;Sheet&lt;/code&gt;, choose the maximum number of rows or skip rows if you have a bunch of filler junk in the top rows. Regular Excel users may also want to select columns by Range.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/import_panel_options.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/import_panel_options.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;You can also click on a column and choose to skip it or change the format.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/skip_col.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/skip_col.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It is worth bearing in mind that if you are importing a number of worksheets you can easily lose track. I sometimes use the approach of copying the import chunk into an Rmarkdown document to keep track of what I am doing and where a file came from.&lt;/p&gt;
 &lt;p&gt;When copying chunks note the small clipboard icon in the top right above the chunk that will copy the chunk to the clipboard for pasting into the console or an R markdown code chunk to document your import steps for the future. My approach when working with multiple sheets is to create an R markdown file and copy and paste the import code into chunks that I then save. That allows “future me”, to borrow from Hadley Wickham, to understand where the datasets came from.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/import_panel_chunk.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/import_panel_chunk.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;As we can see from importing the file behind the scenes RStudio is using the &lt;code&gt;readxl&lt;/code&gt; library to import the file.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;readxl&lt;/code&gt; will commonly generate warning messages during the import process. For example this dataset generated a long long string of warnings that looked like this.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -321,9 +317,7 @@ writexl::write_xlsx(df, path = &amp;quot;df.xlsx&amp;quot;, col_names = TRUE)&lt
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(writexl)
 tmp &amp;lt;- list(df, noisycols1)
 write_xlsx(tmp, &amp;quot;tmp.xlsx&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;round-up&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Round Up&lt;/h2&gt;
+&lt;p&gt;##Round Up&lt;/p&gt;
 &lt;p&gt;There we have it. Reading and writing Excel files in R is now way way easier than it was just a couple of years ago thanks to the dedicated work of those behind &lt;code&gt;readxl&lt;/code&gt; (Hadley Wickham and Jenny Bryan) and &lt;code&gt;writexl&lt;/code&gt; by Jeroen Ooms and John McNamara. Other packages will take you to the same place but these are my go to packages. Community contributions are helping to solve the mystery of reading Excel files from urls and we might hope that at some point &lt;code&gt;readxl&lt;/code&gt; may address this problem.&lt;/p&gt;
 &lt;p&gt;If you would like to learn more on importing data into R then try the DataCamp course on &lt;a href=&#34;https://www.datacamp.com/tracks/importing-cleaning-data-with-r&#34;&gt;Importing Data &amp;amp; Cleaning with R&lt;/a&gt; that covers Excel.&lt;/p&gt;
 &lt;/div&gt;
@@ -332,15 +326,16 @@ write_xlsx(tmp, &amp;quot;tmp.xlsx&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Reading and Writing an Excel File in R</title>
-      <link>https://www.pauloldham.net/reading-writing-excel-files-r/</link>
+      <link>/reading-writing-excel-files-r/</link>
       <pubDate>Thu, 30 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/reading-writing-excel-files-r/</guid>
+      <guid>/reading-writing-excel-files-r/</guid>
       <description>&lt;p&gt;This post was updated in 2018 and you can read it &lt;a href=&#34;http://www.pauloldham.net/importing-excel-data-into-r-updated/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;http://cran.r-project.org/doc/manuals/r-release/R-data.html#Reading-Excel-spreadsheets&#34;&gt;CRAN Project&lt;/a&gt; has the following to say about importing Excel files into R.&lt;/p&gt;
 &lt;p&gt;“The first piece of advice is to avoid doing so if possible! If you have access to Excel, export the data you want from Excel in tab-delimited or comma-separated form, and use read.delim or read.csv to import it into R. (You may need to use read.delim2 or read.csv2 in a locale that uses comma as the decimal point.).”&lt;/p&gt;
 &lt;p&gt;This is very sound advice. The best option when dealing with Excel is generally to use &lt;code&gt;save as&lt;/code&gt; to save the file as a .csv and then import it into R. However, there are a number of ways of reading an Excel file into R. We will deal with two of them in this walk through focusing on the patent datasets in our &lt;a href=&#34;https://drive.google.com/open?id=0B4piiKOCkRPDNThTWU1QQVYyRnM&amp;amp;authuser=0&#34;&gt;open access patent datasets folder&lt;/a&gt;. Download the GitHub .zip file &lt;a href=&#34;https://github.com/poldham/opensource-patent-analytics/blob/master/2_datasets/datasets.zip?raw=true&#34;&gt;here&lt;/a&gt;. Feel free to use your own dataset.&lt;/p&gt;
-&lt;p&gt;One challenge with R and Excel files is that no one package seems to do everything that you want. In particular, reading from URLs is a bit of a minefield particularly on secure connections (&lt;code&gt;https:&lt;/code&gt;). If this walk through doesn’t meet your needs then try this R-bloggers &lt;a href=&#34;http://www.r-bloggers.com/read-excel-files-from-r/&#34;&gt;overview&lt;/a&gt; on the range of available packages. The &lt;a href=&#34;http://www.r-bloggers.com/search/excel&#34;&gt;R-bloggers excel topic listing&lt;/a&gt; also has lots of useful articles covering working with Excel in more depth than this short article. To find additional help try &lt;a href=&#34;http://stackoverflow.com/questions/tagged/r&#34;&gt;stackoverflow&lt;/a&gt;. We will focus on:&lt;/p&gt;
+&lt;p&gt;One challenge with R and Excel files is that no one package seems to do everything that you want. In particular, reading from URLs is a bit of a minefield particularly on secure connections (&lt;code&gt;https:&lt;/code&gt;). If this walk through doesn’t meet your needs then try this R-bloggers &lt;a href=&#34;http://www.r-bloggers.com/read-excel-files-from-r/&#34;&gt;overview&lt;/a&gt; on the range of available packages. The &lt;a href=&#34;http://www.r-bloggers.com/search/excel&#34;&gt;R-bloggers excel topic listing&lt;/a&gt; also has lots of useful articles covering working with Excel in more depth than this short article. To find additional help try &lt;a href=&#34;http://stackoverflow.com/questions/tagged/r&#34;&gt;stackoverflow&lt;/a&gt;.
+We will focus on:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;Using the &lt;a href=&#34;http://www.r-bloggers.com/importexport-data-to-and-from-xlsx-files/&#34;&gt;xlsx&lt;/a&gt; package&lt;/li&gt;
 &lt;li&gt;Testing the new &lt;a href=&#34;http://blog.rstudio.org/2015/04/15/readxl-0-1-0/&#34;&gt;readxl&lt;/a&gt; package&lt;/li&gt;
@@ -352,12 +347,14 @@ write_xlsx(tmp, &amp;quot;tmp.xlsx&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Loading required package: rJava&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Loading required package: xlsxjars&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You can use your own local excel file but we will use the file &lt;a href=&#34;https://drive.google.com/file/d/0B4piiKOCkRPDNWhrdGxXc0YwTk0/view?usp=sharing&#34;&gt;wipotrends&lt;/a&gt; in the &lt;a href=&#34;https://drive.google.com/open?id=0B4piiKOCkRPDNWhrdGxXc0YwTk0&amp;amp;authuser=0&#34;&gt;patent dataset folder&lt;/a&gt; for this example. Other test Excel datasets in the folder are &lt;a href=&#34;https://drive.google.com/open?id=0B4piiKOCkRPDZGZ4dlJsVEN4TEk&amp;amp;authuser=0&#34;&gt;ewaste&lt;/a&gt; and &lt;a href=&#34;https://drive.google.com/open?id=0B4piiKOCkRPDMUVSaFJtdXlOX28&amp;amp;authuser=0&#34;&gt;solarcooking&lt;/a&gt;. Download the file and save it to your computer. Then copy the local file path.&lt;/p&gt;
-&lt;div id=&#34;reading-a-local-file&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Reading a local file&lt;/h2&gt;
+&lt;p&gt;##Reading a local file&lt;/p&gt;
 &lt;p&gt;We will use a file called &lt;a href=&#34;https://drive.google.com/open?id=0B4piiKOCkRPDNWhrdGxXc0YwTk0&amp;amp;authuser=0&#34;&gt;wipotrends&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Let’s open the file up to inspect it briefly. We will see that it contains one worksheet and that the column headings begin at row 5. To load it into R we will use the &lt;code&gt;read.xlxs&lt;/code&gt; function and specify arguments to tell R where to look for and handle the data.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;wipotrends &amp;lt;- read.xlsx(&amp;quot;/Users/pauloldham17inch/Desktop/open_source_master/2_datasets/wipo/wipotrends.xlsx&amp;quot;, sheetIndex = 1, startRow = 5, endRow = 23, as.data.frame = TRUE, header=TRUE)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;sheetIndex = n&lt;/code&gt; tells R to import the first worksheet (working numerically). &lt;code&gt;startRow = n&lt;/code&gt; tells R where to start reading the data (if not the first row). &lt;code&gt;endRow = n&lt;/code&gt; tells R where to stop reading the data. Note that in this case the data stops at row 23 from the first row. You do not need to specify this value but in some cases R will read in NA values for extra rows below the actual data (try excluding &lt;code&gt;endRow =&lt;/code&gt; and reimport the data to test this) &lt;code&gt;as.data.frame =&lt;/code&gt; tells R whether to convert the data into a data frame. Generally this is a good thing. The default will import the data as a list. &lt;code&gt;header = TRUE&lt;/code&gt; tells R whether or not there are column headings in the start row.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sheetIndex = n&lt;/code&gt; tells R to import the first worksheet (working numerically). &lt;code&gt;startRow = n&lt;/code&gt; tells R where to start reading the data (if not the first row).
+&lt;code&gt;endRow = n&lt;/code&gt; tells R where to stop reading the data. Note that in this case the data stops at row 23 from the first row. You do not need to specify this value but in some cases R will read in NA values for extra rows below the actual data (try excluding &lt;code&gt;endRow =&lt;/code&gt; and reimport the data to test this)
+&lt;code&gt;as.data.frame =&lt;/code&gt; tells R whether to convert the data into a data frame. Generally this is a good thing. The default will import the data as a list.
+&lt;code&gt;header = TRUE&lt;/code&gt; tells R whether or not there are column headings in the start row.&lt;/p&gt;
 &lt;p&gt;In general it is good practice in your work to create Excel workbooks with 1 sheet and headings in the first row. However, as we can see from the WIPO example, reality tends to be different. That means that it is important to inspect and clean the data before hand. Keep a copy of the original file for reference by creating a .zip file. Other things to consider are:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;Checking for corrupted characters and correcting them using find and replace in Excel or Open Office (see this &lt;a href=&#34;https://youtu.be/YYaMEbJW7Qw?list=PLsZOGmKUMi54n8R06U1HmxNywt0bAFays&#34;&gt;video&lt;/a&gt;).&lt;/li&gt;
@@ -399,9 +396,7 @@ write_xlsx(tmp, &amp;quot;tmp.xlsx&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 ## 17 2011      2149000             8.1
 ## 18 2012      2347700             9.2&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;In reviewing &lt;code&gt;wipotrends&lt;/code&gt; note that the row numbers refer to data rows (we have excluded the padding in rows 1 -4). If we were spending time with this data we might also want to turn the columns to lowercase and &lt;code&gt;growth rate&lt;/code&gt; to &lt;code&gt;growth_rate&lt;/code&gt; (but see below on &lt;code&gt;readxl&lt;/code&gt;).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;writing-excel-files&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Writing Excel Files&lt;/h2&gt;
+&lt;p&gt;##Writing Excel Files&lt;/p&gt;
 &lt;p&gt;It is generally better to write a .csv file rather than an Excel file because the results can be used in a wider range of tools (including Excel) and will be cleaner (see below). However, to write an Excel file with the new data frame use the &lt;code&gt;write.xlsx()&lt;/code&gt; function. Before running the command it is generally a good idea to use the command &lt;code&gt;getwd()&lt;/code&gt; to display the working directory you are in so that you know where the file will be saved. To change the directory to a new location use &lt;code&gt;setwd(&amp;quot;yourpathtofile&amp;quot;)&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write.xlsx(wipotrends, &amp;quot;yourfilenamepath_new.xlsx&amp;quot;, sheetName=&amp;quot;Sheet1&amp;quot;, col.names = TRUE, row.names = TRUE, append = FALSE, showNA = TRUE)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This will create a new file called wipotrends_new. Note three points here:&lt;/p&gt;
@@ -410,14 +405,10 @@ write_xlsx(tmp, &amp;quot;tmp.xlsx&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;If you select &lt;code&gt;row.names = FALSE&lt;/code&gt; R will write a new column with row numbers (in this case)&lt;/li&gt;
 &lt;li&gt;Selecting &lt;code&gt;showNA = TRUE&lt;/code&gt; will fill any blank cells with NA. That is useful when coming back into R to tidy up and select data. Blank cells are the enemy of calculations and it is better to fill the cells with a value where possible.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;
-&lt;div id=&#34;writing-excel-to-csv&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Writing Excel to CSV&lt;/h2&gt;
+&lt;p&gt;##Writing Excel to CSV&lt;/p&gt;
 &lt;p&gt;While Excel is popular in reality it is better to use .csv when using or sharing data across a range of software tools. To write results into .csv use &lt;code&gt;write.csv()&lt;/code&gt;. Call up the description for write.csv with ?write.csv in console. See the .csv walk through for further details.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write.csv(wipotrends, file = &amp;quot;yourfilenamepath_new.csv&amp;quot;, row.names = FALSE)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;using-the-readxl-package&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Using the Readxl package&lt;/h1&gt;
+&lt;p&gt;#Using the Readxl package&lt;/p&gt;
 &lt;p&gt;readxl is a new package from RStudio and is still a work in progress. We will cover it here because as the package develops it will become more popular and you are more likely to use it.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;readxl&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readxl)&lt;/code&gt;&lt;/pre&gt;
@@ -427,7 +418,8 @@ write_xlsx(tmp, &amp;quot;tmp.xlsx&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;/ol&gt;
 &lt;p&gt;For example, if we add a couple of random sheets to wipotrends and then use &lt;code&gt;excel_sheets(&amp;quot;myfilenamepath&amp;quot;)&lt;/code&gt; will provide names that look something like this:&lt;/p&gt;
 &lt;p&gt;[1] “Sheet1” “my sheet” “another sheet”&lt;/p&gt;
-&lt;p&gt;This is very helpful if you don’t know how many sheets are in a workbook or you want to call them by name. 2. &lt;code&gt;read_excel()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This is very helpful if you don’t know how many sheets are in a workbook or you want to call them by name.
+2. &lt;code&gt;read_excel()&lt;/code&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readxl)
 read_wipo &amp;lt;- read_excel(&amp;quot;/Users/pauloldham17inch/Desktop/WIPO_Training/training_datasets/wipo/wipotrends.xlsx&amp;quot;, col_names = TRUE, na = &amp;quot;&amp;quot;,  skip = 5)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;When we read in this file and print it to the console we will notice something unusual.&lt;/p&gt;
@@ -459,12 +451,9 @@ read_wipo &amp;lt;- read_excel(&amp;quot;/Users/pauloldham17inch/Desktop/WIPO_Tr
 &lt;p&gt;The main advantage of &lt;code&gt;read_excel&lt;/code&gt; (as with &lt;code&gt;read_csv&lt;/code&gt; in the &lt;code&gt;readr&lt;/code&gt; package) is that the data imports into an easy to print object with three attributes a &lt;code&gt;tbl_df&lt;/code&gt; a &lt;code&gt;tbl&lt;/code&gt; and a &lt;code&gt;data.frame&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;If you are using &lt;code&gt;dplyr&lt;/code&gt; and &lt;code&gt;tidyr&lt;/code&gt; (and we assume that you will be) then the creation of a tbl_df makes life much easier.&lt;/p&gt;
 &lt;p&gt;In summary, readxl is a welcome development for those who prefer using Excel (or are forced too), but it is very recent. It’s main strength is the ability to easily see what worksheets are in a workbook and also the automatic creation of a data frame or data frame table at the time of import. The absence of a write function will hopefully encourage hardened Excel uses to adopt comma separated or tab delimited files as their standard and to take advantage of the fuller functionality of the &lt;code&gt;readr&lt;/code&gt; package. You know it makes sense.&lt;/p&gt;
-&lt;div id=&#34;reading-excel-files-from-url-locations&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Reading Excel files from URL locations&lt;/h2&gt;
+&lt;p&gt;##Reading Excel files from URL locations&lt;/p&gt;
 &lt;p&gt;It is faster to simply download the file to your drive, or swim the Atlantic ocean, than to successfully download an excel file on http: or, in particular https:. So maybe ask yourself what is the path of least resistance and run with that.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;getting-help-and-further-resources&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Getting Help and Further Resources&lt;/h2&gt;
+&lt;p&gt;##Getting Help and Further Resources&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;For additional functionality experiment with the very useful &lt;strong&gt;XLConnect&lt;/strong&gt; package in Packages. Read the documentation on &lt;a href=&#34;http://cran.r-project.org/web/packages/XLConnect/index.html&#34;&gt;CRAN&lt;/a&gt;. This adds a lot of functionality in working with Excel files in R.&lt;/li&gt;
 &lt;li&gt;See the R-bloggers &lt;a href=&#34;http://www.r-bloggers.com/read-excel-files-from-r/&#34;&gt;overview&lt;/a&gt; article on the range of packages for working with Excel files.&lt;/li&gt;
@@ -473,8 +462,6 @@ read_wipo &amp;lt;- read_excel(&amp;quot;/Users/pauloldham17inch/Desktop/WIPO_Tr
 &lt;li&gt;Paul Oldham&lt;/li&gt;
 &lt;li&gt;Updated 13/05/2015&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 </description>
     </item>
     

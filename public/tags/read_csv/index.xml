@@ -2,36 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Read_csv on Paul Oldham&#39;s Analytics Blog</title>
-    <link>https://www.pauloldham.net/tags/read_csv/</link>
+    <link>/tags/read_csv/</link>
     <description>Recent content in Read_csv on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Wed, 29 Apr 2015 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://www.pauloldham.net/tags/read_csv/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/read_csv/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Importing CSV files into R</title>
-      <link>https://www.pauloldham.net/importing-csv-files-into-r/</link>
+      <link>/importing-csv-files-into-r/</link>
       <pubDate>Wed, 29 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/importing-csv-files-into-r/</guid>
+      <guid>/importing-csv-files-into-r/</guid>
       <description>&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#a-quick-2018-update&#34;&gt;A Quick 2018 Update&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#reading-in-a-file-using-read.table-utils-package&#34;&gt;Reading in a file using read.table (&lt;code&gt;utils&lt;/code&gt; package)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#reading-a-.csv-from-the-web&#34;&gt;Reading a .csv from the web&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#downloading-from-google-drive&#34;&gt;Downloading From Google Drive&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#downloading-from-github&#34;&gt;Downloading from GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#writing-a-.csv-file&#34;&gt;Writing a .csv file&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#reading-in-multiple-.csv-files&#34;&gt;Reading in multiple .csv files&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#using-the-new-readr-package.&#34;&gt;Using the new &lt;code&gt;readr&lt;/code&gt; package.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#writing-a-.csv-file-using-write_csv&#34;&gt;Writing a .csv file using &lt;code&gt;write_csv()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#round-up&#34;&gt;Round Up&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
@@ -63,13 +54,12 @@
 &lt;li&gt;Downloading a .csv file from a URL, focusing on https: connections, using &lt;code&gt;Rcurl&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;That should cover most needs. If you find that you are stuck with a function try calling the description for a particular function (?read.csv) or try &lt;a href=&#34;http://stackoverflow.com/questions/tagged/r&#34;&gt;stackoverflow.com&lt;/a&gt; results tagged R or from a Google search (often the quickest route).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;reading-in-a-file-using-read.table-utils-package&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Reading in a file using read.table (&lt;code&gt;utils&lt;/code&gt; package)&lt;/h2&gt;
+&lt;p&gt;##Reading in a file using read.table (&lt;code&gt;utils&lt;/code&gt; package)&lt;/p&gt;
 &lt;p&gt;Reading in a .csv file is easy and is part of &lt;code&gt;read.table&lt;/code&gt; in the R &lt;code&gt;utils&lt;/code&gt; package (installed by default). We can simply read in a .csv by creating an object linked to the function &lt;code&gt;read.csv()&lt;/code&gt; followed by the path to the local file as follows. You will need to download the file from the link above.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ritonavir &amp;lt;- read.csv(&amp;quot;yourfilenamepath.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;In some European countries the delimiter in a .csv is a semicolon “;” and not a comma. In the unlikely event you come across these files use &lt;code&gt;read.csv2()&lt;/code&gt; as above instead of &lt;code&gt;read.csv&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;You now have a dataset called ritonavir in R. That is how easy it is. You can take a look at the data by simply typing ritonavir into the console. What you will see is a mass of data. We can improve on that by using &lt;code&gt;head(ritonavir)&lt;/code&gt; but it is still a little difficult to view. We will come back to this in turning the data into a table data frame (&lt;code&gt;tbl_df()&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;You now have a dataset called ritonavir in R. That is how easy it is. You can take a look at the data by simply typing ritonavir into the console. What you will see is a mass of data.
+We can improve on that by using &lt;code&gt;head(ritonavir)&lt;/code&gt; but it is still a little difficult to view. We will come back to this in turning the data into a table data frame (&lt;code&gt;tbl_df()&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;First, let’s look at the function read.csv. R functions have settings called arguments that can be used to control what is going on.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;`?`(read.csv)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;read.csv(file, header = TRUE, sep = &amp;quot;,&amp;quot;, quote = &amp;quot;\&amp;quot;&amp;quot;, dec = &amp;quot;.&amp;quot;, fill = TRUE, comment.char = &amp;quot;&amp;quot;, ...)&lt;/code&gt;&lt;/p&gt;
@@ -80,7 +70,7 @@
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;&lt;code&gt;stringsAsFactors = FALSE&lt;/code&gt;. To prevent character columns being converted to factors. This is actually a lot more important than it sounds, and will generally be your default.&lt;br /&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;code&gt;na.strings = &amp;quot;NA&amp;quot;&lt;/code&gt;. NA refers to not available. In some cases this needs to be expanded to cover blank cells in the source data. for example &lt;code&gt;c(&amp;quot;NA&amp;quot;, &amp;quot; &amp;quot;, &amp;quot;&amp;quot;)&lt;/code&gt; captures cells containing “NA”, cells with only a space &amp;quot; &amp;quot; or empty cells “”.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;na.strings = &amp;quot;NA&amp;quot;&lt;/code&gt;. NA refers to not available. In some cases this needs to be expanded to cover blank cells in the source data. for example &lt;code&gt;c(&amp;quot;NA&amp;quot;, &amp;quot; &amp;quot;, &amp;quot;&amp;quot;)&lt;/code&gt; captures cells containing “NA”, cells with only a space &amp;quot; &amp;quot; or empty cells &amp;quot;&amp;quot;.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;strip.white = TRUE&lt;/code&gt;. This will strip leading and trailing white space. Note that this will only work if you have specified sep = in the arguments.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;skip = n&lt;/code&gt;. Specify the number of lines to skip before the data starts. Very useful for data tables with blank rows or text padding at the top of files.&lt;/li&gt;
 &lt;/ol&gt;
@@ -128,10 +118,9 @@
 &lt;li&gt;Spaces in column names such as publication number are filled with full stops. Use the new &lt;code&gt;janitor&lt;/code&gt; package &lt;code&gt;clean_names()&lt;/code&gt; function to deal with this.&lt;/li&gt;
 &lt;li&gt;More importantly, by default character vectors are converted to factors (characters backed by a hidden number). It therefore makes sense to always use &lt;code&gt;StringsAsFactors = FALSE&lt;/code&gt; unless you actually want columns to import as factors.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;
-&lt;div id=&#34;reading-a-.csv-from-the-web&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Reading a .csv from the web&lt;/h2&gt;
+&lt;p&gt;##Reading a .csv from the web&lt;/p&gt;
 &lt;p&gt;Reading a .csv file from the web is also easy as we have seen above but it can involve some complications. We will cover a couple of cases here. If the URL begins with &lt;code&gt;http:&lt;/code&gt; then it is as simple as entering the URL inside quotes. However, if it is the secure &lt;code&gt;https:&lt;/code&gt; then it is a little bit more of a challenge.&lt;/p&gt;
+&lt;/div&gt;
 &lt;div id=&#34;downloading-from-google-drive&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Downloading From Google Drive&lt;/h3&gt;
 &lt;p&gt;For example if we try the following it will generally work with &lt;code&gt;http:&lt;/code&gt; but not with &lt;code&gt;https:&lt;/code&gt;. This will simply return an empty object with nothing in it and throw an error &lt;code&gt;Error in read.table(file = file, header = header, sep = sep, quote = quote, : more columns than column names&lt;/code&gt;&lt;/p&gt;
@@ -146,18 +135,13 @@
     &amp;quot;ritonavir_url.csv&amp;quot;, method = &amp;quot;curl&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;In this case we use &lt;code&gt;download.file&lt;/code&gt; and the URL in quotes, followed by the destination filename (which will download into the current working directory). For this to work without an error we need finally to specify &lt;code&gt;method = &amp;quot;curl&amp;quot;&lt;/code&gt; or an error reading &lt;code&gt;unsupported URL scheme&lt;/code&gt; will appear.&lt;/p&gt;
 &lt;p&gt;You now need to navigate to where the file is and import it&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;downloading-from-github&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Downloading from GitHub&lt;/h3&gt;
+&lt;p&gt;###Downloading from GitHub&lt;/p&gt;
 &lt;p&gt;In downloading from GitHub (where the project Google Drive datasets are also located), we have to go a step further. The URL that you see on the page in Github is basically a marker for the data location… not the actual dataset location. To access the actual dataset navigate to the relevant page &lt;a href=&#34;https://github.com/poldham/opensource-patent-analytics/blob/master/datasets/ritonavir/ritonavir.csv&#34;&gt;here&lt;/a&gt;. However, then select the Raw button and copy that &lt;em&gt;URL&lt;/em&gt;. The URL should begin with &lt;a href=&#34;https:raw&#34; class=&#34;uri&#34;&gt;https:raw&lt;/a&gt;. as below.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ritonavir_urlg &amp;lt;- download.file(&amp;quot;https://raw.githubusercontent.com/poldham/opensource-patent-analytics/master/datasets/ritonavir/ritonavir.csv&amp;quot;, 
     &amp;quot;ritonavir_urlg.csv&amp;quot;, method = &amp;quot;curl&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Next you need to navigate to the file location and import as before.&lt;/p&gt;
 &lt;p&gt;As an alternative to this approach in Github it can be easier to simply navigate to the repository (such as &lt;a href=&#34;https://github.com/poldham/opensource-patent-analytics&#34; class=&#34;uri&#34;&gt;https://github.com/poldham/opensource-patent-analytics&lt;/a&gt;) and then select &lt;code&gt;Clone in Desktop&lt;/code&gt; (if you are using GitHub on your local machine) or ‘Download ZIP’. That will download the repository including the relevant datasets.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;writing-a-.csv-file&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Writing a .csv file&lt;/h2&gt;
+&lt;p&gt;##Writing a .csv file&lt;/p&gt;
 &lt;p&gt;If we wanted to write this data table to a new .csv file we would use the ‘write.csv()’ command.&lt;/p&gt;
 &lt;p&gt;Before we do that a critical point to remember is to give the file a new filename or it will overwrite your original data. It is also worth checking your working directory so that you know where it will be saved.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;getwd()&lt;/code&gt;&lt;/pre&gt;
@@ -179,9 +163,7 @@
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write.csv(ritonavirtbl, &amp;quot;ritonavirtbl.csv&amp;quot;, row.names = FALSE)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This will prevent R from writing an additional row names column.&lt;/p&gt;
 &lt;p&gt;We will now take a look at a somewhat unusual import case. That is importing multiple files. I have left this until after we have worked on writing .csv files because realising that we can import, export and then reimport files into R is an important part of creating effective workflows in future work. Otherwise, we may spend hours in R to achieve something that can be done easily outside R. This particular example provides a good illustration of this point.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;reading-in-multiple-.csv-files&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Reading in multiple .csv files&lt;/h2&gt;
+&lt;p&gt;##Reading in multiple .csv files&lt;/p&gt;
 &lt;p&gt;On some occasions we might want to read in multiple .csv files at the same time. Typically this will be where a patent dataset has been split into multiple files. If you would like to follow this discussion then download the &lt;a href=&#34;https://drive.google.com/folderview?id=0B4piiKOCkRPDVUxhVVhkbGtQLVU&amp;amp;usp=sharing&#34;&gt;pizza_sliced dataset&lt;/a&gt; which contains five .csv files plus a ReadMe file.&lt;/p&gt;
 &lt;p&gt;Reading in multiple files is a task that is a little trickier than it should be. However, the approach below will work (assuming you have the files in a local folder). My suggestion would be to remove the Read Me file from the downloaded set for this exercise.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pizzasliced &amp;lt;- list.files(&amp;quot;/Users/pauloldham17inch/opensource-patent-analytics/2_datasets/pizza_sliced&amp;quot;, 
@@ -438,9 +420,7 @@ Using `dplyr` we can call up a View of the dataset in a new pop up window. This 
 &lt;p&gt;While we would probably choose more informative filenames it is good practice to output work before moving on to other tasks or at some point it will be lost.&lt;/p&gt;
 &lt;p&gt;We have now covered the basics of importing a .csv file into R and then writing a file. We have also covered importing multiple .csv files and a quick work around character encoding problems before exporting a data frame.&lt;/p&gt;
 &lt;p&gt;It is useful to know these steps when you get into trouble, but in day to day practice you are most likely to use the &lt;code&gt;readr&lt;/code&gt; package (or &lt;code&gt;data.table&#39;s&lt;/code&gt; &lt;code&gt;fread()&lt;/code&gt;).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;using-the-new-readr-package.&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Using the new &lt;code&gt;readr&lt;/code&gt; package.&lt;/h2&gt;
+&lt;p&gt;##Using the new &lt;code&gt;readr&lt;/code&gt; package.&lt;/p&gt;
 &lt;p&gt;If you don’t have &lt;code&gt;readr&lt;/code&gt; use the following to install it.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;readr&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If you do, or to check it has loaded, use:&lt;/p&gt;
@@ -474,9 +454,7 @@ ritonavir3 &amp;lt;- read_csv(&amp;quot;/Users/pauloldham17inch/opensource-paten
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ritonavir3&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;What we see here is the data with column names left as is. We can also see that most of the columns (vectors) are character vectors and have not been transformed into factors meaning &lt;strong&gt;no more&lt;/strong&gt; &lt;code&gt;stringsAsFactors = FALSE&lt;/code&gt;. The date fields have been recognised as dates, but as we have seen have been transformed to NA (not available) because of the lack of clarity on the kind of date.&lt;/p&gt;
 &lt;p&gt;We will update this part of the walkthrough as clarity on dealing with dates becomes available with &lt;code&gt;readr&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;writing-a-.csv-file-using-write_csv&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Writing a .csv file using &lt;code&gt;write_csv()&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;##Writing a .csv file using &lt;code&gt;write_csv()&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;We can easily write a .csv file using the &lt;code&gt;write_csv()&lt;/code&gt; function as follows&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;write_csv(ritonavir3, &amp;quot;ritonavir3.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The output from this has the advantage of preserving the column names as is so that “publication number” stays as is and does not become “publication.number”.&lt;/p&gt;
@@ -484,9 +462,7 @@ ritonavir3 &amp;lt;- read_csv(&amp;quot;/Users/pauloldham17inch/opensource-paten
 &lt;p&gt;&lt;code&gt;write_csv(x, path, append = FALSE, col_names = !append)&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;append = TRUE&lt;/code&gt; will append the table to the existing file. &lt;code&gt;col_names = TRUE&lt;/code&gt; will write column names at the top of the file. Expect more arguments to be added as &lt;code&gt;readr&lt;/code&gt; develops.&lt;/p&gt;
 &lt;p&gt;Bear in mind that &lt;code&gt;readr&lt;/code&gt; does not possess the functionality of &lt;code&gt;read.csv&lt;/code&gt; or &lt;code&gt;write.csv&lt;/code&gt; in &lt;code&gt;read.table&lt;/code&gt;. Part of the aim of &lt;code&gt;readr&lt;/code&gt; is simplification based on the idea of doing a limited number of things well. Therefore, it is unlikely that &lt;code&gt;readr&lt;/code&gt; will ever be as comprehensive as the &lt;code&gt;read.table&lt;/code&gt; equivalents in the future. However, &lt;code&gt;readr&lt;/code&gt; is likely to become the go to package because of its simplicity for most needs and because it links with the wider family of &lt;code&gt;tidyr&lt;/code&gt;, &lt;code&gt;plyr&lt;/code&gt; and &lt;code&gt;dplyr&lt;/code&gt; packages under development at RStudio to make data wrangling and analysis easier.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;round-up&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Round Up&lt;/h2&gt;
+&lt;p&gt;##Round Up&lt;/p&gt;
 &lt;p&gt;In this walkthrough we have covered the fundamentals of reading and writing .csv files in R. This is pretty much the easiest file format to work with for patent data and considerably better than Excel which we will cover next. I, like almost everyone else, would encourage you to start working with .csv files wherever possible for the straightforward reason that they are cleaner and better to share across platforms and programmes than Excel or other proprietary format files.&lt;/p&gt;
 &lt;/div&gt;
 </description>

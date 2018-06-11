@@ -49,3 +49,22 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     height = 50
     alt = "Logo"
 
+#Social media links
+#Add social media links in the footer by adding [[params.social]] entries using Fontawesome icons.
+
+#    [[params.social]]
+#    name = "GitHub"
+#    icon = "github"
+#    link = "https://github.com/rstudio/blogdown"
+#    [[params.social]]
+#    name = "Twitter"
+    icon = "twitter"
+    link = "https://twitter.com/rstudio"
+    [[params.social]]
+    name = "LinkedIn"
+    icon = "linkedin-square"
+    link = "https://www.linkedin.com/"
+    [[params.social]]
+    name = "Instagram"
+    icon = "instagram"
+link = "https://www.instagram.com/"

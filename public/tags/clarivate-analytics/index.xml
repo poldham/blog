@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Clarivate Analytics on Paul Oldham&#39;s Analytics Blog</title>
-    <link>https://www.pauloldham.net/tags/clarivate-analytics/</link>
+    <link>/tags/clarivate-analytics/</link>
     <description>Recent content in Clarivate Analytics on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Tue, 22 May 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://www.pauloldham.net/tags/clarivate-analytics/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/clarivate-analytics/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Exploring Geocoding Scientific Literature with R</title>
-      <link>https://www.pauloldham.net/geocoding-scientific-literature-with-r/</link>
+      <link>/geocoding-scientific-literature-with-r/</link>
       <pubDate>Tue, 22 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/geocoding-scientific-literature-with-r/</guid>
-      <description>&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://www.pauloldham.net/rmarkdown-libs/leaflet/leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/leaflet/leaflet.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://www.pauloldham.net/rmarkdown-libs/leafletfix/leafletfix.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/Proj4Leaflet/proj4-compressed.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/Proj4Leaflet/proj4leaflet.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://www.pauloldham.net/rmarkdown-libs/rstudio_leaflet/rstudio_leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/leaflet-binding/leaflet.js&#34;&gt;&lt;/script&gt;
+      <guid>/geocoding-scientific-literature-with-r/</guid>
+      <description>&lt;script src=&#34;/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/leaflet/leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/leaflet/leaflet.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/leafletfix/leafletfix.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/Proj4Leaflet/proj4-compressed.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/Proj4Leaflet/proj4leaflet.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/rstudio_leaflet/rstudio_leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/leaflet-binding/leaflet.js&#34;&gt;&lt;/script&gt;
 
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
@@ -90,19 +90,19 @@ library(googleway)&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Get a free API key from &lt;a href=&#34;https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;This involves pressing the &lt;code&gt;Get a Key&lt;/code&gt; button and creating a project (app) that you will query by following these steps.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/geocoding/getkey.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/geocoding/getkey.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Create a new project and wait a short while while Google spins it up.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/geocoding/create_project.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/geocoding/create_project.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;You will then see your API key. Note that you will see a link to restrict access to your API. It is a good idea to follow this and use your IP address to limit access to your IP address under Application restrictions. This will prevent other people from using the account if they discover the API key. We will not go down that route right now.&lt;/p&gt;
 &lt;p&gt;Take a copy of your API key (say into a text file in R Studio). What you do next is up to you.&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
 &lt;li&gt;Save the text file somewhere sensible and copy it into the functions below when needed.&lt;/li&gt;
-&lt;li&gt;With &lt;code&gt;usethis&lt;/code&gt; either:&lt;/li&gt;
-&lt;/ol&gt;
+&lt;li&gt;&lt;p&gt;With &lt;code&gt;usethis&lt;/code&gt; either:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;usethis::edit_r_environ()&lt;/code&gt; to open your local environment file and enter something like GOOGLE_MAPS_KEY=“yourkey” and then restart R. You will be able to access the key using &lt;code&gt;Sys.getenv(&amp;quot;GOOGLE_MAPS_KEY&amp;quot;)&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;usethis::edit_r_profile()&lt;/code&gt; and enter google_maps_key=“your key”, inside the existing options() chunk, save and restart R. Call the key with &lt;code&gt;getOption(&amp;quot;google_maps_key&amp;quot;)&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;For discussion on the above try reading the R startup section of &lt;a href=&#34;https://csgillespie.github.io/efficientR/&#34;&gt;Efficient R Programming&lt;/a&gt; or follow the very useful &lt;a href=&#34;https://github.com/ropensci/rOpenSci/wiki/Use-of-API-keys&#34;&gt;ROpenSci instructions&lt;/a&gt;. &lt;code&gt;usethis&lt;/code&gt; makes life much easier because it knows where the files are!&lt;/p&gt;
 &lt;p&gt;We will go with the &lt;code&gt;usethis::edit_r_environ()&lt;/code&gt; environment option, so let’s store the key in our working environment for the moment using the imaginatively named key.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;key &amp;lt;- Sys.getenv(&amp;quot;GOOGLE_MAPS_KEY&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
@@ -291,7 +291,7 @@ nrow(lookup)&lt;/code&gt;&lt;/pre&gt;
 ## 4       1 Hunan Fisheries Sci … Hunan Fisheries Sc… &amp;quot; Hun… &amp;quot; People…  1522
 ## 5       1 Hunan Univ Chinese M… Hunan Univ Chinese… &amp;quot; Hun… &amp;quot; People…  1523
 ## 6       2 Indonesian Inst Sci,… Indonesian Inst Sci &amp;quot; Amb… &amp;quot; Indone…  1597&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Next we want to iterate over the list of our organisation names and replace the abbreviations. There are a variety of ways to do that such as the &lt;code&gt;qdap&lt;/code&gt; package function &lt;code&gt;multigsub()&lt;/code&gt; or &lt;code&gt;mgsub()&lt;/code&gt;. We like &lt;code&gt;qdap&lt;/code&gt; a lot but installation of the package can be a bit awkward due to a dependency on &lt;code&gt;rJava&lt;/code&gt;.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; Instead we are going to use a simple for loop (although a &lt;code&gt;purrr&lt;/code&gt; solution would be an improvement).&lt;/p&gt;
+&lt;p&gt;Next we want to iterate over the list of our organisation names and replace the abbreviations. There are a variety of ways to do that such as the &lt;code&gt;qdap&lt;/code&gt; package function &lt;code&gt;multigsub()&lt;/code&gt; or &lt;code&gt;mgsub()&lt;/code&gt;. We like &lt;code&gt;qdap&lt;/code&gt; a lot but installation of the package can be a bit awkward due to a dependency on &lt;code&gt;rJava&lt;/code&gt;.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; Instead we are going to use a simple for loop (although a &lt;code&gt;purrr&lt;/code&gt; solution would be an improvement).&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;replaceabbr &amp;lt;- function(pattern, replacement, var) {
   replacement &amp;lt;- rep(replacement, length(pattern)) 
     for (i in seq_along(pattern)) {
@@ -474,7 +474,7 @@ write_csv(results_complete, path = &amp;quot;asean_geocode_complete.csv&amp;quot
 ## 3 APPROXIMATE       1195 0.230&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The API documentation fills us in on what is going on here.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;“location_type stores additional data about the specified location. The following values are currently supported:&lt;/p&gt;
+&lt;p&gt;&amp;quot;location_type stores additional data about the specified location. The following values are currently supported:&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;“ROOFTOP” indicates that the returned result is a precise geocode for which we have location information accurate down to street address precision.&lt;/p&gt;
@@ -581,7 +581,8 @@ res_complete &amp;lt;- left_join(affiliation2, run1, by = &amp;quot;locations_ed
 res_complete &amp;lt;- res_complete %&amp;gt;% 
   mutate(duplicate_id = duplicated(id)) %&amp;gt;% 
   filter(duplicate_id == &amp;quot;FALSE&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;When we join the two tables together we discover that we arrive at 5232 rather than 5,206 results. The reason for this is that the name harmonisation has created duplicated names from formerly distinct names. The Google API returns duplicate entries in these cases. These duplicate entries have been filtered out above. We will come on to other forms of duplication below. &lt;!---investigate this further. The Ids are distinct in affiliation 2 but then x entries are duplicated in the return from the API ---&gt;&lt;/p&gt;
+&lt;p&gt;When we join the two tables together we discover that we arrive at 5232 rather than 5,206 results. The reason for this is that the name harmonisation has created duplicated names from formerly distinct names. The Google API returns duplicate entries in these cases. These duplicate entries have been filtered out above. We will come on to other forms of duplication below.
+&lt;!---investigate this further. The Ids are distinct in affiliation 2 but then x entries are duplicated in the return from the API ---&gt;&lt;/p&gt;
 &lt;p&gt;Ok let’s take a look at our results to assess whether this is an improvement.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;run1 %&amp;gt;%
   drop_na(location_type) %&amp;gt;% 
@@ -752,18 +753,18 @@ mapdata&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;ref-R-usethis&#34;&gt;
 &lt;p&gt;Wickham, Hadley, and Jennifer Bryan. 2018. &lt;em&gt;Usethis: Automate Package and Project Setup&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=usethis&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=usethis&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;ref-R-tidyr&#34;&gt;
-&lt;p&gt;Wickham, Hadley, and Lionel Henry. 2018. &lt;em&gt;Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=tidyr&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=tidyr&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
 &lt;div id=&#34;ref-R-dplyr&#34;&gt;
 &lt;p&gt;Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2018. &lt;em&gt;Dplyr: A Grammar of Data Manipulation&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=dplyr&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=dplyr&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-R-tidyr&#34;&gt;
+&lt;p&gt;Wickham, Hadley, and Lionel Henry. 2018. &lt;em&gt;Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=tidyr&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=tidyr&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;If you would like to install &lt;code&gt;qdap&lt;/code&gt; but run into problems with &lt;code&gt;rjava&lt;/code&gt; on a Mac the instructions &lt;a href=&#34;https://github.com/MTFA/CohortEx/wiki/Run-rJava-with-RStudio-under-OSX-10.10,-10.11-(El-Capitan)-or-10.12-(Sierra)&#34;&gt;here&lt;/a&gt; can solve installation problems.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;If you would like to install &lt;code&gt;qdap&lt;/code&gt; but run into problems with &lt;code&gt;rjava&lt;/code&gt; on a Mac the instructions &lt;a href=&#34;https://github.com/MTFA/CohortEx/wiki/Run-rJava-with-RStudio-under-OSX-10.10,-10.11-(El-Capitan)-or-10.12-(Sierra)&#34;&gt;here&lt;/a&gt; can solve installation problems.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>
@@ -771,12 +772,12 @@ mapdata&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Counting Patent First Filings the Tidy Way with R</title>
-      <link>https://www.pauloldham.net/counting-patent-first-filings/</link>
+      <link>/counting-patent-first-filings/</link>
       <pubDate>Fri, 11 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/counting-patent-first-filings/</guid>
+      <guid>/counting-patent-first-filings/</guid>
       <description>&lt;p&gt;This article provides an in depth introduction to counting patent first filings or priority counts. It is a work in progress chapter for the WIPO Patent Analytics Handbook focusing on advanced patent analytics and builds on the introductory &lt;a href=&#34;https://wipo-analytics.github.io/&#34;&gt;WIPO Manual on Open Source Patent Analytics&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Counting first filings is an important subject for patent statistics because the first filing of a patent application marks the date that is closest to investment in research and development leading to the invention. For this reason it is widely used by economists and statisticians as a proxy indicator for the analysis of trends in science and technology.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; For patent applicants, the first filing, and the priority date that defines it, can be the difference between success and failure. An applicant with priority in the filing of an application for the same invention as their competitor will win in a dispute, and potentially win in multiple countries around the world. Millions, and in some cases hundreds of millions, of dollars may ride on who holds priority over an invention.&lt;/p&gt;
+&lt;p&gt;Counting first filings is an important subject for patent statistics because the first filing of a patent application marks the date that is closest to investment in research and development leading to the invention. For this reason it is widely used by economists and statisticians as a proxy indicator for the analysis of trends in science and technology.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; For patent applicants, the first filing, and the priority date that defines it, can be the difference between success and failure. An applicant with priority in the filing of an application for the same invention as their competitor will win in a dispute, and potentially win in multiple countries around the world. Millions, and in some cases hundreds of millions, of dollars may ride on who holds priority over an invention.&lt;/p&gt;
 &lt;p&gt;For such an important subject, remarkably little has been written on the practical aspects of counting patents by priority or, as is more intuitive, first filings. The international patent priority system has its origins in the &lt;a href=&#34;http://www.wipo.int/treaties/en/ip/paris/summary_paris.html&#34;&gt;1883 Paris Convention for the Protection of Industrial Property&lt;/a&gt; and basically means that inventors in contracting states to the Convention have a twelve month period from the date of filing their invention to file in other contracting states. During that period any filing in a contracting state will be treated as if it was filed on the same date as the original filing and will enjoy priority over other competing claims to the same invention.&lt;/p&gt;
 &lt;p&gt;The best existing guide to understanding priority counts is the 2009 &lt;a href=&#34;http://www.oecd.org/sti/inno/oecdpatentstatisticsmanual.htm&#34;&gt;OECD Patent Statistics Manual&lt;/a&gt;. The &lt;a href=&#34;http://www.oecd.org/sti/inno/oecdpatentstatisticsmanual.htm&#34;&gt;OECD Patent Statistics Manual&lt;/a&gt; is an excellent resource but does not focus on practical demonstration. This article focuses on the practical issues involved in counting by priority.&lt;/p&gt;
 &lt;p&gt;By the end of this article you will have an understanding of what priority numbers are and how to use them to generate descriptive patent statistics. You will also be aware of the challenges involved in using priority counts and how to address them.&lt;/p&gt;
@@ -826,9 +827,9 @@ numbers &amp;lt;- read_csv(&amp;quot;https://github.com/wipo-analytics/drones_da
 &lt;p&gt;We will only be working with the priority number and the application number, but as a general principle it is useful to understand the relationship between these fields which can be simply described as follows.&lt;/p&gt;
 &lt;p&gt;priority number &amp;gt; application number &amp;gt; publication number &amp;gt; family members&lt;/p&gt;
 &lt;p&gt;We can get a clearer understanding of the relationship between these numbers by looking at the front page of a patent document from our dataset using the popular &lt;a href=&#34;mailto:esp@cenet&#34;&gt;esp@cenet&lt;/a&gt; database. You can access this example &lt;a href=&#34;https://worldwide.espacenet.com/publicationDetails/biblio?FT=D&amp;amp;date=20151210&amp;amp;DB=EPODOC&amp;amp;locale=en_EP&amp;amp;CC=US&amp;amp;NR=2015357831A1&amp;amp;KC=A1&amp;amp;ND=4&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/priority/witricity.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/priority/witricity.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can see that the front page or biblio of a patent record contains a large amount of information. It is typically this information that is used to generate patent statistics. For our purposes we can see that the priority numbers field consists of one or more priority numbers. We might expect that there would only be one priority number as the original filing for the invention. However that is often not the case as we will discuss below.&lt;/p&gt;
-&lt;p&gt;From the front page we can see that if we proceed up from the priority numbers the first priority number in the list exactly matches the application number on the front page. This tells us that this is the first filing for this particular application. This application is then published as US2015357831A1.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; We can clearly see the relationship we described above&lt;/p&gt;
+&lt;p&gt;From the front page we can see that if we proceed up from the priority numbers the first priority number in the list exactly matches the application number on the front page. This tells us that this is the first filing for this particular application. This application is then published as US2015357831A1.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; We can clearly see the relationship we described above&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;priority number &amp;gt; application number &amp;gt; publication number&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;In a separate article we will address family members (patent publications that link to one or more of priority numbers) but these family members can be accessed through the INPADOC Patent Family &lt;a href=&#34;https://worldwide.espacenet.com/publicationDetails/inpadocPatentFamily?CC=US&amp;amp;NR=2015357831A1&amp;amp;KC=A1&amp;amp;FT=D&amp;amp;ND=4&amp;amp;date=20151210&amp;amp;DB=EPODOC&amp;amp;locale=en_EP&#34;&gt;here&lt;/a&gt; and will include our target publication.&lt;/p&gt;
 &lt;p&gt;For the moment however, let’s make sure we have a good understanding of priority numbers.&lt;/p&gt;
@@ -856,14 +857,14 @@ numbers[1,] %&amp;gt;%
 ##   &amp;lt;chr&amp;gt;                    &amp;lt;chr&amp;gt;                   
 ## 1 US2016578323F 2016-09-20 US2016578323F 2016-09-20&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;However, the patent system is an international system. A patent applicant may choose to file for patent rights in up to 152 contracting parties to the &lt;a href=&#34;http://www.wipo.int/pct/en/&#34;&gt;Patent Cooperation Treaty&lt;/a&gt; (although applications in all member states is unusual). As the applications are submitted in multiple countries additional priority numbers will appear in the record. An example of this is provided below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/priority/japan.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/priority/japan.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In this case we can see that the earliest priority number is for Japan (JP20150122335 20150617) and the second priority number is for WO (the Patent Cooperation Treaty) and incorporates the country code of the first filing JP into the new priority number (WO2016JP67809 20160615). The Patent Cooperation Treaty is the vehicle through which applicants can submit applications in multiple countries. In this case we can see that the applicant from Japan has chosen to pursue an application in the United States using the Patent Cooperation Treaty (WO) resulting in the application number US201615322008 20160615 filed in 2016 that was then published as &lt;a href=&#34;https://worldwide.espacenet.com/publicationDetails/biblio?FT=D&amp;amp;date=20170518&amp;amp;DB=EPODOC&amp;amp;locale=en_EP&amp;amp;CC=US&amp;amp;NR=2017137104A1&amp;amp;KC=A1&amp;amp;ND=4&#34;&gt;US2017137104A1&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;From this we might be tempted to assume that the earliest priority will always appear at the front of the list of priorities. However, this assumption is not safe as we will see below where the first filing appears at the end of the list of priorities. We will be on safer ground by identifying the earliest date in the sequence.&lt;/p&gt;
 &lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;Multiple earlier inventions&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;The second situation where we observe multiple priority numbers is cases where multiple earlier applications by the same applicants contribute to the claimed invention. We can see this in the first example above. As an anecdotal observation, the presence of multiple other inventions in the priority field appears to vary by field. Thus, from personal experience, it is uncommon in agriculture, pharmaceuticals and biotechnology but appears to be more common in cases such as computing.&lt;/p&gt;
-&lt;p&gt;In the case of &lt;a href=&#34;https://worldwide.espacenet.com/publicationDetails/biblio?FT=D&amp;amp;date=20151210&amp;amp;DB=EPODOC&amp;amp;locale=en_EP&amp;amp;CC=US&amp;amp;NR=2015357831A1&amp;amp;KC=A1&amp;amp;ND=4&#34;&gt;US2015357831A1&lt;/a&gt; above we are dealing with a wireless power system for a drone with an electronic display. Close inspection of the priority numbers reveals that all the earlier priority numbers are filings in the United States with many containing the kind code P standing for Provisional application at the end of the number (e.g. US20090169240P 20090414). The Provisional application system was introduced in the United States in 1995 as a means of harmonizing its system with the wider international system.&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; A provisional patent application establishes the priority date for the invention, allowing the applicant to claim priority over other claims, but has no other legal meaning until a full patent application is submitted. Provisional patent applications are not published and are not accessible for analysis.&lt;/p&gt;
+&lt;p&gt;In the case of &lt;a href=&#34;https://worldwide.espacenet.com/publicationDetails/biblio?FT=D&amp;amp;date=20151210&amp;amp;DB=EPODOC&amp;amp;locale=en_EP&amp;amp;CC=US&amp;amp;NR=2015357831A1&amp;amp;KC=A1&amp;amp;ND=4&#34;&gt;US2015357831A1&lt;/a&gt; above we are dealing with a wireless power system for a drone with an electronic display. Close inspection of the priority numbers reveals that all the earlier priority numbers are filings in the United States with many containing the kind code P standing for Provisional application at the end of the number (e.g. US20090169240P 20090414). The Provisional application system was introduced in the United States in 1995 as a means of harmonizing its system with the wider international system.&lt;a href=&#34;#fn3&#34; class=&#34;footnote-ref&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; A provisional patent application establishes the priority date for the invention, allowing the applicant to claim priority over other claims, but has no other legal meaning until a full patent application is submitted. Provisional patent applications are not published and are not accessible for analysis.&lt;/p&gt;
 &lt;p&gt;To understand this a bit better we can look at the list of actual applications that appear at the start of the sequence of priority numbers.&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;US201514815121 20150731 is the priority filing for the new invention of a wireless power system for an electronic display with an impedance matching network with identical application number (US201514815121 20150731) and publication number &lt;a href=&#34;https://worldwide.espacenet.com/publicationDetails/biblio?DB=EPODOC&amp;amp;II=0&amp;amp;ND=3&amp;amp;adjacent=true&amp;amp;locale=en_EP&amp;amp;FT=D&amp;amp;date=20151210&amp;amp;CC=US&amp;amp;NR=2015357831A1&amp;amp;KC=A1&#34;&gt;US2015357831A1&lt;/a&gt;.&lt;/li&gt;
@@ -925,7 +926,7 @@ numbers[1,] %&amp;gt;%
 ## 8 US1979105606A 1979-12-20                             EP1981900248A 1980…&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;There are two things we need to note in this view.&lt;/p&gt;
 &lt;p&gt;First, some of our data is concatenated (joined) with &lt;code&gt;;&lt;/code&gt; as the separator. Second, and more importantly for the moment, we can see that we seem to have duplicate application numbers e.g. EP1980400905A in the first and second rows and then onwards.&lt;/p&gt;
-&lt;p&gt;The reason that we have duplicates in the data is that a patent application may be published multiple times (for example as an application and as a grant or with corrections etc.). So, in the data above we can see that EP1980400905A 1980-06-19 has been published as EP22391A1 and EP22391B1 with the two letter &lt;code&gt;kind codes&lt;/code&gt; at the end of the publication number representing the first publication of the application (A1) and kind code B1 representing the first publication of a patent grant.&lt;a href=&#34;#fn4&#34; class=&#34;footnoteRef&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The reason that we have duplicates in the data is that a patent application may be published multiple times (for example as an application and as a grant or with corrections etc.). So, in the data above we can see that EP1980400905A 1980-06-19 has been published as EP22391A1 and EP22391B1 with the two letter &lt;code&gt;kind codes&lt;/code&gt; at the end of the publication number representing the first publication of the application (A1) and kind code B1 representing the first publication of a patent grant.&lt;a href=&#34;#fn4&#34; class=&#34;footnote-ref&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;numbers %&amp;gt;% 
   arrange(application_number) %&amp;gt;% 
   select(-family_first, -family_number, - priority_number) %&amp;gt;% 
@@ -943,7 +944,7 @@ numbers[1,] %&amp;gt;%
 ## 8 EP1981900248A 1980-12-17 EP42004A1&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Where a document is republished the application number will be duplicated. This means that we will also end up with duplicated priority numbers and we will over count. Removing duplicate records is the key requirement for accurate counts of patent data.&lt;/p&gt;
 &lt;p&gt;So, lets remove the duplicate application numbers first. To do that we will use a simple piece of R code from the &lt;code&gt;dplyr&lt;/code&gt; package (you loaded it with the tidyverse) to add a new column that identifies the duplicated records. We will create a new column called duplicated using &lt;code&gt;mutate()&lt;/code&gt; which adds columns. We will add the duplicated column by applying the R function &lt;code&gt;duplicated()&lt;/code&gt; to the application_number column. What this does is to loop over the column and identifies the first instance of the application_number and then duplicates of the application_number. The first instance of the application_number will be marked as FALSE (not duplicated) and the others as TRUE (duplicated). We will then use the &lt;code&gt;filter()&lt;/code&gt; function from &lt;code&gt;dplyr&lt;/code&gt; to limit the data to our non-duplicated numbers &lt;code&gt;== FALSE&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;A couple of other things to note is that we will put this in a new table called numbers unique by using the assignment &lt;code&gt;&amp;lt;-&lt;/code&gt; operator. We also use the pipe &lt;code&gt;%&amp;gt;%&lt;/code&gt; operator which takes what it finds on the left hand side and passes it into the right hand side. So, we see that &lt;code&gt;numbers %&amp;gt;% mutate()&lt;/code&gt; passes the numbers table or data.frame from the left hand side into &lt;code&gt;mutate()&lt;/code&gt; to create a new column based on the contents of the call to mutate. It’s simple and logical when you become familiar with it. At the end of this chunk of code we will limit the data to just the priority_number and the application_number which we will be using as a key.&lt;a href=&#34;#fn5&#34; class=&#34;footnoteRef&#34; id=&#34;fnref5&#34;&gt;&lt;sup&gt;5&lt;/sup&gt;&lt;/a&gt; The &lt;code&gt;select()&lt;/code&gt; function from &lt;code&gt;dplyr&lt;/code&gt; will only select those columns that we name inside it and will drop the others. These three functions: &lt;code&gt;select()&lt;/code&gt; for columns, &lt;code&gt;filter()&lt;/code&gt; for rows, and &lt;code&gt;mutate()&lt;/code&gt; to add new values connected with the pipe &lt;code&gt;%&amp;gt;%&lt;/code&gt; represent the building blocks for almost everything you need to do with patent data in R. The rest such as &lt;code&gt;duplicated()&lt;/code&gt; help you to perform particular operations and we will go into more detail with that below.&lt;/p&gt;
+&lt;p&gt;A couple of other things to note is that we will put this in a new table called numbers unique by using the assignment &lt;code&gt;&amp;lt;-&lt;/code&gt; operator. We also use the pipe &lt;code&gt;%&amp;gt;%&lt;/code&gt; operator which takes what it finds on the left hand side and passes it into the right hand side. So, we see that &lt;code&gt;numbers %&amp;gt;% mutate()&lt;/code&gt; passes the numbers table or data.frame from the left hand side into &lt;code&gt;mutate()&lt;/code&gt; to create a new column based on the contents of the call to mutate. It’s simple and logical when you become familiar with it. At the end of this chunk of code we will limit the data to just the priority_number and the application_number which we will be using as a key.&lt;a href=&#34;#fn5&#34; class=&#34;footnote-ref&#34; id=&#34;fnref5&#34;&gt;&lt;sup&gt;5&lt;/sup&gt;&lt;/a&gt; The &lt;code&gt;select()&lt;/code&gt; function from &lt;code&gt;dplyr&lt;/code&gt; will only select those columns that we name inside it and will drop the others. These three functions: &lt;code&gt;select()&lt;/code&gt; for columns, &lt;code&gt;filter()&lt;/code&gt; for rows, and &lt;code&gt;mutate()&lt;/code&gt; to add new values connected with the pipe &lt;code&gt;%&amp;gt;%&lt;/code&gt; represent the building blocks for almost everything you need to do with patent data in R. The rest such as &lt;code&gt;duplicated()&lt;/code&gt; help you to perform particular operations and we will go into more detail with that below.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;numbers_unique &amp;lt;- numbers %&amp;gt;%
   mutate(duplicated = duplicated(application_number)) %&amp;gt;% 
   filter(duplicated == &amp;quot;FALSE&amp;quot;) %&amp;gt;% 
@@ -974,7 +975,7 @@ nrow(numbers_unique) # count the rows&lt;/code&gt;&lt;/pre&gt;
 ##  9 &amp;lt;NA&amp;gt;            USD522772A 0001-01-01 US522772A        TRUE            
 ## 10 &amp;lt;NA&amp;gt;            USD593712A 0001-01-01 US593712A        TRUE            
 ## # ... with 86 more rows&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The first thing we notice about this data is that the dates for the records are 0001-01-01. This type of device (along with 999999) is often used to denote the absence of a date. In this case if we look up some of these cases we will discover that they are very old records. For example &lt;a href=&#34;https://worldwide.espacenet.com/publicationDetails/biblio?DB=EPODOC&amp;amp;II=0&amp;amp;ND=3&amp;amp;adjacent=true&amp;amp;locale=en_EP&amp;amp;FT=D&amp;amp;date=18850728&amp;amp;CC=US&amp;amp;NR=322982A&amp;amp;KC=A&#34;&gt;US322982A&lt;/a&gt; dates to 1885. The Paris Convention did not enter into force in the United States until May 1887 and it is unclear when exactly the USPTO started using the system, so it is not surprising that these documents lack priority numbers.&lt;a href=&#34;#fn6&#34; class=&#34;footnoteRef&#34; id=&#34;fnref6&#34;&gt;&lt;sup&gt;6&lt;/sup&gt;&lt;/a&gt; If we continue to keep these records we will see an artificial spike of activity somewhere at the start of our graph. In this case we can safely drop these records using the handy &lt;code&gt;drop_na()&lt;/code&gt; function from &lt;code&gt;dplyr&lt;/code&gt;. We will simply overwrite the existing table and specify the priority number as the column where we will drop the rows with NA values.&lt;/p&gt;
+&lt;p&gt;The first thing we notice about this data is that the dates for the records are 0001-01-01. This type of device (along with 999999) is often used to denote the absence of a date. In this case if we look up some of these cases we will discover that they are very old records. For example &lt;a href=&#34;https://worldwide.espacenet.com/publicationDetails/biblio?DB=EPODOC&amp;amp;II=0&amp;amp;ND=3&amp;amp;adjacent=true&amp;amp;locale=en_EP&amp;amp;FT=D&amp;amp;date=18850728&amp;amp;CC=US&amp;amp;NR=322982A&amp;amp;KC=A&#34;&gt;US322982A&lt;/a&gt; dates to 1885. The Paris Convention did not enter into force in the United States until May 1887 and it is unclear when exactly the USPTO started using the system, so it is not surprising that these documents lack priority numbers.&lt;a href=&#34;#fn6&#34; class=&#34;footnote-ref&#34; id=&#34;fnref6&#34;&gt;&lt;sup&gt;6&lt;/sup&gt;&lt;/a&gt; If we continue to keep these records we will see an artificial spike of activity somewhere at the start of our graph. In this case we can safely drop these records using the handy &lt;code&gt;drop_na()&lt;/code&gt; function from &lt;code&gt;dplyr&lt;/code&gt;. We will simply overwrite the existing table and specify the priority number as the column where we will drop the rows with NA values.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;numbers_unique &amp;lt;- numbers_unique %&amp;gt;% 
   drop_na(priority_number) %&amp;gt;% 
   select(-publication_number)
@@ -1106,7 +1107,7 @@ earliest&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let’s quickly graph this data. Here we are using the popular R graphing package ggplot2 to draw quick graphs of the data. To learn more about using &lt;code&gt;ggplot2&lt;/code&gt; try the excellent &lt;a href=&#34;http://www.cookbook-r.com/Graphs/&#34;&gt;R Graphics Cookbook by Winston Chang&lt;/a&gt; which is available in open access form online. A step by step walk through on using ggplot2 to visualise patent data is available in this &lt;a href=&#34;https://www.pauloldham.net/graphing-patent-data-with-ggplot2-part2/&#34;&gt;article&lt;/a&gt;. If you prefer using Excel or Tableau then write the file to a .csv and then open it in your tool of choice. You can do this simply with the following line of code.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;readr::write_csv(earliest_unique, &amp;quot;earliest_unique.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;ggplot2 is quite a lot more involved than working with Tableau, Excel or other tools but provides a powerful way to control graphing. Let’s take a quick look at the data.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note that graphs of priority data display a characteristic data cliff the closer that we move towards the present. This reflects the fact that patent applications are normally published at least 24 months after they were originally filed. This data cliff can easily mislead an audience into believing that interest in a technology has suddenly collapsed when in reality we are missing or only have partial data for the period. It is therefore important to pull the year range back to accommodate this. Depending on your data it is sensible to pull back the year by at least two years and possibly three years.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;earliest_unique %&amp;gt;% 
   select(-n) %&amp;gt;% 
@@ -1117,8 +1118,8 @@ earliest&lt;/code&gt;&lt;/pre&gt;
   ggplot(., aes(x = year, y = n)) +
   geom_line() +
   labs(title = &amp;quot;Trends in First Filings of Patent Applications for Drone Technology&amp;quot;, x = &amp;quot;priority year&amp;quot;, y = &amp;quot;first filings&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Note the speed bump in the data around 2008 that is likely to reflect the impact of the financial crisis with filings relating to drone technology before accelerating rapidly in recent years.&lt;a href=&#34;#fn7&#34; class=&#34;footnoteRef&#34; id=&#34;fnref7&#34;&gt;&lt;sup&gt;7&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Note the speed bump in the data around 2008 that is likely to reflect the impact of the financial crisis with filings relating to drone technology before accelerating rapidly in recent years.&lt;a href=&#34;#fn7&#34; class=&#34;footnote-ref&#34; id=&#34;fnref7&#34;&gt;&lt;sup&gt;7&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;In this dataset we can also gain an insight into the countries driving this trend by ranking them in a bar graph for the same period.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggthemes)
 earliest_unique %&amp;gt;%
@@ -1135,7 +1136,7 @@ earliest_unique %&amp;gt;%
   theme_igray() +
   scale_fill_tableau(&amp;quot;tableau20&amp;quot;) +
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-05-11-counting-patent-first-filings_files/figure-html/echo-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-05-11-counting-patent-first-filings_files/figure-html/echo-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note here that the United States emerges first in the top 5 followed by Japan, France, Korea and the Patent Cooperation Treaty (WO). It is important to bear in mind here that WO records will typically be filed through national offices, although no priority number will be present, as we can see in the references to country codes inside the WO priority documents.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;earliest_unique %&amp;gt;% 
   filter(priority_country == &amp;quot;WO&amp;quot;) %&amp;gt;% 
@@ -1199,7 +1200,7 @@ earliest_unique %&amp;gt;%
   filter(duplicate_priority == &amp;quot;FALSE&amp;quot;) %&amp;gt;% 
   select(-priority)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Calculating the earliest priority from the moment of import involved 18 lines of code focusing on using &lt;code&gt;mutate(), filter(), select(), drop_na(), separate_rows(), group_by()&lt;/code&gt;, and &lt;code&gt;ungroup()&lt;/code&gt;. Inside the &lt;code&gt;mutate()&lt;/code&gt; function we created new columns to test for duplicates using &lt;code&gt;duplicated()&lt;/code&gt;, we trimmed white space with &lt;code&gt;str_trim()&lt;/code&gt;, extracted data with &lt;code&gt;str_sub()&lt;/code&gt; and ranked data with &lt;code&gt;rank()&lt;/code&gt;. As this makes clear R functions from the tidyverse provide building blocks that can be chained together in an easy to read way to transform data into a desired result. For this reason we advocate a tidy approach to patent analytics with R.&lt;/p&gt;
-&lt;p&gt;One of the most important features of R as a functional programming language is that we can wrap this code (a collection of instructions to functions) into a single function. We will call it extract priority. This code basically reproduces that above but with some additional decoration to address something called &lt;a href=&#34;https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html&#34;&gt;tidy evaluation&lt;/a&gt; in R. Tidy evaluation is intellectually challenging and will not be addressed here.&lt;a href=&#34;#fn8&#34; class=&#34;footnoteRef&#34; id=&#34;fnref8&#34;&gt;&lt;sup&gt;8&lt;/sup&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;One of the most important features of R as a functional programming language is that we can wrap this code (a collection of instructions to functions) into a single function. We will call it extract priority. This code basically reproduces that above but with some additional decoration to address something called &lt;a href=&#34;https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html&#34;&gt;tidy evaluation&lt;/a&gt; in R. Tidy evaluation is intellectually challenging and will not be addressed here.&lt;a href=&#34;#fn8&#34; class=&#34;footnote-ref&#34; id=&#34;fnref8&#34;&gt;&lt;sup&gt;8&lt;/sup&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;extract_priority &amp;lt;- function(data = NULL, priority_number = NULL, key = NULL){
   x &amp;lt;- data %&amp;gt;%
     select(!!priority_number, !!key) %&amp;gt;%
@@ -1258,15 +1259,145 @@ results&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;One of the most widely cited works providing an overview of the use of patents statistics is Griliches, Z 1998 Patent Statistics as Economic Indicators: A Survey, in Griliches, Z (ed.), R&amp;amp;D and Productivity: The Econometric Evidence. Cambridge: Cambridge University Press, available at &lt;a href=&#34;http://www.nber.org/chapters/c8351.pdf&#34; class=&#34;uri&#34;&gt;http://www.nber.org/chapters/c8351.pdf&lt;/a&gt;&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;the date field is missing in our dataset and this is common, Clarivate also adds zeros as padding so it is US20150357831A1. &lt;a href=&#34;mailto:esp@acenet&#34;&gt;esp@acenet&lt;/a&gt; adds the year following the kind code as US201514815121 20150731 whereas in our Derwent Innovation data the number is US14815121 20150731&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;For details see the &lt;a href=&#34;https://www.uspto.gov/patents-getting-started/patent-basics/types-patent-applications/provisional-application-patent&#34;&gt;USPTO web page on Provisional Applications&lt;/a&gt;&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;In formal terms kind codes refer to publication types and publication levels. Their use varies over time in individual countries and across countries and should therefore be approached with a degree of caution. At major patent offices kind code A typically denotes an application and kind code B a patent grant, except for US patent documents prior to 2001 where kind code A denotes a patent grant. As this suggests, caution is needed.&lt;a href=&#34;#fnref4&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn5&#34;&gt;&lt;p&gt;in everyday practice you may want to keep the publication number to look up records and check you are on the right track&lt;a href=&#34;#fnref5&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn6&#34;&gt;&lt;p&gt;&lt;a href=&#34;http://www.wipo.int/treaties/en/ShowResults.jsp?lang=en&amp;amp;treaty_id=2&#34; class=&#34;uri&#34;&gt;http://www.wipo.int/treaties/en/ShowResults.jsp?lang=en&amp;amp;treaty_id=2&lt;/a&gt;&lt;a href=&#34;#fnref6&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn7&#34;&gt;&lt;p&gt;note that the drones dataset is a training set that includes noisy terms and is not expected to fully reflect trends in drone technology&lt;a href=&#34;#fnref7&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn8&#34;&gt;&lt;p&gt;See &lt;a href=&#34;https://edwinth.github.io/blog/dplyr-recipes/&#34;&gt;Edwin Theon’s blog&lt;/a&gt; for an introduction along with the &lt;a href=&#34;https://www.rstudio.com/resources/webinars/tidy-eval/&#34;&gt;RStudio video&lt;/a&gt; and &lt;a href=&#34;https://maraaverick.rbind.io/2017/08/tidyeval-resource-roundup/&#34;&gt;Mara Avericks’s tidy eval resource roundup&lt;/a&gt;&lt;a href=&#34;#fnref8&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;One of the most widely cited works providing an overview of the use of patents statistics is Griliches, Z 1998 Patent Statistics as Economic Indicators: A Survey, in Griliches, Z (ed.), R&amp;amp;D and Productivity: The Econometric Evidence. Cambridge: Cambridge University Press, available at &lt;a href=&#34;http://www.nber.org/chapters/c8351.pdf&#34; class=&#34;uri&#34;&gt;http://www.nber.org/chapters/c8351.pdf&lt;/a&gt;&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;the date field is missing in our dataset and this is common, Clarivate also adds zeros as padding so it is US20150357831A1. &lt;a href=&#34;mailto:esp@acenet&#34;&gt;esp@acenet&lt;/a&gt; adds the year following the kind code as US201514815121 20150731 whereas in our Derwent Innovation data the number is US14815121 20150731&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;For details see the &lt;a href=&#34;https://www.uspto.gov/patents-getting-started/patent-basics/types-patent-applications/provisional-application-patent&#34;&gt;USPTO web page on Provisional Applications&lt;/a&gt;&lt;a href=&#34;#fnref3&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;In formal terms kind codes refer to publication types and publication levels. Their use varies over time in individual countries and across countries and should therefore be approached with a degree of caution. At major patent offices kind code A typically denotes an application and kind code B a patent grant, except for US patent documents prior to 2001 where kind code A denotes a patent grant. As this suggests, caution is needed.&lt;a href=&#34;#fnref4&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn5&#34;&gt;&lt;p&gt;in everyday practice you may want to keep the publication number to look up records and check you are on the right track&lt;a href=&#34;#fnref5&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn6&#34;&gt;&lt;p&gt;&lt;a href=&#34;http://www.wipo.int/treaties/en/ShowResults.jsp?lang=en&amp;amp;treaty_id=2&#34; class=&#34;uri&#34;&gt;http://www.wipo.int/treaties/en/ShowResults.jsp?lang=en&amp;amp;treaty_id=2&lt;/a&gt;&lt;a href=&#34;#fnref6&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn7&#34;&gt;&lt;p&gt;note that the drones dataset is a training set that includes noisy terms and is not expected to fully reflect trends in drone technology&lt;a href=&#34;#fnref7&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn8&#34;&gt;&lt;p&gt;See &lt;a href=&#34;https://edwinth.github.io/blog/dplyr-recipes/&#34;&gt;Edwin Theon’s blog&lt;/a&gt; for an introduction along with the &lt;a href=&#34;https://www.rstudio.com/resources/webinars/tidy-eval/&#34;&gt;RStudio video&lt;/a&gt; and &lt;a href=&#34;https://maraaverick.rbind.io/2017/08/tidyeval-resource-roundup/&#34;&gt;Mara Avericks’s tidy eval resource roundup&lt;/a&gt;&lt;a href=&#34;#fnref8&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Escaping concatenated data hell in R...deconcatenate and trim</title>
+      <link>/dealing-with-concatenated-data-fields-in-r/</link>
+      <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/dealing-with-concatenated-data-fields-in-r/</guid>
+      <description>&lt;p&gt;In this post I want to talk about concateted fields… er what on earth are you talking about…. you know the spreadsheets or data frames with cells lumped together stuff, like this.&lt;/p&gt;
+&lt;p&gt;INSERT concatenated&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tibble::tibble(messy = c(&amp;quot;this is not the messiest; only a man could be this messy&amp;quot;, &amp;quot;mess; in the world&amp;quot;, &amp;quot;it&amp;#39;s just; a; tribute; honestly&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 1
+##   messy                                                   
+##   &amp;lt;chr&amp;gt;                                                   
+## 1 this is not the messiest; only a man could be this messy
+## 2 mess; in the world                                      
+## 3 it&amp;#39;s just; a; tribute; honestly&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Or, if we wanted something a bit more real world we could take this list of author of scientific articles from south east asia working on marine organisms&lt;/p&gt;
+&lt;p&gt;INSERT
+er… ugh. The messiness of this matters if you like counting stuff properly because your data just won’t count properly. I mean this is just totally wrong.&lt;/p&gt;
+&lt;p&gt;insert wrong count&lt;/p&gt;
+&lt;p&gt;So, this post is about lumped to&lt;/p&gt;
+&lt;p&gt;and the things that we need to think about along the way.&lt;/p&gt;
+&lt;p&gt;I commonly work with text fields in data from the scientific and patent literature. That means that I run into the problem with columns containing multiple items separated by a semi colon or a comma that are linked to a key field (such as an article DOI or a patent publication number).&lt;/p&gt;
+&lt;p&gt;In this short post, and in case anyone else is running into this problem, I want to quickly document a short function that will help to solve the problem.&lt;/p&gt;
+&lt;div id=&#34;the-problem&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The problem&lt;/h3&gt;
+&lt;p&gt;I am a big fan of the concept of Tidy Data as developed by Hadley Wickham in [this paper]. Tidy data basically means that each column of a data frame or table is for one category of data (such as authors) and each cell in the table contains one observation for that category (a single author name).&lt;/p&gt;
+&lt;p&gt;Real world data does not behave like this and we can see this in some data I have been working with from &lt;a href=&#34;&#34;&gt;Clarivate Analytics&lt;/a&gt; &lt;em&gt;Web of Science&lt;/em&gt; involving marine species for South East Asia.&lt;/p&gt;
+&lt;p&gt;We can see in this code that I have added the optional &lt;code&gt;readr&lt;/code&gt; &lt;code&gt;trimws&lt;/code&gt; argument. This is not the default when importing from the RStudio menu but can help you to avoid problems.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ✔ ggplot2 2.2.1.9000     ✔ purrr   0.2.4     
+## ✔ tibble  1.4.2          ✔ dplyr   0.7.5     
+## ✔ tidyr   0.8.0          ✔ stringr 1.3.1     
+## ✔ readr   1.1.1          ✔ forcats 0.3.0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;wos_asean_marine &amp;lt;- read_csv(&amp;quot;~/Desktop/open_source_master/asean_report/data/wos_asean_marine_6659.csv&amp;quot;, trim_ws = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Parsed with column specification:
+## cols(
+##   .default = col_character(),
+##   times_cited = col_integer(),
+##   number_of_authors = col_integer(),
+##   publication_year = col_integer(),
+##   number_of_author_affiliations_name_only = col_integer()
+## )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## See spec(...) for full column specifications.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s pick a couple of columns.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test &amp;lt;- wos_asean_marine %&amp;gt;% select(authors_fullname_useme_updated, isi_unique_article_identifier)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;authors_fullname_useme_updated&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;isi_unique_article_identifier&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Dieu Tien Bui; Tien Dat Pham; Yoshino, Kunihiko&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000399475800004&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Arias, Cova R; Bakenhaster, Micah D; Bullard, Stephen A; Dang, Binh T; Halanych, Kenneth M; Orelis-Ribeiro, Raphael&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000398874800015&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Atopkin, D M; Beloded, A Yu; Besprozvannykh, V V; Ermolenko, A V; Ngo, H D; Van Ha, N; Van Tang, N&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000398794800008&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Dittrich, Carolin; Roedel, Mark-Oliver; Struck, Ulrich&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000399737500006&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Alfaro, Andrea C; Hilton, Zoe; King, Nick; Le, D Viet; Pook, Chris; Ragg, Norman L C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000396054700041&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Bui Huu Tai; Dan Thuy Hang; Hoang Le Tuan Anh; Hyun, Kim Seung; Kim, Sun Yeou; Kim, Young-A; Le Thi Huyen; Nguyen Van Dau; NGUYEN, Xuan Nhiem; PHAM, Van Cuong; Quang, Tran Hong; Subedi, Lalita; Van Kiem, Phan; Van Minh, Chau&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000397550400005&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Boyd, Claude E; Engle, Carole R; Hang Ngo Minh; Huynh Quoc Tinh; McNevin, Aaron; Paungkaew, Duangchai; Racine, Phoebe; Viriyatum, Rawee&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000398564700004&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;CUTTING, Simon Michael; HUYNH, Hong Anh; Le, P H; Nguyen, Anh H; Nguyen, Anh T V; Pham, Cuong K; Tran Thi Thanh Hien; Tuan-Nghia Phan; Van Doan, C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000398817000001&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Chavatte, Jean-Marc; Landau, Irene; Okumura, C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000395176100034&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Cuong, Nguyen Xuan; Nguyen Thi Phuong Chi; Nguyen Van Thanh; Nguyen, Hai-Dang; NGUYEN, Hoai Nam; NINH, Thi Ngoc; Pham Thi Mai Huong; Thung, Do-Cong; Van Kiem, Phan; Van Minh, Chau&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;000395364000012&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;We can see here that the author field contains concatenated authors separated by a semicolon linked to the record id.&lt;/p&gt;
+&lt;p&gt;The first problem with this is that we can’t clean it or count it properly. The second problem is that if we export the separated data to a tool like Tableau, the id field that we may use to check our counts (in this case the isi_unique_article identifier) will not count properly for reasons that are less obvious ( and are because it is not reading them in properly).&lt;/p&gt;
+&lt;p&gt;In dealing with the first problem the &lt;code&gt;tidyr&lt;/code&gt; package and the &lt;code&gt;separate_rows&lt;/code&gt; function comes to our rescue. The second function is base R &lt;code&gt;trimws&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;separate_trim &amp;lt;- function(x, col = NULL, sep = NULL, id = NULL){
+  df &amp;lt;- x %&amp;gt;% tidyr::separate_rows(col, sep = &amp;quot;;&amp;quot;)
+  df[[col]] &amp;lt;- trimws(df[[col]], which = &amp;quot;both&amp;quot;)
+  df[[id]] &amp;lt;- trimws(df[[id]], which = &amp;quot;both&amp;quot;)
+  df
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This function takes the column in the dataset that we want to break into individual rows and then trims the possible white space at the front or the end of the name string.&lt;/p&gt;
+&lt;p&gt;Let’s look at the difference that this makes to the counts of the number of authors&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test %&amp;gt;% separate_rows(., &amp;quot;authors_fullname_useme_updated&amp;quot;, sep = &amp;quot;;&amp;quot;) %&amp;gt;% group_by(authors_fullname_useme_updated) %&amp;gt;% tally() %&amp;gt;% count()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 1
+##      nn
+##   &amp;lt;int&amp;gt;
+## 1 18623&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s do the same thing with trimmed data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test %&amp;gt;%
+  separate_trim(., &amp;quot;authors_fullname_useme_updated&amp;quot;, sep = &amp;quot;;&amp;quot;, id = &amp;quot;isi_unique_article_identifier&amp;quot;) %&amp;gt;%
+  group_by(authors_fullname_useme_updated) %&amp;gt;%
+  tally() %&amp;gt;% count()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 1
+##      nn
+##   &amp;lt;int&amp;gt;
+## 1 17625&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The difference is a spectacular 1000 names.&lt;/p&gt;
+&lt;p&gt;The ability to propertly deconcatenate a column with cells that contain multiple observations is not wildly exciting. However,&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>

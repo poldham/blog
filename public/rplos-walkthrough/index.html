@@ -87,8 +87,7 @@
     
 
     <div class="article-content">
-      <div id="introduction" class="section level2">
-<h2>Introduction</h2>
+      <p>##Introduction</p>
 <p>In this chapter we look at the use of the <a href="https://github.com/ropensci/rplos"><code>rplos</code></a> package from <a href="https://ropensci.org">rOpenSci</a> to access the scientific literature from the <a href="https://www.plos.org">Public Library of Science</a> using the <a href="http://api.plos.org/solr/faq/">PLOS Search API</a>.</p>
 <p>The Public Library of Science (PLOS) is the main champion of open access peer reviewed scientific publications and has published somewhere in the region of 140,000 articles. These articles are a fantastic resource. PLOS includes the following titles.</p>
 <ul>
@@ -107,17 +106,11 @@
 <p>This article makes no assumptions about knowledge of R or programming. <code>rplos</code> is a good place to start with learning how to access scientific literature in R using Application Programming Interfaces (APIs). Because <code>rplos</code> is well organised and the data is very clean it is also a good place to learn some of the basics of working with data in R. This provides a good basis for working with the ROpenSci <a href="https://github.com/ropensci/fulltext">fulltext package</a>. <code>fulltext</code> allows you to retrieve scientific literature from multiple data sources and we will deal with that next.</p>
 <p>We will also use this as an opportunity to introduce some of the popular packages for working with data in R, notably the family of packages for tidying and wrangling data developed by Hadley Wickham at RStudio (namely, <code>plyr</code>, <code>dplyr</code>, <code>stringr</code> and <code>tidyr</code>). We will only touch on these but we include then as everyday working packages that you will find useful in learning more about R.</p>
 <p>The first step is to make sure that you have R and RStudio.</p>
-</div>
-<div id="install-r-and-rstudio" class="section level2">
-<h2>Install R and RStudio</h2>
+<p>##Install R and RStudio</p>
 <p>To get up and running you need to install a version of R for your operating system. You can do that from <a href="http://cran.rstudio.com/">here</a>. Then download RStudio Desktop for your operating system from <a href="https://www.rstudio.com/products/rstudio/download/">here</a> using the installer for your system. Then open RStudio.</p>
-</div>
-<div id="create-a-project" class="section level2">
-<h2>Create A Project</h2>
+<p>##Create A Project</p>
 <p>Projects are probably the best way of organising your work in RStudio. To create a new project select the dropdown menu in to top right where you see the blue R icon. Navigate to where you want to keep your R materials and give your project a name (e.g. rplos). Now you will be able to save you work into an rplos project folder and R will keep everything together when you save the project.</p>
-</div>
-<div id="install-packages" class="section level2">
-<h2>Install Packages</h2>
+<p>##Install Packages</p>
 <p>First we need to install some packages to help us work with the data. This list of packages are common “go to” packages for daily use.</p>
 <pre class="r"><code>install.packages(&quot;rplos&quot;)  #the main event
 install.packages(&quot;readr&quot;)  #for reading data
@@ -137,9 +130,7 @@ library(stringr)
 library(tm)
 library(XML)</code></pre>
 <p>Next let’s take a look at the wide range of functions that are available for searching using <code>rplos</code> by moving over to the Packages tab in RStudio and clicking on <code>rplos</code>. A very useful tutorial on using <code>rplos</code> can be found <a href="https://ropensci.org/tutorials/rplos_tutorial.html">here</a> and can be cited as “Scott Chamberlain, Carl Boettiger and Karthik Ram (2015). rplos: Interface to PLOS Journals search API. R package version 0.5.0 <a href="https://github.com/ropensci/rplos" class="uri">https://github.com/ropensci/rplos</a>”. If you are already comfortable working in R you might want to head to that introductory tutorial as this article contains a lot more in the way of explanation. However, we will also add some new examples and code for working with the results to add to the resource base for <code>rplos</code>.</p>
-</div>
-<div id="key-functions-in-rplos" class="section level2">
-<h2>Key functions in rplos</h2>
+<p>##Key functions in rplos</p>
 <p>R is an object oriented language meaning that it works on objects such as a vector, table, list, or matrix. These are easy to create. We then apply functions to the data from <code>base R</code> or from packages we have installed for particular tasks.</p>
 <ul>
 <li><code>searchplos()</code>, the basic function for searching plos</li>
@@ -156,15 +147,11 @@ library(XML)</code></pre>
 <p>If you are new to R this will typically takes the form of a short piece of code that is structured like this.</p>
 <pre class="r"><code>newobject &lt;- function(yourdata, argument1, argument2, other_arguments)</code></pre>
 <p>A new object is likely to be a table or list containing data. the sign <code>&lt;-</code> gets or passes the results of the function (such as seachplos) to the new object. To specify what we want we first include our data (<code>yourdata</code>) and then one or more arguments which control what we get, such as the number of records or the title etc.</p>
-</div>
-<div id="data-fields-in-rplos" class="section level2">
-<h2>Data Fields in rplos</h2>
+<p>##Data Fields in rplos</p>
 <p>There are quite a number of fields that can be searched with <code>rplos</code> or used to refine a search. We will only use a few of them. To see the range of fields type <code>plosfields</code> into the console and press Enter.</p>
 <pre class="r"><code>plosfields</code></pre>
 <p>For example, if we wanted to search the title, abstract and conclusions we would use these fields in building the query (see below). If we wanted to search everything but those fields we would probably use body. If we wanted to retrieve the references then we would include <code>reference</code> in the fields. In <code>rplos</code> a field is denoted by <code>fl =</code> with the fields in quotes such as <code>fl = &quot;title&quot;</code> and so on as we will see below.</p>
-</div>
-<div id="basic-searching-using-searchplos-navigating-and-exporting-data" class="section level2">
-<h2>Basic Searching using <code>searchplos()</code>, Navigating and Exporting Data</h2>
+<p>##Basic Searching using <code>searchplos()</code>, Navigating and Exporting Data</p>
 <p><code>searchplos()</code> is the basic <code>rplos</code> search function and returns a list of document identifiers (DOIs) or other data fields. The basic search result is a set of DOIs that can be used for further work. To get help for a function, or to find working examples, use <code>?</code> in front of the function in the console:</p>
 <pre class="r"><code>`?`(searchplos)</code></pre>
 <p>This will bring up the help page for that function with a description of the arguments that are available and with examples at the bottom of the page.</p>
@@ -193,15 +180,14 @@ p</code></pre>
 <p>p<span class="math inline">\(meta\)</span> #type me in the console, do not cut and paste</p>
 <p>When we type the $ a popup will appear and display two entries as tables for <code>meta</code> and <code>data</code>. Click on meta, then add another $ sign at the end. It will now display three items in purple (for vectors). Select <code>numFound</code> and hey presto! As you work with RStudio you will notice that when you start to type a function name, lists of names will start to pop up. Type <code>search</code> into the console but do not press enter and wait a moment. A list with three items should pop up with search {base}, searchpaths {base}, and searchplos {rplos}. This is really helpful because it saves a lot of typing. As you become more familiar with R it also helpfully displays what a function does and a reminder of its arguments. The soft brackets around {base} indicate the package where the function can be found (this can be useful for discovering functions when you get stuck).</p>
 <p>Finally, you can also see the items in your project in the Environment pane. Click on the blue arrow for <code>p</code> in the Environment pane under Values and you will see the structure of the data in <code>p</code> and some of its content.</p>
-<div id="creating-a-new-object-and-writing-to-file" class="section level3">
-<h3>Creating a New Object and Writing to File</h3>
+<p>###Creating a New Object and Writing to File</p>
 <p>Ok so we have a list with some results containing <code>meta</code> and <code>data</code>. We now want to export <code>data</code> to a .csv file that we can work with in Excel or another programme.</p>
 <p>While we will want to make a note of the total number of results in <code>meta</code>, what we really want will be in <code>data</code>. We can simply create a new object using the code above and assign it to a name using <code>&lt;-</code>. Note that there is no space here and <code>&lt; -</code> will not work.</p>
 <pre class="r"><code>dat &lt;- p$data
 dat</code></pre>
 <p>If we look at the class of this object (<code>class(dat)</code>) we now have a data.frame (a table) that we can write to a .csv file to use later. We can do this easily using <code>write.csv()</code> and start by naming the object we want to write (<code>dat</code>) and then giving it a file name. Because we created an <code>rplos</code> project in RStudio earlier (didn’t we), the file will be saved into the project folder. If you didn’t create a project or want to check the directory then use:</p>
 <pre class="r"><code>getwd()</code></pre>
-<p>This will show your current working directory. If you do not see the name of your <code>rplos</code> project then copy the full file path so that it looks something like this (don’t forget the “” around the path):</p>
+<p>This will show your current working directory. If you do not see the name of your <code>rplos</code> project then copy the full file path so that it looks something like this (don’t forget the &quot;&quot; around the path):</p>
 <pre class="r"><code>setwd(&quot;/Users/pauloldham/Desktop/open_source_master/rplos&quot;)</code></pre>
 <p>Ok, we now know where we are. So, let’s save the file.</p>
 <pre class="r"><code>write.csv(dat, &quot;dat.csv&quot;, row.names = FALSE)</code></pre>
@@ -215,19 +201,14 @@ dat</code></pre>
 <p>Finally, if we wanted to write the entire list <code>p</code>, including <code>meta</code> to file then we could use:</p>
 <pre class="r"><code>write.csv(p, &quot;p.csv&quot;, row.names = FALSE)</code></pre>
 <p>We have now retrieved some data containing pizza through the PLOS API using <code>rplos</code> and we have written the data to a file as a table we can use later. We will now move on to some more sophisticated things we can do with <code>rplos</code>.</p>
-</div>
-</div>
-<div id="limit-by-journal" class="section level2">
-<h2>Limit by journal</h2>
+<p>##Limit by journal</p>
 <p>As we have seen above, PLOS contains 7 journals and in <code>rplos</code> the results for a search can be limited to specific journals such as PLOS ONE or PLOS Biology. Note that the short journal names appear to use the old format for PLOS consisting of mixed upper and lowercase characters (e.g. PLoSONE not PLOSONE). A nice easy way to find the short journal names is to use:</p>
 <pre class="r"><code>journalnamekey()</code></pre>
 <p>Here we will limit the search to PLOS ONE by adding <code>fq =</code> to the arguments and then the <code>cross_published_journal_key</code> argument. Note that the <code>fq=</code> argument takes the same options as <code>fl=</code>. But, <code>fq =</code> filters the results returned by PLOS to only those specified in <code>fq =</code>.</p>
 <pre class="r"><code>pizza &lt;- searchplos(q = &quot;pizza&quot;, fl = c(&quot;id&quot;, &quot;publication_date&quot;, &quot;title&quot;, &quot;abstract&quot;), fq = &#39;cross_published_journal_key:PLoSONE&#39;, start = 0, limit = 20)
 head(pizza$data)</code></pre>
 <p>We have retrieved 20 records here using <code>limit = 20</code> (the default is 10). It is generally a good idea to start with a small number of results to test that we are getting what we expect back rather than lots of irrelevant data. What if we wanted to retrieve all of the results? Here we will need to do a bit more work using the meta field.</p>
-</div>
-<div id="obtaining-the-full-number-of-results" class="section level2">
-<h2>Obtaining the full number of results</h2>
+<p>##Obtaining the full number of results</p>
 <p>One way to do this is to take our original number of results and then subset in to the data and create a new object containing the value for the number of records in <code>numFound</code>. Note that the number of records for a particular query below may well have gone up by the time that you read this article.</p>
 <pre class="r"><code>r &lt;- pizza$meta$numFound</code></pre>
 <p>To run a new search we can now insert <code>r</code> into the limit = value. This will be interpreted as the numeric value of <code>r</code> (210).</p>
@@ -239,9 +220,7 @@ r</code></pre>
 <p>We can then run the query again using the value of <code>r</code> in limit = :</p>
 <pre class="r"><code>pizza &lt;- searchplos(q = &quot;pizza&quot;, fl = c(&quot;id&quot;, &quot;publication_date&quot;, &quot;title&quot;, &quot;abstract&quot;), fq = &#39;cross_published_journal_key:PLoSONE&#39;, start = 0, limit = r) 
 head(pizza$data)</code></pre>
-</div>
-<div id="obtaining-the-number-of-records-across-plos-journals" class="section level2">
-<h2>Obtaining the number of records across PLOS Journals</h2>
+<p>##Obtaining the number of records across PLOS Journals</p>
 <p>That has returned the full 210 results for PLOS ONE. We could attempt to make life even easier by first getting the results across all PLOS journals. We do this by removing the <code>fq =</code> argument limiting the data to PLOS ONE and saving the result in and object we will call <code>r1</code>. Note that the number of records will probably have gone up by the time you read this.</p>
 <pre class="r"><code>r1 &lt;- searchplos(&quot;pizza&quot;, limit = 0)$meta$numFound
 r1</code></pre>
@@ -249,16 +228,12 @@ r1</code></pre>
 <pre class="r"><code>pizza &lt;- searchplos(q = &quot;pizza&quot;, fl = c(&quot;id&quot;, &quot;publication_date&quot;, &quot;title&quot;, &quot;abstract&quot;), fq = &#39;cross_published_journal_key:PLoSONE&#39;, start = 0, limit = r1)
 pizza$meta$numFound</code></pre>
 <p>The answer is that the 210 results in PLOS ONE are returned from the total of 244 across the PLOS journals. Why? The reason this works is that <code>searchplos()</code> initially pulls back all of the data from the PLOS API and then applies our entry in <code>fq =</code> as a filter. So, in reality the full 244 records are fetched and then filtered down to the 210 from PLOS ONE. In this case, this makes our lives easier because we can use the results across PLOS journals and then restrict the data.</p>
-</div>
-<div id="writing-the-results-and-using-a-codebook" class="section level2">
-<h2>Writing the results and using a codebook</h2>
+<p>##Writing the results and using a codebook</p>
 <p>We now have a total of 210 results for pizza. We can simply write the results to a .csv file.</p>
 <pre class="r"><code>write.csv(pizza, &quot;plosone_pizza.csv&quot;, row.names = FALSE)</code></pre>
 <p>As this illustrates, it is very easy to use <code>rplos()</code> and rapidly create a file that can be used for other purposes.</p>
 <p>When working in R you will often create multiple tables and take multiple steps. To keep track of what you do it is a good idea to create a text file as a codebook. Use the codebook to note down the important steps you take. The idea of a codebook is taken from Jeffrey Leek’s <a href="https://leanpub.com/datastyle">Elements of Data Analytic Sytle</a> which provides a very accessible introduction to staying organised. To create a codebook in RStudio simply use <code>File &gt; New File &gt; Text File</code>. This will open a text file that can be saved with your project. The codebook allows you to recall what actions you performed on the data months or years later. It also allows others to follow and reproduce your results and is important for <a href="https://ropensci.org/blog/2014/06/09/reproducibility/">reproducible research</a>.</p>
-</div>
-<div id="proximity-searching" class="section level2">
-<h2>Proximity Searching</h2>
+<p>##Proximity Searching</p>
 <p>We will typically want to carry out a search by first retrieving a rough working set of results to get a feel for the data and then experimenting until we are happy with the data to noise ratio (see this <a href="http://rsta.royalsocietypublishing.org/content/372/2031/20140065">article</a> for an example).</p>
 <p>In thinking about ways to refine our search criteria we can also use proximity searching. Proximity searching focuses on the distance between words that we are interested in. To read more about this use <code>?searchplos</code> in the console and scroll down to example seven in the help list. We reproduce that example here using the words synthetic and biology as our terms.</p>
 <p>We can set the proximity of terms using tilde <code>~</code> and a value. For example, <code>~15</code> will find instances of the terms synthetic and biology within 15 words of each other in the full texts of PLOS articles.</p>
@@ -272,10 +247,8 @@ pizza$meta$numFound</code></pre>
 <p>As a result, it is a good idea to try different approaches. Even if it is not possible to get to the bottom of any variance it is very useful to note it down in your codebook to highlight the issue to others who may try and repeat your work.</p>
 <p>It is also important to emphasise that when using <code>rplos()</code> it is possible to return a fragment of the text with the highlighted terms using <code>highplos()</code> and the <code>hl.fragsize</code> argument to set the horizon for the fragment of text around the search. This is particularly useful for text mining.</p>
 <p>In many cases the most useful information comes from searching using phrases and multiple terms. Unlike words, phrases can articulate concepts. This generally makes them more useful than single words for searching for information.</p>
-</div>
-<div id="searching-using-multiple-phrases" class="section level2">
-<h2>Searching Using Multiple Phrases</h2>
-<p>To search by phrases we start by creating an object containing our phrases and put the phrases inside double quotation marks. If we do not use double quotation marks the search will look for documents containing both words rather than the complete phrase (e.g. synthetic AND biology rather than “synthetic biology”). Note that the code below will display “” as “&quot; but you don’t need to enter the <code>\</code>.</p>
+<p>##Searching Using Multiple Phrases</p>
+<p>To search by phrases we start by creating an object containing our phrases and put the phrases inside double quotation marks. If we do not use double quotation marks the search will look for documents containing both words rather than the complete phrase (e.g. synthetic AND biology rather than “synthetic biology”). Note that the code below will display &quot;&quot; as &quot;&quot; but you don’t need to enter the <code>\</code>.</p>
 <p>We will use the search query developed in this <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0034368">PLOS ONE article on synthetic biology</a> in this example and retrieve the id, data, author, title and abstract across the PLOS journals.</p>
 <p>First we create the search query. Note that we use <code>c()</code>, for combine, to combine the list of terms into a vector inside the object called <code>s</code>.</p>
 <pre class="r"><code>s &lt;- c(&quot;\&quot;synthetic biology\&quot;&quot;, &quot;\&quot;synthetic genomics\&quot;&quot;, &quot;\&quot;synthetic genome\&quot;&quot;, 
@@ -319,48 +292,34 @@ results</code></pre>
 <p>We now have our data consisting of 1,405 records in a single data frame that we can view.</p>
 <pre class="r"><code>View(results)</code></pre>
 <p>We could now simply write this to a .csv file. But there are a number of things that we might want to do first. Most of these tasks fall into the category of wrangling and tidying up data so that we can carry on working with it in R or other software such as Excel.</p>
-</div>
-<div id="tidying-and-organising-the-data" class="section level2">
-<h2>Tidying and Organising the Data</h2>
+<p>##Tidying and Organising the Data</p>
 <p>Many useful data cleaning and organisational tasks can be easily performed using the <code>dplyr()</code> and <code>tidyr()</code> packages developed by Hadley Wickham at RStudio. Other important packages include <code>stringr()</code>(for working with text strings), <code>plyr()</code> and <code>reshape2()</code> (general wrangling) and <code>lubridate()</code> (for working with dates). These packages were developed by Hadley Wickham and colleagues with the specific aim of making it easier to work with data in R in a consistent way. We will mainly use <code>dplyr</code> and <code>tidyr</code> in the examples below and a very useful <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">RStudio cheatsheet</a> can help you with working with <code>dplyr</code> and <code>tidyr</code>.</p>
-<div id="renaming-a-column" class="section level3">
-<h3>Renaming a column</h3>
+<p>###Renaming a column</p>
 <p>First we might want to tidy up by renaming a column. For example we might want to rename <code>.id</code> to something more meaningful. We can use <code>rename()</code> from <code>dplyr()</code> to do that (see <code>?rename</code>).</p>
 <pre class="r"><code>results &lt;- rename(results, search_terms = .id)
 results</code></pre>
-</div>
-</div>
-<div id="filling-blank-spaces" class="section level2">
-<h2>Filling Blank Spaces</h2>
+<p>##Filling Blank Spaces</p>
 <p>It is good practice to fill blank cells with NA for “Not Available”&quot; to avoid calculation problems. For example, as in the earlier example, we have some blank cells in the abstract field and there may be others somewhere else. Following this <a href="http://r.789695.n4.nabble.com/How-to-convert-blanks-to-NA-td895155.html">StackOverflow answer</a> we can do this easily.</p>
 <pre class="r"><code>results[results == &quot;&quot;] &lt;- NA</code></pre>
 <p>If for some reason we wanted to remove the NA values we can handle that at the time of exporting to a file (see above).</p>
-</div>
-<div id="converting-dates" class="section level2">
-<h2>Converting Dates</h2>
+<p>##Converting Dates</p>
 <p>The <code>publication_date</code> field is a character vector. We can easily turn this into a Date format that can be used in R and drop the T00:00:00 for time information using:</p>
 <pre class="r"><code>results$publication_date &lt;- as.Date(results$publication_date)
 head(results$publication_date)</code></pre>
-</div>
-<div id="adding-columns" class="section level2">
-<h2>Adding columns</h2>
+<p>##Adding columns</p>
 <p>When dealing with dates we might want to simply split the <code>publication_date</code> field into three columns for year, month and day. We can do that using <code>separate()</code> from <code>tidyr</code>.</p>
 <pre class="r"><code>results &lt;- separate(results, publication_date, c(&quot;year&quot;, &quot;month&quot;, &quot;day&quot;), sep = &quot;-&quot;, 
     remove = FALSE)
 head(select(results, year, month, day))</code></pre>
 <p>Here we have specified the data (results), the column we want to separate (results) and then the three new columns that we want to create by closing them in <code>c()</code> and placing them in quotes. This creates three new columns. The <code>remove</code> argument specifies whether we want to remove the original column (the default is TRUE) or keep it.</p>
 <p>Because working with dates can be quite awkward (to put it mildly) it makes sense to have a range of options available to you early on in working with your data rather than having to go back to the beginning much later on.</p>
-</div>
-<div id="add-a-count" class="section level2">
-<h2>Add a count</h2>
-<p>One feature of pulling back literature from an API for scientific literature is that the fields tend to be character fields rather than numeric. Character vectors in R are quoted with “”. This can make life awkward if we want to start counting things later on. To add a count column we can use <code>mutate</code> from the <code>dplyr()</code> package to create a new column <code>number</code>. <code>number</code> is based on assigning the value 1 to the id columns using <code>mutate()</code>. We are avoiding the term count because it is the name of a function <code>count()</code>. There are other ways of doing this but this approach points to the very useful <code>mutate()</code> function in <code>dplyr</code> for adding a new variable.</p>
+<p>##Add a count</p>
+<p>One feature of pulling back literature from an API for scientific literature is that the fields tend to be character fields rather than numeric. Character vectors in R are quoted with &quot;&quot;. This can make life awkward if we want to start counting things later on. To add a count column we can use <code>mutate</code> from the <code>dplyr()</code> package to create a new column <code>number</code>. <code>number</code> is based on assigning the value 1 to the id columns using <code>mutate()</code>. We are avoiding the term count because it is the name of a function <code>count()</code>. There are other ways of doing this but this approach points to the very useful <code>mutate()</code> function in <code>dplyr</code> for adding a new variable.</p>
 <pre class="r"><code>library(dplyr)
 results &lt;- mutate(results, number = sum(id = 1))
 head(select(results, title, number))</code></pre>
 <p>When we view results we will now see a new column number that contains the value 1 for each entry.</p>
-</div>
-<div id="remove-a-column" class="section level2">
-<h2>Remove a column</h2>
+<p>##Remove a column</p>
 <p>We will often end up with more data than we want, or create more columns than we need. The standard way to remove a column is to use the trusty <code>$</code> to select the column and assign it to NULL.</p>
 <pre class="r"><code>results$columnname &lt;- NULL  #dummy example</code></pre>
 <p>Another way of doing this, which can be used for multiple columns, is to use <code>select()</code> from <code>dplyr</code> (see <code>?select()</code>). Select will only keep the columns that we name. We can do this using the column names or position. For example the following will keep the first 8 columns (1:8) but will drop the unnamed 9th column because the default is to drop columns that are not named. We could also write out the column names but using the position numbers is faster in this case.</p>
@@ -373,16 +332,12 @@ length(test)</code></pre>
 <p>Select is also very useful for reordering columns. Let’s imagine that we wanted to move the <code>id</code> column to the first column. We can simply put <code>id</code> as the first entry in <code>select()</code> and then the total columns to reorder.</p>
 <pre class="r"><code>test &lt;- select(results, id, 1:9)</code></pre>
 <p>The select function is incredibly useful for rapidly organising data as we will see below.</p>
-</div>
-<div id="arranging-the-data" class="section level2">
-<h2>Arranging the Data</h2>
+<p>##Arranging the Data</p>
 <p>We might want to arrange our rows (which can be quite difficult to do in base R). The <code>arrange()</code> function in <code>dplyr</code> makes this easy and arranges a column’s values in ascending order by default. Here we will specify descending <code>desc()</code> because we want to see the most recent publications that mention our search terms at the top.</p>
 <pre class="r"><code>results &lt;- arrange(results, desc(publication_date))
 head(results$publication_date)</code></pre>
 <p>When we use <code>View(results)</code> we will see that the most recent data is at the top. We will also see that some of the titles towards the top are duplicates of the same article because they include all the terms in our search. So, the next thing we will want to do is to address duplicates.</p>
-</div>
-<div id="dealing-with-duplicates" class="section level2">
-<h2>Dealing with Duplicates</h2>
+<p>##Dealing with Duplicates</p>
 <p>How you deal with duplicates depends on what you are trying to achieve. If you are attempting to develop data on trends then duplicates will result in overcounting unless you take steps to count only distinct records. Duplicates of the same data will also distort text mining of the frequencies of terms. So, from that perspective duplicates are bad. On the other hand. If we are interested in the use of terms over time within an emerging area of science and technology, then we might well want to look in detail at the use of particular terms. For example, synthetic genomics is an alternative term for synthetic biology favoured by the J. Craig Venter group. We could look at whether this term is more widely used. Do synthetic biologists also use terms such as engineering biology, genome engineering or the fashionable new genome editing technique? In these cases duplicate records using terms are good because shifts in language can be mapped over time. This suggests a need for a strategy that uses different data tables to answer different questions.</p>
 <p>As we have already seen, it is very easy in R to create new objects (typically data.frames), take some kind of action, and write the data to a file. In thinking about duplicates we would probably first want to find out what we are dealing with by identifying unique records. There are multiple ways to do this, here are two:</p>
 <pre class="r"><code>unique(results$id)  #displays unique DOIs (base R)</code></pre>
@@ -393,16 +348,13 @@ head(results$publication_date)</code></pre>
 <li>We can spread the duplicate results across the table</li>
 <li>We can identify and delete the duplicates.</li>
 </ol>
-<div id="spreading-data-using-spread-from-tidyr" class="section level3">
-<h3>Spreading data using <code>spread()</code> from <code>tidyr</code></h3>
+<p>###Spreading data using <code>spread()</code> from <code>tidyr</code></p>
 <p>Rather than simply deleting our duplicate DOIs, we could create new columns for each search term and its associated DOI. This will be useful because it will tell us which terms are associated with which records over time. This is easy to do with <code>spread()</code> by providing a <code>key</code> and a <code>value</code> in the arguments. In this case, we want to use <code>search_terms</code> as the <code>key</code> (column names) to spread across the table and the DOIs in the <code>id</code> column as the <code>value</code> for the rows.</p>
 <pre class="r"><code>spread_results &lt;- spread(results, search_terms, id)</code></pre>
 <p>This creates a column for each search term with the relevant DOIs as the values. Note that the default is to drop the original column (in this case <code>search_terms</code>) when creating the new columns. Things will go badly wrong if you try to keep the existing column because R will be simultaneously trying to spread the data, thus reducing the size of the table, and keep the table in the same size. So, we will leave the default to drop the column as is.</p>
 <p>We now have a data.frame with 1098 rows and the search terms identified in each column. If we briefly inspect <code>spread_results</code> on the terms at the end we can detect a potentially interesting pattern where some documents are only using terms such as synthetic genome or synthetic genomics while others are using only synthetic biology or a mix of terms.</p>
 <p>We have now reduced our data to unique records while preserving our search terms as reference points. The limitation of this approach is that by spreading the DOIs across 4 columns we no longer have a tidy single column of DOIs.</p>
-</div>
-<div id="deleting-duplicates" class="section level3">
-<h3>Deleting Duplicates</h3>
+<p>###Deleting Duplicates</p>
 <p>As an alternative, or complement, to spread we can use a logical TRUE/FALSE test to filter our dataset. There are a number of functions that perform logical tests in R (see also <code>which()</code>, <code>%in%</code>, <code>within()</code>). In this case the most appropriate choice is probably <code>duplicated()</code>. <code>duplicated()</code> will mark duplicate records as TRUE and non-duplicated records as FALSE. We will add a column to our data using the trusty <code>$</code> when creating the new column.</p>
 <pre class="r"><code>results$duplicate &lt;- duplicated(results$id)</code></pre>
 <p>If we use View(results) a new column will have been added to results. Records that are not duplicates are marked FALSE while records that are duplicates are marked TRUE. We now want to filter that table down to the results that are not duplicated (are FALSE) from our logical test. We will use <code>filter()</code> from <code>dplyr</code> (see above). While <code>select()</code> works exclusively with columns <code>filter()</code> works with rows and allows us to easily filter the data on the values contained in a row.</p>
@@ -419,14 +371,9 @@ head(results$publication_date)</code></pre>
 write_csv(spread_results, &quot;spread_results.csv&quot;)
 write_csv(unique_results, &quot;unique_results.csv&quot;)</code></pre>
 <p>Ok, so we have now a dataset containing the records for a range of terms and we have come a long way. Quite a lot of this has been about what to do with PLOS data once we have accessed it in terms of turning it into tables that we can work with. In the next section we will look at how to restrict searches by section.</p>
-</div>
-</div>
-<div id="restricting-searches-by-section" class="section level2">
-<h2>Restricting searches by section</h2>
+<p>##Restricting searches by section</p>
 <p>The default for searching with <code>rplos</code> is to search everything. This can produce many passing results and be overwhelming. There are quite a number of options for restricting searches in <code>rplos</code>.</p>
-</div>
-<div id="by-author" class="section level2">
-<h2>By author</h2>
+<p>##By author</p>
 <p>In creating the results dataset above we included the <code>author</code> field. However, there are some complexities to searching with author names and working with author data that it is important to understand. We will start by searching on author names and then look at how to process the data.</p>
 <p>To restrict a search by author name we can use either the full name or the surname:</p>
 <pre class="r"><code>plosauthor(q = &quot;Paul Oldham&quot;, fl = c(&quot;author&quot;, &quot;id&quot;), fq = &quot;doc_type:full&quot;, 
@@ -492,16 +439,12 @@ full_authors$authors &lt;- str_trim(full_authors$authors, side = &quot;both&quot
 <p>We will not go into depth on these topics, but generating this type of author list is an important step in enabling wider analytics and visualisation. While the code used to get to this list of authors may appear quite involved, once the basics are understood it can be used over and over again.</p>
 <p>Let’s write that data to a .csv file to explore later.</p>
 <pre class="r"><code>write_csv(full_authors, &quot;full_authors.csv&quot;)</code></pre>
-</div>
-<div id="title-search-using-plostitle" class="section level2">
-<h2>Title search using <code>plostitle()</code></h2>
+<p>##Title search using <code>plostitle()</code></p>
 <p>For a title search we can use <code>plostitle()</code>. As above you may want to count the number of records first using:</p>
 <pre class="r"><code>t &lt;- plostitle(q = &quot;synthetic biology&quot;, limit = 0)$meta$numFound</code></pre>
 <p>Then we run the search to return the number of results we would like. Here we have set it to the value of t above (11). We have limited the results to the data field by subsetting with $data.</p>
 <pre class="r"><code>title &lt;- plostitle(q = &quot;synthetic biology&quot;, fl = &quot;title&quot;, limit = t)$data</code></pre>
-</div>
-<div id="abstract-search-using-plosabstract" class="section level2">
-<h2>Abstract search using <code>plosabstract()</code></h2>
+<p>##Abstract search using <code>plosabstract()</code></p>
 <p>For confining the searches to abstracts we can use <code>plosabstract()</code>. We will start with a quick count of records.</p>
 <pre class="r"><code>a &lt;- plosabstract(q = &quot;synthetic biology&quot;, limit = 0)$meta$numFound</code></pre>
 <p>To retrieve the results we could use the value of <code>a</code>. As an alternative we could set it arbitrarily high and the correct results will be returned. Of course if we don’t know what the total number of results are then we will be unsure whether we have captured the universe. But, an arbitrary number can be useful for exploration.</p>
@@ -511,9 +454,7 @@ abstract$data</code></pre>
 <p>As before, we can easily create a new object containing the data.frame. In this case we will also include the meta data and then use <code>fill()</code> from <code>tidyr()</code> to fill down the <code>numFound</code> field and the start with 0. Note that <code>meta</code> will appear at the top of the list and will create a largely blank row. To avoid this, while keeping number of records for reference, we will use filter from <code>tidyr()</code>. This short code will do that.</p>
 <pre class="r"><code>abstract_df &lt;- ldply(abstract, &quot;[&quot;, 1:2) %&gt;% fill(numFound, start) %&gt;% filter(.id == 
     &quot;data&quot;)</code></pre>
-</div>
-<div id="subject-area-using-plossubject" class="section level2">
-<h2>Subject Area using <code>plossubject()</code></h2>
+<p>##Subject Area using <code>plossubject()</code></p>
 <p>To search by subject area use <code>plossubject</code>. The default return is 10 results of the total results. So, try starting with a search such as this to get an idea of how many results there are. In this case the query has been limited to PLOS ONE and full text articles.</p>
 <pre class="r"><code>sa &lt;- plossubject(q = &quot;\&quot;synthetic+biology\&quot;&quot;, fq = list(&quot;cross_published_journal_key:PLoSONE&quot;, 
     &quot;doc_type:full&quot;))$meta$numFound</code></pre>
@@ -522,9 +463,7 @@ abstract$data</code></pre>
     &quot;doc_type:full&quot;), limit = 10)</code></pre>
 <p>As noted in the documentation, the results we return from the API and the results on the website are not necessarily the same because the settings used by PLOS on the website are not clear.</p>
 <p>In this case we return 740 results while, at the time of writing, PLOS ONE lists 417 articles in the <a href="http://www.plosone.org/browse/Synthetic+biology?startPage=0&amp;filterAuthors=&amp;filterSubjectsDisjunction=&amp;filterArticleTypes=&amp;pageSize=13&amp;filterKeyword=&amp;filterJournals=PLoSONE&amp;query=&amp;ELocationId=&amp;id=&amp;resultView=&amp;sortValue=&amp;unformattedQuery=*%3A*&amp;sortKey=Most+views%2C+all+time&amp;filterSubjects=Synthetic%20biology&amp;volume=&amp;">Synthetic Biology subject area</a>. This will merit clarification of the criteria for counts used on the PLOS website and the API returns.</p>
-</div>
-<div id="highlighting-terms-and-text-fragments-with-highplos" class="section level2">
-<h2>Highlighting terms and text fragments with highplos()</h2>
+<p>##Highlighting terms and text fragments with highplos()</p>
 <p><code>highplos()</code> is a great function for research in PLOS, particularly when combined with opening results in a browser using <code>highbrow()</code>.</p>
 <p>Highlighting will pull back a chunk of text with the search term highlighted with the emphasis <em> </em> tag enclosing the individual words in a search phrase. It is possible that an entire phrase can be highlighted (see hl.usePhraseHighlighter) but this requires further exploration.</p>
 <p>In this example we will simply use the term synthetic biology and then highlight the terms in the abstract <code>hl.fl =</code> and limit this to 10 rows of results. We will also add the function <code>highbrow()</code> (for highlight browse) at the end. This will open the results in our browser. In the examples we use a pipe (%&gt;%) meaning <code>this %then% that</code>. This means that we do not have to enter the name snippet into the highbrow function and simplifies the code.</p>
@@ -533,16 +472,13 @@ abstract$data</code></pre>
   highbrow() #launches the browser</code></pre>
 <p>Note that in some cases, even though we are restricting to <code>doc-type:full</code>, we retrieve entries with no data. In one case this is because we are highlighting terms in the abstract when the term appears in the full text. In a second case we have picked up a correction where one of the authors is at a synthetic biology centre but neither the abstract or text mention synthetic biology. So, bear in mind that some further exploration may be required to understand why particular results are being returned. These issues are minor and this is a great tool.</p>
 <p>There are two additional options (arguments) for <code>highplos()</code> that we can use. The first of these is snippets using <code>hl.snippets =</code> and the second is <code>hl.fragsize =</code>. Both can be used in conjunction with <code>highbrow()</code>.</p>
-<div id="snippets-using-hl.snippets" class="section level3">
-<h3>Snippets using hl.snippets</h3>
+<p>###Snippets using hl.snippets</p>
 <pre class="r"><code>snippet &lt;- highplos(q = &#39;&quot;synthetic biology&quot;&#39;, hl.fl = list(&quot;title&quot;, &quot;abstract&quot;), hl.snippets = 10, rows = 100) %&gt;%
   highbrow()</code></pre>
 <p>The snippets argument is handy (the default value for a snippet is 1 but goes up to as many as you like). It become very interesting when we add <code>hl.mergeContiguous = 'true'</code>. This will display the entries captured in the order of the articles to provide a sense of its uses by the author(s).</p>
 <pre class="r"><code>highplos(q=&#39;&quot;synthetic biology&quot;&#39;, hl.fl = &quot;abstract&quot;, hl.snippets = 10, hl.mergeContiguous = &#39;true&#39;, rows = 10) %&gt;%
   highbrow()</code></pre>
-</div>
-<div id="fragment-size-using-hl.fragsize" class="section level3">
-<h3>fragment size using hl.fragsize</h3>
+<p>###fragment size using hl.fragsize</p>
 <p>Greater control over what we are seeing is provided using the <code>hl.fragsize</code> option. This allows us to specify the number of characters (including spaces) that we want to see in relation to our target terms.</p>
 <p>In the first example we will highlight the phrase synthetic biology in the titles and abstracts and set the fragment size (using hl.fragsize ) to a high 500. This will return the first 500 characters including spaces rather than words. We will set the number of rows to a somewhat arbitrary 200. This can easily be pushed a lot higher but expect to wait for a few moments if you move this to 1000 rows.</p>
 <pre class="r"><code>highplos(q = &#39;&quot;synthetic biology&quot;&#39;, hl.fl = list(&quot;title&quot;, &quot;abstract&quot;), hl.fragsize = 500, rows = 200) %&gt;%
@@ -551,10 +487,7 @@ abstract$data</code></pre>
 <pre class="r"><code>highplos(q = &#39;&quot;synthetic biology&quot;&#39;, hl.fl = list(&quot;title&quot;, &quot;abstract&quot;), hl.fragsize = 100, rows = 200) %&gt;%
   highbrow()</code></pre>
 <p>What is great about this is that we can easily control the amount of text that we are seeing and then select articles of interest to read straight from the browser. We can also start to think about ways to use this information for text mining to identify terms used in conjunction with synthetic biology or types of synthetic biology.</p>
-</div>
-</div>
-<div id="get-the-full-text-of-one-or-more-articles" class="section level2">
-<h2>Get the full text of one or more articles</h2>
+<p>##Get the full text of one or more articles</p>
 <p>We will finish this article by briefly demonstrating how to retrieve and save the full text of one or more articles. <code>rplos</code> uses a combination of the <code>XML</code> and the <code>tm</code> (for text mining) package.</p>
 <p>Retrieving full text should initially be used rather sparingly because you could pull back a lot of data in XML format that you may then struggle to process. So, it is probably best to start small.</p>
 <p>Using the unique_results data that we created above we have a list of DOIs in the id field. We can create a vector of these using the following:</p>
@@ -580,24 +513,18 @@ ft_parsed &lt;- lapply(ft, function(x) {
 <p>We can also view the five texts in our corpus (be prepared for a lot of scrolling) by using lapply to read over the two texts as character.</p>
 <pre class="r"><code>lapply(tmcorpus[1:5], as.character)</code></pre>
 <p>For more information see the <a href="https://cran.r-project.org/web/packages/tm/vignettes/tm.pdf">Ingo Feinerer (2015) Introduction to the tm package</a> (also available in the tm documentation) from which the above is drawn.</p>
-</div>
-<div id="writing-a-corpus-to-disk" class="section level2">
-<h2>Writing a corpus to disk</h2>
+<p>##Writing a corpus to disk</p>
 <p>To write a corpus we first need to create a folder where the files will be housed (otherwise they will simply be written into your project folder with everything else).</p>
 <p>The easiest way to create a new folder is to head over to the Files Tab in RStudio (normally in the bottom right pane) and choose <code>New Folder</code>. We will call it <code>tm</code>.</p>
 <p>Now use <code>getwd()</code> and copy the file path into the following function, from the writeCorpus examples, adding <code>/tm</code> at the end. It will look something like this but replace the path with your own, not forgetting the <code>/tm</code>. Then press Enter.</p>
 <pre class="r"><code>writeCorpus(tmcorpus, path = &quot;/Users/paul/Desktop/open_source_master/rplos/tm&quot;)</code></pre>
 <p>When you look in the tm folder inside rplos (use the Files tab in RStudio) you will now see five texts with the names 1 to 5. For more details, such as naming files and specifying file types, see <code>?writeCorpus</code> and the tm package documentation.</p>
-</div>
-<div id="round-up" class="section level2">
-<h2>Round Up</h2>
+<p>##Round Up</p>
 <p>In this chapter we have focused on using the <code>rplos</code> package to access scientific articles from the Public Library of Science (PLOS). As we have seen, with short pieces of code it is easy to search and retrieve data from PLOS on a whole range of subjects whether it be pizza or synthetic biology.</p>
 <p>One of the most powerful features of R is that it is quite easy to access free online data using APIs. <code>rplos</code> is a very good starting point for learning how to retrieve data using an API because it is well written and the data that comes back is remarkably clean.</p>
 <p>Perhaps the biggest challenge facing new users of R is what to do with data once you have retrieved it. This can result in many hours of frustration staring at a list or object with the data you need without the tools to access it and transform it into the format you need. In this article we have focused on using the <code>plyr</code>, <code>dplyr</code>, <code>tidyr</code> and <code>stringr</code> suite of packages to turn <code>rplos</code> data into something you can use. These packages are rightly very popular for everyday work in R and becoming more familiar with them will reap rewards in learning R for practical work. At the close of the article we used the <code>tm</code> (text mining) package to save the full text of articles. This is only a very small part of this package and <code>rplos</code> provides some useful examples to begin text mining using <code>tm</code> (see the <code>plos_fulltext()</code> examples). R now has a rich range of text mining packages and we will address this in a future article.</p>
 <p>In the meantime, if you would like to learn more about R try the resources below. If you would like to learn R inside R then try the very useful Swirl package (details below).</p>
-</div>
-<div id="resources" class="section level2">
-<h2>Resources</h2>
+<p>##Resources</p>
 <ol style="list-style-type: decimal">
 <li><a href="https://ropensci.org/">rOpenSci</a></li>
 <li><a href="http://www.cookbook-r.com/">Winston Chang’s R Cookbook</a></li>
@@ -608,7 +535,6 @@ ft_parsed &lt;- lapply(ft, function(x) {
 </ol>
 <pre class="r"><code>install.packages(&quot;swirl&quot;)
 library(swirl)</code></pre>
-</div>
 
     </div>
   </article>

@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Geocoding on Paul Oldham&#39;s Analytics Blog</title>
-    <link>https://www.pauloldham.net/tags/geocoding/</link>
+    <link>/tags/geocoding/</link>
     <description>Recent content in Geocoding on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Tue, 22 May 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://www.pauloldham.net/tags/geocoding/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/geocoding/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Exploring Geocoding Scientific Literature with R</title>
-      <link>https://www.pauloldham.net/geocoding-scientific-literature-with-r/</link>
+      <link>/geocoding-scientific-literature-with-r/</link>
       <pubDate>Tue, 22 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/geocoding-scientific-literature-with-r/</guid>
-      <description>&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://www.pauloldham.net/rmarkdown-libs/leaflet/leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/leaflet/leaflet.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://www.pauloldham.net/rmarkdown-libs/leafletfix/leafletfix.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/Proj4Leaflet/proj4-compressed.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/Proj4Leaflet/proj4leaflet.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://www.pauloldham.net/rmarkdown-libs/rstudio_leaflet/rstudio_leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/leaflet-binding/leaflet.js&#34;&gt;&lt;/script&gt;
+      <guid>/geocoding-scientific-literature-with-r/</guid>
+      <description>&lt;script src=&#34;/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/leaflet/leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/leaflet/leaflet.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/leafletfix/leafletfix.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/Proj4Leaflet/proj4-compressed.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/Proj4Leaflet/proj4leaflet.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/rstudio_leaflet/rstudio_leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/leaflet-binding/leaflet.js&#34;&gt;&lt;/script&gt;
 
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
@@ -90,19 +90,19 @@ library(googleway)&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Get a free API key from &lt;a href=&#34;https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;This involves pressing the &lt;code&gt;Get a Key&lt;/code&gt; button and creating a project (app) that you will query by following these steps.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/geocoding/getkey.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/geocoding/getkey.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Create a new project and wait a short while while Google spins it up.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/geocoding/create_project.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/geocoding/create_project.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;You will then see your API key. Note that you will see a link to restrict access to your API. It is a good idea to follow this and use your IP address to limit access to your IP address under Application restrictions. This will prevent other people from using the account if they discover the API key. We will not go down that route right now.&lt;/p&gt;
 &lt;p&gt;Take a copy of your API key (say into a text file in R Studio). What you do next is up to you.&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
 &lt;li&gt;Save the text file somewhere sensible and copy it into the functions below when needed.&lt;/li&gt;
-&lt;li&gt;With &lt;code&gt;usethis&lt;/code&gt; either:&lt;/li&gt;
-&lt;/ol&gt;
+&lt;li&gt;&lt;p&gt;With &lt;code&gt;usethis&lt;/code&gt; either:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;usethis::edit_r_environ()&lt;/code&gt; to open your local environment file and enter something like GOOGLE_MAPS_KEY=“yourkey” and then restart R. You will be able to access the key using &lt;code&gt;Sys.getenv(&amp;quot;GOOGLE_MAPS_KEY&amp;quot;)&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;usethis::edit_r_profile()&lt;/code&gt; and enter google_maps_key=“your key”, inside the existing options() chunk, save and restart R. Call the key with &lt;code&gt;getOption(&amp;quot;google_maps_key&amp;quot;)&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;For discussion on the above try reading the R startup section of &lt;a href=&#34;https://csgillespie.github.io/efficientR/&#34;&gt;Efficient R Programming&lt;/a&gt; or follow the very useful &lt;a href=&#34;https://github.com/ropensci/rOpenSci/wiki/Use-of-API-keys&#34;&gt;ROpenSci instructions&lt;/a&gt;. &lt;code&gt;usethis&lt;/code&gt; makes life much easier because it knows where the files are!&lt;/p&gt;
 &lt;p&gt;We will go with the &lt;code&gt;usethis::edit_r_environ()&lt;/code&gt; environment option, so let’s store the key in our working environment for the moment using the imaginatively named key.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;key &amp;lt;- Sys.getenv(&amp;quot;GOOGLE_MAPS_KEY&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
@@ -291,7 +291,7 @@ nrow(lookup)&lt;/code&gt;&lt;/pre&gt;
 ## 4       1 Hunan Fisheries Sci … Hunan Fisheries Sc… &amp;quot; Hun… &amp;quot; People…  1522
 ## 5       1 Hunan Univ Chinese M… Hunan Univ Chinese… &amp;quot; Hun… &amp;quot; People…  1523
 ## 6       2 Indonesian Inst Sci,… Indonesian Inst Sci &amp;quot; Amb… &amp;quot; Indone…  1597&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Next we want to iterate over the list of our organisation names and replace the abbreviations. There are a variety of ways to do that such as the &lt;code&gt;qdap&lt;/code&gt; package function &lt;code&gt;multigsub()&lt;/code&gt; or &lt;code&gt;mgsub()&lt;/code&gt;. We like &lt;code&gt;qdap&lt;/code&gt; a lot but installation of the package can be a bit awkward due to a dependency on &lt;code&gt;rJava&lt;/code&gt;.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; Instead we are going to use a simple for loop (although a &lt;code&gt;purrr&lt;/code&gt; solution would be an improvement).&lt;/p&gt;
+&lt;p&gt;Next we want to iterate over the list of our organisation names and replace the abbreviations. There are a variety of ways to do that such as the &lt;code&gt;qdap&lt;/code&gt; package function &lt;code&gt;multigsub()&lt;/code&gt; or &lt;code&gt;mgsub()&lt;/code&gt;. We like &lt;code&gt;qdap&lt;/code&gt; a lot but installation of the package can be a bit awkward due to a dependency on &lt;code&gt;rJava&lt;/code&gt;.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; Instead we are going to use a simple for loop (although a &lt;code&gt;purrr&lt;/code&gt; solution would be an improvement).&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;replaceabbr &amp;lt;- function(pattern, replacement, var) {
   replacement &amp;lt;- rep(replacement, length(pattern)) 
     for (i in seq_along(pattern)) {
@@ -474,7 +474,7 @@ write_csv(results_complete, path = &amp;quot;asean_geocode_complete.csv&amp;quot
 ## 3 APPROXIMATE       1195 0.230&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The API documentation fills us in on what is going on here.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;“location_type stores additional data about the specified location. The following values are currently supported:&lt;/p&gt;
+&lt;p&gt;&amp;quot;location_type stores additional data about the specified location. The following values are currently supported:&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;“ROOFTOP” indicates that the returned result is a precise geocode for which we have location information accurate down to street address precision.&lt;/p&gt;
@@ -581,7 +581,8 @@ res_complete &amp;lt;- left_join(affiliation2, run1, by = &amp;quot;locations_ed
 res_complete &amp;lt;- res_complete %&amp;gt;% 
   mutate(duplicate_id = duplicated(id)) %&amp;gt;% 
   filter(duplicate_id == &amp;quot;FALSE&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;When we join the two tables together we discover that we arrive at 5232 rather than 5,206 results. The reason for this is that the name harmonisation has created duplicated names from formerly distinct names. The Google API returns duplicate entries in these cases. These duplicate entries have been filtered out above. We will come on to other forms of duplication below. &lt;!---investigate this further. The Ids are distinct in affiliation 2 but then x entries are duplicated in the return from the API ---&gt;&lt;/p&gt;
+&lt;p&gt;When we join the two tables together we discover that we arrive at 5232 rather than 5,206 results. The reason for this is that the name harmonisation has created duplicated names from formerly distinct names. The Google API returns duplicate entries in these cases. These duplicate entries have been filtered out above. We will come on to other forms of duplication below.
+&lt;!---investigate this further. The Ids are distinct in affiliation 2 but then x entries are duplicated in the return from the API ---&gt;&lt;/p&gt;
 &lt;p&gt;Ok let’s take a look at our results to assess whether this is an improvement.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;run1 %&amp;gt;%
   drop_na(location_type) %&amp;gt;% 
@@ -752,18 +753,18 @@ mapdata&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;ref-R-usethis&#34;&gt;
 &lt;p&gt;Wickham, Hadley, and Jennifer Bryan. 2018. &lt;em&gt;Usethis: Automate Package and Project Setup&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=usethis&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=usethis&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;ref-R-tidyr&#34;&gt;
-&lt;p&gt;Wickham, Hadley, and Lionel Henry. 2018. &lt;em&gt;Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=tidyr&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=tidyr&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
 &lt;div id=&#34;ref-R-dplyr&#34;&gt;
 &lt;p&gt;Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2018. &lt;em&gt;Dplyr: A Grammar of Data Manipulation&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=dplyr&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=dplyr&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-R-tidyr&#34;&gt;
+&lt;p&gt;Wickham, Hadley, and Lionel Henry. 2018. &lt;em&gt;Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=tidyr&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=tidyr&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;If you would like to install &lt;code&gt;qdap&lt;/code&gt; but run into problems with &lt;code&gt;rjava&lt;/code&gt; on a Mac the instructions &lt;a href=&#34;https://github.com/MTFA/CohortEx/wiki/Run-rJava-with-RStudio-under-OSX-10.10,-10.11-(El-Capitan)-or-10.12-(Sierra)&#34;&gt;here&lt;/a&gt; can solve installation problems.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;If you would like to install &lt;code&gt;qdap&lt;/code&gt; but run into problems with &lt;code&gt;rjava&lt;/code&gt; on a Mac the instructions &lt;a href=&#34;https://github.com/MTFA/CohortEx/wiki/Run-rJava-with-RStudio-under-OSX-10.10,-10.11-(El-Capitan)-or-10.12-(Sierra)&#34;&gt;here&lt;/a&gt; can solve installation problems.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>

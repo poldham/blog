@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.32.2" />
+
+
+<title>API Resources for ABS Monitoring - Paul Oldham&#39;s Analytics Blog</title>
+<meta property="og:title" content="API Resources for ABS Monitoring - Paul Oldham&#39;s Analytics Blog">
+<meta property="og:type" content="article">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://www.pauloldham.net/images/paul-oval1.png" >
+  
+
+
+<meta property="description" content="Article posted by Paul Oldham, on Monday, June 11nd, 2018">
+<meta property="og:description" content="Article posted by Paul Oldham, on Monday, June 11nd, 2018">
+
+
+
+<meta name="twitter:creator" content="@junglepaul">
+<meta name="twitter:site" content="">
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/paul-oval1.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="https://twitter.com/junglepaul">@junglepaul</a></li>
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/poldham">GitHub</a></li>
+    
+    <li><a href="https://github.com/wipo-analytics">WIPO Analytics</a></li>
+    
+    <li><a href="https://www.r-bloggers.com">r-bloggers</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">5 min read</span>
+    
+
+    <h1 class="article-title">API Resources for ABS Monitoring</h1>
+
+    
+    <span class="article-date">2018/06/11</span>
+    
+
+    <div class="article-content">
+      <p>This short post provides details on some of the main APIs (web services) that can be used to monitor and retrieve data from the scientific literature in either R or Python. We are using these packages and libraries as part of a GIZ supported project with the authorities in Kenya who are responsible for providing research permits. It is probably the case that almost all countries issue permits for research. In return they expect to receive information on publications. However, in many cases either this doesn’t happen or publications go into the <code>filing cabinet that time forgot</code>.</p>
+<p>Kenya is famous for its rich biodiversity and the diversity of its communities. However, in common with many other countries it is difficult to access the literature about biodiversity. Our team is working to create an online system to make it easy for researchers to carry out research in Kenya and at the same time to automate the retrieval of scientific publications about Kenya and its biodiversity. The working idea is that we should be able to build a kind of open access virtual national repository of research on Kenya’s biodiversity and over time a repository of publications about Kenya.</p>
+<p>We will be using three main APIs for the Kenya project. There are many APIs out there but we will focus on those that aggregate data from different sources. I’ll add a few more that are also interesting.</p>
+<p>##Main APIs</p>
+<p>###ORCID</p>
+<p>ORCID provides unique identifiers for researchers and access to their public profiles. Where a researcher publishes an article with a DOI that is covered by Crossref (below), that DOI should automatically (with luck) be added to the researcher’s public profile. Note that you can only access the parts of an ORCID profile that a researcher chooses to make public.</p>
+<p>An example of an ORCID public profile is mine: <a href="https://orcid.org/0000-0002-1013-4390" class="uri">https://orcid.org/0000-0002-1013-4390</a></p>
+<p>Lists of publications can be retrieved using the API and can therefore be used to automate the creation of a repository of publications for a country without needing to chase the researcher through email.</p>
+<ol style="list-style-type: decimal">
+<li>ORCID API home page for creating an app: <a href="https://orcid.org/organizations/integrators/API" class="uri">https://orcid.org/organizations/integrators/API</a></li>
+<li>ORCID Python library: <a href="https://github.com/ORCID/python-orcid" class="uri">https://github.com/ORCID/python-orcid</a></li>
+<li>ORCID R Package: <a href="https://github.com/ropensci/rorcid" class="uri">https://github.com/ropensci/rorcid</a></li>
+</ol>
+<p>Note that when using a remote server the OAuth process (using the rorcid package) can be difficult because the API (or package) triggers a browser login. A way around this needs to be found.</p>
+<p>###Crossref</p>
+<p>Crossref provides access to metadata on over 96 million scientific publications. It is not a full text search engine although abstracts are increasingly available as are links to full text versions of articles (which may well be paywalled).</p>
+<ol style="list-style-type: decimal">
+<li>The Crossref API: <a href="https://github.com/CrossRef/rest-api-doc" class="uri">https://github.com/CrossRef/rest-api-doc</a></li>
+<li>Rcrossref: <a href="https://github.com/ropensci/rcrossref" class="uri">https://github.com/ropensci/rcrossref</a>.</li>
+<li>Python: <a href="https://pypi.org/project/habanero/" class="uri">https://pypi.org/project/habanero/</a></li>
+</ol>
+<p>The rcrossref and python wrappers were both created by Scott Chamberlain and colleagues at ROpenSci. Note that searching on crossref is rather limited and so cannot really be used for statistical purposes (the search searches what they have available and that may be quite mixed) BUT crossref is still very useful. In particular it can be used to search for the names of researchers and to retrieve publication details or to enter a list of DOIs.</p>
+<p>A walkthrough on using rcrossref with to access the scientific literature for Kenya is available <a href="https://poldham.github.io/abs/crossref.html">here</a></p>
+<p>For text retrieval and text mining, the <a href="https://github.com/ropensci/crminer">crminer</a> package by Scott Chamberlain is intended to facilitate access to full texts for text mining purposes from Crossref. You will also very probably want to check out Scott’s <a href="https://github.com/ropensci/fulltext">fulltext package</a> for text retrieval from a range of different APIs including some of those listed here.</p>
+<p>###<a href="https://core.ac.uk/">core.ac.uk/</a></p>
+<p>Core is a full text database that aggregates scientific publications in open access repositories. It can be difficult to find due to the name. But it provides access to over 131 million open access articles. Taking Kenya as an example, a quick search for Kenya reveals 103,310 publications that contain Kenya somewhere in the text. The <a href="https://core.ac.uk/services">services page</a> provides details of the web service, what you can do and how to get started. You will need a free API key from <a href="https://core.ac.uk/api-keys/register">here</a>. Note the quotas and throttle accordingly.</p>
+<ol style="list-style-type: decimal">
+<li>Python notebook with examples: <a href="https://github.com/oacore/or2016-api-demo" class="uri">https://github.com/oacore/or2016-api-demo</a></li>
+<li>R Package rcoreaoa: <a href="https://github.com/ropensci/rcoreoa" class="uri">https://github.com/ropensci/rcoreoa</a></li>
+</ol>
+<p>##Other APIs</p>
+<p>The resources above should capture a lot. But here are some other major APIs that you may want to use.</p>
+<p>###<a href="https://www.biomedcentral.com/getpublished/indexing-archiving-and-access-to-data">Springer BioMed Central API</a></p>
+<ol style="list-style-type: decimal">
+<li>BMC R package <a href="https://github.com/ropensci/bmc" class="uri">https://github.com/ropensci/bmc</a>. This package is not on CRAN. To install it use:</li>
+</ol>
+<pre class="r"><code>install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;ropensci/bmc&quot;)</code></pre>
+<p>I couldn’t easily identify a Python library or gist. If you know of one please add to the comments below.</p>
+<p>###<a href="https://www.ncbi.nlm.nih.gov/pubmed/">NCBI PubMed</a></p>
+<ol style="list-style-type: decimal">
+<li>The <a href="https://github.com/ropensci/rentrez">rentrez</a> package and <a href="https://ropensci.org/tutorials/rentrez_tutorial/">walkthrough</a></li>
+<li>The <a href="https://github.com/cran/easyPubMed">easyPubMed</a> package in R:
+See the walkthrough by <a href="https://cran.r-project.org/web/packages/easyPubMed/vignettes/easyPM_vignette_html.html">Daniel Fantini</a></li>
+<li>For Python there is <a href="https://pypi.org/project/pubmed-lookup/">pubmed-lookup</a> and a gist for searching PubMed with Biopython is <a href="https://pypi.org/project/pubmed-lookup/">here</a></li>
+</ol>
+<p>###<a href="https://www.plos.org/">Public Library of Science</a></p>
+<ol style="list-style-type: decimal">
+<li>Rplos package <a href="https://github.com/ropensci/rplos" class="uri">https://github.com/ropensci/rplos</a></li>
+<li>For Python a <a href="https://gist.github.com/drewbuschhorn/1077318">gist</a> is available providing examples of the use of the sunburnt library</li>
+</ol>
+<p>One of my walkthroughs, now a bit old but still working, for rplos is available <a href="https://www.pauloldham.net/rplos-walkthrough/">here</a></p>
+<p>###<a href="https://www.biorxiv.org/">bioRxiv</a></p>
+<ol style="list-style-type: decimal">
+<li>For R the <a href="https://github.com/ropensci/fulltext">fulltext package</a> provides access to the texts of bioRxiv which has an RSS feed but does not appear to have an API.</li>
+</ol>
+<p>I wasn’t able to spot anything for Python, so if you know of anything let know.</p>
+<p>The <a href="https://www.biorxiv.org/alertsrss">Alerts/RSS</a> page provides details of the most recent 30 posts across categories and there is a Twitter feed by subject that people have tried to do interesting things with by creating a twitter bots.</p>
+<div id="round-up" class="section level2">
+<h2>Round Up</h2>
+<p>I hope you found this quick list useful. If you know of any other good resources in either R or Python please feel welcome to add a comment.</p>
+<p>##References</p>
+<div id="refs" class="references">
+<div id="ref-R-crminer">
+<p>Chamberlain, Scott. 2017. <em>Crminer: Fetch ’Scholary’ Full Text from ’Crossref’</em>. <a href="https://CRAN.R-project.org/package=crminer" class="uri">https://CRAN.R-project.org/package=crminer</a>.</p>
+</div>
+<div id="ref-R-rorcid">
+<p>———. 2018. <em>Rorcid: Interface to the ’Orcid.org’ ’Api’</em>. <a href="https://CRAN.R-project.org/package=rorcid" class="uri">https://CRAN.R-project.org/package=rorcid</a>.</p>
+</div>
+<div id="ref-R-rcrossref">
+<p>Chamberlain, Scott, Carl Boettiger, Ted Hart, and Karthik Ram. 2018. <em>Rcrossref: Client for Various ’Crossref’ ’Apis’</em>. <a href="https://github.com/ropensci/rcrossref" class="uri">https://github.com/ropensci/rcrossref</a>.</p>
+</div>
+</div>
+</div>
+
+    </div>
+  </article>
+
+  <div id="disqus_thread"></div>
+<script>
+(function() {
+var d = document, s = d.createElement('script');
+s.src = 'https://pauloldham.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-113668064-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
+
