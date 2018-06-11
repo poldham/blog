@@ -28,11 +28,11 @@ nocite: |
 
 This short post provides details on some of the main APIs (web services) that can be used to monitor and retrieve data from the scientific literature in either R or Python. We are using these packages and libraries as part of a GIZ supported project with the authorities in Kenya who are responsible for providing research permits. Kenya is famous for its biodiversity and the diversity of its communities. However, there is no single repository of publications arising from research in Kenya. We are looking to use APIs to automate retrieval of publications about Kenya and its biodiversity. Hopefully this should allow us to build an open access virtual repository of publications on Kenya to serve the needs of researchers and the wider community. 
 
-We plan to use three main APIs for the Kenya project. There are many APIs out there but we will focus on those that aggregate data from different sources. I'll add a few more that are also interesting. 
+We plan to use three main APIs for the Kenya project. There are many APIs out there but we will focus on those that aggregate data from different sources. I'll add a few more that are interesting mainly for biodiversity topics. 
 
 ## Main APIs
 
-### Crossref
+### [Crossref](https://www.crossref.org/)
 
 Crossref provides access to metadata on over 96 million scientific publications. It is not a full text search engine although abstracts are increasingly available as are links to full text versions of articles (which may well be paywalled).
 
@@ -46,9 +46,9 @@ A walkthrough on using rcrossref to access the scientific literature for Kenya i
 
 For text retrieval and text mining, the [crminer](https://github.com/ropensci/crminer) package by Scott Chamberlain is intended to facilitate access to full texts for text mining purposes from Crossref. You will also very probably want to check out Scott's [fulltext package](https://github.com/ropensci/fulltext) for text retrieval from a range of different APIs including some of those listed here. 
 
-### ORCID
+### [ORCID](https://orcid.org/)
 
-ORCID provides unique identifiers for researchers and access to their public profiles. Where a researcher publishes an article with a DOI that is covered by Crossref (below), that DOI should automatically (with luck) be added to the researcher's public profile. Note that you can only access the parts of an ORCID profile that a researcher chooses to make public. 
+ORCID provides persistent unique identifiers for researchers and access to their public profiles. Where a researcher publishes an article with a DOI that is covered by Crossref, that DOI should automatically (with luck) be added to the researcher's public profile. Note that you can only access the parts of an ORCID profile that a researcher chooses to make public. 
 
 An example of an ORCID public profile is mine: [https://orcid.org/0000-0002-1013-4390](https://orcid.org/0000-0002-1013-4390)
 

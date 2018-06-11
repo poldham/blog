@@ -29,11 +29,11 @@ nocite: |
 
 
 <p>This short post provides details on some of the main APIs (web services) that can be used to monitor and retrieve data from the scientific literature in either R or Python. We are using these packages and libraries as part of a GIZ supported project with the authorities in Kenya who are responsible for providing research permits. Kenya is famous for its biodiversity and the diversity of its communities. However, there is no single repository of publications arising from research in Kenya. We are looking to use APIs to automate retrieval of publications about Kenya and its biodiversity. Hopefully this should allow us to build an open access virtual repository of publications on Kenya to serve the needs of researchers and the wider community.</p>
-<p>We plan to use three main APIs for the Kenya project. There are many APIs out there but we will focus on those that aggregate data from different sources. I’ll add a few more that are also interesting.</p>
+<p>We plan to use three main APIs for the Kenya project. There are many APIs out there but we will focus on those that aggregate data from different sources. I’ll add a few more that are interesting mainly for biodiversity topics.</p>
 <div id="main-apis" class="section level2">
 <h2>Main APIs</h2>
 <div id="crossref" class="section level3">
-<h3>Crossref</h3>
+<h3><a href="https://www.crossref.org/">Crossref</a></h3>
 <p>Crossref provides access to metadata on over 96 million scientific publications. It is not a full text search engine although abstracts are increasingly available as are links to full text versions of articles (which may well be paywalled).</p>
 <ol style="list-style-type: decimal">
 <li>The Crossref API: <a href="https://github.com/CrossRef/rest-api-doc" class="uri">https://github.com/CrossRef/rest-api-doc</a></li>
@@ -45,8 +45,8 @@ nocite: |
 <p>For text retrieval and text mining, the <a href="https://github.com/ropensci/crminer">crminer</a> package by Scott Chamberlain is intended to facilitate access to full texts for text mining purposes from Crossref. You will also very probably want to check out Scott’s <a href="https://github.com/ropensci/fulltext">fulltext package</a> for text retrieval from a range of different APIs including some of those listed here.</p>
 </div>
 <div id="orcid" class="section level3">
-<h3>ORCID</h3>
-<p>ORCID provides unique identifiers for researchers and access to their public profiles. Where a researcher publishes an article with a DOI that is covered by Crossref (below), that DOI should automatically (with luck) be added to the researcher’s public profile. Note that you can only access the parts of an ORCID profile that a researcher chooses to make public.</p>
+<h3><a href="https://orcid.org/">ORCID</a></h3>
+<p>ORCID provides persistent unique identifiers for researchers and access to their public profiles. Where a researcher publishes an article with a DOI that is covered by Crossref, that DOI should automatically (with luck) be added to the researcher’s public profile. Note that you can only access the parts of an ORCID profile that a researcher chooses to make public.</p>
 <p>An example of an ORCID public profile is mine: <a href="https://orcid.org/0000-0002-1013-4390" class="uri">https://orcid.org/0000-0002-1013-4390</a></p>
 <p>Lists of publications can be retrieved using the API and can therefore be used to automate the creation of a repository of publications for a country without needing to chase the researcher through email.</p>
 <ol style="list-style-type: decimal">

@@ -2,28 +2,28 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Apis on Paul Oldham&#39;s Analytics Blog</title>
-    <link>/tags/apis/</link>
+    <link>https://www.pauloldham.net/tags/apis/</link>
     <description>Recent content in Apis on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Mon, 11 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/tags/apis/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.pauloldham.net/tags/apis/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>API Resources for the Scientific Literature in R and Python</title>
-      <link>/api-resources-for-scientific-literature/</link>
+      <link>https://www.pauloldham.net/api-resources-for-scientific-literature/</link>
       <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/api-resources-for-scientific-literature/</guid>
+      <guid>https://www.pauloldham.net/api-resources-for-scientific-literature/</guid>
       <description>&lt;p&gt;This short post provides details on some of the main APIs (web services) that can be used to monitor and retrieve data from the scientific literature in either R or Python. We are using these packages and libraries as part of a GIZ supported project with the authorities in Kenya who are responsible for providing research permits. Kenya is famous for its biodiversity and the diversity of its communities. However, there is no single repository of publications arising from research in Kenya. We are looking to use APIs to automate retrieval of publications about Kenya and its biodiversity. Hopefully this should allow us to build an open access virtual repository of publications on Kenya to serve the needs of researchers and the wider community.&lt;/p&gt;
-&lt;p&gt;We plan to use three main APIs for the Kenya project. There are many APIs out there but we will focus on those that aggregate data from different sources. I’ll add a few more that are also interesting.&lt;/p&gt;
+&lt;p&gt;We plan to use three main APIs for the Kenya project. There are many APIs out there but we will focus on those that aggregate data from different sources. I’ll add a few more that are interesting mainly for biodiversity topics.&lt;/p&gt;
 &lt;div id=&#34;main-apis&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Main APIs&lt;/h2&gt;
 &lt;div id=&#34;crossref&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Crossref&lt;/h3&gt;
+&lt;h3&gt;&lt;a href=&#34;https://www.crossref.org/&#34;&gt;Crossref&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Crossref provides access to metadata on over 96 million scientific publications. It is not a full text search engine although abstracts are increasingly available as are links to full text versions of articles (which may well be paywalled).&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;The Crossref API: &lt;a href=&#34;https://github.com/CrossRef/rest-api-doc&#34; class=&#34;uri&#34;&gt;https://github.com/CrossRef/rest-api-doc&lt;/a&gt;&lt;/li&gt;
@@ -35,8 +35,8 @@
 &lt;p&gt;For text retrieval and text mining, the &lt;a href=&#34;https://github.com/ropensci/crminer&#34;&gt;crminer&lt;/a&gt; package by Scott Chamberlain is intended to facilitate access to full texts for text mining purposes from Crossref. You will also very probably want to check out Scott’s &lt;a href=&#34;https://github.com/ropensci/fulltext&#34;&gt;fulltext package&lt;/a&gt; for text retrieval from a range of different APIs including some of those listed here.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;orcid&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;ORCID&lt;/h3&gt;
-&lt;p&gt;ORCID provides unique identifiers for researchers and access to their public profiles. Where a researcher publishes an article with a DOI that is covered by Crossref (below), that DOI should automatically (with luck) be added to the researcher’s public profile. Note that you can only access the parts of an ORCID profile that a researcher chooses to make public.&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&#34;https://orcid.org/&#34;&gt;ORCID&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;ORCID provides persistent unique identifiers for researchers and access to their public profiles. Where a researcher publishes an article with a DOI that is covered by Crossref, that DOI should automatically (with luck) be added to the researcher’s public profile. Note that you can only access the parts of an ORCID profile that a researcher chooses to make public.&lt;/p&gt;
 &lt;p&gt;An example of an ORCID public profile is mine: &lt;a href=&#34;https://orcid.org/0000-0002-1013-4390&#34; class=&#34;uri&#34;&gt;https://orcid.org/0000-0002-1013-4390&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Lists of publications can be retrieved using the API and can therefore be used to automate the creation of a repository of publications for a country without needing to chase the researcher through email.&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;

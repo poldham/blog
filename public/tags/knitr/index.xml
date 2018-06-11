@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Knitr on Paul Oldham&#39;s Analytics Blog</title>
-    <link>/tags/knitr/</link>
+    <link>https://www.pauloldham.net/tags/knitr/</link>
     <description>Recent content in Knitr on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Wed, 23 May 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/tags/knitr/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.pauloldham.net/tags/knitr/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Creating A Bibliography with rcrossref</title>
-      <link>/creating-a-bibliography-with-rcrossref/</link>
+      <link>https://www.pauloldham.net/creating-a-bibliography-with-rcrossref/</link>
       <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>/creating-a-bibliography-with-rcrossref/</guid>
+      <guid>https://www.pauloldham.net/creating-a-bibliography-with-rcrossref/</guid>
       <description>&lt;p&gt;In this article we will look at how to create a bibliography using the &lt;code&gt;rcrossref&lt;/code&gt; package in R with RStudio. To help us get started we will also look at how to reference any R packages that you use in your work with &lt;code&gt;knitr&lt;/code&gt;. The article is part of work in progress for the WIPO Handbook on Patent Analytics. Comments and suggestions are welcome.&lt;/p&gt;
 &lt;p&gt;Many of us will have spent an unreasonable amount of our time struggling to create bibliographies for a thesis, publication or reports. Software such as Endnote (Clarivate Analytics), Mendeley (Elsevier) and Zotero provide options for creating and managing bibliographic data. From experience, this generally involves masses of hours fiddling around with reference formats and so on before and after submission for publication.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.crossref.org/&#34;&gt;Crossref&lt;/a&gt; is a non-profit organisation that provides metadata on over 96 million publications in the form of information on the authors, titles, organisations, funding and so on. It is not a full text database but is increasingly providing access to abstracts and links to full texts.&lt;/p&gt;
@@ -57,12 +57,12 @@ library(rcrossref)&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;the-rcrossref-addin&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;The rcrossref Addin&lt;/h3&gt;
 &lt;p&gt;RStudio includes a button at the top of the screen called Addins. It’s here:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/rcrossref/addin.gif&#34; width=&#34;400px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/rcrossref/addin.gif&#34; width=&#34;400px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The standard version of rcrossref includes an addin that allows you to search for references using dois (document identifiers). I’ll come back to that. However, the add in for the development version does more thanks to great work by &lt;a href=&#34;https://github.com/haozhu233&#34;&gt;Hao Zhu&lt;/a&gt; of &lt;a href=&#34;https://github.com/haozhu233/giphyr&#34;&gt;giphyr&lt;/a&gt; fame. In response to a request on github &lt;a href=&#34;https://github.com/ropensci/rcrossref/issues/148&#34;&gt;here&lt;/a&gt;, Hao Zhu created a new version of the rcrossref addin that we will use now.&lt;/p&gt;
 &lt;p&gt;From the Addins menu select Add Rcrossref Citations and a panel will open up. In the development version we can type in the name of an article and then Add to My Citations and Done when we are finished as we see in this example. I’ll look up one I can remember.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/rcrossref/addarticle.gif&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/rcrossref/addarticle.gif&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can also use document identifiers. Here is one of mine on the completely bonkers subject of global climate engineering or geoengineering with doi: 10.1098/rsta.2014.0065.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/rcrossref/doi.gif&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/rcrossref/doi.gif&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The rcrossref add in creates a new file in your RStudio project directory (assuming you are using projects which is a very good thing), called crossref.bib. Once this file is created any time that you use the Addin it will add references rather than overwrite the file. So, this can be a very good way to build up a bibliography using rcrossref.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;adding-citations-in-rmarkdown&#34; class=&#34;section level3&#34;&gt;

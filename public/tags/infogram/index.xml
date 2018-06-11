@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Infogram on Paul Oldham&#39;s Analytics Blog</title>
-    <link>/tags/infogram/</link>
+    <link>https://www.pauloldham.net/tags/infogram/</link>
     <description>Recent content in Infogram on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Wed, 20 Apr 2016 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/tags/infogram/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.pauloldham.net/tags/infogram/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Creating an Infographic with infogram</title>
-      <link>/infographics/</link>
+      <link>https://www.pauloldham.net/infographics/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>/infographics/</guid>
+      <guid>https://www.pauloldham.net/infographics/</guid>
       <description>&lt;p&gt;In this article we will use RStudio to prepare patent data for visualisation in an infographic using the online software tool &lt;a href=&#34;https://infogram.com/?rc=paid0sem0branded0search0&amp;amp;gclid=EAIaIQobChMIw6KgvMiq2AIViLvtCh2fpgxhEAAYASAAEgKR2PD_BwE&#34;&gt;infogram&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Infographics are a popular way of presenting data in a way that is easy for a reader to understand without reading a long report. Infographics are well suited to presenting summaries of data with simple messages about key findings. A good infographic can encourage the audience to read a detailed report and is a tool for engagement with audiences during presentations of the findings of patent research.&lt;/p&gt;
 &lt;p&gt;Some patent offices have already been creating infographics as part of their reports to policy makers and other clients. The Instituto Nacional de Propiedade Industrial (INPI) in Brazil produces regular two page &lt;a href=&#34;http://www.inpi.gov.br/menu-servicos/informacao/radares-tecnologicos&#34;&gt;Technology Radar&lt;/a&gt; (Radar Tecnologico) consisting of charts and maps that briefly summarise more detailed research on subjects such as &lt;a href=&#34;http://www.inpi.gov.br/menu-servicos/arquivos-cedin/n08_radar_tecnologico_nano_residuos_versao_resumida_ingles_atualizada_20160122.pdf&#34;&gt;Nanotechnology in Waste Management&lt;/a&gt;. &lt;a href=&#34;http://www.wipo.int/patentscope/en/programs/patent_landscapes/&#34;&gt;WIPO Patent Landscape Reports&lt;/a&gt;, which go into depth on patent activity for a particular area, are accompanied by one page infographics that have proved very popular such as the infographic accompanying a recent report on &lt;a href=&#34;http://www.wipo.int/export/sites/www/patentscope/en/programs/patent_landscapes/reports/documents/assistivedevices_infographic.pdf&#34;&gt;assistive devices&lt;/a&gt;.&lt;/p&gt;
@@ -158,7 +158,7 @@ pizza_total &amp;lt;- rename(pizza_total, pubyear = publication_year, publicatio
 &lt;p&gt;Using the &lt;code&gt;qplot()&lt;/code&gt; function in &lt;code&gt;ggplot2&lt;/code&gt; we can now draw a quick line graph. Note that qplot() is unusual in R because the data (pizza_total) appears after the coordinates. We will specify that we want a line using &lt;code&gt;geom =&lt;/code&gt; (if geom is left out it will be a scatter plot). This will give us an idea of what our plot might look like in our infographic and actions we might want to take on the data.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
 qplot(x = pubyear, y = publications, data = pizza_total, geom = &amp;quot;line&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2016-04-20-infographics_files/figure-html/qplot-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2016-04-20-infographics_files/figure-html/qplot-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![](images_foot/infogram/fig1_infographic.png)---&gt;
 &lt;p&gt;The plot reveals a data cliff in recent years. This normally reflects a lack of data for the last 2-3 years as recent documents feed through the system en route to publication.&lt;/p&gt;
 &lt;p&gt;It is a good idea to remove the data cliff by cutting the data 2-3 years prior to the present. In some cases two years is sufficient, but 3 years is a good rule of thumb.&lt;/p&gt;
@@ -215,7 +215,7 @@ df1 &amp;lt;- select(pizza, publication_number, publication_year) %&amp;gt;% mut
     count(publication_year, wt = n) %&amp;gt;% rename(pubyear = publication_year, publications = nn) %&amp;gt;% 
     filter(pubyear &amp;gt;= 1990, pubyear &amp;lt;= 2012) %&amp;gt;% qplot(x = pubyear, y = publications, 
     data = ., geom = &amp;quot;line&amp;quot;) %&amp;gt;% print()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2016-04-20-infographics_files/figure-html/piped-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2016-04-20-infographics_files/figure-html/piped-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![](images_foot/infogram/fig2_infographic_qplot.png)---&gt;
 &lt;p&gt;In the standard code we typed &lt;code&gt;df&lt;/code&gt; nine times to arrive at the same result. Using pipes we typed df1 once. Of greater importance is that the use of pipes simplifies the structure of R code by introducing a basic “this” then “that” logic which makes it easier to understand.&lt;/p&gt;
 &lt;p&gt;One point to note about this code is that &lt;code&gt;qplot()&lt;/code&gt; requires us to name our data (in this case &lt;code&gt;df1&lt;/code&gt;). However, &lt;code&gt;df1&lt;/code&gt; is actually the final output of the code and does not exist as an input object before the final line is run. So, if we attempt to use &lt;code&gt;data = df1&lt;/code&gt; in &lt;code&gt;qplot()&lt;/code&gt; we will receive an error message. The way around this is to use &lt;code&gt;.&lt;/code&gt; in place of our data object. That way &lt;code&gt;qplot()&lt;/code&gt; will know we want to graph the outputs of the earlier code. Finally, we need to add an explicit call to &lt;code&gt;print()&lt;/code&gt; to display the graph (without this the code will work but we will not see the graph).&lt;/p&gt;
@@ -242,7 +242,7 @@ df2 &amp;lt;- select(pizza, publication_number, publication_year) %&amp;gt;% mut
 &lt;p&gt;Note that in this case the only change is that we need to explicitly include the reference to the df2 data frame as the data argument in the call to &lt;code&gt;qplot()&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
 qplot(x = pubyear, y = publications, data = df2, geom = &amp;quot;line&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2016-04-20-infographics_files/figure-html/df2_qplot-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2016-04-20-infographics_files/figure-html/df2_qplot-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;##Harmonising data&lt;/p&gt;
 &lt;p&gt;One challenge with creating multiple tables from a baseline dataset is keeping track of subdatasets. At the moment we have two basic objects we will be working with:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
@@ -734,18 +734,18 @@ google_phrases&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;##Creating an infographic in infogr.am&lt;/p&gt;
 &lt;p&gt;If you are starting this chapter here then download the datasets we will be using as a single zip file from the Manual repository &lt;a href=&#34;https://github.com/wipo-analytics/opensource-patent-analytics/blob/master/2_datasets/infographic/infographic.zip?raw=true&#34;&gt;here&lt;/a&gt; and then unzip the file.&lt;/p&gt;
 &lt;p&gt;We first need to sign up for a free account with &lt;a href=&#34;https://infogr.am/&#34;&gt;infogr.am&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/infogram/fig1_infogram_front.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/infogram/fig1_infogram_front.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We will then see a page with some sample infographics to provide ideas to get you started.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/infogram/fig2_infogram_login.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/infogram/fig2_infogram_login.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;
 Click on one of the infograms with a graph such as Trends in Something and then click inside the graph box itself and select the edit button in the top right.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/infogram/fig3_infogram_findedit.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/infogram/fig3_infogram_findedit.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This will open up a data panel with the toy data displayed.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;images/infogram/fig4_infogram_datapanel.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We want to replace this data by choosing the upload button and selecting our &lt;code&gt;pizza_country_1990_2012.csv&lt;/code&gt; file.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/infogram/fig5_infogram_panelgraph.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/infogram/fig5_infogram_panelgraph.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We now have a decent looking graph for our country trends data where we can see the number of records per country and year by hovering over the relevant data points. While some of the countries with low frequency data are crunched at the bottom (and would be better displayed in a separate graph), hovering over the data or over a country name will display the relevant country activity. We will therefore live with this.&lt;/p&gt;
 &lt;p&gt;We now want to start adding story elements by clicking on the edit button in the title. Next we can start adding new boxes using the menu icons on the right. Here we have changed the title, added a simple body text for the data credit and then a quote from someone describing themselves as the Head of Pizza Analytics.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/infogram/fig6_infogram_paneltext.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/infogram/fig6_infogram_paneltext.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Next we need to start digging into the data using our IPC, applicants and phrases data.&lt;/p&gt;
 &lt;p&gt;To work with our IPC class data we will add a bar chart and load the data. To do this select the graph icon in the right and then Bar. Once again we will choose edit and then load our &lt;code&gt;pizza_ipcclass_1990_2012&lt;/code&gt; dataset. Then we can add a descriptive text box. We can then continue to add elements as follows:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;

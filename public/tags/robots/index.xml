@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Robots on Paul Oldham&#39;s Analytics Blog</title>
-    <link>/tags/robots/</link>
+    <link>https://www.pauloldham.net/tags/robots/</link>
     <description>Recent content in Robots on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Mon, 08 Jan 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/tags/robots/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.pauloldham.net/tags/robots/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Dr. Evil meets the robotstxt package</title>
-      <link>/using-robotstxt-in-r/</link>
+      <link>https://www.pauloldham.net/using-robotstxt-in-r/</link>
       <pubDate>Mon, 08 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/using-robotstxt-in-r/</guid>
+      <guid>https://www.pauloldham.net/using-robotstxt-in-r/</guid>
       <description>&lt;p&gt;I am fairly new to webscraping in R using &lt;a href=&#34;https://github.com/hadley/rvest&#34;&gt;rvest&lt;/a&gt; and one question is whether a site gives permission for scraping. This information is often contained in the robots.txt file on a website. So, I’m briefly going to explore the &lt;a href=&#34;https://ropensci.org/&#34;&gt;ROpenSci&lt;/a&gt; &lt;a href=&#34;https://github.com/ropenscilabs/robotstxt&#34;&gt;robotstxt&lt;/a&gt; package by &lt;a href=&#34;https://github.com/petermeissnerpackage&#34;&gt;Peter Meissner&lt;/a&gt;. &lt;a href=&#34;https://github.com/ropenscilabs/robotstxt&#34;&gt;robotstxt&lt;/a&gt; provides easy access to the robots.txt file for a domain from R.&lt;/p&gt;
 &lt;p&gt;I’m slowly working on a new R data package for underwater geographic feature names as part of a Norwegian Research Council funded project &lt;code&gt;biospolar&lt;/code&gt; on innovation involving biodiversity in marine polar areas. One of the main data sources for the package is the &lt;a href=&#34;https://www.gebco.net/data_and_products/undersea_feature_names/&#34;&gt;General Bathymetric Chart of the Oceans or GEBCO Gazeteer&lt;/a&gt;. I’m also going to be bringing in data from the &lt;a href=&#34;https://vents-data.interridge.org/&#34;&gt;Interridge database of hydrothermal vents&lt;/a&gt; and so wanted to understand whether I am just free to go ahead.&lt;/p&gt;
 &lt;p&gt;The robots.txt content is advisory, and well we could always choose to be Dr. Evil. If my wife would let me have a cat it would definitely be called Mr. Bigglesworth. But it strikes me that building a package for a data source that tries to prohibit scraping might not be a brilliant idea.&lt;/p&gt;
@@ -75,8 +75,8 @@ gebco&lt;/code&gt;&lt;/pre&gt;
 ##     spiderbar::can_fetch(obj = self$robexclobj, path = paths, 
 ##         user_agent = bot)
 ## }
-## &amp;lt;bytecode: 0x7fbc4bc6dad8&amp;gt;
-## &amp;lt;environment: 0x7fbc4bc6d138&amp;gt;
+## &amp;lt;bytecode: 0x7fc6f8efd4d8&amp;gt;
+## &amp;lt;environment: 0x7fc6f8efcb38&amp;gt;
 ## 
 ## attr(,&amp;quot;class&amp;quot;)
 ## [1] &amp;quot;robotstxt&amp;quot;&lt;/code&gt;&lt;/pre&gt;
@@ -334,8 +334,8 @@ noaa&lt;/code&gt;&lt;/pre&gt;
 ##     spiderbar::can_fetch(obj = self$robexclobj, path = paths, 
 ##         user_agent = bot)
 ## }
-## &amp;lt;bytecode: 0x7fbc4bc6dad8&amp;gt;
-## &amp;lt;environment: 0x7fbc4ba31d70&amp;gt;
+## &amp;lt;bytecode: 0x7fc6f8efd4d8&amp;gt;
+## &amp;lt;environment: 0x7fc6f8ac53a8&amp;gt;
 ## 
 ## attr(,&amp;quot;class&amp;quot;)
 ## [1] &amp;quot;robotstxt&amp;quot;&lt;/code&gt;&lt;/pre&gt;
