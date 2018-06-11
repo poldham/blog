@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Patent Databases on Paul Oldham&#39;s Analytics Blog</title>
-    <link>https://www.pauloldham.net/tags/patent-databases/</link>
+    <link>/tags/patent-databases/</link>
     <description>Recent content in Patent Databases on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Sun, 26 Jul 2015 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://www.pauloldham.net/tags/patent-databases/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/patent-databases/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>An Overview of Patent Analytics Tools</title>
-      <link>https://www.pauloldham.net/overview-open-tools/</link>
+      <link>/overview-open-tools/</link>
       <pubDate>Sun, 26 Jul 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/overview-open-tools/</guid>
+      <guid>/overview-open-tools/</guid>
       <description>&lt;p&gt;##Introduction&lt;/p&gt;
 &lt;p&gt;This article provides an overview of the open source and free software tools that are available for patent analytics. The aim of the chapter is to serve as a quick reference guide for some of the main tools in the tool kit.&lt;/p&gt;
 &lt;p&gt;This article is now a chapter in the &lt;a href=&#34;https://wipo-analytics.github.io/&#34;&gt;WIPO Manual on Open Source Patent Analytics&lt;/a&gt;. You can read the chapter in electronic book format &lt;a href=&#34;https://wipo-analytics.github.io/an-overview-of-tools.html&#34;&gt;here&lt;/a&gt; and find all the materials including presentations at the &lt;a href=&#34;https://github.com/wipo-analytics&#34;&gt;WIPO Analytics Github homepage&lt;/a&gt;.&lt;/p&gt;
@@ -45,33 +45,33 @@
 &lt;/ul&gt;
 &lt;p&gt;###&lt;a href=&#34;https://www.google.co.uk/sheets/about/&#34;&gt;Google Sheets&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Google Sheets require a free Google account and those who are comfortable with Excel may wonder why it is worth switching. However, Google Sheets can be shared online with others and there are a large number of free add ons that could be used to assist with cleaning data such as Split Names or Remove duplicates as shown below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/google_sheets_addon.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/google_sheets_addon.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;https://support.google.com/fusiontables/answer/2571232?hl=en&#34;&gt;Google Fusion Tables&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Fusion Tables are similar to Google Sheets but can work with millions of records. However, it is worth trying with smaller datasets to see if Fusion Tables suit your needs.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/Fusion-Tables.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/Fusion-Tables.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Fusion Tables appear very much like a spreadsheet. However, the Table also contains a &lt;code&gt;cards&lt;/code&gt; feature which allows each record to be seen as a whole and easily filtered. The cards can be much easier to work with than the standard row format where information in a record can be difficult to take in. Fusion Tables also attempts to use geocoded data to draw a Google Map as we can see in the second image below for the publication country from a sample patent dataset.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/Fusion-Tables-Cards.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/Fusion-Tables-Map.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/Fusion-Tables-Cards.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/Fusion-Tables-Map.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;##Cleaning Tools&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://openrefine.org&#34;&gt;Open Refine&lt;/a&gt; (formerly Google Refine)&lt;/p&gt;
 &lt;p&gt;A fundamental rule of data analysis and visualization is: &lt;code&gt;rubbish in = rubbish out&lt;/code&gt;. If your data has not been cleaned in the first place, do not be surprised if the results of analysis or visualization are rubbish.&lt;/p&gt;
 &lt;p&gt;An in depth chapter is available &lt;a href=&#34;http://poldham.github.io/openrefine-patent-cleaning/&#34;&gt;here&lt;/a&gt; on the use of &lt;a href=&#34;http://openrefine.org&#34;&gt;Open Refine&lt;/a&gt;, formerly Google Refine, for cleaning patent data. For patent analytics Open Refine is an important free tool for cleaning applicant and inventor names.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/OpenRefine-download.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/OpenRefine-download.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;A number of platforms provide data cleaning facilities and it is possible to do quite a lot of basic cleaning in either Open Office or Excel. Open Refine is the most accessible tool for timely cleaning of patent name fields. In particular, it is very useful for splitting and cleaning thousands of patent applicant and inventor names.&lt;/p&gt;
 &lt;p&gt;##Data Mining&lt;/p&gt;
 &lt;p&gt;There are an ever growing number of data mining tools out there. Here are a few of those that have caught our attention with additional tools listed below.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.rstudio.com&#34;&gt;RStudio&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;A very powerful tool for working with data and visualising data using R and then writing about it (this chapter, and the wider Manual, is entirely written in Rmarkdown with RStudio). While the learning curve with R can be intimidating a great deal of effort goes in to making R accessible through &lt;a href=&#34;http://www.rstudio.com/resources/training/online-learning/&#34;&gt;tutorials&lt;/a&gt; such as those on &lt;a href=&#34;https://www.datacamp.com&#34;&gt;DataCamp&lt;/a&gt;, &lt;a href=&#34;http://www.rstudio.com/resources/webinars/&#34;&gt;webinars&lt;/a&gt;, &lt;a href=&#34;http://www.r-bloggers.com&#34;&gt;R-Bloggers&lt;/a&gt; and &lt;a href=&#34;http://stackoverflow.com/questions/tagged/r&#34;&gt;Stack Overflow&lt;/a&gt; and free university courses such as the well known John Hopkins University R Programming Course on &lt;a href=&#34;https://www.coursera.org/course/rprog&#34;&gt;Coursera&lt;/a&gt;. Indeed, as with Python, there is so much support for users at different levels that it is hard ever to feel alone when using R and RStudio.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/RStudio.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/RStudio.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;To get started with R download RStudio for your platform by &lt;a href=&#34;https://www.rstudio.com/products/rstudio/download/&#34;&gt;following these instructions&lt;/a&gt; and making sure to install R from the link provided.&lt;/p&gt;
 &lt;p&gt;If you are completely new to R then &lt;a href=&#34;https://www.datacamp.com/&#34;&gt;DataCamp&lt;/a&gt; is a good place to start. The free John Hopkins University &lt;a href=&#34;https://www.coursera.org/course/rprog&#34;&gt;R Programming Course on Coursera&lt;/a&gt; is also very good. The John Hopkins University course is accompanied by the Swirl tutorial package that can be installed using `install.packages(“swirl”) when you have installed R. This is a real asset when getting started.&lt;/p&gt;
 &lt;p&gt;In developing this Manual we mainly focused on developing resources with R. However, we would emphasise that Python may also be important for your needs. For a recent discussion on the strengths and weaknesses of R and Python see this &lt;a href=&#34;http://www.r-bloggers.com/choosing-r-or-python-for-data-analysis-an-infographic/&#34;&gt;Datacamp article on the &lt;code&gt;Data Science Wars&lt;/code&gt; and accompanying excellent infographic&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;https://rapidminer.com/products/studio/&#34;&gt;RapidMiner Studio&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Comes with a free service and a variety of tiered paid plans. RapidMiner focuses on machine learning, data mining, text mining and analytics.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/RapidMiner.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/RapidMiner.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.knime.org&#34;&gt;KNIME&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;An open platform for data mining.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/KNIME.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/KNIME.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Other data mining tools (such as &lt;a href=&#34;http://www.cs.waikato.ac.nz/ml/weka/&#34;&gt;WEKA&lt;/a&gt; and &lt;a href=&#34;http://www.nltk.org&#34;&gt;NLTK&lt;/a&gt; in Python are covered below). If you would like to explore other data mining software try this &lt;a href=&#34;http://www.predictiveanalyticstoday.com/top-free-data-mining-software/&#34;&gt;article&lt;/a&gt; for some ideas.&lt;/p&gt;
 &lt;p&gt;##Data visualization&lt;/p&gt;
 &lt;p&gt;If you are new to data visualization we suggest that you might be interested in the work of Edward Tufte at Yale University and his famous book &lt;a href=&#34;http://en.wikipedia.org/wiki/Edward_Tufte&#34;&gt;The Visual Display of Quantitative Information&lt;/a&gt;. His &lt;a href=&#34;http://users.ha.uth.gr/tgd/pt0501/09/Tufte.pdf&#34;&gt;critique of the uses and abuses of Powerpoint&lt;/a&gt; is also entertaining and insightful. The work of Stephen Few, such as &lt;a href=&#34;http://www.analyticspress.com/show.html&#34;&gt;Show Me the Numbers: Designing Tables and Graps to Enlighten&lt;/a&gt; is also popular.&lt;/p&gt;
@@ -86,10 +86,10 @@
 &lt;li&gt;For an overview of using Google Charts in R then see the &lt;code&gt;GoogleVis&lt;/code&gt; package and its examples &lt;a href=&#34;http://cran.r-project.org/web/packages/googleVis/vignettes/googleVis.pdf&#34;&gt;here&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;For an overview using Google Charts with Python see the &lt;a href=&#34;https://code.google.com/p/google-chartwrapper/&#34;&gt;google-chartwrapper&lt;/a&gt; or &lt;a href=&#34;http://python-google-charts.readthedocs.org/en/latest/#&#34;&gt;Python Google Charts&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/google_sheets_addon.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/google_sheets_addon.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;https://public.tableau.com/s/&#34;&gt;Tableau Public&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;An in depth chapter on getting started with patent analysis and visualization using Tableau Public is available &lt;a href=&#34;http://poldham.github.io/tableau-patents/&#34;&gt;here&lt;/a&gt;. When your patent data has been cleaned, Tableau Public is a powerful way of developing interactive dashboards and maps with your data and combining it with other data sources. Bear in mind that Tableau Public data is, by definition, public and it should not be used with sensitive data.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tableau/dashboard_completed.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tableau/dashboard_completed.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The workbook can be viewed online &lt;a href=&#34;https://public.tableau.com/profile/wipo.open.source.patent.analytics.manual#!/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;###R and RStudio&lt;/p&gt;
 &lt;p&gt;R is a statistical programming language for working with all kinds of different types of data. It also has powerful visualization tools including &lt;code&gt;packages&lt;/code&gt; that provide an interface with Google Charts, &lt;a href=&#34;https://plot.ly&#34;&gt;Plotly&lt;/a&gt; and others. If you are interested in using R then we suggest using RStudio which can be downloaded &lt;a href=&#34;http://www.rstudio.com/&#34;&gt;here&lt;/a&gt;. The entire WIPO Open Source Patent Analytics Manual was written in RStudio using Rmarkdown to output the articles for the web, .pdf and presentations. As this suggests, it is not simply about data visualization. To get started with R and RStudio try the free tutorials at &lt;a href=&#34;https://www.datacamp.com/&#34;&gt;DataCamp&lt;/a&gt;. We will cover R in more detail in other chapters and online articles.&lt;/p&gt;
@@ -103,14 +103,14 @@
 &lt;p&gt;We will cover &lt;code&gt;ggplot2&lt;/code&gt; and &lt;code&gt;ggvis&lt;/code&gt; in greater depth in future chapters. Until then, to get started see the chapters on &lt;code&gt;ggplot2&lt;/code&gt; on &lt;a href=&#34;http://www.r-bloggers.com/search/ggplot2&#34;&gt;R-Bloggers&lt;/a&gt; and here for &lt;a href=&#34;http://www.r-bloggers.com/?s=ggvis&#34;&gt;ggvis&lt;/a&gt;. Datacamp offers a free tutorial on the use of &lt;code&gt;ggvis&lt;/code&gt; that can be accessed &lt;a href=&#34;http://www.r-bloggers.com/ggvis-tutorial-become-a-data-visualization-expert-with-rstudio/&#34;&gt;here&lt;/a&gt;. For a wider overview of some of the top R packages see Qin Wenfeng’s recent &lt;a href=&#34;https://github.com/qinwf/awesome-R&#34;&gt;awesome R list&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;###Shiny&lt;/p&gt;
 &lt;p&gt;Shiny from &lt;a href=&#34;(http://www.rstudio.com/)&#34;&gt;RStudio&lt;/a&gt; is a web application framework for R. What that means is that you can output tables and visual data from R such as those from the tools mentioned above to the web.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/Shiny.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/Shiny.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://shiny.rstudio.com&#34;&gt;Shiny apps&lt;/a&gt; for R users allows for the creation of online interactive apps (upto 5 for free). See the &lt;a href=&#34;http://shiny.rstudio.com/gallery/&#34;&gt;Gallery&lt;/a&gt; for examples. See &lt;a href=&#34;http://www.r-bloggers.com/search/shiny&#34;&gt;RBloggers&lt;/a&gt; for more examples and tutorials.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://vnijs.github.io/radiant/index.html&#34;&gt;Radiant&lt;/a&gt; is a browser based platform for business analytics in R. It is based on Shiny (above) but is specifically business focused.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/Radiant.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/Radiant.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;For a series of starter videos on Radiant see &lt;a href=&#34;http://vnijs.github.io/radiant/tutorials.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www-01.ibm.com/software/analytics/many-eyes/&#34;&gt;IBM Many Eyes&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;You need to Register for a free account to really understand what this is about, &lt;a href=&#34;http://www-969.ibm.com/software/analytics/manyeyes/&#34;&gt;try this page&lt;/a&gt; and select register in the top right.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/manyeyes.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/manyeyes.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###Other visualization Tools&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://tulip.labri.fr/TulipDrupal/&#34;&gt;Tulip&lt;/a&gt;: data visualization framework in C++&lt;/li&gt;
@@ -132,39 +132,39 @@
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;Visualising networks of applicants and inventors in a particular field or scientific researchers. An example of this type of work for synthetic biology is &lt;a href=&#34;http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0034368&#34;&gt;here&lt;/a&gt; for a network of approximately 2,000 authors of articles on synthetic biology.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/synbio.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/synbio.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;Visualising areas of technology and their relationships using the International Patent Classification and the Cooperative Patent Classification (CPC). Previous work at WIPO pioneered the use of large scale patent network analysis to identify the &lt;a href=&#34;http://www.wipo.int/patentscope/en/programs/patent_landscapes/reports/animal_gr.html&#34;&gt;patent landscape for animal genetic resources&lt;/a&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;The image below displays a network map of Cooperative Patent Classification Codes and International Patent Classification codes for 10s of thousands of patent documents that contain references to a range of farm animals (cows, pigs, sheep etc.). The dots are CPC/IPC codes describing areas of technology. The clusters show tightly linked documents that share the same codes that can then be described as ‘modules’ or clusters. The authors of the landscape report on animal genetic resources used this network as an exploratory tool to extract and examine the documents in the cluster for relevance. Distant clusters, such as Cooking equipment and Animal Husbandry (housing of animals etc.), were discarded. The authors later used network mapping to explore and classify the individual clusters.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/animals.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/animals.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;Visualising networks of key terms in patent documents and their relationships with other terms as part of the exploration and refinement of analysis. In this case the authors have clustered similar terms onto each other using word stemming to understand the contents of the new breeds of animals cluster above in relation to animal breeding.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/breeds_cluster.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/breeds_cluster.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;As such, network visualization can be seen as both an exploratory tool for defining the object of interest and as the end result (e.g. a defined network of actors in a specific area).&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;https://gephi.github.io&#34;&gt;Gephi&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Gephi is Java based open source network generating software. It can cope with large datasets (depending on your computer) to produce powerful visualizations.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/Gephi.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/Gephi.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;One issue that may be encountered, particularly by Mac users, is problems with installing the right Java version. This problem appears to have been solved with the latest release Version 0.9.&lt;/p&gt;
 &lt;p&gt;To create &lt;code&gt;.gexf&lt;/code&gt; network files in R try the &lt;a href=&#34;http://cran.r-project.org/web/packages/rgexf/index.html&#34;&gt;gexf&lt;/a&gt; package and example code and source code &lt;a href=&#34;https://bitbucket.org/gvegayon/rgexf/wiki/Home&#34;&gt;here&lt;/a&gt;. In Python try the &lt;a href=&#34;https://github.com/paulgirard/pygexf&#34;&gt;pygexf&lt;/a&gt; library and for anything else such as Java, Javascript C++ and Perl see &lt;a href=&#34;http://gexf.net/format/&#34;&gt;gexf.net&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://nodexl.codeplex.com&#34;&gt;NodeXL&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;For die hard Excel users, &lt;a href=&#34;http://nodexl.codeplex.com&#34;&gt;NodeXL&lt;/a&gt; is a plug in that can be used to visualise networks. It works well.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/NodeXL.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/NodeXL.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.cytoscape.org/what_is_cytoscape.html&#34;&gt;Cytoscape&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://www.cytoscape.org/what_is_cytoscape.html&#34;&gt;Cytoscape&lt;/a&gt; is another network visualization programme. It was originally designed for the visualization of biological networks and interactions but, as with so many other bioinformatics tools, can be applied to a wider range of visualization tasks.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/cytoscape.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/cytoscape.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We mainly have experience with using Gephi (above) but Cytoscape is well worth exploring. Cytoscape works with Windows, Mac and Linux.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://mrvar.fdv.uni-lj.si/pajek/&#34;&gt;Pajek&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This is one of the oldest and most established of the free network tools and is Windows only (or run via a Virtual Machine). It is widely used in bibliometrics and can handle large datasets. It is a matter of personal preference but tools such as Gephi may be superseding Pajek because they are more flexible. However, Pajek may possibly have an edge in precision, ease of reproducibility and the important ability to easily save work that Gephi can lack as a Beta programme.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/Pajek.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/Pajek.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Data can also be exported from Pajek to Gephi for those who prefer the look and feel of Gephi.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.vosviewer.com/Home&#34;&gt;VOS Viewer&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;VOS Viewer from Leiden University is similar to Gephi and Cytoscape but also presents different types of landscape (as opposed to pure network node and edge visuals). The latest version can also speak to both Gephi and Cytoscape. It is worth testing for different visual display options and its ability to handle Web of Science and Scopus bibliographic data.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/VOSviewer.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/VOSviewer.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.hiveplot.net&#34;&gt;Hive Plots&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;We are not entirely sure what to make of Hive Plots. However, we have a lot of sympathy with the aims. The aim of network visualization should be to clarify the complex… not “wow, look, I made something that looks like spaghetti” (although that is normally part of the process). So, we find Hive Plots developed by Martin Krzywinski at the Genome Sciences Center at the BC Cancer Agency interesting.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/HivePlots.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/HivePlots.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Designed for large networks there are packages for Hive plots in Python through &lt;a href=&#34;https://pypi.python.org/pypi/pyveplot/&#34;&gt;pyveplot&lt;/a&gt; and &lt;a href=&#34;https://github.com/ericmjl/hiveplot&#34;&gt;hiveplot&lt;/a&gt;. For R there is &lt;a href=&#34;http://academic.depauw.edu/~hanson/HiveR/HiveR.html&#34;&gt;HiveR&lt;/a&gt; with documentation available on CRAN &lt;a href=&#34;http://cran.r-project.org/web/packages/HiveR/index.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;In closing this discussion of network mapping tools it is also important to note that network visualizations need to be exported as images. This means that there are additional requirements for image handling software. Open source tools such as &lt;a href=&#34;http://www.gimp.org&#34;&gt;The GNU Image Manipulation Program or GIMP&lt;/a&gt; are perfectly adequate and easy to use for image handling. Where using labels particular attention should be paid to outlining the text to ensure consistency of display across different computers. These kinds of tasks can be performed in tools such as GIMP.&lt;/p&gt;
 &lt;p&gt;For other sources of network visualization see &lt;a href=&#34;http://opendata-tools.org/en/visualization/&#34;&gt;FlowingData&lt;/a&gt;. Also try &lt;a href=&#34;http://www.visualcomplexity.com/vc/&#34;&gt;Visual Complexity&lt;/a&gt; and &lt;a href=&#34;http://www.visualisingdata.com/index.php/resources/&#34;&gt;visualising data&lt;/a&gt; for sources of inspiration.&lt;/p&gt;
@@ -183,61 +183,61 @@
 &lt;p&gt;In addition to the ubiquitous &lt;a href=&#34;https://www.google.com/maps/&#34;&gt;Google Maps&lt;/a&gt; or well known &lt;a href=&#34;https://www.google.co.uk/intl/en_uk/earth/&#34;&gt;Google Earth&lt;/a&gt; we think it is well worth taking a close look at other services.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.openstreetmap.org/#map=5/51.500/-0.100&#34;&gt;OpenStreetMap&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Rightly popular.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/OpenStreetMap.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/OpenStreetMap.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://leafletjs.com&#34;&gt;Leaflet&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;A very popular Open Source JavaScript library for interactive maps&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/Leaflet.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/Leaflet.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Accessible through an API. R users could use the &lt;code&gt;leafletr&lt;/code&gt; package with tutorials and walk throughs available at &lt;a href=&#34;http://www.r-bloggers.com/?s=leaflet&#34;&gt;R-bloggers&lt;/a&gt;. For Python users try &lt;code&gt;folium&lt;/code&gt; &lt;a href=&#34;https://github.com/python-visualization/folium&#34;&gt;here&lt;/a&gt; or &lt;a href=&#34;https://pypi.python.org/pypi/folium&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;https://public.tableau.com/s/&#34;&gt;Tableau Public&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Already mentioned above. Tableau Public uses Open Street Map to create a powerful combination of interactive graphs that can be linked to maps geocoded at various levels of detail. See an example &lt;a href=&#34;https://public.tableau.com/profile/poldham#!/vizhome/SyntheticBiologyScientificLandscape/SyntheticBiologyTrends&#34;&gt;here&lt;/a&gt; for the scientific literature on synthetic biology.&lt;/p&gt;
 &lt;p&gt;Tableau Public is probably the easiest way to get started with creating your own maps with patent data. The map below was produced using custom geocoding and connecting the data to publication country and the titles of scientific publications.
-&lt;img src=&#34;https://www.pauloldham.net/images/overview/tableaumap.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;/images/overview/tableaumap.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;To view the interactive version try this &lt;a href=&#34;http://public.tableau.com/profile/poldham#!/vizhome/SyntheticBiologyScientificLandscape/SyntheticBiologyTrends&#34;&gt;page&lt;/a&gt;. It is possible to easily create simple yet effective maps in Tableau Public.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.qgis.org/en/site/&#34;&gt;QGIS&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;A very popular and sophisticated software package running on all major platforms.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/QGIS.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/QGIS.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Using QGIS Oldham and Hall et al mapped the worldwide geographical locations of marine scientific research and patent documents making reference to deep sea locations such as hydrothermal vents (see &lt;a href=&#34;https://www.researchgate.net/publication/273139809_Valuing_the_Deep_Marine_Genetic_Resources_in_Areas_Beyond_National_Jurisdiction&#34;&gt;Valuing the Deep&lt;/a&gt;). This is a low resolution QGIS map of scientific research locations in the oceans based on text mining of the scientific literature.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/valuing1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/valuing1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.geonames.org&#34;&gt;Geonames.org&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Not a mapping programme, instead geonames is an incredibly useful database of georeferenced place names from around the world along with a RESTful &lt;a href=&#34;http://www.geonames.org/export/web-services.html&#34;&gt;web service&lt;/a&gt;. If you need to obtain the georeferenced data for a large number of places then this should be your first stop. geonames can be accessed in R using the &lt;a href=&#34;https://cran.r-project.org/web/packages/geonames/geonames.pdf&#34;&gt;&lt;code&gt;geonames&lt;/code&gt;&lt;/a&gt; along with client libraries for Python, Ruby, PHP and others.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/GeoNames.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/GeoNames.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://icharts.net/product/web-data-visualization&#34;&gt;iCharts&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;A Free and Premium data visualization service:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/icharts.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/icharts.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://openlayers.org&#34;&gt;OpenLayers3&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;OpenLayers3 allows you to add your own layers to OpenStreetMap and other data sources and may come in very useful if you are seeking to create your own layers. It also has an API and tutorials.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/OpenLayer.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/OpenLayer.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;https://cartodb.com/gallery/&#34;&gt;CartoDB&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Free and paid accounts with a nice looking gallery of examples&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/CartoDB.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/CartoDB.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://d3js.org&#34;&gt;d3.js&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;A javascript library for manipulating data and documents. This is the library behind some of the other frequently mentioned visualization tools on the web.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/D3.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/D3.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.highcharts.com&#34;&gt;Highcharts&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Free for non-commercial use with a variety of pricing plans.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/highcharts.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/highcharts.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;https://datawrapper.de&#34;&gt;Datawrapper&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;An entirely open source service for creating charts and maps with your data. Widely used by big newspapers and so the graphics will seem familiar. Either create an account or fork the source from Github &lt;a href=&#34;https://github.com/datawrapper/datawrapper&#34;&gt;here&lt;/a&gt;. There is a free option and a set of pricing plans.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/Datawrapper.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/Datawrapper.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;https://plot.ly/feed/&#34;&gt;Plotly&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Free and with an API with clients for R, Python and Matlab, Plotly is an increasingly popular free service that uses the D3.js library mentioned above with the enterprise version used by companies such as Google. Plotly is increasingly popular and has a range of API clients for Python, Matlab, R, Node.js, and Excel. Plotly’s ease of use and access from a range of environments are big reasons for its growing success.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/Plotly.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/Plotly.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;##Text Mining&lt;/p&gt;
 &lt;p&gt;There are a lot of text mining tools out there and many of them are free or open source. Here are some that we have come across.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.cc.gatech.edu/gvu/ii/jigsaw/&#34;&gt;Jigsaw Visual Analytics&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;For exploring and understanding document collections.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/Jigsaw.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/Jigsaw.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.cs.waikato.ac.nz/ml/weka/&#34;&gt;Weka&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Java based text mining software.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/Weka.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/Weka.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###Word Trees&lt;/p&gt;
 &lt;p&gt;Word trees can be used for detailed investigation of texts such as claims trees. The first two examples are taken from the &lt;a href=&#34;http://www.wipo.int/edocs/pubdocs/en/wipo_pub_946.pdf&#34;&gt;WIPO Guidelines for Preparing Patent Landscape Reports&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;https://developers.google.com/chart/interactive/docs/gallery/wordtree&#34;&gt;Google Word Trees&lt;/a&gt; on the Google Developers site provides instructions for generating word trees using Javascript.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/Word-Trees.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/Word-Trees.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;and &lt;a href=&#34;https://www.jasondavies.com/wordtree/&#34;&gt;Jason Davies&lt;/a&gt; tree creator.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/Word-Tree-Davies.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/Word-Tree-Davies.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://sourceforge.net/projects/khc/?source=directory&#34;&gt;KH Coder&lt;/a&gt;: free software allowing quantitative content analysis/text mining.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/KHCoder.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/KHCoder.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###R and the &lt;code&gt;tm&lt;/code&gt; package&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;tm&lt;/code&gt; package in R (e.g. using RStudio) provides access to a range of text mining tools. For an introduction from the package developers see &lt;a href=&#34;http://cran.r-project.org/web/packages/tm/vignettes/tm.pdf&#34;&gt;here&lt;/a&gt;. A number of very useful tutorials are also available for text mining on &lt;a href=&#34;http://www.r-bloggers.com/?s=text+mining&#34;&gt;R-bloggers&lt;/a&gt;. For a step by step approach see &lt;a href=&#34;http://onepager.togaware.com/TextMiningO.pdf&#34;&gt;Graham Williams (2014) Hands-On Data Science with R Text Mining&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For a recent overview of text mining tools in R see &lt;a href=&#34;http://cran.r-project.org/web/views/NaturalLanguageProcessing.html&#34;&gt;Fridolin Wild’s (2014) CRAN Task View: Natural Language Processing&lt;/a&gt; listing the various packages and their uses.&lt;/p&gt;
@@ -246,7 +246,7 @@
 &lt;p&gt;There are quite a few resources available on text mining using Python. Note that Python may well be ahead of R in terms of text mining resources (until we are proven wrong). However, note that Python and R are increasingly used together to exploit their different strengths. Here are a few resources to help you get started.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.nltk.org&#34;&gt;The Natural Language Toolkit(NTLK)&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;NTLK appears to be the leading package and covers almost all major needs. The accompanying book &lt;a href=&#34;http://shop.oreilly.com/product/9780596516499.do&#34;&gt;Natural Language Processing with Python&lt;/a&gt; may also be worth considering. The &lt;a href=&#34;http://www.christianpeccei.com/textmining/&#34;&gt;Python Textmining Package&lt;/a&gt; is simpler than the giant NTLK package but may suit your needs.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/overview/ntlk.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/overview/ntlk.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This &lt;a href=&#34;http://textminingonline.com/dive-into-nltk-part-i-getting-started-with-nltk&#34;&gt;detailed tutorial&lt;/a&gt; may be helpful for those wanting to get started with the NTLK package in Python.&lt;/p&gt;
 &lt;p&gt;###Other text mining resources&lt;/p&gt;
 &lt;p&gt;For a wider range of text mining options see this predictive analytics article on the &lt;a href=&#34;http://www.predictiveanalyticstoday.com/top-free-software-for-text-analysis-text-mining-text-analytics/&#34;&gt;top 20 free text mining software tools&lt;/a&gt;.&lt;/p&gt;
@@ -284,10 +284,10 @@
     
     <item>
       <title>Accessing Patent Data with WIPO Patentscope</title>
-      <link>https://www.pauloldham.net/patentscope/</link>
+      <link>/patentscope/</link>
       <pubDate>Mon, 25 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/patentscope/</guid>
+      <guid>/patentscope/</guid>
       <description>&lt;p&gt;##Introduction&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://patentscope.wipo.int/search/en/search.jsf&#34;&gt;Patentscope&lt;/a&gt; is the WIPO public access database. It includes coverage of the Patent Cooperation Treaty applications (administered by WIPO) and a &lt;a href=&#34;https://patentscope.wipo.int/search/en/help/data_coverage.jsf&#34;&gt;wide range of other countries&lt;/a&gt; including the European Patent Office, USPTO and Japan totalling 51 million patent documents including 2.8 million PCT applications.&lt;/p&gt;
 &lt;p&gt;This article is now a chapter in the &lt;a href=&#34;https://wipo-analytics.github.io/&#34;&gt;WIPO Manual on Open Source Patent Analytics&lt;/a&gt;. You can read the chapter in electronic book format &lt;a href=&#34;https://wipo-analytics.github.io/patentscope-1.html&#34;&gt;here&lt;/a&gt; and find all the materials including presentations at the &lt;a href=&#34;https://github.com/wipo-analytics&#34;&gt;WIPO Analytics Github homepage&lt;/a&gt;.&lt;/p&gt;
@@ -312,44 +312,44 @@
 &lt;p&gt;If you would like to download patent or sequence data you will need to register for a free account. To register for a free account go &lt;a href=&#34;https://patentscope.wipo.int/search/en/reg/registration.jsf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;##Collections to Search&lt;/p&gt;
 &lt;p&gt;Perhaps the best place to start is with the collections we will be searching. Those can be accessed under the Options menu on the main menu and then the tab reading &lt;a href=&#34;https://patentscope.wipo.int/search/en/reg/registration.jsf&#34;&gt;office&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/patentscope/collections.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/patentscope/collections.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can see here that Patentscope provides access to the Patent Cooperation Treaty collection, regional collections such as the ARIPO and the European Patent Office and national collections such as the United States, Japan and Others. The ability to search and retrieve data from the LATIPAT collection will be particularly useful for researchers in Latin America and could be linked to analysis using the espacenet version of &lt;a href=&#34;http://lp.espacenet.com&#34;&gt;LATIPAT&lt;/a&gt;. If you are only interested in particular collections, this is the place to change the settings.&lt;/p&gt;
 &lt;p&gt;##Simple Search&lt;/p&gt;
 &lt;p&gt;We can select a range of different fields for search. In this case we have selected full text from the drop down menu for a simple search on the term pizza.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/patentscope/simplesearch.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/patentscope/simplesearch.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note that Patentscope groups documents for the same application into a record or dossier and that we are seeing the document that is the key for the record. The other documents in the dossier for the record can be accessed by clicking the document number and selecting the Documents menu as in this &lt;a href=&#34;https://patentscope.wipo.int/search/en/detail.jsf?docId=WO2014047700&amp;amp;recNum=2&amp;amp;tab=PCTDocuments&amp;amp;maxRec=25177&amp;amp;office=&amp;amp;prevFilter=&amp;amp;sortOption=Relevance&amp;amp;queryString=ALLTXT%3A%28pizza%29&#34;&gt;example&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For more details on using simple search see the &lt;code&gt;Simple Search&lt;/code&gt; &lt;a href=&#34;https://patentscope.wipo.int/search/en/tutorial.jsf&#34;&gt;video tutorial&lt;/a&gt;. Videos are also available on the use of Field Combinations for constructing searches and Advanced Search.&lt;/p&gt;
 &lt;p&gt;##Results&lt;/p&gt;
 &lt;p&gt;When we arrive at the results page we can see that we have 24,614 results with our query displaying as searching &lt;code&gt;AllTXT&lt;/code&gt; and all languages. We then have an RSS button to copy the feed over to an RSS feeder for updates.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/patentscope/patentscopsesimple_pizza.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/patentscope/patentscopsesimple_pizza.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;There is also a query tree button that displays results by language and terms in the relevant sections of the document. We can see an example of this for a more complex query below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/patentscope/query_tree.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/patentscope/query_tree.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;A video tutorial is also available for the &lt;a href=&#34;https://patentscope.wipo.int/search/en/tutorial.jsf&#34;&gt;Search result list&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;##Downloading Results&lt;/p&gt;
 &lt;p&gt;The two excel icons at the end of the menu allow a user to download either the short list (first icon) or the second list as a &lt;code&gt;.xls&lt;/code&gt; file. To see these icons you must be logged in with a user account or they will not display.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/patentscope/pizzaexporting.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/patentscope/pizzaexporting.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;When we download these results we will receive an &lt;code&gt;.xls&lt;/code&gt; sheet with up to 10,000 entries with a couple of header rows that show the query. Note that each record in the Excel sheet is hyperlinked to the corresponding record in Patentscope.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/patentscope/results.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/patentscope/results.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We will go into the use of this data, including with Tableau Public and other tools, in some depth and there are a few things to note here. The first is that the hyperlinked publication number does not possess a kind code (A1, B1 etc.). This only matters in the sense that the number will retrieve multiple documents in other databases linked to the Patentscope number. A second point to note is that Patentscope data is &lt;code&gt;raw&lt;/code&gt; in the sense that it is data as it comes from the data providers and is not processed. That means that there can be encoding issues that we will come back to later on in the discussions on data cleaning.&lt;/p&gt;
 &lt;p&gt;What is very useful about Patentscope is that we can actually obtain quite a significant volume of data on a topic of interest. While this article has simply downloaded the first 10,000 results, to obtain the full result set it would be easy enough to limit the data by year and download the data as a series of sets that can be combined later (e.g. three sets).&lt;/p&gt;
 &lt;p&gt;To do this we need to visit the Field Combination Page. Here we will start by putting our query in English All to gain the total number of results. Then we will restrict the data by the publication data field using &lt;code&gt;[]&lt;/code&gt; and period between dates (as DD.MM.YYYY). An example is shown below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/wipo_settings.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/wipo_settings.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This will helpfully show the total results for the query (although it can take some time) and we can run and then download results for each year limited segment.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/wipo_results.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/wipo_results.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;When working with multiple downloads it is a good idea to write down the total number of results and then the results for each date limited segment to ensure that the data adds up to what you would expect. Some experimentation may also be needed with the field settings using the Boolean AND/OR operators.&lt;/p&gt;
 &lt;p&gt;##Cross Lingual Searching&lt;/p&gt;
 &lt;p&gt;One challenge in patent searching is the use of different expressions in different languages for the same query. Patentscope presents a very useful solution to this through cross-lingual searching. From the pull down menu select &lt;code&gt;Cross Lingual Expansion&lt;/code&gt;, then enter the search terms and press go. The tool will now generate search terms in multiple languages.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/patentscope/pizzacrosslingual.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/patentscope/pizzacrosslingual.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;To go further with this tool use either the slider settings (precision vs. recall). For example, if we were to insert the search term “synthetic biology” and move recall to the top level (4), we would generate the following query.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;&amp;quot;FP:((EN_TI:(&amp;quot;synthetic biology&amp;quot; OR &amp;quot;biologic synthetic&amp;quot;) OR EN_AB:(&amp;quot;synthetic biology&amp;quot; OR &amp;quot;biologic synthetic&amp;quot;)) OR (DE_TI:(&amp;quot;synthetische Biologie&amp;quot; OR &amp;quot;synthetischen biologischen&amp;quot; OR &amp;quot;biologische synthetische&amp;quot; OR &amp;quot;Biologische synthetische&amp;quot;) OR DE_AB:(&amp;quot;synthetische Biologie&amp;quot; OR &amp;quot;synthetischen biologischen&amp;quot; OR &amp;quot;biologische synthetische&amp;quot; OR &amp;quot;Biologische synthetische&amp;quot;)) OR (ES_TI:(&amp;quot;biológicas sintéticas&amp;quot;) OR ES_AB:(&amp;quot;biológicas sintéticas&amp;quot;)) OR (FR_TI:(&amp;quot;biologie synthétique&amp;quot; OR &amp;quot;biologie synthéthique&amp;quot;) OR FR_AB:(&amp;quot;biologie synthétique&amp;quot; OR &amp;quot;biologie synthéthique&amp;quot;)) OR (JA_TI:(&amp;quot;生物合成&amp;quot; OR &amp;quot;合成生体&amp;quot; OR &amp;quot;の生物学的合成&amp;quot;) OR JA_AB:(&amp;quot;生物合成&amp;quot; OR &amp;quot;合成生体&amp;quot; OR &amp;quot;の生物学的合成&amp;quot;)) OR (ZH_TI:(&amp;quot;合成生物&amp;quot;) OR ZH_AB:(&amp;quot;合成生物&amp;quot;)))&amp;quot;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;If supervised mode is selected from the &lt;code&gt;Expansion mode&lt;/code&gt; drop down, it becomes possible to select technology areas for the generation of terminology. While we haven’t worked through this in detail that could be very helpful for domain specific query generation. All in all, this is one of the most original and powerful tools that Patentscope has to offer. A detailed &lt;code&gt;.pdf&lt;/code&gt; guide to using CLIR is available &lt;a href=&#34;https://patentscope.wipo.int/search/help/en/CLIR_DOC.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;##Sequence Data&lt;/p&gt;
 &lt;p&gt;A third major feature of Patentscope is access to DNA and amino acid sequence listings filed with PCT Applications. This data can be accessed and downloaded for individual records &lt;a href=&#34;https://patentscope.wipo.int/search/en/sequences.jsf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/patentscope/sequencesearching.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/patentscope/sequencesearching.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;A sample record from the lists can be seen below as a plain text file. Note that some issues may arise with reconciling the plain text file with the WIPO publication number (WO etc.) and this merits careful attention if using this data.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/patentscope/pctseq.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/patentscope/pctseq.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Registered account holders can also use the &lt;code&gt;ftp anonymous download&lt;/code&gt; service from the same page. This provides access to the sequence data by year as can be seen below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/patentscope/sequenceftp.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/patentscope/sequenceftp.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;If using the anonymous ftp service note that the recent data is measured in gigabytes, so do not try to download this data over a weak WIFI connection, a gated connection or to your phone(!). Nevertheless, the open accessibility of this data is important. For other sequence data sources you may be interested in the European Bioinformatics Institute resources &lt;a href=&#34;http://www.ebi.ac.uk/patentdata&#34;&gt;here&lt;/a&gt; and for the US by document number &lt;a href=&#34;http://seqdata.uspto.gov/&#34;&gt;here&lt;/a&gt; and until March 2015 at the DNA Patent Database &lt;a href=&#34;https://dnapatents.georgetown.edu/&#34;&gt;here&lt;/a&gt;. Also important is the Lens &lt;code&gt;Patseq&lt;/code&gt; tool &lt;a href=&#34;https://www.lens.org/lens/bio/sequence&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;##Round Up&lt;/p&gt;
 &lt;p&gt;WIPO Patentscope is a powerful tool for gaining access to a significant amount of patent data on a topic of interest. The ability to download 10,000 or more records at a time cannot be beaten by other free tools. The &lt;code&gt;Cross Lingual Searching&lt;/code&gt; tool appears to be unique and valuable. Free access to bulk download of sequence data is likely to keep bioinformaticians happy for quite a long time.&lt;/p&gt;
@@ -360,10 +360,10 @@
     
     <item>
       <title>Understanding Patent Databases</title>
-      <link>https://www.pauloldham.net/patent-databases/</link>
+      <link>/patent-databases/</link>
       <pubDate>Sun, 17 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/patent-databases/</guid>
+      <guid>/patent-databases/</guid>
       <description>&lt;p&gt;##Introduction&lt;/p&gt;
 &lt;p&gt;This article provides a quick overview of some of the main sources of free patent data. It is intended for quick reference and points to some free tools for accessing patent databases that you may not be familiar with.&lt;/p&gt;
 &lt;p&gt;This article is now a chapter in the WIPO Manual on Open Source Patent Analytics. You can read the chapter in electronic book format &lt;a href=&#34;https://wipo-analytics.github.io/databases.html&#34;&gt;here&lt;/a&gt; and find all the materials including presentations at the &lt;a href=&#34;https://github.com/wipo-analytics&#34;&gt;WIPO Analytics Github homepage&lt;/a&gt;.&lt;/p&gt;
@@ -371,75 +371,75 @@
 &lt;p&gt;##The Databases&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;https://www.lens.org/lens/&#34;&gt;The Lens&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Previously known as the Patent Lens this is a well designed site with quite a few visualisation options and access to sequence data. It is possible to search the title, abstract, description and claims of patent documents and create and share data in collections. In 2015 the ability to download up to 10,000 records at a time was added. When combined with interactive charts that allow the user to drill down into results set, this has transformed the Lens into a very useful and innovative database and visualization tool.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/Lens_2015-0517_14-19-26.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/Lens_2015-0517_14-19-26.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;https://patentscope.wipo.int/search/en/search.jsf&#34;&gt;Patentscope&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The WIPO Patentscope database provides access to Patent Cooperation Treaty data including downloads of a selection of fields (up to 10,000 records), a very useful &lt;a href=&#34;https://patentscope.wipo.int/search/en/clir/clir.jsf?new=true&#34;&gt;search expansion translation tool&lt;/a&gt;, and &lt;a href=&#34;https://www3.wipo.int/patentscope/translate/translate.jsf?interfaceLanguage=en&#34;&gt;translation&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/simplesearchresultspizza.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/simplesearchresultspizza.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Obtaining &lt;a href=&#34;https://patentscope.wipo.int/search/en/sequences.jsf&#34;&gt;sequence data from Patentscope&lt;/a&gt;. Note that this rapidly becomes gigabytes of data.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/pctseq.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/pctseq.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://worldwide.espacenet.com/?locale=en_EP&#34;&gt;espacenet&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Probably the best known free patent database from the European Patent Office.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/Espacenet.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/Espacenet.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://lp.espacenet.com&#34;&gt;LATIPAT&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;For readers in Latin America (or Spain &amp;amp; Portugal) LATIPAT is a very useful resource.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/Espacenet_Latipat_2015-0517_15-11-21.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/Espacenet_Latipat_2015-0517_15-11-21.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.epo.org/searching/free/ops.html&#34;&gt;EPO Open Patent Services&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Access patent data through the EPO Application Programming Interface (API) free of charge. Requires programming knowledge.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/OPS.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/OPS.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The developer portal allows you to test your API queries and is recommended.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/OPS_Developer_Portal.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/OPS_Developer_Portal.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.patentsview.org/web/&#34;&gt;USPTO Patents View&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;http://patft.uspto.gov&#34;&gt;USPTO main database search page&lt;/a&gt; can reasonably be described as well… old. In 2016 the USPTO team initiated an &lt;a href=&#34;http://www.uspto.gov/learning-and-resources/open-data-and-mobility&#34;&gt;Open Data and Mobility initiative&lt;/a&gt; that opens up USPTO patent and trademark data. The new &lt;a href=&#34;https://developer.uspto.gov&#34;&gt;Open Date Portal&lt;/a&gt; is still in Beta but provides an insight into things to come.&lt;/p&gt;
 &lt;p&gt;As part of the shift to open data the USPTO has established an external &lt;a href=&#34;http://www.patentsview.org/web/&#34;&gt;Patents View&lt;/a&gt; for free searches and &lt;a href=&#34;http://www.patentsview.org/download/&#34;&gt;bulk downloads&lt;/a&gt;. If simple searching does not meet your needs, or the bulk options are too overwhelming, then &lt;a href=&#34;http://www.patentsview.org/api/doc.html&#34;&gt;the new JSON API service&lt;/a&gt; is likely to meet your needs. The services are still in beta but this is a very exciting development for those who need greater levels of access to patent data or access to specific data fields.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.google.com/patents&#34;&gt;Google Patents&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/googlepatents_2015-0517_14-09-22.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/googlepatents_2015-0517_14-09-22.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;https://developers.google.com/patent-search/terms&#34;&gt;Google Patent Search API&lt;/a&gt; has been deprecated. Access through the Google Custom Search API with the API flag for patents &lt;a href=&#34;http://stackoverflow.com/questions/15028166/python-module-for-searching-patent-databases-ie-uspto-or-epo&#34;&gt;reported&lt;/a&gt; to be &lt;code&gt;&amp;amp;tbm=pts&lt;/code&gt; with example code for using the API in Python.&lt;/p&gt;
 &lt;p&gt;In the free version of the Google Custom Search API data retrieval is limited and the patent field headings are unclear (that is they use non-standard names). For free patent analytics, Google Custom Search is presently of very limited use.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;https://www.google.com/patents/related&#34;&gt;Google Prior Art Finder&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The Google Prior Art Finder is a relatively recent development that allows you to enter search terms or patent numbers and to view and export results.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/google_priorart1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/google_priorart1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;
 The results include a Top Ten and are broken down into sections including Google Scholar, Patents etc.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/google_priorart2.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/google_priorart2.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The Export button will export the top ten results for each section in a .csv file.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/google_priorart3.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/google_priorart3.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It is possible to load more results for a section (e.g. see More Patent Results at the bottom of the results) and then export them (e.g. 20 patent documents rather than 10). In a test we managed to export 140 patent results but this could rapidly become laborious. An additional issue is that the data will need transposing. At the time of writing we had not identified an API route to Prior Art Finder.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;https://www.google.com/googlebooks/uspto.html&#34;&gt;Google USPTO Bulk download&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;http://patft.uspto.gov&#34;&gt;USPTO patent databases&lt;/a&gt; may be archaic but you can download the entire US collection from the &lt;a href=&#34;https://www.google.com/googlebooks/uspto-patents.html&#34;&gt;Google USPTO Bulk download service&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/USPTObulk.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/USPTObulk.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It is a fantastic service, and an example to patent offices everywhere on freeing up patent data. If you have a good broadband connection and the hard drive space, it is quite good fun to suddenly have access to millions of patent records. The authors used the service to text mine the collection for millions of biological species names as reported &lt;a href=&#34;http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0078737&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/USPTOGrant.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/USPTOGrant.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;However, one important issue to note is that the XML delimiting individual documents is not always well demarcated. This means that any code that will work for one bulk set of files may fail on another set. While it is possible to address this, be prepared to spend time working on this and/or seek assistance from a professional programmer. For an insight into these issues see this &lt;a href=&#34;http://stackoverflow.com/questions/25107557/parseing-xml-by-r-always-return-xml-declaration-error&#34;&gt;Stackoverflow discussion&lt;/a&gt; on parsing the data in R.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.freepatentsonline.com&#34;&gt;Free Patents Online&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Sign up for a free account for enhanced access and to save and download data. It has been around quite a while now and while the download options are limited we rather like it.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/Freepatentsonline2015-03-26 16-26-13.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/Freepatentsonline2015-03-26 16-26-13.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.dpma.de/english/service/e-services/depatisnet/&#34;&gt;DEPATISnet&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;We are not covering national databases. However, the patent database of the German Patent and Trademark Office struck us as potentially very useful. It allows for searches in English and German and has extensive coverage of international patent data, including the China, EP, US and PCT collections. The coverage details are &lt;a href=&#34;https://depatisnet.dpma.de/DepatisNet/depatisnet?action=datenbestand&#34;&gt;here&lt;/a&gt;. Worth experimenting with.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/DEPATISnet_13-53-19.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/DEPATISnet_13-53-19.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;http://www.oecd.org/sti/inno/oecdpatentdatabases.htm&#34;&gt;OECD Patent Databases&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;One that is more for patent statisticians. The OECD has invested a lot of effort into developing patent indicators and resources including citations, the Harmonised Applicants names database &lt;a href=&#34;http://www.oecd.org/sti/inno/43846611.pdf&#34;&gt;HAN database&lt;/a&gt;, mapping through the &lt;a href=&#34;http://www.oecd.org/sti/inno/40794372.pdf&#34;&gt;REGPAT database&lt;/a&gt; among other resources that are available free of charge.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/OECD_patent_databases.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/OECD_patent_databases.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Along the same lines the US National Bureau of Economic Research &lt;a href=&#34;http://www.nber.org/patents/&#34;&gt;NBER US Patent Citations Data File&lt;/a&gt; is an important resource.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;https://www.epo.org/searching-for-patents/business/patstat.html&#34;&gt;EPO World Patent Statistical Database&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The most important database for statistical use is the EPO World Patent Statistical Database (PATSTAT) and contains around 90 million records. PATSTAT is not free and costs 1250 Euro for a year (two editions) or 630 Euro for a single edition. The main barrier to using PATSTAT is the need to run and maintain a +200 Gigabyte database. However, there is also an online version of PATSTAT that is free for the first two months if you wish to try it by signing up for the trial (knowledge of SQL required).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/patstat.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/patstat.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;For users seeking to load PATSTAT into a MySQL database Simone Mainardi provides the following &lt;a href=&#34;https://github.com/simonemainardi/load_patstat&#34;&gt;code on Github&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;###Other data sources&lt;/p&gt;
 &lt;p&gt;A number of companies provide access to patent data, typically with tiered access depending on your needs and budget. Examples include &lt;a href=&#34;https://www.thomsoninnovation.com/login&#34;&gt;Thomson Innovation&lt;/a&gt;, &lt;a href=&#34;https://www.questel.com/index.php/en/&#34;&gt;Questel Orbit&lt;/a&gt;, &lt;a href=&#34;http://www.stn-international.de/index.php?id=123&#34;&gt;STN&lt;/a&gt;, and &lt;a href=&#34;https://www.patbase.com/login.asp&#34;&gt;PatBase&lt;/a&gt;. We will not be focusing on these services but we will look at the use of data tools to work with data from services such as Thomson Innovation.&lt;/p&gt;
 &lt;p&gt;For more information on free and commercial data providers try the excellent &lt;a href=&#34;http://www.piug.org&#34;&gt;Patent Information User Group&lt;/a&gt; and its list of &lt;a href=&#34;http://wiki.piug.org/display/PIUG/Patent+Databases&#34;&gt;Patent Databases&lt;/a&gt; from Tom Wolff and Robert Austin.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/PIUG_Wiki_2015-0517_15-45-05.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/PIUG_Wiki_2015-0517_15-45-05.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Also worth mentioning is the Landon IP &lt;a href=&#34;http://www.intellogist.com/wiki/Main_Page&#34;&gt;Intellogist&lt;/a&gt; blog which maintains &lt;a href=&#34;http://www.intellogist.com/wiki/Category:Intellogist_Reports&#34;&gt;Search System Reports&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/Intellogist_2015-0517_16-03-52.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/Intellogist_2015-0517_16-03-52.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;##Tools for Accessing Patent Data&lt;/p&gt;
 &lt;p&gt;In closing this chapter we will highlight a couple of tools for accessing patent data, typically using APIs and Python. We will come back to this later and are working to try this approach in R.&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;https://github.com/Patent2net/Patent2Net&#34;&gt;Patent2Net&lt;/a&gt; in Python&lt;/p&gt;
 &lt;p&gt;A Python tool to access and process the data from the European Patent Office OPS service.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/Patent2Net_GitHub_2015-0517_15-49-58.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/Patent2Net_GitHub_2015-0517_15-49-58.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;https://github.com/55minutes/python-epo-ops-client&#34;&gt;Python EPO OPS Client&lt;/a&gt; by Gsong&lt;/p&gt;
 &lt;p&gt;A Python client for OPS access developed by Gsong and freely available on GitHub. Used in Patent2Net above.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/python-epo-ops-client-GitHub_2015-0517_15-53-34.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/python-epo-ops-client-GitHub_2015-0517_15-53-34.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###&lt;a href=&#34;https://github.com/funginstitute/patentserver&#34;&gt;Fung Institute Patent Server&lt;/a&gt; for USPTO data in JSON&lt;/p&gt;
 &lt;p&gt;Researchers at the Fung Institute have also been active in developing open source resources for accessing and working with patent data. We highlight &lt;code&gt;patentserver&lt;/code&gt; but it is worth checking out other resources in the repository such as &lt;a href=&#34;https://github.com/funginstitute&#34;&gt;patentprocessor&lt;/a&gt;, a set of Python scripts for processing USPTO bulk download data. Note that development of these tools no longer appears to be active.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/tools/funginstitutepatentserver.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/tools/funginstitutepatentserver.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;##Round Up&lt;/p&gt;
 &lt;p&gt;One problem confronting patent analysts is access to data in a form that is suitable for more detailed analysis. Typically this involves hundreds or many thousands of records. Recent years have increasingly opened up patent data through the ability to download 1,000 or 10,000 records at a time. However, access to downloads of titles, abstracts and claims or descriptions and full text remains limited when this is what is needed. Patent offices such as the USPTO have taken a leading role in making bulk patent data available and this is very much to be welcomed for those working on patent analytics. However, it is reasonable to say that the present situation is one of improvements in access (through Patentscope, the Lens and the EPO OPS service) but not quite in the quantitities or with the data fields patent analysts would like.&lt;/p&gt;
 </description>

@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R on Paul Oldham&#39;s Analytics Blog</title>
-    <link>https://www.pauloldham.net/tags/r/</link>
+    <link>/tags/r/</link>
     <description>Recent content in R on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Mon, 11 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://www.pauloldham.net/tags/r/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>API Resources for the Scientific Literature in R and Python</title>
-      <link>https://www.pauloldham.net/api-resources-for-scientific-literature/</link>
+      <link>/api-resources-for-scientific-literature/</link>
       <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/api-resources-for-scientific-literature/</guid>
+      <guid>/api-resources-for-scientific-literature/</guid>
       <description>&lt;p&gt;This short post provides details on some of the main APIs (web services) that can be used to monitor and retrieve data from the scientific literature in either R or Python. We are using these packages and libraries as part of a GIZ supported project with the authorities in Kenya who are responsible for providing research permits. Kenya is famous for its biodiversity and the diversity of its communities. However, there is no single repository of publications arising from research in Kenya. We are looking to use APIs to automate retrieval of publications about Kenya and its biodiversity. Hopefully this should allow us to build an open access virtual repository of publications on Kenya to serve the needs of researchers and the wider community.&lt;/p&gt;
 &lt;p&gt;We plan to use three main APIs for the Kenya project. There are many APIs out there but we will focus on those that aggregate data from different sources. I’ll add a few more that are interesting mainly for biodiversity topics.&lt;/p&gt;
 &lt;div id=&#34;main-apis&#34; class=&#34;section level2&#34;&gt;
@@ -29,8 +29,9 @@
 &lt;li&gt;The Crossref API: &lt;a href=&#34;https://github.com/CrossRef/rest-api-doc&#34; class=&#34;uri&#34;&gt;https://github.com/CrossRef/rest-api-doc&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Rcrossref: &lt;a href=&#34;https://github.com/ropensci/rcrossref&#34; class=&#34;uri&#34;&gt;https://github.com/ropensci/rcrossref&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;Python: &lt;a href=&#34;https://pypi.org/project/habanero/&#34; class=&#34;uri&#34;&gt;https://pypi.org/project/habanero/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;For lovers of all things Ruby try the Serrano Ruby gem &lt;a href=&#34;https://github.com/sckott/serrano&#34; class=&#34;uri&#34;&gt;https://github.com/sckott/serrano&lt;/a&gt; and &lt;a href=&#34;https://www.rubydoc.info/gems/serrano&#34;&gt;rubydoc version&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;The rcrossref and python wrappers were both created by Scott Chamberlain and collaborators at the fantastic &lt;a href=&#34;https://ropensci.org/&#34;&gt;ROpenSci&lt;/a&gt;. Note that searching on crossref is rather limited and so cannot really be used for statistical purposes (the search searches what they have available and that may be quite mixed) BUT crossref is still really useful. In particular it can be used to search for the names of researchers and to retrieve publication details or to enter a list of DOIs.&lt;/p&gt;
+&lt;p&gt;The rcrossref, python and ruby wrappers were all created by Scott Chamberlain and collaborators at the fantastic &lt;a href=&#34;https://ropensci.org/&#34;&gt;ROpenSci&lt;/a&gt;. Note that searching on crossref is rather limited and so cannot really be used for statistical purposes (the search searches what they have available and that may be quite mixed) BUT crossref is still really useful. In particular it can be used to search for the names of researchers and to retrieve publication details or to enter a list of DOIs.&lt;/p&gt;
 &lt;p&gt;A walkthrough on using rcrossref to access the scientific literature for Kenya is available &lt;a href=&#34;https://poldham.github.io/abs/crossref.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For text retrieval and text mining, the &lt;a href=&#34;https://github.com/ropensci/crminer&#34;&gt;crminer&lt;/a&gt; package by Scott Chamberlain is intended to facilitate access to full texts for text mining purposes from Crossref. You will also very probably want to check out Scott’s &lt;a href=&#34;https://github.com/ropensci/fulltext&#34;&gt;fulltext package&lt;/a&gt; for text retrieval from a range of different APIs including some of those listed here.&lt;/p&gt;
 &lt;/div&gt;
@@ -131,10 +132,10 @@ See the walkthrough by &lt;a href=&#34;https://cran.r-project.org/web/packages/e
     
     <item>
       <title>Counting Patent First Filings the Tidy Way with R</title>
-      <link>https://www.pauloldham.net/counting-patent-first-filings/</link>
+      <link>/counting-patent-first-filings/</link>
       <pubDate>Fri, 11 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/counting-patent-first-filings/</guid>
+      <guid>/counting-patent-first-filings/</guid>
       <description>&lt;p&gt;This article provides an in depth introduction to counting patent first filings or priority counts. It is a work in progress chapter for the WIPO Patent Analytics Handbook focusing on advanced patent analytics and builds on the introductory &lt;a href=&#34;https://wipo-analytics.github.io/&#34;&gt;WIPO Manual on Open Source Patent Analytics&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Counting first filings is an important subject for patent statistics because the first filing of a patent application marks the date that is closest to investment in research and development leading to the invention. For this reason it is widely used by economists and statisticians as a proxy indicator for the analysis of trends in science and technology.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; For patent applicants, the first filing, and the priority date that defines it, can be the difference between success and failure. An applicant with priority in the filing of an application for the same invention as their competitor will win in a dispute, and potentially win in multiple countries around the world. Millions, and in some cases hundreds of millions, of dollars may ride on who holds priority over an invention.&lt;/p&gt;
 &lt;p&gt;For such an important subject, remarkably little has been written on the practical aspects of counting patents by priority or, as is more intuitive, first filings. The international patent priority system has its origins in the &lt;a href=&#34;http://www.wipo.int/treaties/en/ip/paris/summary_paris.html&#34;&gt;1883 Paris Convention for the Protection of Industrial Property&lt;/a&gt; and basically means that inventors in contracting states to the Convention have a twelve month period from the date of filing their invention to file in other contracting states. During that period any filing in a contracting state will be treated as if it was filed on the same date as the original filing and will enjoy priority over other competing claims to the same invention.&lt;/p&gt;
@@ -186,7 +187,7 @@ numbers &amp;lt;- read_csv(&amp;quot;https://github.com/wipo-analytics/drones_da
 &lt;p&gt;We will only be working with the priority number and the application number, but as a general principle it is useful to understand the relationship between these fields which can be simply described as follows.&lt;/p&gt;
 &lt;p&gt;priority number &amp;gt; application number &amp;gt; publication number &amp;gt; family members&lt;/p&gt;
 &lt;p&gt;We can get a clearer understanding of the relationship between these numbers by looking at the front page of a patent document from our dataset using the popular &lt;a href=&#34;mailto:esp@cenet&#34;&gt;esp@cenet&lt;/a&gt; database. You can access this example &lt;a href=&#34;https://worldwide.espacenet.com/publicationDetails/biblio?FT=D&amp;amp;date=20151210&amp;amp;DB=EPODOC&amp;amp;locale=en_EP&amp;amp;CC=US&amp;amp;NR=2015357831A1&amp;amp;KC=A1&amp;amp;ND=4&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/priority/witricity.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/priority/witricity.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can see that the front page or biblio of a patent record contains a large amount of information. It is typically this information that is used to generate patent statistics. For our purposes we can see that the priority numbers field consists of one or more priority numbers. We might expect that there would only be one priority number as the original filing for the invention. However that is often not the case as we will discuss below.&lt;/p&gt;
 &lt;p&gt;From the front page we can see that if we proceed up from the priority numbers the first priority number in the list exactly matches the application number on the front page. This tells us that this is the first filing for this particular application. This application is then published as US2015357831A1.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; We can clearly see the relationship we described above&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;priority number &amp;gt; application number &amp;gt; publication number&lt;/code&gt;&lt;/p&gt;
@@ -216,7 +217,7 @@ numbers[1,] %&amp;gt;%
 ##   &amp;lt;chr&amp;gt;                    &amp;lt;chr&amp;gt;                   
 ## 1 US2016578323F 2016-09-20 US2016578323F 2016-09-20&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;However, the patent system is an international system. A patent applicant may choose to file for patent rights in up to 152 contracting parties to the &lt;a href=&#34;http://www.wipo.int/pct/en/&#34;&gt;Patent Cooperation Treaty&lt;/a&gt; (although applications in all member states is unusual). As the applications are submitted in multiple countries additional priority numbers will appear in the record. An example of this is provided below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/priority/japan.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/priority/japan.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In this case we can see that the earliest priority number is for Japan (JP20150122335 20150617) and the second priority number is for WO (the Patent Cooperation Treaty) and incorporates the country code of the first filing JP into the new priority number (WO2016JP67809 20160615). The Patent Cooperation Treaty is the vehicle through which applicants can submit applications in multiple countries. In this case we can see that the applicant from Japan has chosen to pursue an application in the United States using the Patent Cooperation Treaty (WO) resulting in the application number US201615322008 20160615 filed in 2016 that was then published as &lt;a href=&#34;https://worldwide.espacenet.com/publicationDetails/biblio?FT=D&amp;amp;date=20170518&amp;amp;DB=EPODOC&amp;amp;locale=en_EP&amp;amp;CC=US&amp;amp;NR=2017137104A1&amp;amp;KC=A1&amp;amp;ND=4&#34;&gt;US2017137104A1&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;From this we might be tempted to assume that the earliest priority will always appear at the front of the list of priorities. However, this assumption is not safe as we will see below where the first filing appears at the end of the list of priorities. We will be on safer ground by identifying the earliest date in the sequence.&lt;/p&gt;
 &lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
@@ -466,7 +467,7 @@ earliest&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let’s quickly graph this data. Here we are using the popular R graphing package ggplot2 to draw quick graphs of the data. To learn more about using &lt;code&gt;ggplot2&lt;/code&gt; try the excellent &lt;a href=&#34;http://www.cookbook-r.com/Graphs/&#34;&gt;R Graphics Cookbook by Winston Chang&lt;/a&gt; which is available in open access form online. A step by step walk through on using ggplot2 to visualise patent data is available in this &lt;a href=&#34;https://www.pauloldham.net/graphing-patent-data-with-ggplot2-part2/&#34;&gt;article&lt;/a&gt;. If you prefer using Excel or Tableau then write the file to a .csv and then open it in your tool of choice. You can do this simply with the following line of code.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;readr::write_csv(earliest_unique, &amp;quot;earliest_unique.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;ggplot2 is quite a lot more involved than working with Tableau, Excel or other tools but provides a powerful way to control graphing. Let’s take a quick look at the data.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note that graphs of priority data display a characteristic data cliff the closer that we move towards the present. This reflects the fact that patent applications are normally published at least 24 months after they were originally filed. This data cliff can easily mislead an audience into believing that interest in a technology has suddenly collapsed when in reality we are missing or only have partial data for the period. It is therefore important to pull the year range back to accommodate this. Depending on your data it is sensible to pull back the year by at least two years and possibly three years.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;earliest_unique %&amp;gt;% 
   select(-n) %&amp;gt;% 
@@ -477,7 +478,7 @@ earliest&lt;/code&gt;&lt;/pre&gt;
   ggplot(., aes(x = year, y = n)) +
   geom_line() +
   labs(title = &amp;quot;Trends in First Filings of Patent Applications for Drone Technology&amp;quot;, x = &amp;quot;priority year&amp;quot;, y = &amp;quot;first filings&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note the speed bump in the data around 2008 that is likely to reflect the impact of the financial crisis with filings relating to drone technology before accelerating rapidly in recent years.&lt;a href=&#34;#fn7&#34; class=&#34;footnote-ref&#34; id=&#34;fnref7&#34;&gt;&lt;sup&gt;7&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;In this dataset we can also gain an insight into the countries driving this trend by ranking them in a bar graph for the same period.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggthemes)
@@ -495,7 +496,7 @@ earliest_unique %&amp;gt;%
   theme_igray() +
   scale_fill_tableau(&amp;quot;tableau20&amp;quot;) +
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-05-11-counting-patent-first-filings_files/figure-html/echo-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-05-11-counting-patent-first-filings_files/figure-html/echo-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note here that the United States emerges first in the top 5 followed by Japan, France, Korea and the Patent Cooperation Treaty (WO). It is important to bear in mind here that WO records will typically be filed through national offices, although no priority number will be present, as we can see in the references to country codes inside the WO priority documents.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;earliest_unique %&amp;gt;% 
   filter(priority_country == &amp;quot;WO&amp;quot;) %&amp;gt;% 
@@ -633,10 +634,10 @@ results&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>An Update on Importing Excel Data in R</title>
-      <link>https://www.pauloldham.net/importing-excel-data-into-r-updated/</link>
+      <link>/importing-excel-data-into-r-updated/</link>
       <pubDate>Tue, 06 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/importing-excel-data-into-r-updated/</guid>
+      <guid>/importing-excel-data-into-r-updated/</guid>
       <description>&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#import-directly-from-the-rstudio-menu&#34;&gt;Import Directly from the RStudio Menu&lt;/a&gt;&lt;/li&gt;
@@ -651,17 +652,17 @@ results&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;import-directly-from-the-rstudio-menu&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Import Directly from the RStudio Menu&lt;/h2&gt;
 &lt;p&gt;The big change is that it is now very easy to import from Excel using the RStudio Menu: &lt;code&gt;File &amp;gt; Import Dataset &amp;gt; From Excel&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/file_import.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/file_import.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Next, navigate to the file that you want to import and select it. You will then see something like this.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/import_panel.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/import_panel.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;One point to bear in mind is that the import will often default to the name &lt;code&gt;dataset&lt;/code&gt; so that you need to make sure you enter a meaningful name for the dataset.&lt;/p&gt;
 &lt;p&gt;If your workbook has multiple sheets then you can choose a sheet number using &lt;code&gt;Sheet&lt;/code&gt;, choose the maximum number of rows or skip rows if you have a bunch of filler junk in the top rows. Regular Excel users may also want to select columns by Range.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/import_panel_options.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/import_panel_options.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;You can also click on a column and choose to skip it or change the format.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/skip_col.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/skip_col.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It is worth bearing in mind that if you are importing a number of worksheets you can easily lose track. I sometimes use the approach of copying the import chunk into an Rmarkdown document to keep track of what I am doing and where a file came from.&lt;/p&gt;
 &lt;p&gt;When copying chunks note the small clipboard icon in the top right above the chunk that will copy the chunk to the clipboard for pasting into the console or an R markdown code chunk to document your import steps for the future. My approach when working with multiple sheets is to create an R markdown file and copy and paste the import code into chunks that I then save. That allows “future me”, to borrow from Hadley Wickham, to understand where the datasets came from.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/import_panel_chunk.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/import_panel_chunk.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;As we can see from importing the file behind the scenes RStudio is using the &lt;code&gt;readxl&lt;/code&gt; library to import the file.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;readxl&lt;/code&gt; will commonly generate warning messages during the import process. For example this dataset generated a long long string of warnings that looked like this.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -945,10 +946,10 @@ write_xlsx(tmp, &amp;quot;tmp.xlsx&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Creating an Infographic with infogram</title>
-      <link>https://www.pauloldham.net/infographics/</link>
+      <link>/infographics/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/infographics/</guid>
+      <guid>/infographics/</guid>
       <description>&lt;p&gt;In this article we will use RStudio to prepare patent data for visualisation in an infographic using the online software tool &lt;a href=&#34;https://infogram.com/?rc=paid0sem0branded0search0&amp;amp;gclid=EAIaIQobChMIw6KgvMiq2AIViLvtCh2fpgxhEAAYASAAEgKR2PD_BwE&#34;&gt;infogram&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Infographics are a popular way of presenting data in a way that is easy for a reader to understand without reading a long report. Infographics are well suited to presenting summaries of data with simple messages about key findings. A good infographic can encourage the audience to read a detailed report and is a tool for engagement with audiences during presentations of the findings of patent research.&lt;/p&gt;
 &lt;p&gt;Some patent offices have already been creating infographics as part of their reports to policy makers and other clients. The Instituto Nacional de Propiedade Industrial (INPI) in Brazil produces regular two page &lt;a href=&#34;http://www.inpi.gov.br/menu-servicos/informacao/radares-tecnologicos&#34;&gt;Technology Radar&lt;/a&gt; (Radar Tecnologico) consisting of charts and maps that briefly summarise more detailed research on subjects such as &lt;a href=&#34;http://www.inpi.gov.br/menu-servicos/arquivos-cedin/n08_radar_tecnologico_nano_residuos_versao_resumida_ingles_atualizada_20160122.pdf&#34;&gt;Nanotechnology in Waste Management&lt;/a&gt;. &lt;a href=&#34;http://www.wipo.int/patentscope/en/programs/patent_landscapes/&#34;&gt;WIPO Patent Landscape Reports&lt;/a&gt;, which go into depth on patent activity for a particular area, are accompanied by one page infographics that have proved very popular such as the infographic accompanying a recent report on &lt;a href=&#34;http://www.wipo.int/export/sites/www/patentscope/en/programs/patent_landscapes/reports/documents/assistivedevices_infographic.pdf&#34;&gt;assistive devices&lt;/a&gt;.&lt;/p&gt;
@@ -1089,7 +1090,7 @@ pizza_total &amp;lt;- rename(pizza_total, pubyear = publication_year, publicatio
 &lt;p&gt;Using the &lt;code&gt;qplot()&lt;/code&gt; function in &lt;code&gt;ggplot2&lt;/code&gt; we can now draw a quick line graph. Note that qplot() is unusual in R because the data (pizza_total) appears after the coordinates. We will specify that we want a line using &lt;code&gt;geom =&lt;/code&gt; (if geom is left out it will be a scatter plot). This will give us an idea of what our plot might look like in our infographic and actions we might want to take on the data.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
 qplot(x = pubyear, y = publications, data = pizza_total, geom = &amp;quot;line&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2016-04-20-infographics_files/figure-html/qplot-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2016-04-20-infographics_files/figure-html/qplot-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![](images_foot/infogram/fig1_infographic.png)---&gt;
 &lt;p&gt;The plot reveals a data cliff in recent years. This normally reflects a lack of data for the last 2-3 years as recent documents feed through the system en route to publication.&lt;/p&gt;
 &lt;p&gt;It is a good idea to remove the data cliff by cutting the data 2-3 years prior to the present. In some cases two years is sufficient, but 3 years is a good rule of thumb.&lt;/p&gt;
@@ -1146,7 +1147,7 @@ df1 &amp;lt;- select(pizza, publication_number, publication_year) %&amp;gt;% mut
     count(publication_year, wt = n) %&amp;gt;% rename(pubyear = publication_year, publications = nn) %&amp;gt;% 
     filter(pubyear &amp;gt;= 1990, pubyear &amp;lt;= 2012) %&amp;gt;% qplot(x = pubyear, y = publications, 
     data = ., geom = &amp;quot;line&amp;quot;) %&amp;gt;% print()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2016-04-20-infographics_files/figure-html/piped-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2016-04-20-infographics_files/figure-html/piped-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;!---![](images_foot/infogram/fig2_infographic_qplot.png)---&gt;
 &lt;p&gt;In the standard code we typed &lt;code&gt;df&lt;/code&gt; nine times to arrive at the same result. Using pipes we typed df1 once. Of greater importance is that the use of pipes simplifies the structure of R code by introducing a basic “this” then “that” logic which makes it easier to understand.&lt;/p&gt;
 &lt;p&gt;One point to note about this code is that &lt;code&gt;qplot()&lt;/code&gt; requires us to name our data (in this case &lt;code&gt;df1&lt;/code&gt;). However, &lt;code&gt;df1&lt;/code&gt; is actually the final output of the code and does not exist as an input object before the final line is run. So, if we attempt to use &lt;code&gt;data = df1&lt;/code&gt; in &lt;code&gt;qplot()&lt;/code&gt; we will receive an error message. The way around this is to use &lt;code&gt;.&lt;/code&gt; in place of our data object. That way &lt;code&gt;qplot()&lt;/code&gt; will know we want to graph the outputs of the earlier code. Finally, we need to add an explicit call to &lt;code&gt;print()&lt;/code&gt; to display the graph (without this the code will work but we will not see the graph).&lt;/p&gt;
@@ -1173,7 +1174,7 @@ df2 &amp;lt;- select(pizza, publication_number, publication_year) %&amp;gt;% mut
 &lt;p&gt;Note that in this case the only change is that we need to explicitly include the reference to the df2 data frame as the data argument in the call to &lt;code&gt;qplot()&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
 qplot(x = pubyear, y = publications, data = df2, geom = &amp;quot;line&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2016-04-20-infographics_files/figure-html/df2_qplot-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2016-04-20-infographics_files/figure-html/df2_qplot-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;##Harmonising data&lt;/p&gt;
 &lt;p&gt;One challenge with creating multiple tables from a baseline dataset is keeping track of subdatasets. At the moment we have two basic objects we will be working with:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
@@ -1665,18 +1666,18 @@ google_phrases&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;##Creating an infographic in infogr.am&lt;/p&gt;
 &lt;p&gt;If you are starting this chapter here then download the datasets we will be using as a single zip file from the Manual repository &lt;a href=&#34;https://github.com/wipo-analytics/opensource-patent-analytics/blob/master/2_datasets/infographic/infographic.zip?raw=true&#34;&gt;here&lt;/a&gt; and then unzip the file.&lt;/p&gt;
 &lt;p&gt;We first need to sign up for a free account with &lt;a href=&#34;https://infogr.am/&#34;&gt;infogr.am&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/infogram/fig1_infogram_front.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/infogram/fig1_infogram_front.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We will then see a page with some sample infographics to provide ideas to get you started.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/infogram/fig2_infogram_login.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/images/infogram/fig2_infogram_login.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;
 Click on one of the infograms with a graph such as Trends in Something and then click inside the graph box itself and select the edit button in the top right.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/infogram/fig3_infogram_findedit.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/infogram/fig3_infogram_findedit.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This will open up a data panel with the toy data displayed.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;images/infogram/fig4_infogram_datapanel.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We want to replace this data by choosing the upload button and selecting our &lt;code&gt;pizza_country_1990_2012.csv&lt;/code&gt; file.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/infogram/fig5_infogram_panelgraph.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/infogram/fig5_infogram_panelgraph.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We now have a decent looking graph for our country trends data where we can see the number of records per country and year by hovering over the relevant data points. While some of the countries with low frequency data are crunched at the bottom (and would be better displayed in a separate graph), hovering over the data or over a country name will display the relevant country activity. We will therefore live with this.&lt;/p&gt;
 &lt;p&gt;We now want to start adding story elements by clicking on the edit button in the title. Next we can start adding new boxes using the menu icons on the right. Here we have changed the title, added a simple body text for the data credit and then a quote from someone describing themselves as the Head of Pizza Analytics.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/infogram/fig6_infogram_paneltext.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/infogram/fig6_infogram_paneltext.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Next we need to start digging into the data using our IPC, applicants and phrases data.&lt;/p&gt;
 &lt;p&gt;To work with our IPC class data we will add a bar chart and load the data. To do this select the graph icon in the right and then Bar. Once again we will choose edit and then load our &lt;code&gt;pizza_ipcclass_1990_2012&lt;/code&gt; dataset. Then we can add a descriptive text box. We can then continue to add elements as follows:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
@@ -1704,10 +1705,10 @@ Click on one of the infograms with a graph such as Trends in Something and then 
     
     <item>
       <title>Exploring Scientific Literature with rplos</title>
-      <link>https://www.pauloldham.net/rplos-walkthrough/</link>
+      <link>/rplos-walkthrough/</link>
       <pubDate>Tue, 27 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/rplos-walkthrough/</guid>
+      <guid>/rplos-walkthrough/</guid>
       <description>&lt;p&gt;##Introduction&lt;/p&gt;
 &lt;p&gt;In this chapter we look at the use of the &lt;a href=&#34;https://github.com/ropensci/rplos&#34;&gt;&lt;code&gt;rplos&lt;/code&gt;&lt;/a&gt; package from &lt;a href=&#34;https://ropensci.org&#34;&gt;rOpenSci&lt;/a&gt; to access the scientific literature from the &lt;a href=&#34;https://www.plos.org&#34;&gt;Public Library of Science&lt;/a&gt; using the &lt;a href=&#34;http://api.plos.org/solr/faq/&#34;&gt;PLOS Search API&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The Public Library of Science (PLOS) is the main champion of open access peer reviewed scientific publications and has published somewhere in the region of 140,000 articles. These articles are a fantastic resource. PLOS includes the following titles.&lt;/p&gt;
@@ -2161,23 +2162,23 @@ library(swirl)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>An Introduction to Plotly for Patent Analytics</title>
-      <link>https://www.pauloldham.net/an-introduction-to-plotly-for-patent-analytics/</link>
+      <link>/an-introduction-to-plotly-for-patent-analytics/</link>
       <pubDate>Sat, 01 Aug 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/an-introduction-to-plotly-for-patent-analytics/</guid>
+      <guid>/an-introduction-to-plotly-for-patent-analytics/</guid>
       <description>&lt;p&gt;In this article we provide a quick introduction to the online graphing service &lt;a href=&#34;http://plotly.com&#34;&gt;Plotly&lt;/a&gt; to create graphics for use in patent analysis.&lt;/p&gt;
 &lt;p&gt;Plotly is an online graphing service that allows you to import excel, text and other files for visualisation. It also has API services for R, Python, MATLAB and a Plotly Javascript Library. This means that you can send data directly to Plotly for visualisation. Plots can also be shared with team mates or publicly.&lt;/p&gt;
 &lt;p&gt;Plotly’s great strength is that it produces attractive interactive graphics that can easily be shared with colleagues or made public. It also has a wide variety of graph types including contour and heatmaps. For examples of graphs created with Plotly see the &lt;a href=&#34;https://plot.ly/feed/&#34;&gt;public gallery&lt;/a&gt;. However, we experienced significant difficulty in loading patent data into Plotly and we struggled to draw graphs that would take a couple of minutes if we used Tableau Public as our benchmark. This suggests a need for investment of more time in understanding the expectations of the tool to make best use of the service. It may also suggest that while Plotly can produce excellent graphics, the service may need to invest more time in explaining how ordinary human beings might format their data to meet its expectations. In short, as is often the case with open source tools, the basic documentation could be better. Do not let this put you off. Plotly is potentially a great tool for creating and sharing graphics. In the rest of this article we will help you get started as a basis for exploring Plotly on your own.&lt;/p&gt;
 &lt;p&gt;###Getting Started with Plotly&lt;/p&gt;
 &lt;p&gt;We need to start out by creating an account using the Create Account Button.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig1_plotly.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig1_plotly.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Next we will see an invitation to take a tour (which is worth doing) and Plotly helpfully points out that we can load files from Google Drive or Dropbox. We then select the Workspace option to begin work.&lt;/p&gt;
 &lt;p&gt;###Importing Files&lt;/p&gt;
 &lt;p&gt;When you first arrive you will see a Workspace with a Grid (Plotly’s term for a table or worksheet).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig2_workspace.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig2_workspace.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the workspace you will see an Import Icon that provides a range of options for importing data. Don’t import anything yet! You can also copy data from a file and paste it into the Grid.&lt;/p&gt;
 &lt;p&gt;The reason not to use these options at the moment is that while the data may import fine first time, in other cases it will not. Using the options on this page you will receive no information if an import fails. We also encountered problems with saving data that had been pasted into the worksheet (even where it appeared to work). To avoid potential frustration head over to &lt;code&gt;Organize&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig3_import.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig3_import.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;From the Organize page select the New button and then Upload. Now select your local file. When you upload the file a status message will display and if all goes well then you will see a completed message. If not a red message will display informing you that there has been a problem (how you fix these problems is unclear)&lt;/p&gt;
 &lt;p&gt;For this experiment we used tow datasets from the Open Source Patent Analytics Manual &lt;a href=&#34;https://github.com/poldham/opensource-patent-analytics/tree/master/2_datasets&#34;&gt;data repository&lt;/a&gt;. When using the Github repository click on the file of interest until you see a &lt;code&gt;View Raw&lt;/code&gt; message. Then right click to download the data file from there. You can download them for your own use directly from the following links.&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
@@ -2188,48 +2189,48 @@ library(swirl)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We experienced a different type of problem with the simple WIPO trends data where Plotly concatenated the first row (containing labels) and the first data row into one heading row. However, in most cases import seemed to be fine. To turn a row into a heading row try right clicking the row with the headings and right clicking on &lt;code&gt;use row as col headers&lt;/code&gt;. Then right click again to remove the original row.&lt;/p&gt;
 &lt;p&gt;##Creating a graphic&lt;/p&gt;
 &lt;p&gt;We will start with the simple WIPO trends data by opening up that Grid&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig5_grid.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig5_grid.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note here that in the Grid we have options to select the x or y axis for plotting. There is also an Options menu that we will come back to.&lt;/p&gt;
 &lt;p&gt;The Type of plot can be changed by selecting the drop down menu as we can see below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig6_gtype.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig6_gtype.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Sticking with a line graph, when we create the plot we can add a title and then change the theme (in this case to Catherine).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig7_line.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig7_line.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We could also add a fit line by selecting the &lt;code&gt;FIT DATA&lt;/code&gt; menu icon. This will ask you to create a fit and then you have a range of preset functions or you can add your own. Here we have simply chosen the default Linear fit.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig8_fit.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig8_fit.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can then save the plot and use the export button to save the plot in a variety of formats and sizes. It is also very easy to add annotations using the Notes icon. Confusingly, the large blue Share button only seems to save the file and despite saving the plot we were not able to locate it again. While Plotly certainly looks nice, and appears to have attractive functions it is not intuitive and the difficulties involved in importing and sharing can be frustrating and time consuming. In short, time is needed to invest in and explore the potential of this tool.&lt;/p&gt;
 &lt;p&gt;###Adding a Second Axis&lt;/p&gt;
 &lt;p&gt;If we go back to our original WIPO trends data we have a percentage score for the year on year change in patent applications. We might want to show this on a plot with a second axis for the percentage.&lt;/p&gt;
 &lt;p&gt;To do that select the percentage as a second item for the y axis.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig9_secondy.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig9_secondy.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;When we choose Line plot we will now see the two sets of data with the percentage trailing on the bottom. We now need to create a second y axis on the right and assignee the percentage data to that.&lt;/p&gt;
 &lt;p&gt;To do this select the Traces icon and a menu will pop up showing the data traces. Select Growth Rate % from the Traces menu. Then where you see Lines/Markers select the dot. This will prevent the percentage scores displaying as a line.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig11_addaxis.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig11_addaxis.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Next, select &lt;code&gt;New Axis/Subplot&lt;/code&gt; and a new screen will pop up. We have some choices here but will simply choose to create a new axis on the right.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig11_addyaxis.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig11_addyaxis.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The result will look something like this.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig12_result1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig12_result1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Our issue now is equalising the axes and changing the size of the points for the percentage scores. Finally we can add a title.&lt;/p&gt;
 &lt;p&gt;Before we go any further let’s note that we have a significant minus axis value of -3.6% in 2009 when patent applications declined. There is also a minus value in 2002.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig13_dip.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig13_dip.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;If we wanted to retain these values we would probably want to turn off the second set of grid lines. We would also want to resize the points.&lt;/p&gt;
 &lt;p&gt;To turn of the grid lines on the second y axis Click on the Axes icon and then from the &lt;code&gt;All Axes&lt;/code&gt; drop down select Y Axis 2, then Lines and Grid lines OFF. Also turn the Zero line to off unless you want to retain it.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig13_turnoffgrid.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig13_turnoffgrid.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;To resize the points we need to go back to traces and select Growth Rate from the list of Traces. Then choose the Style tab and change the marker size to something larger such as 8.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig13_resizepoint.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig13_resizepoint.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can simply type in the Axis labels and a title into the text boxes provided. By choosing the Legend icon we could turn the legend on or off. Note that while this graph could be seen as self explanatory it may not be for the reader. We can also simply drag the axes labels to a different position.&lt;/p&gt;
 &lt;p&gt;It is possible that we would want to remove the negative values from the plot (in that case the values would need to be explained in the accompanying text). To do that select &lt;code&gt;Axes&lt;/code&gt;, then &lt;code&gt;Y Axis2&lt;/code&gt; then in &lt;code&gt;Autorange&lt;/code&gt; choose &lt;code&gt;Non-negative&lt;/code&gt;to show only values over zero on the plot.&lt;/p&gt;
 &lt;p&gt;If we wished we could also apply a fit line by choosing the FIT DATA icon. We will choose Linear.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig13_final.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig13_final.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Finally, to finish off the plot we might want to add annotations using the NOTES icon. Simply click on the plus sign in the pop up menu for a new annotation and then select the arrow and text and move it into the position you want.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig13_final_annotated.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig13_final_annotated.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In this case we have added a couple of markers that may help to understand trends in activity. First, we have a dip in patent applications between 2001 and 2002. One possible explanation here is that this is a knock on effect of the collapse of the dot.com bubble where share prices reached a peak in 2000, declined rapidly and recovered before declining again into 2001. Patent data typically displays lag effects and it is reasonable to think that the decline in application activity from 2001 reflects these wider economic adjustments. Similarly, there is a significant dip in applications between 2008 and 2009 that it appears reasonable to assume reflects the knock on effects of the global economic crisis of 2007-2008. Note here that these are grosso modo way markers. We could choose to add other timeline style events or layer graphics to help understand the potential or actual relationships between wider economic activity and trends in patent applications worldwide.&lt;/p&gt;
 &lt;p&gt;###Saving and Sharing Sharing&lt;/p&gt;
 &lt;p&gt;To save the plot we simply click Save. However, it is here that one of Plotly’s major strengths becomes apparent. As soon as we save the plot we can also invite others by email, we can create a public or private shareable link. For the collaborators, they must have a Plotly account already for this to work.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig13_email.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig13_email.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The next option is to share a link. Note here that the default is to share a private link. To change that select the lock icon. The private link is particularly well suited for patent professionals.
-&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig13_privatelink.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;/images/plotlyfigs/fig13_privatelink.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;You could also grab an embed code to embed the plot in a web page&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig13_embed.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig13_embed.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Alternatively, surprise your friends and relatives by posting the plot on facebook or share with a wider audience on Twitter.&lt;/p&gt;
 &lt;p&gt;In this example we have focused on developing a very simple plot using plotly. In practice there are a wide range of possible plotting options with a range of tutorials provided &lt;a href=&#34;http://help.plot.ly/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;##Working with Plotly in R&lt;/p&gt;
@@ -2266,11 +2267,11 @@ Loading required package: ggplot2&lt;/p&gt;
 &lt;p&gt;Let’s go and visit it online.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;response$url&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You will now see an online plot that should look like this.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig14_R_online.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig14_R_online.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;If we hover over the data points we will also see the data appear by country (to add a legend, edit graph and then Legends)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig15_R_interactivepng.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig15_R_interactivepng.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note here that the data table is also provided under the Data tab.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/plotlyfigs/fig15_R_interactivepng.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/plotlyfigs/fig15_R_interactivepng.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can also share the graph via social media, download the data, or edit the graph. Note that the default setting for a graph sent via the API appears to be public (with no obvious way to change that).&lt;/p&gt;
 &lt;p&gt;It is here that Plotly’s potential importance as a tool for sharing data and graphics becomes apparent.&lt;/p&gt;
 &lt;p&gt;##Round Up&lt;/p&gt;
@@ -2282,19 +2283,19 @@ Loading required package: ggplot2&lt;/p&gt;
     
     <item>
       <title>Accessing Patent Data with the Lens</title>
-      <link>https://www.pauloldham.net/lens/</link>
+      <link>/lens/</link>
       <pubDate>Sun, 26 Jul 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/lens/</guid>
+      <guid>/lens/</guid>
       <description>&lt;p&gt;##Introduction&lt;/p&gt;
 &lt;p&gt;In this article we provide a brief introduction to &lt;a href=&#34;https://www.lens.org/lens/&#34;&gt;The Lens&lt;/a&gt; patent database as a free source of data for patent analytics.&lt;/p&gt;
 &lt;p&gt;The Lens is a patent database based in Australia that describes itself as “an open global cyberinfrastructure to make the innovation system more efficient and fair, more transparent and inclusive.” The main way it seeks to do this is by providing access to patent information with a particular focus on sequence information as well as analysis of issues such as DNA related patent activity. An important feature of The Lens for those working on biotechnology related subjects is &lt;a href=&#34;https://www.lens.org/lens/bio&#34;&gt;PatSeq&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This article is now a chapter in the &lt;a href=&#34;https://wipo-analytics.github.io/&#34;&gt;WIPO Manual on Open Source Patent Analytics&lt;/a&gt;. You can read the chapter in electronic book format &lt;a href=&#34;https://wipo-analytics.github.io/the-lens-1.html&#34;&gt;here&lt;/a&gt; and find all the materials including presentations at the &lt;a href=&#34;https://github.com/wipo-analytics&#34;&gt;WIPO Analytics Github homepage&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;##Getting Started&lt;/p&gt;
 &lt;p&gt;To get the most out of the Lens the first step is to sign up for an account from the front page.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig1_front.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/lens/fig1_front.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It is possible to begin searching directly from the front page. However, selecting the small button next to the search box takes you to the search controls.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig2_controls.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/lens/fig2_controls.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;As we can see we can use boolean queries, for searching a range of fields including the full text, title, abstract or claims (a major plus). We can also select one or multiple jurisdictions. In addition the results can be refined to patent applications or grants, and there are options for full text or one doc per family (which greatly reduces the number of results).&lt;/p&gt;
 &lt;p&gt;We used our standard query “pizza”, all jurisdictions, and one document per family. We turned stemming off.&lt;/p&gt;
 &lt;p&gt;Our search for pizza returned 13,714 families from a total of 29,617 publications containing the term in the full text. This approach assists with refining searches by reducing duplication.&lt;/p&gt;
@@ -2303,18 +2304,18 @@ Loading required package: ggplot2&lt;/p&gt;
 &lt;li&gt;Check the arrow next to Document as in the image below. When the mouse hovers over the arrow a menu will pop up. Choose &lt;code&gt;Top 10k Results&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;In the box displaying the name of the collection above the results press the + arrow to add the 10,000 documents to the Collection.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig3_addtocollection.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/lens/fig3_addtocollection.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Once you understand this process it is easy to add documents to collections. One very nice feature of the Lens is that when a collection has been created we can share it with others using the &lt;code&gt;Share&lt;/code&gt; button. Users have the option of maintaining a private collection or publicly sharing. The URL for the collection we just generated is &lt;a href=&#34;https://www.lens.org/lens/collection/9606&#34; class=&#34;uri&#34;&gt;https://www.lens.org/lens/collection/9606&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We could imagine that for more restricted searches, and taking confidentiality issues into account, this could be a useful way of sharing patent data with colleagues. One useful addition would be the ability to share with groups based on email addresses or something similar (although that may be possible by choosing a private link and sharing it).&lt;/p&gt;
 &lt;p&gt;Using the small icons above &lt;code&gt;Document&lt;/code&gt; on the left we can save our query for later use, limit the data to simple families or expand to publications, and download the data.&lt;/p&gt;
 &lt;p&gt;There are two main options for downloading data. The first is to download 1000 records by selecting the export button above &lt;code&gt;Document&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;When we select the export button we will be presented with a choice on the number of records to export and whether to export in JSON (for programmatic use), RIS for bibliographic software or .csv for use in tools such as Excel or other programmes.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig4_exportoptions.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/lens/fig4_exportoptions.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The outputs of the export are clean and clear about what they represent when compared with some patent databases. A &lt;code&gt;url&lt;/code&gt; link to the relevant file on the Lens is also provided which can assist in reviewing documents.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig5_export.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/lens/fig5_export.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The JSON output (in the lower right of the image above) is also nice and clean.&lt;/p&gt;
 &lt;p&gt;The second route to exporting data is to download up to 10,000 results using the collections. When we select the &lt;code&gt;Work Area&lt;/code&gt; icon at the top of the screen and select &lt;code&gt;Collections&lt;/code&gt; we will see a new screen with a range of icons next to an individual collection.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig5a_export_collection.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/lens/fig5a_export_collection.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;When we select the download icon we can now download the 10,000 records in the collection in either .csv, ris or JSON formats. This is very easy to use once you understand how to navigate the interface.&lt;/p&gt;
 &lt;p&gt;We also have an option to upload documents into a collection using the upload button and then enter comma separated identifiers. However, at the time of writing we were not able to make this very useful function work.&lt;/p&gt;
 &lt;p&gt;##Additional features&lt;/p&gt;
@@ -2324,40 +2325,40 @@ Loading required package: ggplot2&lt;/p&gt;
 &lt;p&gt;As such, one possible workflow using the Lens would involve initial exploratory queries and refinement, downloading the results of a refined query for closer inspection and then selecting documents of interest to explore the backward (cited) and forward (citing) citations and generate a new dataset.&lt;/p&gt;
 &lt;p&gt;##Visualisation&lt;/p&gt;
 &lt;p&gt;The Lens makes good use of online visualisation options using &lt;a href=&#34;http://www.highcharts.com&#34;&gt;Highcharts&lt;/a&gt; and HTML5. To access the visualisations choose the small icon on the right above the &lt;code&gt;Sort by&lt;/code&gt; pull down menu.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig6_visual.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/lens/fig6_visual.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We now see a set of charts for our results. Using the up icon in the top right of each image we can get an expanded view and work with the charts. The Lens uses the Highcharts Javascript library and a very nice feature of this approach is that it the visuals are interactive and can be used to refine search results. In the image below we have opened the applicants image. As an aside, note that each image can be copied as an iframe to embed in your own web page.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig7_applicants.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/lens/fig7_applicants.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This suggests that Google is the top user of the word pizza in the patent system with &lt;a href=&#34;https://www.lens.org/lens/collection/9608&#34;&gt;880 documents in 353 families&lt;/a&gt;. We can then select the top result and the charts will regenerate focusing on our selection (in this case Google). To view the results we need to select the results button (the first on the right above the charts) to see the following.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig8_google.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/lens/fig8_google.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;What is very useful about is that it is easy to create a &lt;a href=&#34;https://www.lens.org/lens/collection/9608&#34;&gt;new collection&lt;/a&gt; for an applicant of interest, to download the results or select areas of a portfolio based on a jurisdiction or technology area or to explore highly cited patents. In short, we can easily dig into the data.&lt;/p&gt;
 &lt;p&gt;Other interesting features of the chart area are references to authors, DOIs, and PubMed Ids for exploration of data extracted from the documents. This reflects the interest at the Lens in researching the relationship between basic scientific research and innovation. Accessing the literature related information requires opening a chart (for example authors) and selecting the top result and the moving into the results view. We then select one of the results such as &lt;a href=&#34;https://www.lens.org/lens/patent/US_8200847_B2/citations#c/publications&#34;&gt;Voice Actions On Computing Devices&lt;/a&gt; and the Citations tab. This reveals a publication from a workshop on Wireless Geographical Information Systems from 2003 as we can see below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig9_crossref.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/lens/fig9_crossref.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;An impressive feature of this approach is the effort that has been made to link the citation data to the publication using &lt;a href=&#34;http://www.crossref.org&#34;&gt;crossref&lt;/a&gt;. According to the documentation around 15 million non-patent literature citations have been linked so far. Note that one additional feature of the Lens download data is that it includes a non-patent literature citation field. For example, downloading the &lt;a href=&#34;https://www.lens.org/lens/collection/9608&#34;&gt;google pizza portfolio&lt;/a&gt; and a search for the citation above will reveal the citation but without the added value of the DOI. As such, the download provided the raw NPL data.&lt;/p&gt;
 &lt;p&gt;##Working with texts&lt;/p&gt;
 &lt;p&gt;In common with other free databases, the Lens is not designed to allow downloads of multiple full texts. However, you can access the full text of documents, including .pdf files, and you can make notes that will be stored with a collection in your account. The image below provides an example of our ongoing efforts to understand why Google is so dominant in the results of searches for pizza in patent documents.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig10_notes.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/lens/fig10_notes.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;##PatSeq&lt;/p&gt;
 &lt;p&gt;One important focus of the development of the Lens has been DNA sequence data including an &lt;a href=&#34;https://www.lens.org/about/&#34;&gt;ongoing series of articles&lt;/a&gt; on the interpretation and significance of sequence data in patent activity.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig11_patseq.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/lens/fig11_patseq.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Patseq includes a number of tools.&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;PatSeq data permits access to patent documents disclosing sequences available for bulk download from a growing number of countries. This is a very useful site for obtaining sequence data. Note that you will need to request access to download sequence data in your account area.&lt;/li&gt;
 &lt;li&gt;Species finder and keyword search focuses on searching documents that contain a sequence for a species name or key term.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig12_patseq_species.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/lens/fig12_patseq_species.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;A series of patent portfolios have been generated for some major plant and animal species, e.g. rice, maize, humans, chickens etc. That can be downloaded as collections.&lt;/p&gt;
 &lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;The PatSeq Explorer allows the exploration of sequence data for four genomes (at present), notably the human and mouse genome for animals and the soybean, maize and rice genome for plants.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig13_patseq_explorer.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/lens/fig13_patseq_explorer.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This is an area where researchers with &lt;a href=&#34;http://www.cambia.org/daisy/cambia/home.html&#34;&gt;Cambia&lt;/a&gt;, the non-profit organisation behind the Lens, have invested considerable effort and it is well worth reading the research articles listed on the Cambia and Lens websites on this topic. PatSeq Analyzer is closely related to the Explorer and presently provides details on the genomes mentioned above with a detailed summary of sequences by document including the region, sequence, transcript, single nucleotide polymorphisms (SNPs) and grants with sequences in the patent claims.&lt;/p&gt;
 &lt;ol start=&#34;4&#34; style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;PatSeq Finder&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;The PatSeq Finder allows a user to enter a DNA or amino acid sequence into the search box and find applications and grants with identical or similar sequences. We selected a sequence at random from the WIPO Patentscope sequence listings browser &lt;a href=&#34;http://www.wipo.int/patentscope/search/en/detail.jsf?LANGUAGE=ENG&amp;amp;KEY=16/026850&amp;amp;ELEMENT_SET=F&#34;&gt;W016/026850&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig14_seq_explorer.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/lens/fig14_seq_explorer.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;After processing we will see a list of results that can be downloaded in a variety of formats. The results indicate that our random sequence does not appear in the claims of a granted patent or a patent application but does appear in a number of applications and grants. Further details are provided by hovering over the individual entries and additional controls are available for similarity and other scores to refine the results.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/lens/fig15_seq_results.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/lens/fig15_seq_results.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;As far as we could tell, while the data can be downloaded, it is not presently possible to generate a collection of documents from the results of the PatSeq Finder.&lt;/p&gt;
 &lt;p&gt;##Round Up&lt;/p&gt;
 &lt;p&gt;The Lens is a very useful patent database that, when you have worked out the meaning of icons, is easy to use. The ease with which collections can be shared and up to 10,000 records downloaded is a real plus for the Lens. In addition, the use of HTML5 and Highcharts makes this a highly interactive experience. The ability to use charts to drill down into the data is very welcome. The link to the &lt;code&gt;crossref&lt;/code&gt; service for non-patent literature is very useful but it would be good to see this data included in some way as a field in the data downloads.&lt;/p&gt;
@@ -2368,10 +2369,10 @@ Loading required package: ggplot2&lt;/p&gt;
     
     <item>
       <title>Reading and Writing an Excel File in R</title>
-      <link>https://www.pauloldham.net/reading-writing-excel-files-r/</link>
+      <link>/reading-writing-excel-files-r/</link>
       <pubDate>Thu, 30 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/reading-writing-excel-files-r/</guid>
+      <guid>/reading-writing-excel-files-r/</guid>
       <description>&lt;p&gt;This post was updated in 2018 and you can read it &lt;a href=&#34;http://www.pauloldham.net/importing-excel-data-into-r-updated/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;http://cran.r-project.org/doc/manuals/r-release/R-data.html#Reading-Excel-spreadsheets&#34;&gt;CRAN Project&lt;/a&gt; has the following to say about importing Excel files into R.&lt;/p&gt;
 &lt;p&gt;“The first piece of advice is to avoid doing so if possible! If you have access to Excel, export the data you want from Excel in tab-delimited or comma-separated form, and use read.delim or read.csv to import it into R. (You may need to use read.delim2 or read.csv2 in a locale that uses comma as the decimal point.).”&lt;/p&gt;

@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Scientific Publications on Paul Oldham&#39;s Analytics Blog</title>
-    <link>https://www.pauloldham.net/tags/scientific-publications/</link>
+    <link>/tags/scientific-publications/</link>
     <description>Recent content in Scientific Publications on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Mon, 11 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://www.pauloldham.net/tags/scientific-publications/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/scientific-publications/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>API Resources for the Scientific Literature in R and Python</title>
-      <link>https://www.pauloldham.net/api-resources-for-scientific-literature/</link>
+      <link>/api-resources-for-scientific-literature/</link>
       <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/api-resources-for-scientific-literature/</guid>
+      <guid>/api-resources-for-scientific-literature/</guid>
       <description>&lt;p&gt;This short post provides details on some of the main APIs (web services) that can be used to monitor and retrieve data from the scientific literature in either R or Python. We are using these packages and libraries as part of a GIZ supported project with the authorities in Kenya who are responsible for providing research permits. Kenya is famous for its biodiversity and the diversity of its communities. However, there is no single repository of publications arising from research in Kenya. We are looking to use APIs to automate retrieval of publications about Kenya and its biodiversity. Hopefully this should allow us to build an open access virtual repository of publications on Kenya to serve the needs of researchers and the wider community.&lt;/p&gt;
 &lt;p&gt;We plan to use three main APIs for the Kenya project. There are many APIs out there but we will focus on those that aggregate data from different sources. I’ll add a few more that are interesting mainly for biodiversity topics.&lt;/p&gt;
 &lt;div id=&#34;main-apis&#34; class=&#34;section level2&#34;&gt;
@@ -29,8 +29,9 @@
 &lt;li&gt;The Crossref API: &lt;a href=&#34;https://github.com/CrossRef/rest-api-doc&#34; class=&#34;uri&#34;&gt;https://github.com/CrossRef/rest-api-doc&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Rcrossref: &lt;a href=&#34;https://github.com/ropensci/rcrossref&#34; class=&#34;uri&#34;&gt;https://github.com/ropensci/rcrossref&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;Python: &lt;a href=&#34;https://pypi.org/project/habanero/&#34; class=&#34;uri&#34;&gt;https://pypi.org/project/habanero/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;For lovers of all things Ruby try the Serrano Ruby gem &lt;a href=&#34;https://github.com/sckott/serrano&#34; class=&#34;uri&#34;&gt;https://github.com/sckott/serrano&lt;/a&gt; and &lt;a href=&#34;https://www.rubydoc.info/gems/serrano&#34;&gt;rubydoc version&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;The rcrossref and python wrappers were both created by Scott Chamberlain and collaborators at the fantastic &lt;a href=&#34;https://ropensci.org/&#34;&gt;ROpenSci&lt;/a&gt;. Note that searching on crossref is rather limited and so cannot really be used for statistical purposes (the search searches what they have available and that may be quite mixed) BUT crossref is still really useful. In particular it can be used to search for the names of researchers and to retrieve publication details or to enter a list of DOIs.&lt;/p&gt;
+&lt;p&gt;The rcrossref, python and ruby wrappers were all created by Scott Chamberlain and collaborators at the fantastic &lt;a href=&#34;https://ropensci.org/&#34;&gt;ROpenSci&lt;/a&gt;. Note that searching on crossref is rather limited and so cannot really be used for statistical purposes (the search searches what they have available and that may be quite mixed) BUT crossref is still really useful. In particular it can be used to search for the names of researchers and to retrieve publication details or to enter a list of DOIs.&lt;/p&gt;
 &lt;p&gt;A walkthrough on using rcrossref to access the scientific literature for Kenya is available &lt;a href=&#34;https://poldham.github.io/abs/crossref.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For text retrieval and text mining, the &lt;a href=&#34;https://github.com/ropensci/crminer&#34;&gt;crminer&lt;/a&gt; package by Scott Chamberlain is intended to facilitate access to full texts for text mining purposes from Crossref. You will also very probably want to check out Scott’s &lt;a href=&#34;https://github.com/ropensci/fulltext&#34;&gt;fulltext package&lt;/a&gt; for text retrieval from a range of different APIs including some of those listed here.&lt;/p&gt;
 &lt;/div&gt;

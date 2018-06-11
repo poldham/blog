@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Writexl on Paul Oldham&#39;s Analytics Blog</title>
-    <link>https://www.pauloldham.net/tags/writexl/</link>
+    <link>/tags/writexl/</link>
     <description>Recent content in Writexl on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Tue, 06 Feb 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://www.pauloldham.net/tags/writexl/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/writexl/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>An Update on Importing Excel Data in R</title>
-      <link>https://www.pauloldham.net/importing-excel-data-into-r-updated/</link>
+      <link>/importing-excel-data-into-r-updated/</link>
       <pubDate>Tue, 06 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/importing-excel-data-into-r-updated/</guid>
+      <guid>/importing-excel-data-into-r-updated/</guid>
       <description>&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#import-directly-from-the-rstudio-menu&#34;&gt;Import Directly from the RStudio Menu&lt;/a&gt;&lt;/li&gt;
@@ -32,17 +32,17 @@
 &lt;div id=&#34;import-directly-from-the-rstudio-menu&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Import Directly from the RStudio Menu&lt;/h2&gt;
 &lt;p&gt;The big change is that it is now very easy to import from Excel using the RStudio Menu: &lt;code&gt;File &amp;gt; Import Dataset &amp;gt; From Excel&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/file_import.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/file_import.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Next, navigate to the file that you want to import and select it. You will then see something like this.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/import_panel.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/import_panel.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;One point to bear in mind is that the import will often default to the name &lt;code&gt;dataset&lt;/code&gt; so that you need to make sure you enter a meaningful name for the dataset.&lt;/p&gt;
 &lt;p&gt;If your workbook has multiple sheets then you can choose a sheet number using &lt;code&gt;Sheet&lt;/code&gt;, choose the maximum number of rows or skip rows if you have a bunch of filler junk in the top rows. Regular Excel users may also want to select columns by Range.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/import_panel_options.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/import_panel_options.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;You can also click on a column and choose to skip it or change the format.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/skip_col.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/skip_col.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It is worth bearing in mind that if you are importing a number of worksheets you can easily lose track. I sometimes use the approach of copying the import chunk into an Rmarkdown document to keep track of what I am doing and where a file came from.&lt;/p&gt;
 &lt;p&gt;When copying chunks note the small clipboard icon in the top right above the chunk that will copy the chunk to the clipboard for pasting into the console or an R markdown code chunk to document your import steps for the future. My approach when working with multiple sheets is to create an R markdown file and copy and paste the import code into chunks that I then save. That allows “future me”, to borrow from Hadley Wickham, to understand where the datasets came from.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/excel/import_panel_chunk.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/excel/import_panel_chunk.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;As we can see from importing the file behind the scenes RStudio is using the &lt;code&gt;readxl&lt;/code&gt; library to import the file.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;readxl&lt;/code&gt; will commonly generate warning messages during the import process. For example this dataset generated a long long string of warnings that looked like this.&lt;/p&gt;
 &lt;blockquote&gt;

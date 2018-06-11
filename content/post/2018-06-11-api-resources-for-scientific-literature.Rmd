@@ -39,8 +39,9 @@ Crossref provides access to metadata on over 96 million scientific publications.
 1. The Crossref API: [https://github.com/CrossRef/rest-api-doc](https://github.com/CrossRef/rest-api-doc)
 2. Rcrossref: [https://github.com/ropensci/rcrossref](https://github.com/ropensci/rcrossref).
 3. Python: [https://pypi.org/project/habanero/](https://pypi.org/project/habanero/)
+4. For lovers of all things Ruby try the Serrano Ruby gem [https://github.com/sckott/serrano](https://github.com/sckott/serrano) and [rubydoc version](https://www.rubydoc.info/gems/serrano)
 
-The rcrossref and python wrappers were both created by Scott Chamberlain and collaborators at the fantastic [ROpenSci](https://ropensci.org/). Note that searching on crossref is rather limited and so cannot really be used for statistical purposes (the search searches what they have available and that may be quite mixed) BUT crossref is still really useful. In particular it can be used to search for the names of researchers and to retrieve publication details or to enter a list of DOIs.
+The rcrossref, python and ruby wrappers were all created by Scott Chamberlain and collaborators at the fantastic [ROpenSci](https://ropensci.org/). Note that searching on crossref is rather limited and so cannot really be used for statistical purposes (the search searches what they have available and that may be quite mixed) BUT crossref is still really useful. In particular it can be used to search for the names of researchers and to retrieve publication details or to enter a list of DOIs.
 
 A walkthrough on using rcrossref to access the scientific literature for Kenya is available [here](https://poldham.github.io/abs/crossref.html).
 

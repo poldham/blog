@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Open Refine on Paul Oldham&#39;s Analytics Blog</title>
-    <link>https://www.pauloldham.net/tags/open-refine/</link>
+    <link>/tags/open-refine/</link>
     <description>Recent content in Open Refine on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Sat, 02 May 2015 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://www.pauloldham.net/tags/open-refine/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/open-refine/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Cleaning Patent Data with Open Refine</title>
-      <link>https://www.pauloldham.net/openrefine-patent-cleaning/</link>
+      <link>/openrefine-patent-cleaning/</link>
       <pubDate>Sat, 02 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/openrefine-patent-cleaning/</guid>
+      <guid>/openrefine-patent-cleaning/</guid>
       <description>&lt;p&gt;##Introduction&lt;/p&gt;
 &lt;p&gt;Cleaning patent data is one of the most challenging and time consuming tasks involved in patent analysis. In this chapter we will cover.&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
@@ -31,17 +31,17 @@
 &lt;div id=&#34;install-open-refine&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Install Open Refine&lt;/h2&gt;
 &lt;p&gt;To install Open Refine visit the Open Refine &lt;a href=&#34;http://openrefine.org&#34;&gt;website&lt;/a&gt; and &lt;a href=&#34;http://openrefine.org/download.html&#34;&gt;download&lt;/a&gt; the software for your operating system:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/OpenRefine_front.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/OpenRefine_front.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;From the download page select your operating system. Note the extensions towards the bottom of the page for future reference.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/OpenRefine-download.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/OpenRefine-download.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;At the time of writing, when you download Open Refine it actually downloads and installs as Google Refine (reflecting its history) and so that is the application you will need to look for and open.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;create-a-project&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Create a Project&lt;/h2&gt;
 &lt;p&gt;We will use the Patentscope Pizza Medium file that can be downloaded from the repository &lt;a href=&#34;https://github.com/poldham/opensource-patent-analytics/blob/master/2_datasets/pizza_medium/pizza_medium.csv?raw=true&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/create_project.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/create_project.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The file will load and then attempt to guess the column separator. Choose &lt;code&gt;.csv.&lt;/code&gt; Note that a wide range of files can be imported and that there are additional options such as storing blank cells as nulls that are selected by default. In the dataset that you will load we have prefilled blank cells with &lt;code&gt;NA&lt;/code&gt; values to avoid potential problems using fill down in Open Refine discussed below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/create_project2.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/create_project2.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Click &lt;code&gt;create project&lt;/code&gt; in the top right of the bar as the next step.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;open-refine-basics&#34; class=&#34;section level2&#34;&gt;
@@ -51,21 +51,21 @@
 &lt;p&gt;Open Refine is an application that lives on your computer but runs in a browser. However, it does not require an internet connection and it does not lose your work if you close the browser.&lt;/p&gt;
 &lt;p&gt;###Open Refine works on columns.&lt;/p&gt;
 &lt;p&gt;At the top of each column is a pull down menu. Be ready to use these menus quite a lot. In particular, you will often use the &lt;code&gt;Edit cells &amp;gt; Common tranforms&lt;/code&gt; as shown below for functions such as trimming white space.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/menu_basics.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/menu_basics.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Other important menus are &lt;code&gt;Edit column&lt;/code&gt;, immediately below &lt;code&gt;Edit cells&lt;/code&gt;, for copying or splitting columns into new columns.&lt;/p&gt;
 &lt;p&gt;###Open Refine works with Facets.&lt;/p&gt;
 &lt;p&gt;The term &lt;code&gt;facet&lt;/code&gt; may initially be confusing but basically calls up a window that arranges the items in a column for inspection, sorting, and editing as we can see below. This is important because it becomes possible to identify problems and address them. It also becomes possible to apply a variety of clustering algorithms to clean up the data. Note that the size of the facet window can be adjusted by dragging the bottom of the window as we have done in this image.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/facet_menu.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/facet_menu.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Hovering over an item inside the facet window brings up a small &lt;code&gt;edit&lt;/code&gt; button that allows editing, such as removing &lt;i&gt; and &lt;/i&gt; from the title.&lt;/p&gt;
 &lt;p&gt;###Custom Facets&lt;/p&gt;
 &lt;p&gt;The Facet menu below brings up a custom menu with a range of options. Selecting &lt;code&gt;Custom text facet&lt;/code&gt; (see below) brings up a pop up that allows for the use of code in &lt;a href=&#34;https://github.com/OpenRefine/OpenRefine/wiki/GREL-Functions&#34;&gt;Open Refine Expression Language (GREL)&lt;/a&gt; to perform tasks not covered by the main menu items. This language is quite simple and can range from short snippets for finding and replacing text to more complex functions that can be reused in future. We will demonstrate the use of this function below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/facet_menu.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/facet_menu.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###Reordering Columns&lt;/p&gt;
 &lt;p&gt;There are two options for reordering columns. The first is to select the column menu then &lt;code&gt;Edit column &amp;gt; Move column to beginning&lt;/code&gt;. The second option, shown below, is to select the &lt;code&gt;All&lt;/code&gt; drop down menu in the first column and then &lt;code&gt;Edit columns &amp;gt; Re-order/remove columns&lt;/code&gt;. In the pop up menu of fields drag the desired field to the top of the list. In this case we have dragged the &lt;code&gt;priority_date&lt;/code&gt; column to the top of the list. It will now appear as the first data column.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/facet_menu.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/facet_menu.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###Undo and Redo&lt;/p&gt;
 &lt;p&gt;Open Refine keeps track of each action and allows you to go back several steps or to the beginning. This is particularly helpful when testing whether a particular approach to cleaning (e.g. splitting columns or using a snippet of code) will meet your needs. In particular it means you can explore and test approaches while not worrying about losing your previous work.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/undo_redo.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/undo_redo.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;However, it can be important to plan the steps in your clean up operation to avoid problems at later stages. It may help to use a notepad as a checklist (see below). The main issue that can arise is where cleanup moves forward several steps without being fully completed in an earlier step. In some cases this can require returning to that earlier step, restarting and repeating earlier steps. As you become more familiar with Open Refine it will be easier to work out an appropriate sequence for your workflow.&lt;/p&gt;
 &lt;p&gt;###Exporting&lt;/p&gt;
 &lt;p&gt;When a clean up exercise is completed a file can be exported in a variety for formats. When working with patent data expect to create more than one file (e.g. core, applicants, inventors, IPC) to allow for analysis of aspects of the data in other tools. In this chapter we will create two files.&lt;/p&gt;
@@ -92,23 +92,23 @@
 &lt;p&gt;We will generally approach these tasks in each column and steps 6 and 7 will not always apply. The creation of a codebook will allow you to keep a note of all the steps taken to clean up a dataset. The codebook should be saved with the cleaned dataset (e.g. in the same folder) as a reference point if you need to do further work or if colleagues want to understand the transformation steps.&lt;/p&gt;
 &lt;p&gt;###Changing case&lt;/p&gt;
 &lt;p&gt;The first column in our Patentscope pizza dataset is the publication number. To inspect what is happening and needs to be cleaned in this column we will first select the column menu and choose &lt;code&gt;text facet&lt;/code&gt; from the dropdown. This will generate the side menu panel that we can see below containing the data. We can then inspect the column for problems.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/cleaning_pubno_createfacet.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/cleaning_pubno_createfacet.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;When we scroll down the side panel we can see that some publication numbers have a lowercase country code (in this case &lt;code&gt;ea&lt;/code&gt; rather than &lt;code&gt;EA&lt;/code&gt; for Eurasian Patent Organization using the &lt;a href=&#34;http://www.wipo.int/pct/guide/en/gdvol1/annexes/annexk/ax_k.pdf&#34;&gt;WIPO standardized country codes&lt;/a&gt;). To address this we select the column menu &lt;code&gt;Edit cells &amp;gt; Common transforms &amp;gt; to Uppercase&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/cleaning_pubno_totitlecase.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/cleaning_pubno_totitlecase.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;If we scroll down all the publication numbers will have been converted to upper case. This will make it easier to extract the publication country codes at a later stage.&lt;/p&gt;
 &lt;p&gt;###Regularise case&lt;/p&gt;
 &lt;p&gt;For the other text columns it is sensible to repeat the common transformations step and select &lt;code&gt;to titlecase&lt;/code&gt;. Note that this will generally work well for the title field but may not always work as well on concatenated fields such as applicants and inventor names. Repeat this step following the separation of these concatenated fields (see below on applicants). If the abstract or claims were present we would not regularise those text fields.&lt;/p&gt;
 &lt;p&gt;###Remove leading and trailing whitespace&lt;/p&gt;
 &lt;p&gt;To remove leading and trailing white space in a column we select &lt;code&gt;Edit cells &amp;gt; Common transforms &amp;gt; Trim&lt;/code&gt; leading and trailing white space across the columns.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/title_trailingwhitespace.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/title_trailingwhitespace.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note that following the splitting of concatenated cells with multiple entries such as the applicants and the inventors fields it is a good idea to repeat the trim exercise when the process is complete to avoid potential leading white space at the start of the new name entries.&lt;/p&gt;
 &lt;p&gt;###Add Columns&lt;/p&gt;
 &lt;p&gt;We can also add columns by selecting the column menu and &lt;code&gt;Edit Column &amp;gt; Add column based on this column&lt;/code&gt;. In this case we have added a column called publication_date.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/add_column_publicationyear.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/add_column_publicationyear.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We have a number of options with respect to dates (see below). In this case we want to separate out the date information into separate columns. To do that we can use &lt;code&gt;Edit column &amp;gt; Split into several columns&lt;/code&gt;. We can also choose the separator for the split, in this case &lt;code&gt;.&lt;/code&gt; and whether to keep or delete the source column. In this case we selected to retain the original column and created three new date related columns. We could as necessary then delete the date and month column if we only needed the year field.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/split_date.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/split_date.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can then rename these columns using the edit &lt;code&gt;Edit Column &amp;gt; Rename this column&lt;/code&gt;. Note that in this case the use of lowercase and underscores marks out columns we are creating or editing as a flag for internal use informing us that this is a column that we have created. At a later stage we will rename the original fields to mark them as original.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/rename_column.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/rename_column.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###Address Encoding and related problems&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;https://github.com/OpenRefine/OpenRefine/wiki/Recipes&#34;&gt;Recipes&lt;/a&gt; section of the documentation provides helpful tips and example code for dealing with encoding and related problems that are reproduced here:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
@@ -128,59 +128,59 @@
 &lt;p&gt;A quick fix is proposed in the documentation that may work in some circumstances.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;split(escape(value,&amp;#39;xml&amp;#39;),&amp;quot;&amp;amp;#160;&amp;quot;)[0]&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Within this particular dataset, we found that these quick tips did not work (presumably because the text had already been converted to UTF-8). However, if all else fails an alternative is to simply find and replace in Transform as in the example below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/replace_encoding.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/replace_encoding.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This is not a very satisfactory solution because it requires inspection of the dataset to identify the specific character problems and then replacing the value. That will be time consuming.&lt;/p&gt;
 &lt;p&gt;###Reformatting dates&lt;/p&gt;
 &lt;p&gt;One problem we may encounter is that the standard date definition on patent documents (e.g. 21.08.2009) may not be recognised as a date field in our analysis software because dates can be ambiguous from the perspective of software code. For example, how should 08/12/2009 or 12/08/2009 be interpreted?&lt;/p&gt;
 &lt;p&gt;Alternatively, as in this case, the decimal points may not be correctly interpreted as signifying a date in some software (e.g. R). We might anticipate this and transform the data into a more recognisable form such as 21/08/2009. A very simple way to do this is by using a replace function. In this case we select the menu for the &lt;code&gt;publication_date&lt;/code&gt; field and then &lt;code&gt;Edit cells &amp;gt; Transform&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/transform.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/transform.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This produces a menu where we enter a simple GREL replace code.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/transform_replace_date.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/transform_replace_date.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;replace(value, &amp;#39;.&amp;#39;, &amp;#39;/&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This simple replace code is basically the same as find and replace in Excel or Open Office. In addition, we can see the consequences of the choice in the panel before we run the command. This is extremely useful for spotting problems. For example, if attempting to split a field on a comma we may discover that there are multiple commas in a cell (see the &lt;code&gt;Priority Data&lt;/code&gt; field for this). By testing the code in the panel we could then work to find a solution or edit the offending texts in the main facet panel.&lt;/p&gt;
 &lt;p&gt;To find other simple codes visit the &lt;a href=&#34;https://github.com/OpenRefine/OpenRefine/wiki/Recipes&#34;&gt;Open Refine Recipes page&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We will now focus on extracting information from some of the columns before saving the dataset and moving on.&lt;/p&gt;
 &lt;p&gt;###Access additional information&lt;/p&gt;
 &lt;p&gt;There are a range of pieces of information that are hidden in data inside columns. For example, Patentscope data does not contain a publication country field. In particular, note that Patentscope merges all publications for an application record into one dossier. So we are only seeing one record for a set of documents (in Patentscope the wider dossier for a record is accessible through the Documents section of the website). This is very helpful in reducing duplication but it is important to bear in mind that we are not seeing the wider family in our data table. However, we can work with the information at the front of the publication number in the Patentscope records using a very simple code and create a new column (as above) based on the values returned as below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/publication_country.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/publication_country.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;substring(value, 0, 2)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Note here that the code begins counting from 0 (e.g. 0, 1 = U, 2 = S). The first part of the code looks in the value field. 0 tells the code to begin counting from 0 and the 2 tells it to read the two characters from 0. We could change these values, e.g to 1 and 4 to capture only a chunk of a number.&lt;/p&gt;
 &lt;p&gt;##Fill blank cells&lt;/p&gt;
 &lt;p&gt;Filling blank cells with a value (NA for Not Available) to prevent calculation problems with analysis tools later can be performed by selecting each column, creating a text facet, scrolling down to the bottom of the facet choosing &lt;code&gt;(blank)&lt;/code&gt;, edit and then entering NA for the value.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/blank_na_facets.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/blank_na_facets.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note that this is somewhat time consuming (until a more rapid method is found) but has the benefit of being accurate. It is generally faster to open the file in Excel (or Open Office) and use find and replace with the find box left blank and NA in the replace field across the data table. For that reason, blank cells should not appear in the dataset you are using in this article. However, in later steps below we will be generating blank cells by splitting the applicant and inventor field. It is therefore important to know this procedure.&lt;/p&gt;
 &lt;p&gt;##Renaming columns&lt;/p&gt;
 &lt;p&gt;At this stage we have a set of columns that are mixed between the original sentence case and the additions in lower case with no spaces such as &lt;code&gt;publication_number&lt;/code&gt;. This is a matter of personal preference but it is generally a good idea to regularise the case of all columns to make them easy to remember. In this case we will also add the word &lt;code&gt;original&lt;/code&gt; to the columns to distinguish between those created by cleaning the data and those we have created.&lt;/p&gt;
 &lt;p&gt;##Exporting Data&lt;/p&gt;
 &lt;p&gt;When we are happy that we have worked through the core cleaning steps it is a good idea to export the new core dataset. It is important to do this before the steps described below because it preserves a copy of the core dataset that can be used for separation (or splitting activities) on applicants, inventors, IPC etc. during the next steps. It is important that this &lt;code&gt;clean&lt;/code&gt; dataset is as clean as is reasonably possible before moving on. The reason for this is that &lt;strong&gt;&lt;em&gt;any noise or problems will multiply&lt;/em&gt;&lt;/strong&gt; when we move on to the next steps. This may require a major rerun of the cleaning steps on later files created for applicants or inventors. Therefore make sure that you are happy that the data is as clean as is reasonably possible at this stage. Then choose export from the menu and the desired format (preferably &lt;code&gt;.csv&lt;/code&gt; or &lt;code&gt;.tab&lt;/code&gt; if using analytics tools later).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/export_core.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/export_core.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;##Splitting Applicants&lt;/p&gt;
 &lt;p&gt;This article was inspired by a &lt;a href=&#34;http://www.patinformatics.com/blog/patent-assignee-cleanup-using-google-refine-open-refine-text-facets-and-clustering/&#34;&gt;very useful tutorial&lt;/a&gt; on cleaning assignee names with Google Refine by Anthony Trippe. Anthony is also the author of the forthcoming &lt;a href=&#34;http://www.wipo.int/patentscope/en/programs/patent_landscapes/&#34;&gt;WIPO Guidelines for Preparing Patent Landscape Reports&lt;/a&gt; and the &lt;a href=&#34;http://www.patinformatics.com&#34;&gt;Patentinformatics LLC&lt;/a&gt; website has played a pioneering role in promoting patent analytics. We will take this example forward using the our sample pizza patent dataset so that it can be visualised in a range of tools. If you have not done so already, you can download the dataset &lt;a href=&#34;https://github.com/poldham/opensource-patent-analytics/blob/master/2_datasets/pizza_medium/pizza_medium.csv?raw=true&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We actually have two options here and we will go through them so that you can work out your needs in a particular situation. Note that you can use Undo in Google Refine to go back to the point immediately before you tested these approaches. However, if you have followed the data cleaning steps above, make sure that you have already exported a copy of the main dataset.&lt;/p&gt;
 &lt;p&gt;###Situation 1 - First Applicants&lt;/p&gt;
 &lt;p&gt;As discussed by Anthony Tripp we could split the applicant column into separate columns by choosing, &lt;code&gt;Applicants &amp;gt; Edit column &amp;gt; Split into several columns&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/split_applicants_columns.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/split_applicants_columns.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We then need to select the separator. In this case (and normally with patent data), it is &lt;code&gt;;&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/split_selectseparator.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/split_selectseparator.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This will produce a set of 18 columns.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/split_columns.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/split_columns.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;At this point, we could begin the clustering process to start cleaning the names that is discussed in situation 2. However, the disadvantage with this is that with this size of dataset we would need to do this 18 times in the absence of an easy way of combining the columns into a single column (applicants) with a name on each row. We might want to use this approach in circumstances where we are not focusing on the applicants and are happy to accept the first name in the list as the first applicant. In that case we would simply be reducing the applicant field to one applicant. Bear in mind that the first applicant listed in the series of names may not always be the first applicant as listed on an application and may not be an organisation name. Bearing these caveats in mind, we might also use this approach to reduce the concatenated inventors field to one inventor. For general purposes that would be clean and simple for visualisation purposes.&lt;/p&gt;
 &lt;p&gt;However, if we wanted to perform detailed applicant analysis for an area of technology, we would need to adopt a different approach.&lt;/p&gt;
 &lt;p&gt;###Situation 2 - All Applicants&lt;/p&gt;
 &lt;p&gt;One of the real strengths of Open Refine is that it is very easy to separate applicant and inventor names into individual rows. Instead of choosing Edit column we now choose &lt;code&gt;Edit cells&lt;/code&gt; and then &lt;code&gt;split multi-valued cells&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/split_multivaluedcells.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/split_multivaluedcells.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the pop up menu choose &lt;code&gt;;&lt;/code&gt; as the separator rather than the default comma.&lt;/p&gt;
 &lt;p&gt;We now have a dataset with 15,884 rows as we can see below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/split_multivaluedcells2.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/split_multivaluedcells2.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The advantage of this is that all our individual applicant names are now in a single column. However, note that the rest of the data has not been copied to the new rows. We will come back to this but as a precaution it is sensible to fill down on the publication number column as the key that links the individual applicants to the record. So let’s do that for peace of mind by selecting &lt;code&gt;publication number &amp;gt; edit cells &amp;gt; fill down&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/split_filldown.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/split_filldown.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We should now have a column filled with the publication number values for each applicant as our key. Note here that there is a need for caution in using &lt;code&gt;fill down&lt;/code&gt; in Open Refine as discussed in detail &lt;a href=&#34;http://googlerefine.blogspot.co.uk/2012/03/fill-down-right-and-secure-way.html&#34;&gt;here&lt;/a&gt;. Basically, fill down is not performed by record, it simply fills down. That can mean that data becomes mixed up. This is another reason why it is important to fill blank values with NA either before starting work in Open Refine or as one of the initial clean up steps. Using NA early on will help prevent refine from filling down blank cells with the values of another record.&lt;/p&gt;
 &lt;p&gt;If you have not already done so above to assist the clean up process, and as general good practice, transform the mixed case in the applicants field to a single case type. To do that select &lt;code&gt;Applicants &amp;gt; Edit Cells &amp;gt; Common Transformations &amp;gt; To titlecase&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/applicants_titlecase.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/applicants_titlecase.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We now move back to the applicants and select &lt;code&gt;Facet &amp;gt; Text Facet&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/applicants_textfacet.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/applicants_textfacet.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;What we will see (with Applicants moved to the first column by selecting &lt;code&gt;Applicants &amp;gt; Edit Column &amp;gt; Move column to beginning&lt;/code&gt;) is a new side window with 9,368 choices.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/applicants1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/applicants1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The cluster button will trigger a set of six clean up algorithms with user choices along the way. It is well worth reading the &lt;a href=&#34;https://github.com/OpenRefine/OpenRefine/wiki/Clustering-In-Depth&#34;&gt;documentation&lt;/a&gt; on these steps to decide what will best fit your needs in future. These cleaning steps proceed from the strict to the lax in terms of matching criteria. The following is a brief summary of the details provided in the documentation page:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;Fingerprinting. This method is the least likely in the set to produce false positives (and that is particularly important for East Asian names in patent data). It involves a series of steps including removing trailing white space, using all lowercase, removing punctuation and control characters, splitting into tokens on white space, splitting and joining and normalising to ASCII.&lt;/li&gt;
@@ -192,30 +192,30 @@
 &lt;/ol&gt;
 &lt;p&gt;It is important to gain an insight into these methods because they may affect the results you receive. In particular, caution is required on East Asian names where cultural naming traditions produce a lot of false positive matches on the same name for persons who are actually distinct persons (synonyms or “lumping” in the literature). This can have very dramatic impacts on the results of patent analysis for inventor names because it will treat all persons sharing the name &lt;code&gt;Smith, John&lt;/code&gt; or &lt;code&gt;Wang, Wei&lt;/code&gt; as the same person, when in practice they are multiple individual people.&lt;/p&gt;
 &lt;p&gt;We will now walk through each algorithm to view the results.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/cluster_step1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/cluster_step1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This identifies 1187 clusters dominated by hidden characters in the applicants field (typically appearing after the name). At this stage we need to make some decisions about whether or not to accept or reject the proposed merger by checking the &lt;code&gt;Merge?&lt;/code&gt; boxes.&lt;/p&gt;
 &lt;p&gt;This step was particularly good at producing a match on variant names and name reversals as we can see here.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/applicants2.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/applicants2.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It pays to manually inspect the data before accepting it. One important option here is to use the slider on &lt;code&gt;Choices in Cluster&lt;/code&gt; to move the range up or down and then make a decision about the appropriate cut off point. Then use select all in the bottom left for results you are happy with followed by &lt;code&gt;Merge Selected &amp;amp; Re-Cluster&lt;/code&gt;. In the next step we can change the keying function dropdown to Ngram-fingerprint.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/applicants-ngramfingerprint2.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/applicants-ngramfingerprint2.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This produces 98 clusters which inspection suggests are very accurate. The issues to watch out for here (and throughout) are very similar names for companies that may not be the same company (such as Ltd. and Inc.) or distinct divisions of the same company. It is also important, when working with inventor names, not to assume that the same name is the same inventor in the absence of other match criteria, or that apparently minor variations in initials (e.g. Smith, John A and Smith, John B) are the same person because they may well not be.&lt;/p&gt;
 &lt;p&gt;To see these potential problems in action try reducing the N-gram size to 1. At this point we see the following.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/ngram1_problems.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/ngram1_problems.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This measure is too lax and is grouping together companies that should not be grouped. In contrast increasing the N-gram value to 3 or 4 will tighten the cluster. We will select all on N-gram 2 and proceed to the next step.&lt;/p&gt;
 &lt;p&gt;At this point it is worth noting that the original 9,368 clusters have been reduced to 7,875 and if we sort on the count in the main window then Google is starting to emerge as the top applicant across our set of 10,000 records.&lt;/p&gt;
 &lt;p&gt;###Phonetic Fingerprint (Metaphone 3) clustering&lt;/p&gt;
 &lt;p&gt;As we can see below, Metaphone 3 clustering produces 413 looser clusters with false positive matches on International Business Machines but positive matches on Cooperative Verkoop.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/applicants_metaphone3.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/applicants_metaphone3.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;At this point we could either manually review the 413 clusters and select as appropriate or change the settings to reduce the number of clusters using the &lt;code&gt;Choices in Clusters&lt;/code&gt; slider until we see something manageable for manual review. At this stage we might also want to use the &lt;code&gt;browse this cluster&lt;/code&gt; function that appears on hovering over a particular selection, to review the data (see the second entry in the image below).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/applicants_browsecluster.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/applicants_browsecluster.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In this case we are attempting to ascertain whether the Korea Institute of Oriental Medicine should be grouped with the Korea Institute of Science and Technology (which appears unlikely). If we open the browser function we can review the entries for shared characteristics as possible match criteria.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/applicants_browsecluster1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/applicants_browsecluster1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;For example, if the applicants shared inventors and/or the same title we may want to record this record in the larger grouping (remembering that we have exported the original cleaned up data). Or, as is more likely, we might want to capture most members of the group and remove the Korea Institute of Oriental Medicine. However, how to do this is not at all obvious.&lt;/p&gt;
 &lt;p&gt;In practice, selection of items at this stage feeds into the next stage of cleaning using the Cologne-phonetic algorithm. As we can see below, this algorithm identified 271 clusters that were almost entirely clustered on the names of individuals with a limited number of accurate hits.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/applicants_cologne.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/applicants_cologne.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;###Levenshtein Edit Distance&lt;/p&gt;
 &lt;p&gt;The final steps in the process focus on Nearest Neighbour matches for our reduced number of clusters. Note that this may take some time to run (e.g. 10-15 minutes for the +7,000 clusters in this case). The results are displayed below&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/openrefine/applicants_levenshtein.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/openrefine/applicants_levenshtein.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In some cases the default settings matched individual names on different initials, but in the majority of cases the clusters appeared valid and were accepted. In this case particular caution is required on the names of individuals and browsing the results to check the accuracy of matches.&lt;/p&gt;
 &lt;p&gt;###PPM&lt;/p&gt;
 &lt;p&gt;The PPM step is the final logarithm but took so long that we decided to abandon it relative to the likely gains.&lt;/p&gt;

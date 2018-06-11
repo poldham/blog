@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bibliometrics on Paul Oldham&#39;s Analytics Blog</title>
-    <link>https://www.pauloldham.net/tags/bibliometrics/</link>
+    <link>/tags/bibliometrics/</link>
     <description>Recent content in Bibliometrics on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Tue, 22 May 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://www.pauloldham.net/tags/bibliometrics/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/bibliometrics/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Exploring Geocoding Scientific Literature with R</title>
-      <link>https://www.pauloldham.net/geocoding-scientific-literature-with-r/</link>
+      <link>/geocoding-scientific-literature-with-r/</link>
       <pubDate>Tue, 22 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/geocoding-scientific-literature-with-r/</guid>
-      <description>&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://www.pauloldham.net/rmarkdown-libs/leaflet/leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/leaflet/leaflet.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://www.pauloldham.net/rmarkdown-libs/leafletfix/leafletfix.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/Proj4Leaflet/proj4-compressed.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/Proj4Leaflet/proj4leaflet.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://www.pauloldham.net/rmarkdown-libs/rstudio_leaflet/rstudio_leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/leaflet-binding/leaflet.js&#34;&gt;&lt;/script&gt;
+      <guid>/geocoding-scientific-literature-with-r/</guid>
+      <description>&lt;script src=&#34;/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/leaflet/leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/leaflet/leaflet.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/leafletfix/leafletfix.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/Proj4Leaflet/proj4-compressed.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/Proj4Leaflet/proj4leaflet.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/rstudio_leaflet/rstudio_leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/leaflet-binding/leaflet.js&#34;&gt;&lt;/script&gt;
 
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
@@ -90,9 +90,9 @@ library(googleway)&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;Get a free API key from &lt;a href=&#34;https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;This involves pressing the &lt;code&gt;Get a Key&lt;/code&gt; button and creating a project (app) that you will query by following these steps.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/geocoding/getkey.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/geocoding/getkey.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Create a new project and wait a short while while Google spins it up.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/geocoding/create_project.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/geocoding/create_project.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;You will then see your API key. Note that you will see a link to restrict access to your API. It is a good idea to follow this and use your IP address to limit access to your IP address under Application restrictions. This will prevent other people from using the account if they discover the API key. We will not go down that route right now.&lt;/p&gt;
 &lt;p&gt;Take a copy of your API key (say into a text file in R Studio). What you do next is up to you.&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
@@ -772,10 +772,10 @@ mapdata&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Exploring Scientific Literature with rplos</title>
-      <link>https://www.pauloldham.net/rplos-walkthrough/</link>
+      <link>/rplos-walkthrough/</link>
       <pubDate>Tue, 27 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/rplos-walkthrough/</guid>
+      <guid>/rplos-walkthrough/</guid>
       <description>&lt;p&gt;##Introduction&lt;/p&gt;
 &lt;p&gt;In this chapter we look at the use of the &lt;a href=&#34;https://github.com/ropensci/rplos&#34;&gt;&lt;code&gt;rplos&lt;/code&gt;&lt;/a&gt; package from &lt;a href=&#34;https://ropensci.org&#34;&gt;rOpenSci&lt;/a&gt; to access the scientific literature from the &lt;a href=&#34;https://www.plos.org&#34;&gt;Public Library of Science&lt;/a&gt; using the &lt;a href=&#34;http://api.plos.org/solr/faq/&#34;&gt;PLOS Search API&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The Public Library of Science (PLOS) is the main champion of open access peer reviewed scientific publications and has published somewhere in the region of 140,000 articles. These articles are a fantastic resource. PLOS includes the following titles.&lt;/p&gt;
