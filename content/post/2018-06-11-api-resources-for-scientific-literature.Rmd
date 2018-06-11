@@ -3,7 +3,7 @@ title: API Resources for the Scientific Literature in R and Python
 author: Paul Oldham
 date: '2018-06-11'
 slug: api-resources-for-scientific-literature
-description: Quick API resources for searching for scientific publications in R or Python.
+description: Quick API resources to search for scientific publications in R or Python.
 categories:
   - R
 tags:
