@@ -678,7 +678,18 @@ cx1&lt;/code&gt;&lt;/pre&gt;
       <guid>/wrangling-pizza-patents-in-r/</guid>
       <description>&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#getting-started-with-r&#34;&gt;Getting Started with R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#getting-started&#34;&gt;Getting Started&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#about-the-pizza-patent-dataset&#34;&gt;About the pizza patent dataset&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#reading-in-the-data&#34;&gt;Reading in the Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#creating-a-numeric-field&#34;&gt;Creating a numeric field&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#renaming-columns&#34;&gt;Renaming Columns&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#selecting-columns-for-plotting&#34;&gt;Selecting Columns for plotting&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#creating-counts&#34;&gt;Creating Counts&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#total-by-year&#34;&gt;Total by Year&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#round-up&#34;&gt;Round Up&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
@@ -701,7 +712,8 @@ cx1&lt;/code&gt;&lt;/pre&gt;
 &lt;/ol&gt;
 &lt;p&gt;The main difference between the two is that quick plot makes assumptions for you and, as the name suggests, is used for quick plots. In contrast, with ggplot we build graphics from scratch with helpful defaults that give us full control over what we see.&lt;/p&gt;
 &lt;p&gt;In this article we will start with qplot and increasingly merge into developing plots by adding layers in what could be called a ggplot kind of way. We will develop that further in the Part 2.&lt;/p&gt;
-&lt;p&gt;##Getting Started with R&lt;/p&gt;
+&lt;div id=&#34;getting-started-with-r&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Getting Started with R&lt;/h2&gt;
 &lt;p&gt;This article assumes that you are new to using R. You do not need any knowledge of programming in R to follow this article. While you don’t need to know anything about R to follow the article, you may find it helpful to know that :&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;R is a statistical programming language. That can sound a bit intimidating. However, R can handle lots of other tasks a patent analyst might need such as cleaning and tidying data or text mining. This makes it a good choice for a patent analyst.&lt;/li&gt;
@@ -720,7 +732,9 @@ cx1&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;&lt;code&gt;ggplot2&lt;/code&gt; or Grammar of Graphics 2 as the tool we will use for graphing.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;ggthemes&lt;/code&gt; provides very useful additional themes including Tufte range plots, the Economist and Tableau and can be accessed through &lt;a href=&#34;http://cran.r-project.org/web/packages/ggthemes/index.html&#34;&gt;CRAN&lt;/a&gt; or &lt;a href=&#34;https://github.com/jrnold/ggthemes&#34;&gt;Github&lt;/a&gt;.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;##Getting Started&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;getting-started&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Getting Started&lt;/h2&gt;
 &lt;p&gt;If you don’t have these packages already then install each of them below by pressing command and Enter at the end of each line. As an alternative select &lt;strong&gt;&lt;em&gt;Packages &amp;gt; Install&lt;/em&gt;&lt;/strong&gt; in the pane displaying a tab called Packages. Then enter the names of the packages one at a time without the quotation marks.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;readr&amp;quot;)
 install.packages(&amp;quot;dplyr&amp;quot;)
@@ -732,7 +746,9 @@ library(dplyr)
 library(ggplot2)
 library(ggthemes)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You are now good to go.&lt;/p&gt;
-&lt;p&gt;##About the pizza patent dataset&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;about-the-pizza-patent-dataset&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;About the pizza patent dataset&lt;/h2&gt;
 &lt;p&gt;The pizza patents dataset is a set of 9,996 patent documents from the WIPO Patentscope database that make reference somewhere in the text to the term &lt;code&gt;pizza&lt;/code&gt;. Almost everybody likes pizza and this is simply a working dataset that we can use to learn how to work with different open source tools. This will also allow us over time to refine our understanding of patent activity involving the term pizza and hone in on actual pizza related technology. In previous walkthroughs we divided the &lt;code&gt;pizza&lt;/code&gt; dataset into a set of distinct data tables to enable analysis and visualisation using Tableau Public. You can download that dataset in .csv format &lt;a href=&#34;https://github.com/poldham/opensource-patent-analytics/blob/master/2_datasets/pizza_medium_clean/pizza_medium_clean.zip?raw=true&#34;&gt;here&lt;/a&gt;. These data tables are:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;pizza (the core set)&lt;/li&gt;
@@ -742,7 +758,9 @@ library(ggthemes)&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;applicants_ipc (a child dataset of applicants listing the IPC codes)&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;In this article we will focus on the &lt;code&gt;pizza&lt;/code&gt; table as the core set. However, you may want to experiment with other sets.&lt;/p&gt;
-&lt;p&gt;##Reading in the Data&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;reading-in-the-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Reading in the Data&lt;/h2&gt;
 &lt;p&gt;We will use the &lt;code&gt;readr&lt;/code&gt; package to rapidly read in the pizza set to R (for other options see the in depth articles on reading in &lt;a href=&#34;&#34;&gt;.csv&lt;/a&gt; and &lt;a href=&#34;&#34;&gt;Excel&lt;/a&gt; files and the recent Getting your Data into R RStudio &lt;a href=&#34;http://www.rstudio.com/resources/webinars/&#34;&gt;webinar&lt;/a&gt;). &lt;code&gt;readr&lt;/code&gt; is nice and easy to use and creates a data table that we can easily view.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readr)
 library(dplyr)
@@ -886,7 +904,9 @@ head(pizza)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;These options illustrate the range of ways that you can view the data before and during graphing. Mainly what will be needed is the column names but we also need to think about the column types.&lt;/p&gt;
 &lt;p&gt;If we inspect this data using &lt;code&gt;str(pizza)&lt;/code&gt; we will see that the bulk of the fields are character fields. One feature of patent data is that it rarely includes actual numeric fields (such as counts). Most fields are character fields such as names or alphanumeric values (such as publication numbers e.g. US20151234A1). Sometimes we see counts such as citing documents or family members but most of the time our fields are character fields or dates. A second common feature of patent data is that some fields are concatenated. That is the cells in a column contain more than one value (e.g. multiple inventor or applicant names etc.).&lt;/p&gt;
 &lt;p&gt;We will walk through how to deal with these common patent data issues in R in other articles. For now, we don’t need to worry about the form of data except that it is normally best to select a column (variable) that is not concatenated with multiple values to develop our counts. So as a first step we will quickly create a numeric field from the &lt;code&gt;publication_number&lt;/code&gt; field in &lt;code&gt;pizza&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;##Creating a numeric field&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-a-numeric-field&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Creating a numeric field&lt;/h2&gt;
 &lt;p&gt;To create a numeric field for graphing we will need to do two things&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;add a column&lt;/li&gt;
@@ -913,7 +933,8 @@ pizza &amp;lt;- mutate(pizza, record_count = sum(publication_number = 1))&lt;/co
 &lt;li&gt;&lt;code&gt;pizza &amp;lt;-&lt;/code&gt; this tells R to create an object (a data frame) called &lt;code&gt;pizza&lt;/code&gt; containing the results. If you take a look in the Environment pane you will now see that pizza has 32 variables. Note that we have now modified the data we imported into R although the original data in the file remains the same.
 If we now use &lt;code&gt;View(pizza)&lt;/code&gt; we will see a new column called &lt;code&gt;record_count&lt;/code&gt; with a value of 1 for each entry.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;###Renaming Columns&lt;/p&gt;
+&lt;div id=&#34;renaming-columns&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Renaming Columns&lt;/h3&gt;
 &lt;p&gt;We will be doing quite a lot of work with the &lt;code&gt;publication_country_name&lt;/code&gt; field, so let’s make our lives a bit easier by renaming it with the &lt;code&gt;dplyr&lt;/code&gt; function &lt;code&gt;rename()&lt;/code&gt;. We will also do the same for the &lt;code&gt;publication_country_code&lt;/code&gt; and publication_year. Note that it is easy to create labels for graphs with ggplot so we don’t need to worry about renaming column names too much. We can rename them again later if saving the file to a new &lt;code&gt;.csv&lt;/code&gt; file.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
 pizza &amp;lt;- rename(pizza, pubcountry = publication_country_name, pubcode = publication_country_code, 
@@ -938,7 +959,9 @@ head(pizza)&lt;/code&gt;&lt;/pre&gt;
 ## #   title_cleaned &amp;lt;chr&amp;gt;, title_nlp_cleaned &amp;lt;chr&amp;gt;,
 ## #   title_nlp_multiword_phrases &amp;lt;chr&amp;gt;, title_nlp_raw &amp;lt;chr&amp;gt;,
 ## #   title_original &amp;lt;chr&amp;gt;, record_count &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;###Selecting Columns for plotting&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;selecting-columns-for-plotting&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Selecting Columns for plotting&lt;/h3&gt;
 &lt;p&gt;We could now simply go ahead and work with pizza. However, for datasets with many columns or requiring different kinds of counts it can be much easier to simply select the columns we want to work with to reduce clutter. We can use the &lt;code&gt;select()&lt;/code&gt; function from &lt;code&gt;dplyr&lt;/code&gt; to do this.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
 p1 &amp;lt;- pizza %&amp;gt;% select(., pubcountry, pubcode, pubyear, record_count)
@@ -954,10 +977,14 @@ head(p1)&lt;/code&gt;&lt;/pre&gt;
 ## 6 Patent Co-operation Treaty WO         2002           1.&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Note that &lt;code&gt;dplyr&lt;/code&gt; will exclude columns that are not mentioned when using select. This is one of the purposes of &lt;code&gt;select&lt;/code&gt; as a function. For that reason you will probably want to rename the object (in this case as p1). If we used the name &lt;code&gt;pizza&lt;/code&gt; for the object our original table would be reduced to the 4 columns specified by &lt;code&gt;select&lt;/code&gt;. Type &lt;code&gt;?select&lt;/code&gt; in the console for further details.&lt;/p&gt;
 &lt;p&gt;We now have a data frame with 9,996 rows and 4 variables (columns). Use &lt;code&gt;View(p1)&lt;/code&gt; or simply enter &lt;code&gt;p1&lt;/code&gt; into the console to take a look.&lt;/p&gt;
-&lt;p&gt;##Creating Counts&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-counts&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Creating Counts&lt;/h2&gt;
 &lt;p&gt;To make life even easier for ourselves we can use function &lt;code&gt;count()&lt;/code&gt; from &lt;code&gt;dplyr&lt;/code&gt; to group the data onto counts by different variables for graphing. Note that we could defer counting until later, however, this is a good opportunity to learn more about &lt;code&gt;dplyr&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Let’s go ahead and construct some counts using &lt;code&gt;p1&lt;/code&gt;. At the same time we will use quick plot (&lt;code&gt;qplot&lt;/code&gt;) for some exploratory plotting of the results. In the course of this R will show error warnings in red for missing values. We will be ignoring the warning because they are often R telling us things it things we need to know.&lt;/p&gt;
-&lt;p&gt;###Total by Year&lt;/p&gt;
+&lt;div id=&#34;total-by-year&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Total by Year&lt;/h3&gt;
 &lt;p&gt;What if we wanted to know the overall total for our sample data by publication year. Try the following.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pt &amp;lt;- count(p1, pubyear, wt = record_count)
 head(pt)&lt;/code&gt;&lt;/pre&gt;
@@ -974,9 +1001,11 @@ head(pt)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let’s go ahead and quickly plot that using the &lt;code&gt;qplot()&lt;/code&gt; function.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;qplot(x = pubyear, y = n, data = pt, geom = &amp;quot;line&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2015-06-25-wrangling-pizza-patents-in-R_files/figure-html/fig1_ggplot1-1.png&#34; width=&#34;800px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
 &lt;div id=&#34;round-up&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Round Up&lt;/h3&gt;
 &lt;p&gt;That’s it. You may feel at the end of this post that this was a lot of work to get to a very simple graph. But, in reality, it is the data preparation that takes the time. In the next post we will focus in on creating different kinds of graph in ggplot2 and some of the challenges that we encounter along the way.&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 </description>
     </item>

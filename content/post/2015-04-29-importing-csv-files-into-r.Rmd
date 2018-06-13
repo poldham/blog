@@ -46,7 +46,7 @@ We will cover the following approaches to importing and writing .csv files here:
 
 That should cover most needs. If you find that you are stuck with a function try calling the description for a particular function (?read.csv) or try [stackoverflow.com](http://stackoverflow.com/questions/tagged/r) results tagged R or from a Google search (often the quickest route).  
 
-##Reading in a file using read.table (`utils` package)
+## Reading in a file using read.table (`utils` package)
 
 Reading in a .csv file is easy and is part of `read.table` in the R `utils` package (installed by default). We can simply read in a .csv by creating an object linked to the function `read.csv()` followed by the path to the local file as follows. You will need to download the file from the link above.  
 
@@ -133,7 +133,7 @@ There are two points to note here.
 1. Spaces in column names such as publication number are filled with full stops. Use the new `janitor` package `clean_names()` function to deal with this. 
 2. More importantly, by default character vectors are converted to factors (characters backed by a hidden number). It therefore makes sense to always use `StringsAsFactors = FALSE` unless you actually want columns to import as factors.
 
-##Reading a .csv from the web
+## Reading a .csv from the web
 
 Reading a .csv file from the web is also easy as we have seen above but it can involve some complications. We will cover a couple of cases here. If the URL begins with `http:` then it is as simple as entering the URL inside quotes. However, if it is the secure `https:` then it is a little bit more of a challenge. 
 
@@ -167,7 +167,7 @@ In this case we use `download.file` and the URL in quotes, followed by the desti
 
 You now need to navigate to where the file is and import it
 
-###Downloading from GitHub
+### Downloading from GitHub
 
 In downloading from GitHub (where the project Google Drive datasets are also located), we have to go a step further. The URL that you see on the page in Github is basically a marker for the data location... not the actual dataset location. To access the actual dataset navigate to the relevant page [here](https://github.com/poldham/opensource-patent-analytics/blob/master/datasets/ritonavir/ritonavir.csv). However, then select the Raw button and copy that *URL*. The URL should begin with https:raw. as below. 
 
@@ -179,7 +179,7 @@ Next you need to navigate to the file location and import as before.
 
 As an alternative to this approach in Github it can be easier to simply navigate to the repository (such as https://github.com/poldham/opensource-patent-analytics) and then select `Clone in Desktop` (if you are using GitHub on your local machine) or 'Download ZIP'. That will download the repository including the relevant datasets.  
 
-##Writing a .csv file
+## Writing a .csv file
 
 If we wanted to write this data table to a new .csv file we would use the 'write.csv()' command.
 
@@ -227,7 +227,7 @@ This will prevent R from writing an additional row names column.
 
 We will now take a look at a somewhat unusual import case. That is importing multiple files. I have left this until after we have worked on writing .csv files because realising that we can import, export and then reimport files into R is an important part of creating effective workflows in future work. Otherwise, we may spend hours in R to achieve something that can be done easily outside R. This particular example provides a good illustration of this point. 
 
-##Reading in multiple .csv files
+## Reading in multiple .csv files
 
 On some occasions we might want to read in multiple .csv files at the same time. Typically this will be where a patent dataset has been split into multiple files. If you would like to follow this discussion then download the [pizza_sliced dataset](https://drive.google.com/folderview?id=0B4piiKOCkRPDVUxhVVhkbGtQLVU&usp=sharing) which contains five .csv files plus a ReadMe file. 
 
@@ -377,7 +377,7 @@ We have now covered the basics of importing a .csv file into R and then writing 
 
 It is useful to know these steps when you get into trouble, but in day to day practice you are most likely to use the `readr` package (or `data.table's` `fread()`).
 
-##Using the new `readr` package.
+## Using the new `readr` package.
 
 If you don't have `readr` use the following to install it. 
 
@@ -454,7 +454,7 @@ What we see here is the data with column names left as is. We can also see that 
 
 We will update this part of the walkthrough as clarity on dealing with dates becomes available with `readr`.
 
-##Writing a .csv file using `write_csv()`
+## Writing a .csv file using `write_csv()`
 
 We can easily write a .csv file using the `write_csv()` function as follows
 
@@ -472,6 +472,6 @@ The full list of arguments for `write_csv()` at the moment is
 
 Bear in mind that `readr` does not possess the functionality of `read.csv` or `write.csv` in `read.table`. Part of the aim of `readr` is simplification based on the idea of doing a limited number of things well. Therefore, it is unlikely that `readr` will ever be as comprehensive as the `read.table` equivalents in the future. However, `readr` is likely to become the go to package because of its simplicity for most needs and because it links with the wider family of `tidyr`, `plyr` and `dplyr` packages under development at RStudio to make data wrangling and analysis easier. 
 
-##Round Up
+## Round Up
 
 In this walkthrough we have covered the fundamentals of reading and writing .csv files in R. This is pretty much the easiest file format to work with for patent data and considerably better than Excel which we will cover next. I, like almost everyone else, would encourage you to start working with .csv files wherever possible for the straightforward reason that they are cleaner and better to share across platforms and programmes than Excel or other proprietary format files. 

@@ -104,7 +104,8 @@ We will focus on:</p>
 <pre><code>## Loading required package: rJava</code></pre>
 <pre><code>## Loading required package: xlsxjars</code></pre>
 <p>You can use your own local excel file but we will use the file <a href="https://drive.google.com/file/d/0B4piiKOCkRPDNWhrdGxXc0YwTk0/view?usp=sharing">wipotrends</a> in the <a href="https://drive.google.com/open?id=0B4piiKOCkRPDNWhrdGxXc0YwTk0&amp;authuser=0">patent dataset folder</a> for this example. Other test Excel datasets in the folder are <a href="https://drive.google.com/open?id=0B4piiKOCkRPDZGZ4dlJsVEN4TEk&amp;authuser=0">ewaste</a> and <a href="https://drive.google.com/open?id=0B4piiKOCkRPDMUVSaFJtdXlOX28&amp;authuser=0">solarcooking</a>. Download the file and save it to your computer. Then copy the local file path.</p>
-<p>##Reading a local file</p>
+<div id="reading-a-local-file" class="section level2">
+<h2>Reading a local file</h2>
 <p>We will use a file called <a href="https://drive.google.com/open?id=0B4piiKOCkRPDNWhrdGxXc0YwTk0&amp;authuser=0">wipotrends</a></p>
 <p>Let’s open the file up to inspect it briefly. We will see that it contains one worksheet and that the column headings begin at row 5. To load it into R we will use the <code>read.xlxs</code> function and specify arguments to tell R where to look for and handle the data.</p>
 <pre class="r"><code>wipotrends &lt;- read.xlsx(&quot;/Users/pauloldham17inch/Desktop/open_source_master/2_datasets/wipo/wipotrends.xlsx&quot;, sheetIndex = 1, startRow = 5, endRow = 23, as.data.frame = TRUE, header=TRUE)</code></pre>
@@ -153,7 +154,9 @@ We will focus on:</p>
 ## 17 2011      2149000             8.1
 ## 18 2012      2347700             9.2</code></pre>
 <p>In reviewing <code>wipotrends</code> note that the row numbers refer to data rows (we have excluded the padding in rows 1 -4). If we were spending time with this data we might also want to turn the columns to lowercase and <code>growth rate</code> to <code>growth_rate</code> (but see below on <code>readxl</code>).</p>
-<p>##Writing Excel Files</p>
+</div>
+<div id="writing-excel-files" class="section level2">
+<h2>Writing Excel Files</h2>
 <p>It is generally better to write a .csv file rather than an Excel file because the results can be used in a wider range of tools (including Excel) and will be cleaner (see below). However, to write an Excel file with the new data frame use the <code>write.xlsx()</code> function. Before running the command it is generally a good idea to use the command <code>getwd()</code> to display the working directory you are in so that you know where the file will be saved. To change the directory to a new location use <code>setwd(&quot;yourpathtofile&quot;)</code>.</p>
 <pre class="r"><code>write.xlsx(wipotrends, &quot;yourfilenamepath_new.xlsx&quot;, sheetName=&quot;Sheet1&quot;, col.names = TRUE, row.names = TRUE, append = FALSE, showNA = TRUE)</code></pre>
 <p>This will create a new file called wipotrends_new. Note three points here:</p>
@@ -162,10 +165,14 @@ We will focus on:</p>
 <li>If you select <code>row.names = FALSE</code> R will write a new column with row numbers (in this case)</li>
 <li>Selecting <code>showNA = TRUE</code> will fill any blank cells with NA. That is useful when coming back into R to tidy up and select data. Blank cells are the enemy of calculations and it is better to fill the cells with a value where possible.</li>
 </ol>
-<p>##Writing Excel to CSV</p>
+</div>
+<div id="writing-excel-to-csv" class="section level2">
+<h2>Writing Excel to CSV</h2>
 <p>While Excel is popular in reality it is better to use .csv when using or sharing data across a range of software tools. To write results into .csv use <code>write.csv()</code>. Call up the description for write.csv with ?write.csv in console. See the .csv walk through for further details.</p>
 <pre class="r"><code>write.csv(wipotrends, file = &quot;yourfilenamepath_new.csv&quot;, row.names = FALSE)</code></pre>
-<p>#Using the Readxl package</p>
+</div>
+<div id="using-the-readxl-package" class="section level2">
+<h2>Using the Readxl package</h2>
 <p>readxl is a new package from RStudio and is still a work in progress. We will cover it here because as the package develops it will become more popular and you are more likely to use it.</p>
 <pre class="r"><code>install.packages(&quot;readxl&quot;)</code></pre>
 <pre class="r"><code>library(readxl)</code></pre>
@@ -208,9 +215,13 @@ read_wipo &lt;- read_excel(&quot;/Users/pauloldham17inch/Desktop/WIPO_Training/t
 <p>The main advantage of <code>read_excel</code> (as with <code>read_csv</code> in the <code>readr</code> package) is that the data imports into an easy to print object with three attributes a <code>tbl_df</code> a <code>tbl</code> and a <code>data.frame</code>.</p>
 <p>If you are using <code>dplyr</code> and <code>tidyr</code> (and we assume that you will be) then the creation of a tbl_df makes life much easier.</p>
 <p>In summary, readxl is a welcome development for those who prefer using Excel (or are forced too), but it is very recent. It’s main strength is the ability to easily see what worksheets are in a workbook and also the automatic creation of a data frame or data frame table at the time of import. The absence of a write function will hopefully encourage hardened Excel uses to adopt comma separated or tab delimited files as their standard and to take advantage of the fuller functionality of the <code>readr</code> package. You know it makes sense.</p>
-<p>##Reading Excel files from URL locations</p>
+</div>
+<div id="reading-excel-files-from-url-locations" class="section level2">
+<h2>Reading Excel files from URL locations</h2>
 <p>It is faster to simply download the file to your drive, or swim the Atlantic ocean, than to successfully download an excel file on http: or, in particular https:. So maybe ask yourself what is the path of least resistance and run with that.</p>
-<p>##Getting Help and Further Resources</p>
+</div>
+<div id="getting-help-and-further-resources" class="section level2">
+<h2>Getting Help and Further Resources</h2>
 <ol style="list-style-type: decimal">
 <li>For additional functionality experiment with the very useful <strong>XLConnect</strong> package in Packages. Read the documentation on <a href="http://cran.r-project.org/web/packages/XLConnect/index.html">CRAN</a>. This adds a lot of functionality in working with Excel files in R.</li>
 <li>See the R-bloggers <a href="http://www.r-bloggers.com/read-excel-files-from-r/">overview</a> article on the range of packages for working with Excel files.</li>
@@ -219,6 +230,7 @@ read_wipo &lt;- read_excel(&quot;/Users/pauloldham17inch/Desktop/WIPO_Training/t
 <li>Paul Oldham</li>
 <li>Updated 13/05/2015</li>
 </ul>
+</div>
 
     </div>
   </article>

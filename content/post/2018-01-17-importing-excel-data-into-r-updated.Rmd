@@ -3,7 +3,7 @@ title: An Update on Importing Excel Data in R
 author: "Paul Oldham"
 date: '2018-02-06'
 slug: importing-excel-data-into-r-updated
-description: "Importing Excel into R is so much easier than it was. Here's an update covering the dreaded https problem and using writexl https://bit.ly/2fl2IBW from @ROpensci #rstats"
+description: "If you are looking for how to import Excel into R... read this update. It's now much easier to import and the post also covers the dreaded https problem and using writexl."
 twitterImg: "images/excellent-GIF-downsized.gif"
 categories:
   - R
@@ -20,7 +20,7 @@ output:
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, fig.align = "center", out.width = "600px", cache = TRUE, tidy = TRUE)
 ```
 
-##Introduction
+## Introduction
 
 Back in 2015 I wrote a long blog post on [importing Excel tables into R](https://www.pauloldham.net/reading-writing-excel-files-r/). Happily for everyone this is now a lot easier than it was. This post provides an update on importing spreadsheets into R and exporting from R to Excel. I'll also cover reading an excel file into R from a url as that seems to be an ongoing struggle. 
 
@@ -300,7 +300,7 @@ tmp <- list(df, noisycols1)
 write_xlsx(tmp, "tmp.xlsx")
 ```
 
-##Round Up
+## Round Up
 
 There we have it. Reading and writing Excel files in R is now way way easier than it was just a couple of years ago thanks to the dedicated work of those behind `readxl` (Hadley Wickham and Jenny Bryan) and `writexl` by Jeroen Ooms and John McNamara. Other packages will take you to the same place but these are my go to packages. Community contributions are helping to solve the mystery of reading Excel files from urls and we might hope that at some point `readxl` may address this problem. 
 

@@ -20,15 +20,19 @@
       <guid>/importing-excel-data-into-r-updated/</guid>
       <description>&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#import-directly-from-the-rstudio-menu&#34;&gt;Import Directly from the RStudio Menu&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#reading-an-excel-file-from-a-url&#34;&gt;Reading an Excel file from a URL&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#tidying-column-names-with-janitor&#34;&gt;Tidying column names with &lt;code&gt;janitor&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#exporting-to-excel&#34;&gt;Exporting to Excel&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#round-up&#34;&gt;Round Up&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
-&lt;p&gt;##Introduction&lt;/p&gt;
+&lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Back in 2015 I wrote a long blog post on &lt;a href=&#34;https://www.pauloldham.net/reading-writing-excel-files-r/&#34;&gt;importing Excel tables into R&lt;/a&gt;. Happily for everyone this is now a lot easier than it was. This post provides an update on importing spreadsheets into R and exporting from R to Excel. I’ll also cover reading an excel file into R from a url as that seems to be an ongoing struggle.&lt;/p&gt;
+&lt;/div&gt;
 &lt;div id=&#34;import-directly-from-the-rstudio-menu&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Import Directly from the RStudio Menu&lt;/h2&gt;
 &lt;p&gt;The big change is that it is now very easy to import from Excel using the RStudio Menu: &lt;code&gt;File &amp;gt; Import Dataset &amp;gt; From Excel&lt;/code&gt;.&lt;/p&gt;
@@ -317,7 +321,9 @@ writexl::write_xlsx(df, path = &amp;quot;df.xlsx&amp;quot;, col_names = TRUE)&lt
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(writexl)
 tmp &amp;lt;- list(df, noisycols1)
 write_xlsx(tmp, &amp;quot;tmp.xlsx&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;##Round Up&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;round-up&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Round Up&lt;/h2&gt;
 &lt;p&gt;There we have it. Reading and writing Excel files in R is now way way easier than it was just a couple of years ago thanks to the dedicated work of those behind &lt;code&gt;readxl&lt;/code&gt; (Hadley Wickham and Jenny Bryan) and &lt;code&gt;writexl&lt;/code&gt; by Jeroen Ooms and John McNamara. Other packages will take you to the same place but these are my go to packages. Community contributions are helping to solve the mystery of reading Excel files from urls and we might hope that at some point &lt;code&gt;readxl&lt;/code&gt; may address this problem.&lt;/p&gt;
 &lt;p&gt;If you would like to learn more on importing data into R then try the DataCamp course on &lt;a href=&#34;https://www.datacamp.com/tracks/importing-cleaning-data-with-r&#34;&gt;Importing Data &amp;amp; Cleaning with R&lt;/a&gt; that covers Excel.&lt;/p&gt;
 &lt;/div&gt;

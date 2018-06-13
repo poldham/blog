@@ -18,7 +18,7 @@ Plotly is an online graphing service that allows you to import excel, text and o
 
 Plotly's great strength is that it produces attractive interactive graphics that can easily be shared with colleagues or made public. It also has a wide variety of graph types including contour and heatmaps. For examples of graphs created with Plotly see the [public gallery](https://plot.ly/feed/). However, we experienced significant difficulty in loading patent data into Plotly and we struggled to draw graphs that would take a couple of minutes if we used Tableau Public as our benchmark. This suggests a need for investment of more time in understanding the expectations of the tool to make best use of the service. It may also suggest that while Plotly can produce excellent graphics, the service may need to invest more time in explaining how ordinary human beings might format their data to meet its expectations. In short, as is often the case with open source tools, the basic documentation could be better. Do not let this put you off. Plotly is potentially a great tool for creating and sharing graphics. In the rest of this article we will help you get started as a basis for exploring Plotly on your own. 
 
-###Getting Started with Plotly
+### Getting Started with Plotly
 
 We need to start out by creating an account using the Create Account Button. 
 
@@ -29,7 +29,7 @@ knitr::include_graphics("/images/plotlyfigs/fig1_plotly.png")
 
 Next we will see an invitation to take a tour (which is worth doing) and Plotly helpfully points out that we can load files from Google Drive or Dropbox. We then select the Workspace option to begin work.
 
-###Importing Files
+### Importing Files
 
 When you first arrive you will see a Workspace with a Grid (Plotly's term for a table or worksheet). 
 
@@ -56,7 +56,7 @@ One important point to note is that Plotly is not a data processing tool. While 
 
 We experienced a different type of problem with the simple WIPO trends data where Plotly concatenated the first row (containing labels) and the first data row into one heading row. However, in most cases import seemed to be fine. To turn a row into a heading row try right clicking the row with the headings and right clicking on `use row as col headers`. Then right click again to remove the original row. 
 
-##Creating a graphic
+## Creating a graphic
 
 We will start with the simple WIPO trends data by opening up that Grid
 
@@ -87,7 +87,7 @@ knitr::include_graphics("/images/plotlyfigs/fig8_fit.png")
 
 We can then save the plot and use the export button to save the plot in a variety of formats and sizes. It is also very easy to add annotations using the Notes icon. Confusingly, the large blue Share button only seems to save the file and despite saving the plot we were not able to locate it again. While Plotly certainly looks nice, and appears to have attractive functions it is not intuitive and the difficulties involved in importing and sharing can be frustrating and time consuming. In short, time is needed to invest in and explore the potential of this tool. 
 
-###Adding a Second Axis
+### Adding a Second Axis
 
 If we go back to our original WIPO trends data we have a percentage score for the year on year change in patent applications. We might want to show this on a plot with a second axis for the percentage. 
 
@@ -159,7 +159,7 @@ knitr::include_graphics("/images/plotlyfigs/fig13_final_annotated.png")
 
 In this case we have added a couple of markers that may help to understand trends in activity. First, we have a dip in patent applications between 2001 and 2002. One possible explanation here is that this is a knock on effect of the collapse of the dot.com bubble where share prices reached a peak in 2000, declined rapidly and recovered before declining again into 2001. Patent data typically displays lag effects and it is reasonable to think that the decline in application activity from 2001 reflects these wider economic adjustments. Similarly, there is a significant dip in applications between 2008 and 2009 that it appears reasonable to assume reflects the knock on effects of the global economic crisis of 2007-2008. Note here that these are grosso modo way markers. We could choose to add other timeline style events or layer graphics to help understand the potential or actual relationships between wider economic activity and trends in patent applications worldwide. 
 
-###Saving and Sharing Sharing 
+### Saving and Sharing Sharing 
 
 To save the plot we simply click Save. However, it is here that one of Plotly's major strengths becomes apparent. As soon as we save the plot we can also invite others by email, we can create a public or private shareable link. For the collaborators, they must have a Plotly account already for this to work. 
 
@@ -182,7 +182,7 @@ Alternatively, surprise your friends and relatives by posting the plot on facebo
 
 In this example we have focused on developing a very simple plot using plotly. In practice there are a wide range of possible plotting options with a range of tutorials provided [here](http://help.plot.ly/)
 
-##Working with Plotly in R
+## Working with Plotly in R
 
 We are following the instructions for setting up Plotly in R [here](https://plot.ly/r/getting-started/). We will be using [RStudio](https://www.rstudio.com/) for this experiment. Download RStudio for your operating system [here](https://www.rstudio.com/products/RStudio/). For Python try these [installation instructions](https://plot.ly/python/getting-started/) to get started. 
 
@@ -288,7 +288,7 @@ We can also share the graph via social media, download the data, or edit the gra
 
 It is here that Plotly's potential importance as a tool for sharing data and graphics becomes apparent. 
 
-##Round Up
+## Round Up
 
 In this article we have provided a brief introduction to Plotly to help you get started with using this tool for patent analytics. Plotly provides visually appealing and interactive graphics that can readily be shared with colleagues, pasted into websites and shared publicly. The availability of APIs is also a key feature of Plotly for those working in Python, R or other programmatic environments. 
 

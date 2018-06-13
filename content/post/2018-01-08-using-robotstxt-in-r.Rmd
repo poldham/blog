@@ -3,7 +3,7 @@ title: Dr. Evil meets the robotstxt package
 author: Paul Oldham
 date: '2018-01-08'
 slug: using-robotstxt-in-r
-description: "A quick and mildly evil guide to the @ROpensci robotstxt package #rstats"
+description: "A quick and mildly evil guide to the @ROpensci robotstxt package"
 twitterImg: "images/austin_powers_gangsta.gif"
 categories: [R]
 tags: [webscraping, robots, robotstxt, biospolar, ropensci]
