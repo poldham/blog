@@ -14,11 +14,10 @@ knitr::opts_chunk$set(cache=TRUE, tidy=TRUE, out.width = "800px", fig.align = "c
 options(width = 80)
 ```
 
-### A Quick 2018 Update
+## A Quick 2018 Update
 
-This post is now showing its age and was the first thing I wrote about R. Everything still works but `readr`, which was brand new at the time, has made a big difference. I now suggest the following:
+This post is now showing its age and was the first thing I wrote about R. Everything still works but readr, which was brand new at the time, has made a big difference. I now suggest the importing local csv files into RStudio using `File > Import > From Text (readr)` as it is by far the easiest way to import files.
 
-- Import local csv files into RStudio using `File > Import > From Text (readr)` as it is by far the easiest way to import files.
 - If that fails consult the `readr` documentation and review the arguments.
 - If that fails try the base R `read.csv()` making sure to set `stringsAsFactors = FALSE` unless you really want factors. 
 - When working with very large datasets use `fread()` from the `data.table` package... it rocks... but study the arguments.

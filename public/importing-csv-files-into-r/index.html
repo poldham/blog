@@ -89,8 +89,9 @@
     <div class="article-content">
       <div id="TOC">
 <ul>
-<li><a href="#a-quick-2018-update">A Quick 2018 Update</a></li>
+<li><a href="#a-quick-2018-update">A Quick 2018 Update</a><ul>
 <li><a href="#introduction">Introduction</a></li>
+</ul></li>
 <li><a href="#reading-in-a-file-using-read.table-utils-package">Reading in a file using read.table (<code>utils</code> package)</a></li>
 <li><a href="#reading-a-.csv-from-the-web">Reading a .csv from the web</a><ul>
 <li><a href="#downloading-from-google-drive">Downloading From Google Drive</a></li>
@@ -104,11 +105,10 @@
 </ul>
 </div>
 
-<div id="a-quick-2018-update" class="section level3">
-<h3>A Quick 2018 Update</h3>
-<p>This post is now showing its age and was the first thing I wrote about R. Everything still works but <code>readr</code>, which was brand new at the time, has made a big difference. I now suggest the following:</p>
+<div id="a-quick-2018-update" class="section level2">
+<h2>A Quick 2018 Update</h2>
+<p>This post is now showing its age and was the first thing I wrote about R. Everything still works but readr, which was brand new at the time, has made a big difference. I now suggest the importing local csv files into RStudio using <code>File &gt; Import &gt; From Text (readr)</code> as it is by far the easiest way to import files.</p>
 <ul>
-<li>Import local csv files into RStudio using <code>File &gt; Import &gt; From Text (readr)</code> as it is by far the easiest way to import files.</li>
 <li>If that fails consult the <code>readr</code> documentation and review the arguments.</li>
 <li>If that fails try the base R <code>read.csv()</code> making sure to set <code>stringsAsFactors = FALSE</code> unless you really want factors.</li>
 <li>When working with very large datasets use <code>fread()</code> from the <code>data.table</code> package… it rocks… but study the arguments.</li>
@@ -117,7 +117,6 @@
 <li>If looking to import multiple files at the same time the approach below will work well (but the steps could be joined together)… e.g. if you are doing the Coursera R course.</li>
 </ul>
 <p>I will update the post properly when time permits.</p>
-</div>
 <div id="introduction" class="section level3">
 <h3>Introduction</h3>
 <p>As part of the <a href="https://github.com/wipo-analytics">WIPO Manual on Open Source Patent Analytics project</a> we will be working with patent data in R using <a href="http://www.rstudio.com">RStudio</a>. If you do not have a copy of RStudio follow the simple instructions for installing on your platform <a href="http://www.rstudio.com/products/rstudio/download/">here</a>. There are lots of resources on the site to help you get started including <a href="http://www.rstudio.com/resources/training/online-learning/">online learning</a>, <a href="http://www.rstudio.com/resources/webinars/">videos</a>, and <a href="http://www.rstudio.com/resources/cheatsheets/">cheatsheets</a>. The excellent <a href="http://www.r-bloggers.com">R-Bloggers site</a> will demonstrate why it is worth investing time in R when working with patent data.</p>
@@ -132,6 +131,7 @@
 <li>Downloading a .csv file from a URL, focusing on https: connections, using <code>Rcurl</code>.</li>
 </ol>
 <p>That should cover most needs. If you find that you are stuck with a function try calling the description for a particular function (?read.csv) or try <a href="http://stackoverflow.com/questions/tagged/r">stackoverflow.com</a> results tagged R or from a Google search (often the quickest route).</p>
+</div>
 </div>
 <div id="reading-in-a-file-using-read.table-utils-package" class="section level2">
 <h2>Reading in a file using read.table (<code>utils</code> package)</h2>

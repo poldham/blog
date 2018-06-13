@@ -200,8 +200,8 @@ gebco&lt;/code&gt;&lt;/pre&gt;
 ##     spiderbar::can_fetch(obj = self$robexclobj, path = paths, 
 ##         user_agent = bot)
 ## }
-## &amp;lt;bytecode: 0x7fa2dc5deed8&amp;gt;
-## &amp;lt;environment: 0x7fa2dc5de538&amp;gt;
+## &amp;lt;bytecode: 0x7ff4720308d8&amp;gt;
+## &amp;lt;environment: 0x7ff47202ff38&amp;gt;
 ## 
 ## attr(,&amp;quot;class&amp;quot;)
 ## [1] &amp;quot;robotstxt&amp;quot;&lt;/code&gt;&lt;/pre&gt;
@@ -459,8 +459,8 @@ noaa&lt;/code&gt;&lt;/pre&gt;
 ##     spiderbar::can_fetch(obj = self$robexclobj, path = paths, 
 ##         user_agent = bot)
 ## }
-## &amp;lt;bytecode: 0x7fa2dc5deed8&amp;gt;
-## &amp;lt;environment: 0x7fa2df6f4370&amp;gt;
+## &amp;lt;bytecode: 0x7ff4720308d8&amp;gt;
+## &amp;lt;environment: 0x7ff4715ca970&amp;gt;
 ## 
 ## attr(,&amp;quot;class&amp;quot;)
 ## [1] &amp;quot;robotstxt&amp;quot;&lt;/code&gt;&lt;/pre&gt;

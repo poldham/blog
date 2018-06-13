@@ -5350,8 +5350,9 @@ From this information we can see that no opposition to the patent application wa
       <guid>/importing-csv-files-into-r/</guid>
       <description>&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#a-quick-2018-update&#34;&gt;A Quick 2018 Update&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#a-quick-2018-update&#34;&gt;A Quick 2018 Update&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#reading-in-a-file-using-read.table-utils-package&#34;&gt;Reading in a file using read.table (&lt;code&gt;utils&lt;/code&gt; package)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#reading-a-.csv-from-the-web&#34;&gt;Reading a .csv from the web&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#downloading-from-google-drive&#34;&gt;Downloading From Google Drive&lt;/a&gt;&lt;/li&gt;
@@ -5365,11 +5366,10 @@ From this information we can see that no opposition to the patent application wa
 &lt;/ul&gt;
 &lt;/div&gt;
 
-&lt;div id=&#34;a-quick-2018-update&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;A Quick 2018 Update&lt;/h3&gt;
-&lt;p&gt;This post is now showing its age and was the first thing I wrote about R. Everything still works but &lt;code&gt;readr&lt;/code&gt;, which was brand new at the time, has made a big difference. I now suggest the following:&lt;/p&gt;
+&lt;div id=&#34;a-quick-2018-update&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;A Quick 2018 Update&lt;/h2&gt;
+&lt;p&gt;This post is now showing its age and was the first thing I wrote about R. Everything still works but readr, which was brand new at the time, has made a big difference. I now suggest the importing local csv files into RStudio using &lt;code&gt;File &amp;gt; Import &amp;gt; From Text (readr)&lt;/code&gt; as it is by far the easiest way to import files.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Import local csv files into RStudio using &lt;code&gt;File &amp;gt; Import &amp;gt; From Text (readr)&lt;/code&gt; as it is by far the easiest way to import files.&lt;/li&gt;
 &lt;li&gt;If that fails consult the &lt;code&gt;readr&lt;/code&gt; documentation and review the arguments.&lt;/li&gt;
 &lt;li&gt;If that fails try the base R &lt;code&gt;read.csv()&lt;/code&gt; making sure to set &lt;code&gt;stringsAsFactors = FALSE&lt;/code&gt; unless you really want factors.&lt;/li&gt;
 &lt;li&gt;When working with very large datasets use &lt;code&gt;fread()&lt;/code&gt; from the &lt;code&gt;data.table&lt;/code&gt; package… it rocks… but study the arguments.&lt;/li&gt;
@@ -5378,7 +5378,6 @@ From this information we can see that no opposition to the patent application wa
 &lt;li&gt;If looking to import multiple files at the same time the approach below will work well (but the steps could be joined together)… e.g. if you are doing the Coursera R course.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I will update the post properly when time permits.&lt;/p&gt;
-&lt;/div&gt;
 &lt;div id=&#34;introduction&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Introduction&lt;/h3&gt;
 &lt;p&gt;As part of the &lt;a href=&#34;https://github.com/wipo-analytics&#34;&gt;WIPO Manual on Open Source Patent Analytics project&lt;/a&gt; we will be working with patent data in R using &lt;a href=&#34;http://www.rstudio.com&#34;&gt;RStudio&lt;/a&gt;. If you do not have a copy of RStudio follow the simple instructions for installing on your platform &lt;a href=&#34;http://www.rstudio.com/products/rstudio/download/&#34;&gt;here&lt;/a&gt;. There are lots of resources on the site to help you get started including &lt;a href=&#34;http://www.rstudio.com/resources/training/online-learning/&#34;&gt;online learning&lt;/a&gt;, &lt;a href=&#34;http://www.rstudio.com/resources/webinars/&#34;&gt;videos&lt;/a&gt;, and &lt;a href=&#34;http://www.rstudio.com/resources/cheatsheets/&#34;&gt;cheatsheets&lt;/a&gt;. The excellent &lt;a href=&#34;http://www.r-bloggers.com&#34;&gt;R-Bloggers site&lt;/a&gt; will demonstrate why it is worth investing time in R when working with patent data.&lt;/p&gt;
@@ -5393,6 +5392,7 @@ From this information we can see that no opposition to the patent application wa
 &lt;li&gt;Downloading a .csv file from a URL, focusing on https: connections, using &lt;code&gt;Rcurl&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;That should cover most needs. If you find that you are stuck with a function try calling the description for a particular function (?read.csv) or try &lt;a href=&#34;http://stackoverflow.com/questions/tagged/r&#34;&gt;stackoverflow.com&lt;/a&gt; results tagged R or from a Google search (often the quickest route).&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;reading-in-a-file-using-read.table-utils-package&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Reading in a file using read.table (&lt;code&gt;utils&lt;/code&gt; package)&lt;/h2&gt;
