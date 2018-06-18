@@ -25,10 +25,8 @@
 &lt;p&gt;Here is a simple example of a table containing a column with concatenated data.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
 messy &amp;lt;- tibble::tibble(messy = c(&amp;quot;this is not the; messiest&amp;quot;, 
-                                  &amp;quot;messy data column; 
-                                  in the world&amp;quot;, 
-                                  &amp;quot;it&amp;#39;s just; a; 
-                                  tribute&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+                                  &amp;quot;messy data column; in the world&amp;quot;, 
+                                  &amp;quot;it&amp;#39;s just; a; tribute&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If we try to count this:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;messy %&amp;gt;% 
   count(messy) %&amp;gt;% 

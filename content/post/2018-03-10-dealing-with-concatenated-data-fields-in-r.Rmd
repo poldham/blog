@@ -34,10 +34,8 @@ Here is a simple example of a table containing a column with concatenated data.
 ```{r message=FALSE}
 library(tidyverse)
 messy <- tibble::tibble(messy = c("this is not the; messiest", 
-                                  "messy data column; 
-                                  in the world", 
-                                  "it's just; a; 
-                                  tribute"))
+                                  "messy data column; in the world", 
+                                  "it's just; a; tribute"))
 ```
 
 If we try to count this:
