@@ -4,7 +4,7 @@ author: Paul Oldham
 date: '2018-06-18'
 slug: dealing-with-concatenated-data-fields-in-r
 description: "When working with data tables from the scientific or patent literature, columns often contain concatenated data. Here's a tidy approach to dealing with concatenation and exploration of why trimming white space really matters"
-twitterImg: "images/messy.png"
+twitterImg: "images/messy1.png"
 categories:
   - R
   - patent
