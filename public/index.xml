@@ -25,8 +25,10 @@
 &lt;p&gt;Here is a simple example of a table containing a column with concatenated data.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
 messy &amp;lt;- tibble::tibble(messy = c(&amp;quot;this is not the; messiest&amp;quot;, 
-                                  &amp;quot;messy data column; in the world&amp;quot;, 
-                                  &amp;quot;it&amp;#39;s just; a; tribute&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+                                  &amp;quot;messy data column; 
+                                  in the world&amp;quot;, 
+                                  &amp;quot;it&amp;#39;s just; a; 
+                                  tribute&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If we try to count this:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;messy %&amp;gt;% 
   count(messy) %&amp;gt;% 
@@ -2575,8 +2577,8 @@ gebco&lt;/code&gt;&lt;/pre&gt;
 ##     spiderbar::can_fetch(obj = self$robexclobj, path = paths, 
 ##         user_agent = bot)
 ## }
-## &amp;lt;bytecode: 0x7fbaf14aaba8&amp;gt;
-## &amp;lt;environment: 0x7fbaf14aa240&amp;gt;
+## &amp;lt;bytecode: 0x7fc39908c3a8&amp;gt;
+## &amp;lt;environment: 0x7fc39908ba40&amp;gt;
 ## 
 ## attr(,&amp;quot;class&amp;quot;)
 ## [1] &amp;quot;robotstxt&amp;quot;&lt;/code&gt;&lt;/pre&gt;
@@ -2834,8 +2836,8 @@ noaa&lt;/code&gt;&lt;/pre&gt;
 ##     spiderbar::can_fetch(obj = self$robexclobj, path = paths, 
 ##         user_agent = bot)
 ## }
-## &amp;lt;bytecode: 0x7fbaf14aaba8&amp;gt;
-## &amp;lt;environment: 0x7fbaf13253e0&amp;gt;
+## &amp;lt;bytecode: 0x7fc39908c3a8&amp;gt;
+## &amp;lt;environment: 0x7fc39543e1e0&amp;gt;
 ## 
 ## attr(,&amp;quot;class&amp;quot;)
 ## [1] &amp;quot;robotstxt&amp;quot;&lt;/code&gt;&lt;/pre&gt;

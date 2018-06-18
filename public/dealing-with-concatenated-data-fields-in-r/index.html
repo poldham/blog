@@ -12,7 +12,7 @@
 
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://www.pauloldham.net/images/messy1.png" >
+  <meta name="twitter:image" content="https://www.pauloldham.net/images/messy2.png" >
   
 
 
@@ -96,8 +96,10 @@
 <p>Here is a simple example of a table containing a column with concatenated data.</p>
 <pre class="r"><code>library(tidyverse)
 messy &lt;- tibble::tibble(messy = c(&quot;this is not the; messiest&quot;, 
-                                  &quot;messy data column; in the world&quot;, 
-                                  &quot;it&#39;s just; a; tribute&quot;))</code></pre>
+                                  &quot;messy data column; 
+                                  in the world&quot;, 
+                                  &quot;it&#39;s just; a; 
+                                  tribute&quot;))</code></pre>
 <p>If we try to count this:</p>
 <pre class="r"><code>messy %&gt;% 
   count(messy) %&gt;% 

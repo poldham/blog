@@ -4,7 +4,7 @@ author: Paul Oldham
 date: '2018-06-18'
 slug: dealing-with-concatenated-data-fields-in-r
 description: "When working with data tables from the scientific or patent literature, columns often contain concatenated data. Here's a tidy approach to dealing with concatenation and exploration of why trimming white space really matters"
-twitterImg: "images/messy1.png"
+twitterImg: "images/messy2.png"
 categories:
   - R
   - patent
@@ -27,8 +27,10 @@ nocite: |
 <p>Here is a simple example of a table containing a column with concatenated data.</p>
 <pre class="r"><code>library(tidyverse)
 messy &lt;- tibble::tibble(messy = c(&quot;this is not the; messiest&quot;, 
-                                  &quot;messy data column; in the world&quot;, 
-                                  &quot;it&#39;s just; a; tribute&quot;))</code></pre>
+                                  &quot;messy data column; 
+                                  in the world&quot;, 
+                                  &quot;it&#39;s just; a; 
+                                  tribute&quot;))</code></pre>
 <p>If we try to count this:</p>
 <pre class="r"><code>messy %&gt;% 
   count(messy) %&gt;% 
