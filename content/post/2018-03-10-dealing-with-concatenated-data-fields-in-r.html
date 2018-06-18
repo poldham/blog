@@ -1,135 +1,735 @@
 ---
-title: Escaping concatenated data hell in R...deconcatenate and trim
+title: Separating and Trimming Messy Data the Tidy Way
 author: Paul Oldham
 draft: true
-date: '2018-03-10'
+date: '2018-06-18'
 slug: dealing-with-concatenated-data-fields-in-r
-description: "Learning to love separate_rows and trim."
+description: "When working with data tables from the scientific or patent literature, columns often contain concatenated data. Here's a tidy approach to dealing with concatenation and exploration of why trimming white space really matters"
+twitterImg: "images/messy.png"
 categories:
   - R
-tags: [text fields, tidyr, separate_rows, clarivate analytics, web of science]
+  - patent
+tags: [text fields, concatenated data]
+bibliography: [crossref.bib, packages.bib]
+nocite: |
+  @R-tidyverse
+  @R-dplyr
+  @R-tidyr
+  @R-stringr
+  @R-knitr
+  @R-kableExtra
+  @R-formattable
 ---
 
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
 
 
-<p>In this post I want to talk about concateted fields… er what on earth are you talking about…. you know the spreadsheets or data frames with cells lumped together stuff, like this.</p>
-<p>INSERT concatenated</p>
-<pre class="r"><code>tibble::tibble(messy = c(&quot;this is not the messiest; only a man could be this messy&quot;, &quot;mess; in the world&quot;, &quot;it&#39;s just; a; tribute; honestly&quot;))</code></pre>
-<pre><code>## # A tibble: 3 x 1
-##   messy                                                   
-##   &lt;chr&gt;                                                   
-## 1 this is not the messiest; only a man could be this messy
-## 2 mess; in the world                                      
-## 3 it&#39;s just; a; tribute; honestly</code></pre>
-<p>Or, if we wanted something a bit more real world we could take this list of author of scientific articles from south east asia working on marine organisms</p>
-<p>INSERT
-er… ugh. The messiness of this matters if you like counting stuff properly because your data just won’t count properly. I mean this is just totally wrong.</p>
-<p>insert wrong count</p>
-<p>So, this post is about lumped to</p>
-<p>and the things that we need to think about along the way.</p>
-<p>I commonly work with text fields in data from the scientific and patent literature. That means that I run into the problem with columns containing multiple items separated by a semi colon or a comma that are linked to a key field (such as an article DOI or a patent publication number).</p>
-<p>In this short post, and in case anyone else is running into this problem, I want to quickly document a short function that will help to solve the problem.</p>
-<div id="the-problem" class="section level3">
-<h3>The problem</h3>
-<p>I am a big fan of the concept of Tidy Data as developed by Hadley Wickham in [this paper]. Tidy data basically means that each column of a data frame or table is for one category of data (such as authors) and each cell in the table contains one observation for that category (a single author name).</p>
-<p>Real world data does not behave like this and we can see this in some data I have been working with from <a href="">Clarivate Analytics</a> <em>Web of Science</em> involving marine species for South East Asia.</p>
-<p>We can see in this code that I have added the optional <code>readr</code> <code>trimws</code> argument. This is not the default when importing from the RStudio menu but can help you to avoid problems.</p>
-<pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>## ✔ ggplot2 2.2.1.9000     ✔ purrr   0.2.4     
-## ✔ tibble  1.4.2          ✔ dplyr   0.7.5     
-## ✔ tidyr   0.8.0          ✔ stringr 1.3.1     
-## ✔ readr   1.1.1          ✔ forcats 0.3.0</code></pre>
-<pre><code>## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>wos_asean_marine &lt;- read_csv(&quot;~/Desktop/open_source_master/asean_report/data/wos_asean_marine_6659.csv&quot;, trim_ws = TRUE)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   .default = col_character(),
-##   times_cited = col_integer(),
-##   number_of_authors = col_integer(),
-##   publication_year = col_integer(),
-##   number_of_author_affiliations_name_only = col_integer()
-## )</code></pre>
-<pre><code>## See spec(...) for full column specifications.</code></pre>
-<p>Let’s pick a couple of columns.</p>
-<pre class="r"><code>test &lt;- wos_asean_marine %&gt;% select(authors_fullname_useme_updated, isi_unique_article_identifier)</code></pre>
-<table>
+<p>When working with table data from the scientific or patent literature, it is extremely common to find that columns contain concatenated data. That is, they contain multiple entries with a semicolon as a separator. Data of this type is not tidy <span class="citation">(Wickham 2014)</span>. What we commonly want to do is to separate the data out as the basis for counting. However, extra white space can have a major impact on any counts of this data if it is not recognised and dealt with. We will go through this step by step using a simple example and then scale up to a real world example.</p>
+<p>Here is a simple example of a table containing a column with concatenated data.</p>
+<pre class="r"><code>library(tidyverse)
+messy &lt;- tibble::tibble(messy = c(&quot;this is not the; messiest&quot;, 
+                                  &quot;messy data column; in the world&quot;, 
+                                  &quot;it&#39;s just; a; tribute&quot;))</code></pre>
+<p>If we try to count this:</p>
+<pre class="r"><code>messy %&gt;% 
+  count(messy) %&gt;% 
+  kable() %&gt;% 
+  kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
-<tr class="header">
-<th align="left">authors_fullname_useme_updated</th>
-<th align="left">isi_unique_article_identifier</th>
+<tr>
+<th style="text-align:left;">
+messy
+</th>
+<th style="text-align:right;">
+n
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">Dieu Tien Bui; Tien Dat Pham; Yoshino, Kunihiko</td>
-<td align="left">000399475800004</td>
+<tr>
+<td style="text-align:left;">
+it’s just; a; tribute
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="left">Arias, Cova R; Bakenhaster, Micah D; Bullard, Stephen A; Dang, Binh T; Halanych, Kenneth M; Orelis-Ribeiro, Raphael</td>
-<td align="left">000398874800015</td>
+<tr>
+<td style="text-align:left;">
+messy data column; in the world
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Atopkin, D M; Beloded, A Yu; Besprozvannykh, V V; Ermolenko, A V; Ngo, H D; Van Ha, N; Van Tang, N</td>
-<td align="left">000398794800008</td>
-</tr>
-<tr class="even">
-<td align="left">Dittrich, Carolin; Roedel, Mark-Oliver; Struck, Ulrich</td>
-<td align="left">000399737500006</td>
-</tr>
-<tr class="odd">
-<td align="left">Alfaro, Andrea C; Hilton, Zoe; King, Nick; Le, D Viet; Pook, Chris; Ragg, Norman L C</td>
-<td align="left">000396054700041</td>
-</tr>
-<tr class="even">
-<td align="left">Bui Huu Tai; Dan Thuy Hang; Hoang Le Tuan Anh; Hyun, Kim Seung; Kim, Sun Yeou; Kim, Young-A; Le Thi Huyen; Nguyen Van Dau; NGUYEN, Xuan Nhiem; PHAM, Van Cuong; Quang, Tran Hong; Subedi, Lalita; Van Kiem, Phan; Van Minh, Chau</td>
-<td align="left">000397550400005</td>
-</tr>
-<tr class="odd">
-<td align="left">Boyd, Claude E; Engle, Carole R; Hang Ngo Minh; Huynh Quoc Tinh; McNevin, Aaron; Paungkaew, Duangchai; Racine, Phoebe; Viriyatum, Rawee</td>
-<td align="left">000398564700004</td>
-</tr>
-<tr class="even">
-<td align="left">CUTTING, Simon Michael; HUYNH, Hong Anh; Le, P H; Nguyen, Anh H; Nguyen, Anh T V; Pham, Cuong K; Tran Thi Thanh Hien; Tuan-Nghia Phan; Van Doan, C</td>
-<td align="left">000398817000001</td>
-</tr>
-<tr class="odd">
-<td align="left">Chavatte, Jean-Marc; Landau, Irene; Okumura, C</td>
-<td align="left">000395176100034</td>
-</tr>
-<tr class="even">
-<td align="left">Cuong, Nguyen Xuan; Nguyen Thi Phuong Chi; Nguyen Van Thanh; Nguyen, Hai-Dang; NGUYEN, Hoai Nam; NINH, Thi Ngoc; Pham Thi Mai Huong; Thung, Do-Cong; Van Kiem, Phan; Van Minh, Chau</td>
-<td align="left">000395364000012</td>
+<tr>
+<td style="text-align:left;">
+this is not the; messiest
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
 </tbody>
 </table>
-<p>We can see here that the author field contains concatenated authors separated by a semicolon linked to the record id.</p>
-<p>The first problem with this is that we can’t clean it or count it properly. The second problem is that if we export the separated data to a tool like Tableau, the id field that we may use to check our counts (in this case the isi_unique_article identifier) will not count properly for reasons that are less obvious ( and are because it is not reading them in properly).</p>
-<p>In dealing with the first problem the <code>tidyr</code> package and the <code>separate_rows</code> function comes to our rescue. The second function is base R <code>trimws</code>.</p>
-<pre class="r"><code>separate_trim &lt;- function(x, col = NULL, sep = NULL, id = NULL){
-  df &lt;- x %&gt;% tidyr::separate_rows(col, sep = &quot;;&quot;)
-  df[[col]] &lt;- trimws(df[[col]], which = &quot;both&quot;)
-  df[[id]] &lt;- trimws(df[[id]], which = &quot;both&quot;)
-  df
+<p>We get three results when of course actually what we want is a count of the concatenated data points in the column. We can handle this easily with the <code>tidyr::separate_rows</code> function in R.</p>
+<pre class="r"><code>messy %&gt;% 
+  separate_rows(messy, sep = &quot;;&quot;) %&gt;% 
+  count(messy) %&gt;% 
+  kable() %&gt;% 
+  kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+messy
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+in the world
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+messiest
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tribute
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+it’s just
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+messy data column
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+this is not the
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p>Simples… as our friendly local meerkat might say. But let’s look at what happens if we double up our entries and imagine that two different people had written out the same thing.</p>
+<pre class="r"><code>messy &lt;- tibble::tibble(messy = c(&quot;this is not the; messiest&quot;, 
+                                  &quot;messy data column; in the world&quot;, 
+                                  &quot;it&#39;s just; a; tribute&quot;, 
+                                  &quot; this is not the; messiest&quot;, 
+                                  &quot; messy data column;  in the world&quot;, 
+                                  &quot;it&#39;s just; a; tribute&quot;))</code></pre>
+<p>Now let’s try again. We are innocently expecting a count of 2 for the repeated words and phrases.</p>
+<pre class="r"><code>messy %&gt;% 
+  separate_rows(messy, sep = &quot;;&quot;) %&gt;% 
+  count(messy) %&gt;% 
+  kable() %&gt;% 
+  kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+messy
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+in the world
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+in the world
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+messiest
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+messy data column
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+this is not the
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tribute
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+it’s just
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+messy data column
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+this is not the
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p>This is not adding up correctly because while the two versions appear to be identical there are subtle differences… involving spaces introduced by our mysterious second person. This is a simple case so maybe you spotted them. When using R you will often want to try using <code>str()</code>, the equivalent in a language such as Python, or stare very hard at the screen in Excel.</p>
+<pre class="r"><code>str(messy)</code></pre>
+<pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    6 obs. of  1 variable:
+##  $ messy: chr  &quot;this is not the; messiest&quot; &quot;messy data column; in the world&quot; &quot;it&#39;s just; a; tribute&quot; &quot; this is not the; messiest&quot; ...</code></pre>
+<p>It’s hard to read but we can see a white space at the start of <code>&quot; this is not the messiest&quot;</code>. This though helps makes the point that when dealing with thousands of data points extra white space can be really hard to spot in R, Excel or anything else.</p>
+<p>We can understand this more clearly by using a quick logical test in R to test whether two strings are identical or not.</p>
+<pre class="r"><code>&quot;this is messy&quot; == &quot; this is messy&quot;</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<p>The reason for this is that in testing whether the strings are identical R (and anything else) will match all characters, including white space.</p>
+<p>If you work with text based data extra white space appears in the data all the time after separation, mainly in the form of leading white space as we will see below.</p>
+<p>The solution is simple, we trim the white space on both sides. In R we can do this using either the <code>stringr</code> function <code>str_trim</code> or the base R function <code>trimws</code>. We’ll use <code>stringr</code> here because it is a reminder of how useful this <code>tidyverse</code> package is.</p>
+<pre class="r"><code>messy %&gt;% separate_rows(messy, sep = &quot;;&quot;) %&gt;%
+  mutate(messy = str_trim(messy, side = &quot;both&quot;)) %&gt;% 
+  count(messy) %&gt;% 
+  kable() %&gt;% 
+  kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+messy
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+in the world
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+it’s just
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+messiest
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+messy data column
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+this is not the
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tribute
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+</tbody>
+</table>
+<p>We use a call to <code>dplyr::mutate</code> and then a call to <code>stringr str_trim</code> to trim the white space on both sides of the separated strings and then overwrite the column in place.</p>
+<p>Both <code>str_trim</code> and the base R <code>trimws</code> have arguments for where to trim white space. In the case of <code>stringr</code> it is <code>side =</code> and with <code>trimws</code> it is <code>which =</code>. As these are general functions there may be situations where you will want to trim either the leading (left) or the trailing (right) spaces. If you are working with metadata from the scientific literature (such as Web of Science or Crossref) or with patent data my recommendation is to always trim on both sides unless you have a good reason not to.</p>
+<p>We now have a piece of code that will work for just about anything where white space is left over. We normally want to turn that into a function that we can use over and over again. One reason the <code>tidyverse</code> set of packages are so popular is that they are so easy to use. But, if we try and put the code above into a function it won’t work.</p>
+<pre class="r"><code>fun &lt;- function(df, col, sep){
+  df %&gt;% tidyr::separate_rows(col, sep = sep) %&gt;% 
+    dplyr::mutate(col = stringr::str_trim(col, side = &quot;both&quot;)) %&gt;% 
+    dplyr::count(col)
+  }</code></pre>
+<pre class="r"><code>fun(messy, messy, sep = &quot;;&quot;)</code></pre>
+<p>We will get a message that</p>
+<blockquote>
+<p>Error: <code>col</code> must evaluate to column positions or names, not a list</p>
+</blockquote>
+<p>If we try quoting the “messy” col it appears to work but instead counts the number of entries. We can go around the houses… and go slightly bananas in the process… trying to fix this only to run into mysterious problem after problem. The reason for this is that <code>dplyr</code> and <code>tidyr</code> use non standard evaluation (tidy evaluation) with the result that R does not know how to evaluate it. We need to start getting to grips with tidy evaluation to get our code to work in a function. A whole bunch of very useful resources on that have been compiled by Mara Averick <a href="https://maraaverick.rbind.io/2017/08/tidyeval-resource-roundup/">here</a>. One solution, bearing in mind that there may well be a better one, is this.</p>
+<pre class="r"><code>separate_rows_trim &lt;- function(df, col, sep){
+  col &lt;- enquo(col)
+  df %&gt;% tidyr::separate_rows(!!col, sep = sep) %&gt;% 
+    dplyr::mutate(!!col := stringr::str_trim(!!col, side = &quot;both&quot;)) %&gt;% 
+    dplyr::count(!!col := !!col, sort = TRUE) %&gt;% 
+    tidyr::drop_na(!!col)
 }</code></pre>
-<p>This function takes the column in the dataset that we want to break into individual rows and then trims the possible white space at the front or the end of the name string.</p>
-<p>Let’s look at the difference that this makes to the counts of the number of authors</p>
-<pre class="r"><code>test %&gt;% separate_rows(., &quot;authors_fullname_useme_updated&quot;, sep = &quot;;&quot;) %&gt;% group_by(authors_fullname_useme_updated) %&gt;% tally() %&gt;% count()</code></pre>
-<pre><code>## # A tibble: 1 x 1
-##      nn
-##   &lt;int&gt;
-## 1 18623</code></pre>
-<p>Let’s do the same thing with trimmed data.</p>
-<pre class="r"><code>test %&gt;%
-  separate_trim(., &quot;authors_fullname_useme_updated&quot;, sep = &quot;;&quot;, id = &quot;isi_unique_article_identifier&quot;) %&gt;%
-  group_by(authors_fullname_useme_updated) %&gt;%
-  tally() %&gt;% count()</code></pre>
-<pre><code>## # A tibble: 1 x 1
-##      nn
-##   &lt;int&gt;
-## 1 17625</code></pre>
-<p>The difference is a spectacular 1000 names.</p>
-<p>The ability to propertly deconcatenate a column with cells that contain multiple observations is not wildly exciting. However,</p>
+<p>In this case we use bang bang <code>!!</code> to tell R when to evaluate col with a bit of help from <code>:=</code> from <code>rlang</code>. To actually get to grips with tidy evaluation I recommend Mara Avericks compilation <a href="https://maraaverick.rbind.io/2017/08/tidyeval-resource-roundup/">here</a>. For a much deeper dive and highly illuminating read try the <a href="https://adv-r.hadley.nz/meta.html">metaprogramming chapter of Hadley Wickham’s forthcoming 2nd edition of Advanced R</a>. For the moment we can move on.</p>
+<p>Let’s try again.</p>
+<pre class="r"><code>separate_rows_trim(messy, messy, sep = &quot;;&quot;) %&gt;% 
+  kable() %&gt;% 
+  kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+messy
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+in the world
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+it’s just
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+messiest
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+messy data column
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+this is not the
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tribute
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+</tbody>
+</table>
+<p>We now have a reusable function.</p>
+<p>This toy example introduces the importance of trimming white space when working with data that has been separated out. Otherwise bad things will happen when you start to count. To finish off let’s use some real world data from a patent dataset to illustrate this.</p>
+<div id="scaling-up" class="section level3">
+<h3>Scaling Up</h3>
+<p>This article is part of work in progress on the <a href="https://github.com/wipo-analytics">WIPO Patent Analytics Handbook</a>. Patent data is simultaneously really well organised and really messy… with many concatenated columns containing data of varying lengths. In addition a single data set will often compile records from different patent databases. This leads to the same problem we encountered above where a mysterious second person types exactly the same thing in a slightly different way. This is really common with names such as applicants or inventors.</p>
+<p>Here we will use the <a href="https://poldham.github.io/drones/">drones dataset</a>, a new dataset of patent data involving drone technology. As it’s a big dataset we will just use the applicants field with 18,970 rows.</p>
+<p>If you would like to explore the drones dataset try this. First make sure you have <code>devtools</code>.</p>
+<pre class="r"><code>install.packages(&quot;devtools&quot;)</code></pre>
+<p>Then install from github with:</p>
+<pre class="r"><code>devtools::install_github(&quot;poldham/drones&quot;)</code></pre>
+<p>We will use the applicants table. This contains a column called applicants_cleaned that I have previously mainly cleaned up.</p>
+<pre class="r"><code>library(drones)
+applicants %&gt;% 
+  select(applicants_cleaned)</code></pre>
+<pre><code>## # A tibble: 18,970 x 1
+##    applicants_cleaned                         
+##    &lt;chr&gt;                                      
+##  1 SHENZHEN HUBSAN TECHNOLOGY CO. LTD.        
+##  2 Intel Corporation                          
+##  3 YOKOGAWA ELECTRIC CORPORATION              
+##  4 NETWORK PERFORMANCE RESEARCH GROUP LLC     
+##  5 NETWORK PERFORMANCE RESEARCH GROUP LLC     
+##  6 Choi Hae-Yong                              
+##  7 Ziva Corporation                           
+##  8 WiTricity Corporation                      
+##  9 Thales                                     
+## 10 International Business Machines Corporation
+## # ... with 18,960 more rows</code></pre>
+<p>We can only see one case of a semi colon in this case but we can quickly get an idea of how many there are with <code>str_count</code></p>
+<pre class="r"><code>applicants %&gt;% 
+  select(applicants_cleaned) %&gt;% 
+  str_count(., pattern = &quot;;&quot;) %&gt;% 
+  kable()</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+x
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+5916
+</td>
+</tr>
+</tbody>
+</table>
+<p>Creating a count of the number of separators per record reveals that the maximum number of semicolons is 20.</p>
+<pre class="r"><code>applicants %&gt;% 
+  select(applicants_cleaned) %&gt;% 
+  mutate(sepcount = str_count(applicants_cleaned, &quot;;&quot;)) %&gt;% 
+  drop_na(applicants_cleaned) %&gt;% 
+  filter(sepcount == max(sepcount)) %&gt;% 
+  select(sepcount) %&gt;% 
+  kable()</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+sepcount
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s try counting the data up both ways to join them together. We’ll limit this to the top ten.</p>
+<pre class="r"><code>library(drones)
+df1 &lt;- applicants %&gt;% 
+  separate_rows(applicants_cleaned, sep = &quot;;&quot;) %&gt;%
+  drop_na(applicants_cleaned) %&gt;% 
+  count(applicants_cleaned, sort = TRUE) %&gt;% 
+  rename(messy = n) %&gt;% 
+  .[1:10,] %&gt;% 
+  mutate(applicants_cleaned = str_trim(applicants_cleaned, side = &quot;both&quot;))
+
+df2 &lt;- separate_rows_trim(applicants, applicants_cleaned, sep = &quot;;&quot;) %&gt;% 
+  drop_na(applicants_cleaned) %&gt;% 
+  rename(tidy = n) %&gt;% 
+  .[1:10,]</code></pre>
+<p>If we join these two tables together we will be able to calculate the differences between them.</p>
+<pre class="r"><code>df3 &lt;- merge(df1, df2, by = &quot;applicants_cleaned&quot;) %&gt;% 
+  arrange(desc(tidy)) %&gt;%
+  mutate(percent = (tidy - messy) / tidy * 100) %&gt;% 
+  mutate(percent = formatC(percent, digits = 2))
+
+df3 %&gt;% 
+  kable(&quot;html&quot;, escape = F) %&gt;% 
+  kable_styling(position = &quot;center&quot;) %&gt;% 
+  column_spec(4, width = 8)</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+applicants_cleaned
+</th>
+<th style="text-align:right;">
+messy
+</th>
+<th style="text-align:right;">
+tidy
+</th>
+<th style="text-align:left;">
+percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+QUALCOMM Incorporated
+</td>
+<td style="text-align:right;">
+483
+</td>
+<td style="text-align:right;">
+498
+</td>
+<td style="text-align:left;width: 8; ">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Thales
+</td>
+<td style="text-align:right;">
+322
+</td>
+<td style="text-align:right;">
+382
+</td>
+<td style="text-align:left;width: 8; ">
+16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HON HAI PRECISION INDUSTRY CO LTD
+</td>
+<td style="text-align:right;">
+345
+</td>
+<td style="text-align:right;">
+345
+</td>
+<td style="text-align:left;width: 8; ">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QINGHUA UNIV
+</td>
+<td style="text-align:right;">
+343
+</td>
+<td style="text-align:right;">
+343
+</td>
+<td style="text-align:left;width: 8; ">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Samsung Electronics Co. Ltd.
+</td>
+<td style="text-align:right;">
+207
+</td>
+<td style="text-align:right;">
+213
+</td>
+<td style="text-align:left;width: 8; ">
+2.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+International Business Machines Corporation
+</td>
+<td style="text-align:right;">
+184
+</td>
+<td style="text-align:right;">
+193
+</td>
+<td style="text-align:left;width: 8; ">
+4.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+THE BOEING COMPANY
+</td>
+<td style="text-align:right;">
+177
+</td>
+<td style="text-align:right;">
+181
+</td>
+<td style="text-align:left;width: 8; ">
+2.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GOOGLE INC.
+</td>
+<td style="text-align:right;">
+165
+</td>
+<td style="text-align:right;">
+167
+</td>
+<td style="text-align:left;width: 8; ">
+1.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Elwha LLC
+</td>
+<td style="text-align:right;">
+161
+</td>
+<td style="text-align:right;">
+166
+</td>
+<td style="text-align:left;width: 8; ">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SONY CORPORATION
+</td>
+<td style="text-align:right;">
+144
+</td>
+<td style="text-align:right;">
+148
+</td>
+<td style="text-align:left;width: 8; ">
+2.7
+</td>
+</tr>
+</tbody>
+</table>
+<p>We can see from the percentage scores that there is significant variance in the counts, with a maximum of 16% variance in the case of Thales. The reason this matters whether using patent data or data from the scientific literature is that any counts that do not recognise the white space problem will be wrong… and generally quite seriously wrong. Typically with patent data the most observable change is movement in the top rankings. But where precision in counting is important, such as capturing all documents linked to a company in a highly competitive field, that can really really matter.</p>
+</div>
+<div id="round-up" class="section level3">
+<h3>Round Up</h3>
+<p>When working with data from the scientific literature or patent data in spreadsheets or data frames we will always want to separate out the data in order to count it, whether in R, Python or using tools such as <a href="https://wipo-analytics.github.io/open-refine.html">Open Refine</a>. The act of separating data onto new rows is however only one step with trimming white space a key step to arrive at accurate counts.</p>
+<p>So ends this episode of “fun with white space and semicolons”. Thanks for reading!</p>
+</div>
+<div id="references" class="section level3 unnumbered">
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-formattable">
+<p>Ren, Kun, and Kenton Russell. 2016. <em>Formattable: Create ’Formattable’ Data Structures</em>. <a href="https://CRAN.R-project.org/package=formattable" class="uri">https://CRAN.R-project.org/package=formattable</a>.</p>
+</div>
+<div id="ref-Wickham_2014">
+<p>Wickham, Hadley. 2014. “Tidy Data.” <em>Journal of Statistical Software</em> 59 (10). Foundation for Open Access Statistic. <a href="https://doi.org/10.18637/jss.v059.i10" class="uri">https://doi.org/10.18637/jss.v059.i10</a>.</p>
+</div>
+<div id="ref-R-tidyverse">
+<p>———. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+<div id="ref-R-stringr">
+<p>———. 2018. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://CRAN.R-project.org/package=stringr" class="uri">https://CRAN.R-project.org/package=stringr</a>.</p>
+</div>
+<div id="ref-R-dplyr">
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2018. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div id="ref-R-tidyr">
+<p>Wickham, Hadley, and Lionel Henry. 2018. <em>Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions</em>. <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a>.</p>
+</div>
+<div id="ref-R-kableExtra">
+<p>Zhu, Hao. 2018. <em>KableExtra: Construct Complex Table with ’Kable’ and Pipe Syntax</em>. <a href="https://CRAN.R-project.org/package=kableExtra" class="uri">https://CRAN.R-project.org/package=kableExtra</a>.</p>
+</div>
+</div>
 </div>

@@ -7,137 +7,507 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
-    <lastBuildDate>Sat, 10 Mar 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 14 Jun 2018 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="/tags/separate_rows/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Escaping concatenated data hell in R...deconcatenate and trim</title>
+      <title>Dealing with messy concatenated columns in R</title>
       <link>/dealing-with-concatenated-data-fields-in-r/</link>
-      <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 14 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/dealing-with-concatenated-data-fields-in-r/</guid>
-      <description>&lt;p&gt;In this post I want to talk about concateted fields… er what on earth are you talking about…. you know the spreadsheets or data frames with cells lumped together stuff, like this.&lt;/p&gt;
-&lt;p&gt;INSERT concatenated&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tibble::tibble(messy = c(&amp;quot;this is not the messiest; only a man could be this messy&amp;quot;, &amp;quot;mess; in the world&amp;quot;, &amp;quot;it&amp;#39;s just; a; tribute; honestly&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+      <description>&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;In this post I want to talk about concatenated data fields… er what on earth are you talking about…. you know spreadsheets or data frames with cells lumped together stuff, something like this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+messy &amp;lt;- tibble::tibble(messy = c(&amp;quot;this is not the; messiest&amp;quot;, 
+                                  &amp;quot;messy data column; in the world&amp;quot;, 
+                                  &amp;quot;it&amp;#39;s just; a; tribute&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 1
-##   messy                                                   
-##   &amp;lt;chr&amp;gt;                                                   
-## 1 this is not the messiest; only a man could be this messy
-## 2 mess; in the world                                      
-## 3 it&amp;#39;s just; a; tribute; honestly&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Or, if we wanted something a bit more real world we could take this list of author of scientific articles from south east asia working on marine organisms&lt;/p&gt;
-&lt;p&gt;INSERT
-er… ugh. The messiness of this matters if you like counting stuff properly because your data just won’t count properly. I mean this is just totally wrong.&lt;/p&gt;
-&lt;p&gt;insert wrong count&lt;/p&gt;
-&lt;p&gt;So, this post is about lumped to&lt;/p&gt;
-&lt;p&gt;and the things that we need to think about along the way.&lt;/p&gt;
-&lt;p&gt;I commonly work with text fields in data from the scientific and patent literature. That means that I run into the problem with columns containing multiple items separated by a semi colon or a comma that are linked to a key field (such as an article DOI or a patent publication number).&lt;/p&gt;
-&lt;p&gt;In this short post, and in case anyone else is running into this problem, I want to quickly document a short function that will help to solve the problem.&lt;/p&gt;
-&lt;div id=&#34;the-problem&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;The problem&lt;/h3&gt;
-&lt;p&gt;I am a big fan of the concept of Tidy Data as developed by Hadley Wickham in [this paper]. Tidy data basically means that each column of a data frame or table is for one category of data (such as authors) and each cell in the table contains one observation for that category (a single author name).&lt;/p&gt;
-&lt;p&gt;Real world data does not behave like this and we can see this in some data I have been working with from &lt;a href=&#34;&#34;&gt;Clarivate Analytics&lt;/a&gt; &lt;em&gt;Web of Science&lt;/em&gt; involving marine species for South East Asia.&lt;/p&gt;
-&lt;p&gt;We can see in this code that I have added the optional &lt;code&gt;readr&lt;/code&gt; &lt;code&gt;trimws&lt;/code&gt; argument. This is not the default when importing from the RStudio menu but can help you to avoid problems.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## ── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## ✔ ggplot2 2.2.1.9000     ✔ purrr   0.2.4     
-## ✔ tibble  1.4.2          ✔ dplyr   0.7.5     
-## ✔ tidyr   0.8.0          ✔ stringr 1.3.1     
-## ✔ readr   1.1.1          ✔ forcats 0.3.0&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;wos_asean_marine &amp;lt;- read_csv(&amp;quot;~/Desktop/open_source_master/asean_report/data/wos_asean_marine_6659.csv&amp;quot;, trim_ws = TRUE)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Parsed with column specification:
-## cols(
-##   .default = col_character(),
-##   times_cited = col_integer(),
-##   number_of_authors = col_integer(),
-##   publication_year = col_integer(),
-##   number_of_author_affiliations_name_only = col_integer()
-## )&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## See spec(...) for full column specifications.&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Let’s pick a couple of columns.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test &amp;lt;- wos_asean_marine %&amp;gt;% select(authors_fullname_useme_updated, isi_unique_article_identifier)&lt;/code&gt;&lt;/pre&gt;
+##   messy                          
+##   &amp;lt;chr&amp;gt;                          
+## 1 this is not the; messiest      
+## 2 messy data column; in the world
+## 3 it&amp;#39;s just; a; tribute&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Problems start to appear if we try to count this.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;messy %&amp;gt;% 
+  count(messy) %&amp;gt;%
+  knitr::kable()&lt;/code&gt;&lt;/pre&gt;
 &lt;table&gt;
 &lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th align=&#34;left&#34;&gt;authors_fullname_useme_updated&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;isi_unique_article_identifier&lt;/th&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+messy
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+n
+&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Dieu Tien Bui; Tien Dat Pham; Yoshino, Kunihiko&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000399475800004&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+it’s just; a; tribute
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Arias, Cova R; Bakenhaster, Micah D; Bullard, Stephen A; Dang, Binh T; Halanych, Kenneth M; Orelis-Ribeiro, Raphael&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000398874800015&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+messy data column; in the world
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Atopkin, D M; Beloded, A Yu; Besprozvannykh, V V; Ermolenko, A V; Ngo, H D; Van Ha, N; Van Tang, N&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000398794800008&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Dittrich, Carolin; Roedel, Mark-Oliver; Struck, Ulrich&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000399737500006&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Alfaro, Andrea C; Hilton, Zoe; King, Nick; Le, D Viet; Pook, Chris; Ragg, Norman L C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000396054700041&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Bui Huu Tai; Dan Thuy Hang; Hoang Le Tuan Anh; Hyun, Kim Seung; Kim, Sun Yeou; Kim, Young-A; Le Thi Huyen; Nguyen Van Dau; NGUYEN, Xuan Nhiem; PHAM, Van Cuong; Quang, Tran Hong; Subedi, Lalita; Van Kiem, Phan; Van Minh, Chau&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000397550400005&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Boyd, Claude E; Engle, Carole R; Hang Ngo Minh; Huynh Quoc Tinh; McNevin, Aaron; Paungkaew, Duangchai; Racine, Phoebe; Viriyatum, Rawee&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000398564700004&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;CUTTING, Simon Michael; HUYNH, Hong Anh; Le, P H; Nguyen, Anh H; Nguyen, Anh T V; Pham, Cuong K; Tran Thi Thanh Hien; Tuan-Nghia Phan; Van Doan, C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000398817000001&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Chavatte, Jean-Marc; Landau, Irene; Okumura, C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000395176100034&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Cuong, Nguyen Xuan; Nguyen Thi Phuong Chi; Nguyen Van Thanh; Nguyen, Hai-Dang; NGUYEN, Hoai Nam; NINH, Thi Ngoc; Pham Thi Mai Huong; Thung, Do-Cong; Van Kiem, Phan; Van Minh, Chau&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;000395364000012&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+this is not the; messiest
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;We can see here that the author field contains concatenated authors separated by a semicolon linked to the record id.&lt;/p&gt;
-&lt;p&gt;The first problem with this is that we can’t clean it or count it properly. The second problem is that if we export the separated data to a tool like Tableau, the id field that we may use to check our counts (in this case the isi_unique_article identifier) will not count properly for reasons that are less obvious ( and are because it is not reading them in properly).&lt;/p&gt;
-&lt;p&gt;In dealing with the first problem the &lt;code&gt;tidyr&lt;/code&gt; package and the &lt;code&gt;separate_rows&lt;/code&gt; function comes to our rescue. The second function is base R &lt;code&gt;trimws&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;separate_trim &amp;lt;- function(x, col = NULL, sep = NULL, id = NULL){
-  df &amp;lt;- x %&amp;gt;% tidyr::separate_rows(col, sep = &amp;quot;;&amp;quot;)
-  df[[col]] &amp;lt;- trimws(df[[col]], which = &amp;quot;both&amp;quot;)
-  df[[id]] &amp;lt;- trimws(df[[id]], which = &amp;quot;both&amp;quot;)
-  df
+&lt;p&gt;We get three results when what we want is a count of the concatenated data points in the column. We can handle this with the very handy &lt;code&gt;tidyr&lt;/code&gt; &lt;code&gt;separate_rows&lt;/code&gt; function in R.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+messy %&amp;gt;% 
+  separate_rows(messy, sep = &amp;quot;;&amp;quot;) %&amp;gt;% 
+  count(messy) %&amp;gt;% 
+  knitr::kable()&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+messy
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+n
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+a
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+in the world
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+messiest
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+tribute
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+it’s just
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+messy data column
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+this is not the
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Simples… as our friendly local meerkat might say. But let’s look at what happens if we double up our entries and imagine that two different people had written out the same thing.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;messy &amp;lt;- tibble::tibble(messy = c(&amp;quot;this is not the; messiest&amp;quot;, 
+                                  &amp;quot;messy data column; in the world&amp;quot;, 
+                                  &amp;quot;it&amp;#39;s just; a; tribute&amp;quot;, 
+                                  &amp;quot; this is not the; messiest&amp;quot;, 
+                                  &amp;quot; messy data column;  in the world&amp;quot;, 
+                                  &amp;quot;it&amp;#39;s just; a; tribute&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+messy
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+this is not the; messiest
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+messy data column; in the world
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+it’s just; a; tribute
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+this is not the; messiest
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+messy data column; in the world
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+it’s just; a; tribute
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Now let’s try again. We are expecting a count of 2 for the repeated words and phrases.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(knitr)
+library(kableExtra)
+messy %&amp;gt;% 
+  separate_rows(messy, sep = &amp;quot;;&amp;quot;) %&amp;gt;% 
+  count(messy)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 10 x 2
+##    messy                    n
+##    &amp;lt;chr&amp;gt;                &amp;lt;int&amp;gt;
+##  1 &amp;quot;  in the world&amp;quot;         1
+##  2 &amp;quot; a&amp;quot;                     2
+##  3 &amp;quot; in the world&amp;quot;          1
+##  4 &amp;quot; messiest&amp;quot;              2
+##  5 &amp;quot; messy data column&amp;quot;     1
+##  6 &amp;quot; this is not the&amp;quot;       1
+##  7 &amp;quot; tribute&amp;quot;               2
+##  8 it&amp;#39;s just                2
+##  9 messy data column        1
+## 10 this is not the          1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Er… right. This is not adding up correctly because while the two versions appear to be identical there are subtle differences… involving spaces introduced by our mysterious second person. We can try and spot them with:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;str(messy)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Classes &amp;#39;tbl_df&amp;#39;, &amp;#39;tbl&amp;#39; and &amp;#39;data.frame&amp;#39;:    6 obs. of  1 variable:
+##  $ messy: chr  &amp;quot;this is not the; messiest&amp;quot; &amp;quot;messy data column; in the world&amp;quot; &amp;quot;it&amp;#39;s just; a; tribute&amp;quot; &amp;quot; this is not the; messiest&amp;quot; ...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The differences are hard to spot but we can see a whitespace at the start of
+&amp;quot; this is not the messiest&amp;quot;.&lt;/p&gt;
+&lt;p&gt;If you work with text based data, such as scientific literature or patent literature, this happens all the time, mainly with a leading white space after separating on the ubiquitous “;”.&lt;/p&gt;
+&lt;p&gt;The solution is simple:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;messy %&amp;gt;% separate_rows(messy, sep = &amp;quot;;&amp;quot;) %&amp;gt;%
+  mutate(messy = str_trim(messy, side = &amp;quot;both&amp;quot;)) %&amp;gt;% 
+  count(messy)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 7 x 2
+##   messy                 n
+##   &amp;lt;chr&amp;gt;             &amp;lt;int&amp;gt;
+## 1 a                     2
+## 2 in the world          2
+## 3 it&amp;#39;s just             2
+## 4 messiest              2
+## 5 messy data column     2
+## 6 this is not the       2
+## 7 tribute               2&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We use a call to &lt;code&gt;dplyr::mutate&lt;/code&gt; and then a call to &lt;code&gt;stringr str_trim&lt;/code&gt; to trim the white space on both sides of the separated strings in place to overwrite the column. As an alternative to &lt;code&gt;str_trim&lt;/code&gt; the base R &lt;code&gt;trimws(messy, which = &amp;quot;both&amp;quot;)&lt;/code&gt; will also work just fine.&lt;/p&gt;
+&lt;p&gt;We now have a piece of code that will work for just about anything where white space is left over. We normally want to turn that into a function that we can use over and over again. One reason the tidyverse set of packages are so popular is that they are so easy to use. But, if we try and put the code above into a function it won’t work.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fun &amp;lt;- function(df, col, sep){
+  df %&amp;gt;% tidyr::separate_rows(col, sep = sep) %&amp;gt;% 
+    dplyr::mutate(col = stringr::str_trim(col, side = &amp;quot;both&amp;quot;)) %&amp;gt;% 
+    dplyr::count(col)
+  }&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fun(messy, messy, sep = &amp;quot;;&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We will get a message that&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Error: &lt;code&gt;col&lt;/code&gt; must evaluate to column positions or names, not a list&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We can go around the houses… and go slightly bananas in the process… trying to fix this only to run in to mysterious problem after problem. The reason for this is the way that the R code is evaluated inside a function. We need to use tidy evaluation to get our code to work in a function and a whole bunch of resources on that have been compiled by Mara Averick &lt;a href=&#34;https://maraaverick.rbind.io/2017/08/tidyeval-resource-roundup/&#34;&gt;here&lt;/a&gt;. The solution (or rather a solution, as there may be a better one) turns out to be this.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fun &amp;lt;- function(df, col, sep){
+  df %&amp;gt;% tidyr::separate_rows(col, sep = sep) %&amp;gt;% 
+    dplyr::mutate(!!col := stringr::str_trim(.[[col]], side = &amp;quot;both&amp;quot;)) %&amp;gt;% 
+    dplyr::count(!!col := .[[col]], sort = TRUE)
 }&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This function takes the column in the dataset that we want to break into individual rows and then trims the possible white space at the front or the end of the name string.&lt;/p&gt;
-&lt;p&gt;Let’s look at the difference that this makes to the counts of the number of authors&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test %&amp;gt;% separate_rows(., &amp;quot;authors_fullname_useme_updated&amp;quot;, sep = &amp;quot;;&amp;quot;) %&amp;gt;% group_by(authors_fullname_useme_updated) %&amp;gt;% tally() %&amp;gt;% count()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 1
-##      nn
-##   &amp;lt;int&amp;gt;
-## 1 18623&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Let’s do the same thing with trimmed data.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test %&amp;gt;%
-  separate_trim(., &amp;quot;authors_fullname_useme_updated&amp;quot;, sep = &amp;quot;;&amp;quot;, id = &amp;quot;isi_unique_article_identifier&amp;quot;) %&amp;gt;%
-  group_by(authors_fullname_useme_updated) %&amp;gt;%
-  tally() %&amp;gt;% count()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 1
-##      nn
-##   &amp;lt;int&amp;gt;
-## 1 17625&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The difference is a spectacular 1000 names.&lt;/p&gt;
-&lt;p&gt;The ability to propertly deconcatenate a column with cells that contain multiple observations is not wildly exciting. However,&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fun(messy, &amp;quot;messy&amp;quot;, sep = &amp;quot;;&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 7 x 2
+##   messy                 n
+##   &amp;lt;chr&amp;gt;             &amp;lt;int&amp;gt;
+## 1 a                     2
+## 2 in the world          2
+## 3 it&amp;#39;s just             2
+## 4 messiest              2
+## 5 messy data column     2
+## 6 this is not the       2
+## 7 tribute               2&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We now have a reusable function.&lt;/p&gt;
+&lt;p&gt;To finish off, let’s look at why this really really matters when counting text based fields that were originally concatenated.&lt;/p&gt;
+&lt;div id=&#34;scaling-up&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Scaling Up&lt;/h3&gt;
+&lt;p&gt;This post is part of work in progress on the &lt;a href=&#34;https://github.com/wipo-analytics&#34;&gt;WIPO Patent Analytics Handbook&lt;/a&gt;. Patent data is simultaneously really well organised and really messy… with many concatenated columns containing data of varying lengths. In addition a single data set will often compile records from different patent databases. This leads to the same problem we encountered above where a mysterious second person types exactly the same thing in a slightly different way. This is really really common with names such as applicants or inventors.&lt;/p&gt;
+&lt;p&gt;Let’s look at some real life data. Here we will use the &lt;a href=&#34;https://poldham.github.io/drones/&#34;&gt;drones dataset&lt;/a&gt;, a new dataset of patents involving drone technology. As it’s a big dataset we will just use the applicants field, that I have previously largely cleaned up for name variations.&lt;/p&gt;
+&lt;p&gt;Check that you have devtools first and if not.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;devtools&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can install it from github with:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;devtools::install_github(&amp;quot;poldham/drones&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We will use the applicants table. This contains a field called applicants_cleaned that I have previously mainly cleaned up.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;applicants &amp;lt;- drones::applicants
+applicants&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 18,970 x 6
+##    applicant  applicant_cleaned priority_number           application_num…
+##    &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;             &amp;lt;chr&amp;gt;                     &amp;lt;chr&amp;gt;           
+##  1 SHENZHEN … SHENZHEN HUBSAN … US2016578323F 2016-09-20  US2016578323F 2…
+##  2 Intel Cor… Intel Corporation US14954632A 2015-11-30    US14954632A 201…
+##  3 YOKOGAWA … YOKOGAWA ELECTRI… US15360203A 2016-11-23    US15360203A 201…
+##  4 NETWORK P… NETWORK PERFORMA… US62203383P 2015-08-10; … US15454805A 201…
+##  5 NETWORK P… NETWORK PERFORMA… US62200764P 2015-08-04; … US15263985A 201…
+##  6 Choi Hae-… Choi Hae-Yong     KR201528901A 2015-03-02   US15057264A 201…
+##  7 ZIVA CORP… Ziva Corporation  US15217944A 2016-07-22; … US15217944A 201…
+##  8 WiTricity… WiTricity Corpor… US2008100721P 2008-09-27… US14808174A 201…
+##  9 Thales     Thales            FR20142036A 2014-09-12    US14848061A 201…
+## 10 Internati… International Bu… US14970643A 2015-12-16    US14970643A 201…
+## # ... with 18,960 more rows, and 2 more variables:
+## #   inpadoc_first_family_member &amp;lt;chr&amp;gt;, inpadoc_family_members &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s try counting this up the original way.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;applicants %&amp;gt;% separate_rows(applicant_cleaned, sep = &amp;quot;;&amp;quot;) %&amp;gt;%
+  drop_na(applicant_cleaned) %&amp;gt;% 
+  count(applicant_cleaned, sort = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 7,405 x 2
+##    applicant_cleaned                               n
+##    &amp;lt;chr&amp;gt;                                       &amp;lt;int&amp;gt;
+##  1 QUALCOMM Incorporated                         483
+##  2 HON HAI PRECISION INDUSTRY CO LTD             345
+##  3 &amp;quot; QINGHUA UNIV&amp;quot;                               343
+##  4 Thales                                        322
+##  5 Samsung Electronics Co. Ltd.                  207
+##  6 International Business Machines Corporation   184
+##  7 THE BOEING COMPANY                            177
+##  8 GOOGLE INC.                                   165
+##  9 Elwha LLC                                     161
+## 10 SONY CORPORATION                              144
+## # ... with 7,395 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now let’s try it with the function&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fun(applicants, &amp;quot;applicant_cleaned&amp;quot;, sep = &amp;quot;;&amp;quot;) %&amp;gt;% 
+  drop_na(applicant_cleaned)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6,929 x 2
+##    applicant_cleaned                               n
+##    &amp;lt;chr&amp;gt;                                       &amp;lt;int&amp;gt;
+##  1 QUALCOMM Incorporated                         498
+##  2 Thales                                        382
+##  3 HON HAI PRECISION INDUSTRY CO LTD             345
+##  4 QINGHUA UNIV                                  343
+##  5 Samsung Electronics Co. Ltd.                  213
+##  6 International Business Machines Corporation   193
+##  7 THE BOEING COMPANY                            181
+##  8 GOOGLE INC.                                   167
+##  9 Elwha LLC                                     166
+## 10 SONY CORPORATION                              148
+## # ... with 6,919 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34;table&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;caption&gt;
+&lt;span id=&#34;tab:unnamed-chunk-20&#34;&gt;Table 1: &lt;/span&gt;Messy vs Tidy Name Scores
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+applicant_cleaned
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+messy
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+tidy
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+percent
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+QUALCOMM Incorporated
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+483
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+498
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 1cm; &#34;&gt;
+&lt;span style=&#34;display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lightseagreen; width: 19.18%&#34;&gt;3.012048&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Thales
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+322
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+382
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 1cm; &#34;&gt;
+&lt;span style=&#34;display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lightseagreen; width: 100.00%&#34;&gt;15.706806&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+HON HAI PRECISION INDUSTRY CO LTD
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+345
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+345
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 1cm; &#34;&gt;
+&lt;span style=&#34;display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lightseagreen; width: 0.00%&#34;&gt;0.000000&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+QINGHUA UNIV
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+343
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+343
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 1cm; &#34;&gt;
+&lt;span style=&#34;display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lightseagreen; width: 0.00%&#34;&gt;0.000000&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Samsung Electronics Co. Ltd.
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+207
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+213
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 1cm; &#34;&gt;
+&lt;span style=&#34;display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lightseagreen; width: 17.93%&#34;&gt;2.816901&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+International Business Machines Corporation
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+184
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+193
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 1cm; &#34;&gt;
+&lt;span style=&#34;display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lightseagreen; width: 29.69%&#34;&gt;4.663212&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+THE BOEING COMPANY
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+177
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+181
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 1cm; &#34;&gt;
+&lt;span style=&#34;display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lightseagreen; width: 14.07%&#34;&gt;2.209945&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+GOOGLE INC.
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+165
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+167
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 1cm; &#34;&gt;
+&lt;span style=&#34;display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lightseagreen; width: 7.62%&#34;&gt;1.197605&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Elwha LLC
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+161
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+166
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 1cm; &#34;&gt;
+&lt;span style=&#34;display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lightseagreen; width: 19.18%&#34;&gt;3.012048&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+SONY CORPORATION
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+144
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+148
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 1cm; &#34;&gt;
+&lt;span style=&#34;display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: lightseagreen; width: 17.21%&#34;&gt;2.702703&lt;/span&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;merge(df1, df2, by = &amp;quot;applicant_cleaned&amp;quot;) %&amp;gt;% 
+  arrange(desc(tidy)) %&amp;gt;%
+  mutate(percent = (tidy - messy) / tidy * 100)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                              applicant_cleaned messy tidy   percent
+## 1                        QUALCOMM Incorporated   483  498  3.012048
+## 2                                       Thales   322  382 15.706806
+## 3            HON HAI PRECISION INDUSTRY CO LTD   345  345  0.000000
+## 4                                 QINGHUA UNIV   343  343  0.000000
+## 5                 Samsung Electronics Co. Ltd.   207  213  2.816901
+## 6  International Business Machines Corporation   184  193  4.663212
+## 7                           THE BOEING COMPANY   177  181  2.209945
+## 8                                  GOOGLE INC.   165  167  1.197605
+## 9                                    Elwha LLC   161  166  3.012048
+## 10                            SONY CORPORATION   144  148  2.702703&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
     </item>

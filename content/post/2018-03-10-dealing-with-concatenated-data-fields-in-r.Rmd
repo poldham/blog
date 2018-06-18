@@ -1,105 +1,247 @@
 ---
-title: Escaping concatenated data hell in R...deconcatenate and trim
+title: Separating and Trimming Messy Data the Tidy Way
 author: Paul Oldham
 draft: true
-date: '2018-03-10'
+date: '2018-06-18'
 slug: dealing-with-concatenated-data-fields-in-r
-description: "Learning to love separate_rows and trim."
+description: "When working with data tables from the scientific or patent literature, columns often contain concatenated data. Here's a tidy approach to dealing with concatenation and exploration of why trimming white space really matters"
+twitterImg: "images/messy.png"
 categories:
   - R
-tags: [text fields, tidyr, separate_rows, clarivate analytics, web of science]
+  - patent
+tags: [text fields, concatenated data]
+bibliography: [crossref.bib, packages.bib]
+nocite: |
+  @R-tidyverse
+  @R-dplyr
+  @R-tidyr
+  @R-stringr
+  @R-knitr
+  @R-kableExtra
+  @R-formattable
 ---
-
-In this post I want to talk about concateted fields... er what on earth are you talking about.... you know the spreadsheets or data frames with cells lumped together stuff, like this.
-
-INSERT concatenated 
-
-```{r}
-tibble::tibble(messy = c("this is not the messiest; only a man could be this messy", "mess; in the world", "it's just; a; tribute; honestly"))
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE, echo=TRUE, warning=FALSE, message=FALSE)
+library(knitr)
+library(kableExtra)
+library(formattable)
 ```
 
-Or, if we wanted something a bit more real world we could take this list of author of scientific articles from south east asia working on marine organisms
 
-INSERT
-er... ugh. The messiness of this matters if you like counting stuff properly because your data just won't count properly. I mean this is just totally wrong.
+When working with table data from the scientific or patent literature, it is extremely common to find that columns contain concatenated data. That is, they contain multiple entries with a semicolon as a separator. Data of this type is not tidy [@Wickham_2014]. What we commonly want to do is to separate the data out as the basis for counting. However, extra white space can have a major impact on any counts of this data if it is not recognised and dealt with. We will go through this step by step using a simple example and then scale up to a real world example. 
 
-insert wrong count
+Here is a simple example of a table containing a column with concatenated data. 
 
-So, this post is about lumped to
-
-
-
-
-and the things that we need to think about along the way.
-
-I commonly work with text fields in data from the scientific and patent literature. That means that I run into the problem with columns containing multiple items separated by a semi colon or a comma that are linked to a key field (such as an article DOI or a patent publication number). 
-
-In this short post, and in case anyone else is running into this problem, I want to quickly document a short function that will help to solve the problem. 
-
-### The problem
-
-I am a big fan of the concept of Tidy Data as developed by Hadley Wickham in [this paper]. Tidy data basically means that each column of a data frame or table is for one category of data (such as authors) and each cell in the table contains one observation for that category (a single author name).
-
-Real world data does not behave like this and we can see this in some data I have been working with from [Clarivate Analytics]() *Web of Science* involving marine species for South East Asia.
-
-We can see in this code that I have added the optional `readr` `trimws` argument. This is not the default when importing from the RStudio menu but can help you to avoid problems. 
-
-```{r read}
+```{r message=FALSE}
 library(tidyverse)
-wos_asean_marine <- read_csv("~/Desktop/open_source_master/asean_report/data/wos_asean_marine_6659.csv", trim_ws = TRUE)
+messy <- tibble::tibble(messy = c("this is not the; messiest", 
+                                  "messy data column; in the world", 
+                                  "it's just; a; tribute"))
 ```
 
-```{r save, echo=FALSE}
-save(wos_asean_marine, file = "wos_asean_marine.rda")
-```
-
-```{r load, echo=FALSE}
-load("wos_asean_marine.rda")
-```
-
-Let's pick a couple of columns.
+If we try to count this:
 
 ```{r}
-test <- wos_asean_marine %>% select(authors_fullname_useme_updated, isi_unique_article_identifier)
+messy %>% 
+  count(messy) %>% 
+  kable() %>% 
+  kable_styling()
 ```
 
-```{r echo=FALSE}
-knitr::kable(test[1:10,])
-```
-
-We can see here that the author field contains concatenated authors separated by a semicolon linked to the record id.
-
-The first problem with this is that we can't clean it or count it properly. The second problem is that if we export the separated data to a tool like Tableau, the id field that we may use to check our counts (in this case the isi_unique_article identifier) will not count properly for reasons that are less obvious ( and are because it is not reading them in properly). 
-
-In dealing with the first problem the `tidyr` package and the `separate_rows` function comes to our rescue. The second function is base R `trimws`.
+We get three results when of course actually what we want is a count of the concatenated data points in the column. We can handle this easily with the `tidyr::separate_rows` function in R. 
 
 ```{r}
-separate_trim <- function(x, col = NULL, sep = NULL, id = NULL){
-  df <- x %>% tidyr::separate_rows(col, sep = ";")
-  df[[col]] <- trimws(df[[col]], which = "both")
-  df[[id]] <- trimws(df[[id]], which = "both")
-  df
+messy %>% 
+  separate_rows(messy, sep = ";") %>% 
+  count(messy) %>% 
+  kable() %>% 
+  kable_styling()
+```
+
+Simples... as our friendly local meerkat might say. But let's look at what happens if we double up our entries and imagine that two different people had written out the same thing.
+
+```{r}
+messy <- tibble::tibble(messy = c("this is not the; messiest", 
+                                  "messy data column; in the world", 
+                                  "it's just; a; tribute", 
+                                  " this is not the; messiest", 
+                                  " messy data column;  in the world", 
+                                  "it's just; a; tribute"))
+```
+
+Now let's try again. We are innocently expecting a count of 2 for the repeated words and phrases. 
+
+```{r fig.align='center'}
+messy %>% 
+  separate_rows(messy, sep = ";") %>% 
+  count(messy) %>% 
+  kable() %>% 
+  kable_styling()
+```
+
+This is not adding up correctly because while the two versions appear to be identical there are subtle differences... involving spaces introduced by our mysterious second person. This is a simple case so maybe you spotted them. When using R you will often want to try using `str()`, the equivalent in a language such as Python, or stare very hard at the screen in Excel. 
+
+```{r}
+str(messy)
+```
+
+It's hard to read but we can see a white space at the start of `" this is not the messiest"`. This though helps makes the point that when dealing with thousands of data points extra white space can be really hard to spot in R, Excel or anything else. 
+
+We can understand this more clearly by using a quick logical test in R to test whether two strings are identical or not. 
+
+```{r}
+"this is messy" == " this is messy"
+```
+
+The reason for this is that in testing whether the strings are identical R (and anything else) will match all characters, including white space. 
+
+If you work with text based data extra white space appears in the data all the time after separation, mainly in the form of leading white space as we will see below.
+
+The solution is simple, we trim the white space on both sides. In R we can do this using either the `stringr` function `str_trim` or the base R function `trimws`. We'll use `stringr` here because it is a reminder of how useful this  `tidyverse` package is. 
+
+```{r}
+messy %>% separate_rows(messy, sep = ";") %>%
+  mutate(messy = str_trim(messy, side = "both")) %>% 
+  count(messy) %>% 
+  kable() %>% 
+  kable_styling()
+```
+
+We use a call to `dplyr::mutate` and then a call to `stringr str_trim` to trim the white space on both sides of the separated strings and then overwrite the column in place.  
+
+Both `str_trim` and the base R `trimws` have arguments for where to trim white space. In the case of `stringr` it is `side =` and with `trimws` it is `which =`. As these are general functions there may be situations where you will want to trim either the leading (left) or the trailing (right) spaces. If you are working with metadata from the scientific literature (such as Web of Science or Crossref) or with patent data my recommendation is to always trim on both sides unless you have a good reason not to. 
+
+We now have a piece of code that will work for just about anything where white space is left over. We normally want to turn that into a function that we can use over and over again. One reason the `tidyverse` set of packages are so popular is that they are so easy to use. But, if we try and put the code above into a function it won't work. 
+
+```{r}
+fun <- function(df, col, sep){
+  df %>% tidyr::separate_rows(col, sep = sep) %>% 
+    dplyr::mutate(col = stringr::str_trim(col, side = "both")) %>% 
+    dplyr::count(col)
+  }
+```
+
+```{r eval=FALSE}
+fun(messy, messy, sep = ";")
+```
+
+We will get a message that 
+
+> Error: `col` must evaluate to column positions or names, not a list
+
+If we try quoting the "messy" col it appears to work but instead counts the number of entries. We can go around the houses... and go slightly bananas in the process... trying to fix this only to run into mysterious problem after problem. The reason for this is that `dplyr` and `tidyr` use non standard evaluation (tidy evaluation) with the result that R does not know how to evaluate it. We need to start getting to grips with tidy evaluation to get our code to work in a function. A whole bunch of very useful resources on that have been compiled by Mara Averick [here](https://maraaverick.rbind.io/2017/08/tidyeval-resource-roundup/). One solution, bearing in mind that there may well be a better one, is this. 
+
+```{r}
+separate_rows_trim <- function(df, col, sep){
+  col <- enquo(col)
+  df %>% tidyr::separate_rows(!!col, sep = sep) %>% 
+    dplyr::mutate(!!col := stringr::str_trim(!!col, side = "both")) %>% 
+    dplyr::count(!!col := !!col, sort = TRUE) %>% 
+    tidyr::drop_na(!!col)
 }
 ```
 
-This function takes the column in the dataset that we want to break into individual rows and then trims the possible white space at the front or the end of the name string. 
+In this case we use bang bang `!!` to tell R when to evaluate col with a bit of help from `:=` from `rlang`. To actually get to grips with tidy evaluation I recommend Mara Avericks compilation [here](https://maraaverick.rbind.io/2017/08/tidyeval-resource-roundup/). For a much deeper dive and highly illuminating read try the [metaprogramming chapter of Hadley Wickham's forthcoming 2nd edition of Advanced R](https://adv-r.hadley.nz/meta.html). For the moment we can move on. 
 
-Let's look at the difference that this makes to the counts of the number of authors
-
-
-```{r}
-test %>% separate_rows(., "authors_fullname_useme_updated", sep = ";") %>% group_by(authors_fullname_useme_updated) %>% tally() %>% count()
-```
-
-Let's do the same thing with trimmed data. 
+Let's try again. 
 
 ```{r}
-test %>%
-  separate_trim(., "authors_fullname_useme_updated", sep = ";", id = "isi_unique_article_identifier") %>%
-  group_by(authors_fullname_useme_updated) %>%
-  tally() %>% count()
+separate_rows_trim(messy, messy, sep = ";") %>% 
+  kable() %>% 
+  kable_styling()
 ```
 
-The difference is a spectacular 1000 names. 
+We now have a reusable function.
 
-The ability to propertly deconcatenate a column with cells that contain multiple observations is not wildly exciting. However, 
+This toy example introduces the importance of trimming white space when working with data that has been separated out. Otherwise bad things will happen when you start to count. To finish off let's use some real world data from a patent dataset to illustrate this. 
+
+### Scaling Up
+
+This article is part of work in progress on the [WIPO Patent Analytics Handbook](https://github.com/wipo-analytics). Patent data is simultaneously really well organised and really messy... with many concatenated columns containing data of varying lengths. In addition a single data set will often compile records from different patent databases. This leads to the same problem we encountered above where a mysterious second person types exactly the same thing in a slightly different way. This is really common with names such as applicants or inventors. 
+
+Here we will use the [drones dataset](https://poldham.github.io/drones/), a new dataset of patent data involving drone technology. As it's a big dataset we will just use the applicants field with 18,970 rows. 
+
+If you would like to explore the drones dataset try this. First make sure you have `devtools`.
+
+```{r eval=FALSE}
+install.packages("devtools")
+```
+
+Then install from github with: 
+
+```{r eval=FALSE}
+devtools::install_github("poldham/drones")
+```
+
+
+We will use the applicants table. This contains a column called applicants_cleaned that I have previously mainly cleaned up. 
+
+```{r}
+library(drones)
+applicants %>% 
+  select(applicants_cleaned)
+```
+
+We can only see one case of a semi colon in this case but we can quickly get an idea of how many there are with `str_count` 
+
+```{r}
+applicants %>% 
+  select(applicants_cleaned) %>% 
+  str_count(., pattern = ";") %>% 
+  kable()
+```
+
+Creating a count of the number of separators per record reveals that the maximum number of semicolons is 20. 
+
+```{r}
+applicants %>% 
+  select(applicants_cleaned) %>% 
+  mutate(sepcount = str_count(applicants_cleaned, ";")) %>% 
+  drop_na(applicants_cleaned) %>% 
+  filter(sepcount == max(sepcount)) %>% 
+  select(sepcount) %>% 
+  kable()
+```
+
+Let's try counting the data up both ways to join them together. We'll limit this to the top ten.
+
+```{r }
+library(drones)
+df1 <- applicants %>% 
+  separate_rows(applicants_cleaned, sep = ";") %>%
+  drop_na(applicants_cleaned) %>% 
+  count(applicants_cleaned, sort = TRUE) %>% 
+  rename(messy = n) %>% 
+  .[1:10,] %>% 
+  mutate(applicants_cleaned = str_trim(applicants_cleaned, side = "both"))
+
+df2 <- separate_rows_trim(applicants, applicants_cleaned, sep = ";") %>% 
+  drop_na(applicants_cleaned) %>% 
+  rename(tidy = n) %>% 
+  .[1:10,]
+```
+
+
+If we join these two tables together we will be able to calculate the differences between them.
+
+```{r }
+df3 <- merge(df1, df2, by = "applicants_cleaned") %>% 
+  arrange(desc(tidy)) %>%
+  mutate(percent = (tidy - messy) / tidy * 100) %>% 
+  mutate(percent = formatC(percent, digits = 2))
+
+df3 %>% 
+  kable("html", escape = F) %>% 
+  kable_styling(position = "center") %>% 
+  column_spec(4, width = 8)
+```
+
+We can see from the percentage scores that there is significant variance in the counts, with a maximum of 16% variance in the case of Thales. The reason this matters whether using patent data or data from the scientific literature is that any counts that do not recognise the white space problem will be wrong... and generally quite seriously wrong. Typically with patent data the most observable change is movement in the top rankings. But where precision in counting is important, such as capturing all documents linked to a company in a highly competitive field, that can really really matter.
+
+### Round Up
+
+When working with data from the scientific literature or patent data in spreadsheets or data frames we will always want to separate out the data in order to count it, whether in R, Python or using tools such as [Open Refine](https://wipo-analytics.github.io/open-refine.html). The act of separating data onto new rows is however only one step with trimming white space a key step to arrive at accurate counts. 
+
+So ends this episode of "fun with white space and semicolons". Thanks for reading!
+
+### References

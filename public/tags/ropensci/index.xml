@@ -69,7 +69,7 @@ library(rcrossref)&lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;Adding citations in Rmarkdown&lt;/h3&gt;
 &lt;p&gt;To add a citation, using the example above, we simply use &lt;code&gt;[@R-rcrossref]&lt;/code&gt;, as explained by Yihui &lt;a href=&#34;https://bookdown.org/yihui/bookdown/citations.html&#34;&gt;here&lt;/a&gt;. Note when inserting the reference we skip the type (e.g. Manual, Article etc) at the start of the crossref.bib entry. The result will look something like this:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;rcrossref &lt;span class=&#34;citation&#34;&gt;(Chamberlain et al. 2018)&lt;/span&gt; is a great package for accessing data for a bibliography or for larger scale bibliometrices. In 2014 Paul Oldham and his co-authors published an article on the completely mad subject of global climate engineering that succeeded in exciting consipiracy theorists using the #contrails and #chemtrails hashtags on twitter &lt;span class=&#34;citation&#34;&gt;(Oldham et al. 2014)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;rcrossref &lt;span class=&#34;citation&#34;&gt;(&lt;span class=&#34;citeproc-not-found&#34; data-reference-id=&#34;R-rcrossref&#34;&gt;&lt;strong&gt;???&lt;/strong&gt;&lt;/span&gt;)&lt;/span&gt; is a great package for accessing data for a bibliography or for larger scale bibliometrices. In 2014 Paul Oldham and his co-authors published an article on the completely mad subject of global climate engineering that succeeded in exciting consipiracy theorists using the #contrails and #chemtrails hashtags on twitter &lt;span class=&#34;citation&#34;&gt;(Oldham et al. 2014)&lt;/span&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;This is ridiculously easy to do.&lt;/p&gt;
 &lt;/div&gt;
@@ -90,38 +90,14 @@ library(rcrossref)&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;references&#34; class=&#34;section level1 unnumbered&#34;&gt;
 &lt;h1&gt;References&lt;/h1&gt;
 &lt;div id=&#34;refs&#34; class=&#34;references&#34;&gt;
-&lt;div id=&#34;ref-R-citr&#34;&gt;
-&lt;p&gt;Aust, Frederik. 2016. &lt;em&gt;Citr: RStudio Add-in to Insert Markdown Citations&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=citr&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=citr&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;ref-R-rcrossref&#34;&gt;
-&lt;p&gt;Chamberlain, Scott, Carl Boettiger, Ted Hart, and Karthik Ram. 2018. &lt;em&gt;Rcrossref: Client for Various ’Crossref’ ’Apis’&lt;/em&gt;. &lt;a href=&#34;https://github.com/ropensci/rcrossref&#34; class=&#34;uri&#34;&gt;https://github.com/ropensci/rcrossref&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;ref-R-bibtex&#34;&gt;
-&lt;p&gt;Francois, Romain. 2017. &lt;em&gt;Bibtex: Bibtex Parser&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=bibtex&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=bibtex&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;ref-W_McLean_2017&#34;&gt;
-&lt;p&gt;McLean, Mathew W. 2017. “RefManageR: Import and Manage BibTeX and BibLaTeX References in R.” &lt;em&gt;The Journal of Open Source Software&lt;/em&gt; 2 (16). The Open Journal: 338. &lt;a href=&#34;https://doi.org/10.21105/joss.00338&#34; class=&#34;uri&#34;&gt;https://doi.org/10.21105/joss.00338&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
 &lt;div id=&#34;ref-Oldham_2014&#34;&gt;
 &lt;p&gt;Oldham, P., B. Szerszynski, J. Stilgoe, C. Brown, B. Eacott, and A. Yuille. 2014. “Mapping the Landscape of Climate Engineering.” &lt;em&gt;Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences&lt;/em&gt; 372 (2031). The Royal Society: 20140065–5. &lt;a href=&#34;https://doi.org/10.1098/rsta.2014.0065&#34; class=&#34;uri&#34;&gt;https://doi.org/10.1098/rsta.2014.0065&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;ref-R-bib2df&#34;&gt;
-&lt;p&gt;Ottolinger, Philipp. n.d. &lt;em&gt;Bib2df: Parse a Bibtex File to a Data.frame&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=bib2df&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=bib2df&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;ref-R-base&#34;&gt;
-&lt;p&gt;R Core Team. 2018. &lt;em&gt;R: A Language and Environment for Statistical Computing&lt;/em&gt;. Vienna, Austria: R Foundation for Statistical Computing. &lt;a href=&#34;https://www.R-project.org/&#34; class=&#34;uri&#34;&gt;https://www.R-project.org/&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;ref-R-devtools&#34;&gt;
-&lt;p&gt;Wickham, Hadley, Jim Hester, and Winston Chang. 2018. &lt;em&gt;Devtools: Tools to Make Developing R Packages Easier&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=devtools&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=devtools&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-Dynamic_2016&#34;&gt;
 &lt;p&gt;Xie, Yihui. 2016a. &lt;em&gt;Dynamic Documents with R and Knitr&lt;/em&gt;. Chapman; Hall/CRC. &lt;a href=&#34;https://doi.org/10.1201/b15166&#34; class=&#34;uri&#34;&gt;https://doi.org/10.1201/b15166&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-Xie_2016&#34;&gt;
 &lt;p&gt;———. 2016b. &lt;em&gt;Bookdown&lt;/em&gt;. CRC Press. &lt;a href=&#34;https://doi.org/10.1201/9781315204963&#34; class=&#34;uri&#34;&gt;https://doi.org/10.1201/9781315204963&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;ref-R-knitr&#34;&gt;
-&lt;p&gt;———. 2018. &lt;em&gt;Knitr: A General-Purpose Package for Dynamic Report Generation in R&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=knitr&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=knitr&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-blogdown_2017&#34;&gt;
 &lt;p&gt;Xie, Yihui, Amber Thomas, and Alison Presmanes Hill. 2017. &lt;em&gt;Blogdown&lt;/em&gt;. Chapman; Hall/CRC. &lt;a href=&#34;https://doi.org/10.1201/9781351108195&#34; class=&#34;uri&#34;&gt;https://doi.org/10.1201/9781351108195&lt;/a&gt;.&lt;/p&gt;
@@ -200,8 +176,8 @@ gebco&lt;/code&gt;&lt;/pre&gt;
 ##     spiderbar::can_fetch(obj = self$robexclobj, path = paths, 
 ##         user_agent = bot)
 ## }
-## &amp;lt;bytecode: 0x7ff4720308d8&amp;gt;
-## &amp;lt;environment: 0x7ff47202ff38&amp;gt;
+## &amp;lt;bytecode: 0x7f830b473b80&amp;gt;
+## &amp;lt;environment: 0x7f830b473218&amp;gt;
 ## 
 ## attr(,&amp;quot;class&amp;quot;)
 ## [1] &amp;quot;robotstxt&amp;quot;&lt;/code&gt;&lt;/pre&gt;
@@ -459,8 +435,8 @@ noaa&lt;/code&gt;&lt;/pre&gt;
 ##     spiderbar::can_fetch(obj = self$robexclobj, path = paths, 
 ##         user_agent = bot)
 ## }
-## &amp;lt;bytecode: 0x7ff4720308d8&amp;gt;
-## &amp;lt;environment: 0x7ff4715ca970&amp;gt;
+## &amp;lt;bytecode: 0x7f830b473b80&amp;gt;
+## &amp;lt;environment: 0x7f830b02cc10&amp;gt;
 ## 
 ## attr(,&amp;quot;class&amp;quot;)
 ## [1] &amp;quot;robotstxt&amp;quot;&lt;/code&gt;&lt;/pre&gt;

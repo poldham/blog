@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Patent on Paul Oldham&#39;s Analytics Blog</title>
+    <link>/categories/patent/</link>
+    <description>Recent content in Patent on Paul Oldham&#39;s Analytics Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
+    <lastBuildDate>Mon, 18 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="/categories/patent/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Separating and Trimming Messy Data the Tidy Way</title>
+      <link>/dealing-with-concatenated-data-fields-in-r/</link>
+      <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/dealing-with-concatenated-data-fields-in-r/</guid>
+      <description>&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;When working with table data from the scientific or patent literature, it is extremely common to find that columns contain concatenated data. That is, they contain multiple entries with a semicolon as a separator. Data of this type is not tidy &lt;span class=&#34;citation&#34;&gt;(Wickham 2014)&lt;/span&gt;. What we commonly want to do is to separate the data out as the basis for counting. However, extra white space can have a major impact on any counts of this data if it is not recognised and dealt with. We will go through this step by step using a simple example and then scale up to a real world example.&lt;/p&gt;
+&lt;p&gt;Here is a simple example of a table containing a column with concatenated data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+messy &amp;lt;- tibble::tibble(messy = c(&amp;quot;this is not the; messiest&amp;quot;, 
+                                  &amp;quot;messy data column; in the world&amp;quot;, 
+                                  &amp;quot;it&amp;#39;s just; a; tribute&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If we try to count this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;messy %&amp;gt;% 
+  count(messy) %&amp;gt;% 
+  kable() %&amp;gt;% 
+  kable_styling()&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34;table&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+messy
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+n
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+it’s just; a; tribute
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+messy data column; in the world
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+this is not the; messiest
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;We get three results when of course actually what we want is a count of the concatenated data points in the column. We can handle this easily with the &lt;code&gt;tidyr::separate_rows&lt;/code&gt; function in R.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;messy %&amp;gt;% 
+  separate_rows(messy, sep = &amp;quot;;&amp;quot;) %&amp;gt;% 
+  count(messy) %&amp;gt;% 
+  kable() %&amp;gt;% 
+  kable_styling()&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34;table&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+messy
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+n
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+a
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+in the world
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+messiest
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+tribute
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+it’s just
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+messy data column
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+this is not the
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Simples… as our friendly local meerkat might say. But let’s look at what happens if we double up our entries and imagine that two different people had written out the same thing.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;messy &amp;lt;- tibble::tibble(messy = c(&amp;quot;this is not the; messiest&amp;quot;, 
+                                  &amp;quot;messy data column; in the world&amp;quot;, 
+                                  &amp;quot;it&amp;#39;s just; a; tribute&amp;quot;, 
+                                  &amp;quot; this is not the; messiest&amp;quot;, 
+                                  &amp;quot; messy data column;  in the world&amp;quot;, 
+                                  &amp;quot;it&amp;#39;s just; a; tribute&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now let’s try again. We are innocently expecting a count of 2 for the repeated words and phrases.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;messy %&amp;gt;% 
+  separate_rows(messy, sep = &amp;quot;;&amp;quot;) %&amp;gt;% 
+  count(messy) %&amp;gt;% 
+  kable() %&amp;gt;% 
+  kable_styling()&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34;table&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+messy
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+n
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+in the world
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+a
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+in the world
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+messiest
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+messy data column
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+this is not the
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+tribute
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+it’s just
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+messy data column
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+this is not the
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;This is not adding up correctly because while the two versions appear to be identical there are subtle differences… involving spaces introduced by our mysterious second person. This is a simple case so maybe you spotted them. When using R you will often want to try using &lt;code&gt;str()&lt;/code&gt;, the equivalent in a language such as Python, or stare very hard at the screen in Excel.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;str(messy)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Classes &amp;#39;tbl_df&amp;#39;, &amp;#39;tbl&amp;#39; and &amp;#39;data.frame&amp;#39;:    6 obs. of  1 variable:
+##  $ messy: chr  &amp;quot;this is not the; messiest&amp;quot; &amp;quot;messy data column; in the world&amp;quot; &amp;quot;it&amp;#39;s just; a; tribute&amp;quot; &amp;quot; this is not the; messiest&amp;quot; ...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It’s hard to read but we can see a white space at the start of &lt;code&gt;&amp;quot; this is not the messiest&amp;quot;&lt;/code&gt;. This though helps makes the point that when dealing with thousands of data points extra white space can be really hard to spot in R, Excel or anything else.&lt;/p&gt;
+&lt;p&gt;We can understand this more clearly by using a quick logical test in R to test whether two strings are identical or not.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;&amp;quot;this is messy&amp;quot; == &amp;quot; this is messy&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] FALSE&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The reason for this is that in testing whether the strings are identical R (and anything else) will match all characters, including white space.&lt;/p&gt;
+&lt;p&gt;If you work with text based data extra white space appears in the data all the time after separation, mainly in the form of leading white space as we will see below.&lt;/p&gt;
+&lt;p&gt;The solution is simple, we trim the white space on both sides. In R we can do this using either the &lt;code&gt;stringr&lt;/code&gt; function &lt;code&gt;str_trim&lt;/code&gt; or the base R function &lt;code&gt;trimws&lt;/code&gt;. We’ll use &lt;code&gt;stringr&lt;/code&gt; here because it is a reminder of how useful this &lt;code&gt;tidyverse&lt;/code&gt; package is.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;messy %&amp;gt;% separate_rows(messy, sep = &amp;quot;;&amp;quot;) %&amp;gt;%
+  mutate(messy = str_trim(messy, side = &amp;quot;both&amp;quot;)) %&amp;gt;% 
+  count(messy) %&amp;gt;% 
+  kable() %&amp;gt;% 
+  kable_styling()&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34;table&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+messy
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+n
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+a
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+in the world
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+it’s just
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+messiest
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+messy data column
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+this is not the
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+tribute
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;We use a call to &lt;code&gt;dplyr::mutate&lt;/code&gt; and then a call to &lt;code&gt;stringr str_trim&lt;/code&gt; to trim the white space on both sides of the separated strings and then overwrite the column in place.&lt;/p&gt;
+&lt;p&gt;Both &lt;code&gt;str_trim&lt;/code&gt; and the base R &lt;code&gt;trimws&lt;/code&gt; have arguments for where to trim white space. In the case of &lt;code&gt;stringr&lt;/code&gt; it is &lt;code&gt;side =&lt;/code&gt; and with &lt;code&gt;trimws&lt;/code&gt; it is &lt;code&gt;which =&lt;/code&gt;. As these are general functions there may be situations where you will want to trim either the leading (left) or the trailing (right) spaces. If you are working with metadata from the scientific literature (such as Web of Science or Crossref) or with patent data my recommendation is to always trim on both sides unless you have a good reason not to.&lt;/p&gt;
+&lt;p&gt;We now have a piece of code that will work for just about anything where white space is left over. We normally want to turn that into a function that we can use over and over again. One reason the &lt;code&gt;tidyverse&lt;/code&gt; set of packages are so popular is that they are so easy to use. But, if we try and put the code above into a function it won’t work.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fun &amp;lt;- function(df, col, sep){
+  df %&amp;gt;% tidyr::separate_rows(col, sep = sep) %&amp;gt;% 
+    dplyr::mutate(col = stringr::str_trim(col, side = &amp;quot;both&amp;quot;)) %&amp;gt;% 
+    dplyr::count(col)
+  }&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fun(messy, messy, sep = &amp;quot;;&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We will get a message that&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Error: &lt;code&gt;col&lt;/code&gt; must evaluate to column positions or names, not a list&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If we try quoting the “messy” col it appears to work but instead counts the number of entries. We can go around the houses… and go slightly bananas in the process… trying to fix this only to run into mysterious problem after problem. The reason for this is that &lt;code&gt;dplyr&lt;/code&gt; and &lt;code&gt;tidyr&lt;/code&gt; use non standard evaluation (tidy evaluation) with the result that R does not know how to evaluate it. We need to start getting to grips with tidy evaluation to get our code to work in a function. A whole bunch of very useful resources on that have been compiled by Mara Averick &lt;a href=&#34;https://maraaverick.rbind.io/2017/08/tidyeval-resource-roundup/&#34;&gt;here&lt;/a&gt;. One solution, bearing in mind that there may well be a better one, is this.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;separate_rows_trim &amp;lt;- function(df, col, sep){
+  col &amp;lt;- enquo(col)
+  df %&amp;gt;% tidyr::separate_rows(!!col, sep = sep) %&amp;gt;% 
+    dplyr::mutate(!!col := stringr::str_trim(!!col, side = &amp;quot;both&amp;quot;)) %&amp;gt;% 
+    dplyr::count(!!col := !!col, sort = TRUE) %&amp;gt;% 
+    tidyr::drop_na(!!col)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this case we use bang bang &lt;code&gt;!!&lt;/code&gt; to tell R when to evaluate col with a bit of help from &lt;code&gt;:=&lt;/code&gt; from &lt;code&gt;rlang&lt;/code&gt;. To actually get to grips with tidy evaluation I recommend Mara Avericks compilation &lt;a href=&#34;https://maraaverick.rbind.io/2017/08/tidyeval-resource-roundup/&#34;&gt;here&lt;/a&gt;. For a much deeper dive and highly illuminating read try the &lt;a href=&#34;https://adv-r.hadley.nz/meta.html&#34;&gt;metaprogramming chapter of Hadley Wickham’s forthcoming 2nd edition of Advanced R&lt;/a&gt;. For the moment we can move on.&lt;/p&gt;
+&lt;p&gt;Let’s try again.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;separate_rows_trim(messy, messy, sep = &amp;quot;;&amp;quot;) %&amp;gt;% 
+  kable() %&amp;gt;% 
+  kable_styling()&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34;table&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+messy
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+n
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+a
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+in the world
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+it’s just
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+messiest
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+messy data column
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+this is not the
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+tribute
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;We now have a reusable function.&lt;/p&gt;
+&lt;p&gt;This toy example introduces the importance of trimming white space when working with data that has been separated out. Otherwise bad things will happen when you start to count. To finish off let’s use some real world data from a patent dataset to illustrate this.&lt;/p&gt;
+&lt;div id=&#34;scaling-up&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Scaling Up&lt;/h3&gt;
+&lt;p&gt;This article is part of work in progress on the &lt;a href=&#34;https://github.com/wipo-analytics&#34;&gt;WIPO Patent Analytics Handbook&lt;/a&gt;. Patent data is simultaneously really well organised and really messy… with many concatenated columns containing data of varying lengths. In addition a single data set will often compile records from different patent databases. This leads to the same problem we encountered above where a mysterious second person types exactly the same thing in a slightly different way. This is really common with names such as applicants or inventors.&lt;/p&gt;
+&lt;p&gt;Here we will use the &lt;a href=&#34;https://poldham.github.io/drones/&#34;&gt;drones dataset&lt;/a&gt;, a new dataset of patent data involving drone technology. As it’s a big dataset we will just use the applicants field with 18,970 rows.&lt;/p&gt;
+&lt;p&gt;If you would like to explore the drones dataset try this. First make sure you have &lt;code&gt;devtools&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;devtools&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then install from github with:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;devtools::install_github(&amp;quot;poldham/drones&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We will use the applicants table. This contains a column called applicants_cleaned that I have previously mainly cleaned up.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(drones)
+applicants %&amp;gt;% 
+  select(applicants_cleaned)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 18,970 x 1
+##    applicants_cleaned                         
+##    &amp;lt;chr&amp;gt;                                      
+##  1 SHENZHEN HUBSAN TECHNOLOGY CO. LTD.        
+##  2 Intel Corporation                          
+##  3 YOKOGAWA ELECTRIC CORPORATION              
+##  4 NETWORK PERFORMANCE RESEARCH GROUP LLC     
+##  5 NETWORK PERFORMANCE RESEARCH GROUP LLC     
+##  6 Choi Hae-Yong                              
+##  7 Ziva Corporation                           
+##  8 WiTricity Corporation                      
+##  9 Thales                                     
+## 10 International Business Machines Corporation
+## # ... with 18,960 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can only see one case of a semi colon in this case but we can quickly get an idea of how many there are with &lt;code&gt;str_count&lt;/code&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;applicants %&amp;gt;% 
+  select(applicants_cleaned) %&amp;gt;% 
+  str_count(., pattern = &amp;quot;;&amp;quot;) %&amp;gt;% 
+  kable()&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+x
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+5916
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Creating a count of the number of separators per record reveals that the maximum number of semicolons is 20.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;applicants %&amp;gt;% 
+  select(applicants_cleaned) %&amp;gt;% 
+  mutate(sepcount = str_count(applicants_cleaned, &amp;quot;;&amp;quot;)) %&amp;gt;% 
+  drop_na(applicants_cleaned) %&amp;gt;% 
+  filter(sepcount == max(sepcount)) %&amp;gt;% 
+  select(sepcount) %&amp;gt;% 
+  kable()&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+sepcount
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+20
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+20
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Let’s try counting the data up both ways to join them together. We’ll limit this to the top ten.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(drones)
+df1 &amp;lt;- applicants %&amp;gt;% 
+  separate_rows(applicants_cleaned, sep = &amp;quot;;&amp;quot;) %&amp;gt;%
+  drop_na(applicants_cleaned) %&amp;gt;% 
+  count(applicants_cleaned, sort = TRUE) %&amp;gt;% 
+  rename(messy = n) %&amp;gt;% 
+  .[1:10,] %&amp;gt;% 
+  mutate(applicants_cleaned = str_trim(applicants_cleaned, side = &amp;quot;both&amp;quot;))
+
+df2 &amp;lt;- separate_rows_trim(applicants, applicants_cleaned, sep = &amp;quot;;&amp;quot;) %&amp;gt;% 
+  drop_na(applicants_cleaned) %&amp;gt;% 
+  rename(tidy = n) %&amp;gt;% 
+  .[1:10,]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If we join these two tables together we will be able to calculate the differences between them.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df3 &amp;lt;- merge(df1, df2, by = &amp;quot;applicants_cleaned&amp;quot;) %&amp;gt;% 
+  arrange(desc(tidy)) %&amp;gt;%
+  mutate(percent = (tidy - messy) / tidy * 100) %&amp;gt;% 
+  mutate(percent = formatC(percent, digits = 2))
+
+df3 %&amp;gt;% 
+  kable(&amp;quot;html&amp;quot;, escape = F) %&amp;gt;% 
+  kable_styling(position = &amp;quot;center&amp;quot;) %&amp;gt;% 
+  column_spec(4, width = 8)&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34;table&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+applicants_cleaned
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+messy
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+tidy
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+percent
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+QUALCOMM Incorporated
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+483
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+498
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 8; &#34;&gt;
+3
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Thales
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+322
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+382
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 8; &#34;&gt;
+16
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+HON HAI PRECISION INDUSTRY CO LTD
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+345
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+345
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 8; &#34;&gt;
+0
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+QINGHUA UNIV
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+343
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+343
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 8; &#34;&gt;
+0
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Samsung Electronics Co. Ltd.
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+207
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+213
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 8; &#34;&gt;
+2.8
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+International Business Machines Corporation
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+184
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+193
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 8; &#34;&gt;
+4.7
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+THE BOEING COMPANY
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+177
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+181
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 8; &#34;&gt;
+2.2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+GOOGLE INC.
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+165
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+167
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 8; &#34;&gt;
+1.2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Elwha LLC
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+161
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+166
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 8; &#34;&gt;
+3
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+SONY CORPORATION
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+144
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+148
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;width: 8; &#34;&gt;
+2.7
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;We can see from the percentage scores that there is significant variance in the counts, with a maximum of 16% variance in the case of Thales. The reason this matters whether using patent data or data from the scientific literature is that any counts that do not recognise the white space problem will be wrong… and generally quite seriously wrong. Typically with patent data the most observable change is movement in the top rankings. But where precision in counting is important, such as capturing all documents linked to a company in a highly competitive field, that can really really matter.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;round-up&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Round Up&lt;/h3&gt;
+&lt;p&gt;When working with data from the scientific literature or patent data in spreadsheets or data frames we will always want to separate out the data in order to count it, whether in R, Python or using tools such as &lt;a href=&#34;https://wipo-analytics.github.io/open-refine.html&#34;&gt;Open Refine&lt;/a&gt;. The act of separating data onto new rows is however only one step with trimming white space a key step to arrive at accurate counts.&lt;/p&gt;
+&lt;p&gt;So ends this episode of “fun with white space and semicolons”. Thanks for reading!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;references&#34; class=&#34;section level3 unnumbered&#34;&gt;
+&lt;h3&gt;References&lt;/h3&gt;
+&lt;div id=&#34;refs&#34; class=&#34;references&#34;&gt;
+&lt;div id=&#34;ref-R-formattable&#34;&gt;
+&lt;p&gt;Ren, Kun, and Kenton Russell. 2016. &lt;em&gt;Formattable: Create ’Formattable’ Data Structures&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=formattable&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=formattable&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-Wickham_2014&#34;&gt;
+&lt;p&gt;Wickham, Hadley. 2014. “Tidy Data.” &lt;em&gt;Journal of Statistical Software&lt;/em&gt; 59 (10). Foundation for Open Access Statistic. &lt;a href=&#34;https://doi.org/10.18637/jss.v059.i10&#34; class=&#34;uri&#34;&gt;https://doi.org/10.18637/jss.v059.i10&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-R-tidyverse&#34;&gt;
+&lt;p&gt;———. 2017. &lt;em&gt;Tidyverse: Easily Install and Load the ’Tidyverse’&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=tidyverse&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=tidyverse&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-R-stringr&#34;&gt;
+&lt;p&gt;———. 2018. &lt;em&gt;Stringr: Simple, Consistent Wrappers for Common String Operations&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=stringr&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=stringr&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-R-dplyr&#34;&gt;
+&lt;p&gt;Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2018. &lt;em&gt;Dplyr: A Grammar of Data Manipulation&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=dplyr&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=dplyr&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-R-tidyr&#34;&gt;
+&lt;p&gt;Wickham, Hadley, and Lionel Henry. 2018. &lt;em&gt;Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=tidyr&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=tidyr&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-R-kableExtra&#34;&gt;
+&lt;p&gt;Zhu, Hao. 2018. &lt;em&gt;KableExtra: Construct Complex Table with ’Kable’ and Pipe Syntax&lt;/em&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=kableExtra&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=kableExtra&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
