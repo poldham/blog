@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Patent on Paul Oldham&#39;s Analytics Blog</title>
-    <link>/categories/patent/</link>
+    <link>https://www.pauloldham.net/categories/patent/</link>
     <description>Recent content in Patent on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Mon, 18 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/categories/patent/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.pauloldham.net/categories/patent/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Separating and Trimming Messy Data the Tidy Way</title>
-      <link>/dealing-with-concatenated-data-fields-in-r/</link>
+      <link>https://www.pauloldham.net/dealing-with-concatenated-data-fields-in-r/</link>
       <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/dealing-with-concatenated-data-fields-in-r/</guid>
-      <description>&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+      <guid>https://www.pauloldham.net/dealing-with-concatenated-data-fields-in-r/</guid>
+      <description>&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;When working with table data from the scientific or patent literature, it is extremely common to find that columns contain concatenated data. That is, they contain multiple entries with a semicolon as a separator. Data of this type is not tidy &lt;span class=&#34;citation&#34;&gt;(Wickham 2014)&lt;/span&gt;. What we commonly want to do is to separate the data out as the basis for counting. However, extra white space can have a major impact on any counts of this data if it is not recognised and dealt with. We will go through this step by step using a simple example and then scale up to a real world example.&lt;/p&gt;
@@ -440,7 +440,7 @@ tribute
 &lt;div id=&#34;scaling-up&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Scaling Up&lt;/h3&gt;
 &lt;p&gt;This article is part of work in progress on the &lt;a href=&#34;https://github.com/wipo-analytics&#34;&gt;WIPO Patent Analytics Handbook&lt;/a&gt;. Patent data is simultaneously really well organised and really messy… with many concatenated columns containing data of varying lengths. In addition a single data set will often compile records from different patent databases. This leads to the same problem we encountered above where a mysterious second person types exactly the same thing in a slightly different way. This is really common with names such as applicants or inventors.&lt;/p&gt;
-&lt;p&gt;Here we will use the &lt;a href=&#34;https://poldham.github.io/drones/&#34;&gt;drones dataset&lt;/a&gt;, a new dataset of patent data involving drone technology. As it’s a big dataset we will just use the applicants field with 18,970 rows.&lt;/p&gt;
+&lt;p&gt;Here we will use the &lt;a href=&#34;https://poldham.github.io/drones/&#34;&gt;drones dataset&lt;/a&gt;, a new work in progress dataset of patent data involving drone technology. As it’s a big dataset we will just use the applicants field with 18,970 rows.&lt;/p&gt;
 &lt;p&gt;If you would like to explore the drones dataset try this. First make sure you have &lt;code&gt;devtools&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;quot;devtools&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Then install from github with:&lt;/p&gt;

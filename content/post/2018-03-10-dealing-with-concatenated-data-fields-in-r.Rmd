@@ -158,7 +158,7 @@ This toy example introduces the importance of trimming white space when working 
 
 This article is part of work in progress on the [WIPO Patent Analytics Handbook](https://github.com/wipo-analytics). Patent data is simultaneously really well organised and really messy... with many concatenated columns containing data of varying lengths. In addition a single data set will often compile records from different patent databases. This leads to the same problem we encountered above where a mysterious second person types exactly the same thing in a slightly different way. This is really common with names such as applicants or inventors. 
 
-Here we will use the [drones dataset](https://poldham.github.io/drones/), a new dataset of patent data involving drone technology. As it's a big dataset we will just use the applicants field with 18,970 rows. 
+Here we will use the [drones dataset](https://poldham.github.io/drones/), a new work in progress dataset of patent data involving drone technology. As it's a big dataset we will just use the applicants field with 18,970 rows. 
 
 If you would like to explore the drones dataset try this. First make sure you have `devtools`.
 

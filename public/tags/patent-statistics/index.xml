@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Patent Statistics on Paul Oldham&#39;s Analytics Blog</title>
-    <link>/tags/patent-statistics/</link>
+    <link>https://www.pauloldham.net/tags/patent-statistics/</link>
     <description>Recent content in Patent Statistics on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Fri, 11 May 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/tags/patent-statistics/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.pauloldham.net/tags/patent-statistics/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Counting Patent First Filings the Tidy Way with R</title>
-      <link>/counting-patent-first-filings/</link>
+      <link>https://www.pauloldham.net/counting-patent-first-filings/</link>
       <pubDate>Fri, 11 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>/counting-patent-first-filings/</guid>
+      <guid>https://www.pauloldham.net/counting-patent-first-filings/</guid>
       <description>&lt;p&gt;This article provides an in depth introduction to counting patent first filings or priority counts. It is a work in progress chapter for the WIPO Patent Analytics Handbook focusing on advanced patent analytics and builds on the introductory &lt;a href=&#34;https://wipo-analytics.github.io/&#34;&gt;WIPO Manual on Open Source Patent Analytics&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Counting first filings is an important subject for patent statistics because the first filing of a patent application marks the date that is closest to investment in research and development leading to the invention. For this reason it is widely used by economists and statisticians as a proxy indicator for the analysis of trends in science and technology.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; For patent applicants, the first filing, and the priority date that defines it, can be the difference between success and failure. An applicant with priority in the filing of an application for the same invention as their competitor will win in a dispute, and potentially win in multiple countries around the world. Millions, and in some cases hundreds of millions, of dollars may ride on who holds priority over an invention.&lt;/p&gt;
 &lt;p&gt;For such an important subject, remarkably little has been written on the practical aspects of counting patents by priority or, as is more intuitive, first filings. The international patent priority system has its origins in the &lt;a href=&#34;http://www.wipo.int/treaties/en/ip/paris/summary_paris.html&#34;&gt;1883 Paris Convention for the Protection of Industrial Property&lt;/a&gt; and basically means that inventors in contracting states to the Convention have a twelve month period from the date of filing their invention to file in other contracting states. During that period any filing in a contracting state will be treated as if it was filed on the same date as the original filing and will enjoy priority over other competing claims to the same invention.&lt;/p&gt;
@@ -69,7 +69,7 @@ numbers &amp;lt;- read_csv(&amp;quot;https://github.com/wipo-analytics/drones_da
 &lt;p&gt;We will only be working with the priority number and the application number, but as a general principle it is useful to understand the relationship between these fields which can be simply described as follows.&lt;/p&gt;
 &lt;p&gt;priority number &amp;gt; application number &amp;gt; publication number &amp;gt; family members&lt;/p&gt;
 &lt;p&gt;We can get a clearer understanding of the relationship between these numbers by looking at the front page of a patent document from our dataset using the popular &lt;a href=&#34;mailto:esp@cenet&#34;&gt;esp@cenet&lt;/a&gt; database. You can access this example &lt;a href=&#34;https://worldwide.espacenet.com/publicationDetails/biblio?FT=D&amp;amp;date=20151210&amp;amp;DB=EPODOC&amp;amp;locale=en_EP&amp;amp;CC=US&amp;amp;NR=2015357831A1&amp;amp;KC=A1&amp;amp;ND=4&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/priority/witricity.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/priority/witricity.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can see that the front page or biblio of a patent record contains a large amount of information. It is typically this information that is used to generate patent statistics. For our purposes we can see that the priority numbers field consists of one or more priority numbers. We might expect that there would only be one priority number as the original filing for the invention. However that is often not the case as we will discuss below.&lt;/p&gt;
 &lt;p&gt;From the front page we can see that if we proceed up from the priority numbers the first priority number in the list exactly matches the application number on the front page. This tells us that this is the first filing for this particular application. This application is then published as US2015357831A1.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; We can clearly see the relationship we described above&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;priority number &amp;gt; application number &amp;gt; publication number&lt;/code&gt;&lt;/p&gt;
@@ -99,7 +99,7 @@ numbers[1,] %&amp;gt;%
 ##   &amp;lt;chr&amp;gt;                    &amp;lt;chr&amp;gt;                   
 ## 1 US2016578323F 2016-09-20 US2016578323F 2016-09-20&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;However, the patent system is an international system. A patent applicant may choose to file for patent rights in up to 152 contracting parties to the &lt;a href=&#34;http://www.wipo.int/pct/en/&#34;&gt;Patent Cooperation Treaty&lt;/a&gt; (although applications in all member states is unusual). As the applications are submitted in multiple countries additional priority numbers will appear in the record. An example of this is provided below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/priority/japan.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/images/priority/japan.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In this case we can see that the earliest priority number is for Japan (JP20150122335 20150617) and the second priority number is for WO (the Patent Cooperation Treaty) and incorporates the country code of the first filing JP into the new priority number (WO2016JP67809 20160615). The Patent Cooperation Treaty is the vehicle through which applicants can submit applications in multiple countries. In this case we can see that the applicant from Japan has chosen to pursue an application in the United States using the Patent Cooperation Treaty (WO) resulting in the application number US201615322008 20160615 filed in 2016 that was then published as &lt;a href=&#34;https://worldwide.espacenet.com/publicationDetails/biblio?FT=D&amp;amp;date=20170518&amp;amp;DB=EPODOC&amp;amp;locale=en_EP&amp;amp;CC=US&amp;amp;NR=2017137104A1&amp;amp;KC=A1&amp;amp;ND=4&#34;&gt;US2017137104A1&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;From this we might be tempted to assume that the earliest priority will always appear at the front of the list of priorities. However, this assumption is not safe as we will see below where the first filing appears at the end of the list of priorities. We will be on safer ground by identifying the earliest date in the sequence.&lt;/p&gt;
 &lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
@@ -349,7 +349,7 @@ earliest&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let’s quickly graph this data. Here we are using the popular R graphing package ggplot2 to draw quick graphs of the data. To learn more about using &lt;code&gt;ggplot2&lt;/code&gt; try the excellent &lt;a href=&#34;http://www.cookbook-r.com/Graphs/&#34;&gt;R Graphics Cookbook by Winston Chang&lt;/a&gt; which is available in open access form online. A step by step walk through on using ggplot2 to visualise patent data is available in this &lt;a href=&#34;https://www.pauloldham.net/graphing-patent-data-with-ggplot2-part2/&#34;&gt;article&lt;/a&gt;. If you prefer using Excel or Tableau then write the file to a .csv and then open it in your tool of choice. You can do this simply with the following line of code.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;readr::write_csv(earliest_unique, &amp;quot;earliest_unique.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;ggplot2 is quite a lot more involved than working with Tableau, Excel or other tools but provides a powerful way to control graphing. Let’s take a quick look at the data.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note that graphs of priority data display a characteristic data cliff the closer that we move towards the present. This reflects the fact that patent applications are normally published at least 24 months after they were originally filed. This data cliff can easily mislead an audience into believing that interest in a technology has suddenly collapsed when in reality we are missing or only have partial data for the period. It is therefore important to pull the year range back to accommodate this. Depending on your data it is sensible to pull back the year by at least two years and possibly three years.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;earliest_unique %&amp;gt;% 
   select(-n) %&amp;gt;% 
@@ -360,7 +360,7 @@ earliest&lt;/code&gt;&lt;/pre&gt;
   ggplot(., aes(x = year, y = n)) +
   geom_line() +
   labs(title = &amp;quot;Trends in First Filings of Patent Applications for Drone Technology&amp;quot;, x = &amp;quot;priority year&amp;quot;, y = &amp;quot;first filings&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-05-11-counting-patent-first-filings_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note the speed bump in the data around 2008 that is likely to reflect the impact of the financial crisis with filings relating to drone technology before accelerating rapidly in recent years.&lt;a href=&#34;#fn7&#34; class=&#34;footnote-ref&#34; id=&#34;fnref7&#34;&gt;&lt;sup&gt;7&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;In this dataset we can also gain an insight into the countries driving this trend by ranking them in a bar graph for the same period.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggthemes)
@@ -378,7 +378,7 @@ earliest_unique %&amp;gt;%
   theme_igray() +
   scale_fill_tableau(&amp;quot;tableau20&amp;quot;) +
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-05-11-counting-patent-first-filings_files/figure-html/echo-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.pauloldham.net/post/2018-05-11-counting-patent-first-filings_files/figure-html/echo-1.png&#34; width=&#34;600px&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Note here that the United States emerges first in the top 5 followed by Japan, France, Korea and the Patent Cooperation Treaty (WO). It is important to bear in mind here that WO records will typically be filed through national offices, although no priority number will be present, as we can see in the references to country codes inside the WO priority documents.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;earliest_unique %&amp;gt;% 
   filter(priority_country == &amp;quot;WO&amp;quot;) %&amp;gt;% 
