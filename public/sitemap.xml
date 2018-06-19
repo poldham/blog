@@ -171,12 +171,6 @@
   </url>
   
   <url>
-    <loc>https://www.pauloldham.net/tags/dashboards/</loc>
-    <lastmod>2015-05-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://www.pauloldham.net/tags/derwent-innovation/</loc>
     <lastmod>2018-05-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -203,6 +197,12 @@
   <url>
     <loc>https://www.pauloldham.net/tags/ggplot2/</loc>
     <lastmod>2015-07-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pauloldham.net/tags/google-refine/</loc>
+    <lastmod>2015-05-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -436,6 +436,12 @@
   
   <url>
     <loc>https://www.pauloldham.net/tags/tableau/</loc>
+    <lastmod>2015-05-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pauloldham.net/tags/tableau-dashboards/</loc>
     <lastmod>2015-05-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

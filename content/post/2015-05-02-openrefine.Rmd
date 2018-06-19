@@ -5,7 +5,7 @@ date: '2015-05-02'
 slug: openrefine-patent-cleaning
 categories:
   - Patents
-tags: [open refine, name cleaning]
+tags: [open refine, name cleaning, google refine]
 ---
 ```{r opts, echo=FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, fig.align = "center", out.width = "800px")

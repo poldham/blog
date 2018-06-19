@@ -24,9 +24,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     url = "https://twitter.com/junglepaul"
 [[menu.main]]
     name = "r-bloggers"
-    url = "https://www.r-bloggers.com"    
-    
-     
+    url = "https://www.r-bloggers.com"   
+[[menu.main]]
+    name = "Rweekly"
+    url = "https://rweekly.org/"   
 
 [params]
     description = "Patent Analytics, Bibliometrics and Data Visualization"
