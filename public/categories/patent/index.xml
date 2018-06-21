@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Patent on Paul Oldham&#39;s Analytics Blog</title>
-    <link>https://www.pauloldham.net/categories/patent/</link>
+    <link>/categories/patent/</link>
     <description>Recent content in Patent on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Mon, 18 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://www.pauloldham.net/categories/patent/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/categories/patent/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Separating and Trimming Messy Data the Tidy Way</title>
-      <link>https://www.pauloldham.net/dealing-with-concatenated-data-fields-in-r/</link>
+      <link>/dealing-with-concatenated-data-fields-in-r/</link>
       <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/dealing-with-concatenated-data-fields-in-r/</guid>
-      <description>&lt;script src=&#34;https://www.pauloldham.net/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+      <guid>/dealing-with-concatenated-data-fields-in-r/</guid>
+      <description>&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;When working with table data from the scientific or patent literature, it is extremely common to find that columns contain concatenated data. That is, they contain multiple entries with a semicolon as a separator. Data of this type is not tidy &lt;span class=&#34;citation&#34;&gt;(Wickham 2014)&lt;/span&gt;. What we commonly want to do is to separate the data out as the basis for counting. However, extra white space can have a major impact on any counts of this data if it is not recognised and dealt with. We will go through this step by step using a simple example and then scale up to a real world example.&lt;/p&gt;

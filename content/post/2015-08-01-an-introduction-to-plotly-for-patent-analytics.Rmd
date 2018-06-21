@@ -26,7 +26,6 @@ We need to start out by creating an account using the Create Account Button.
 knitr::include_graphics("/images/plotlyfigs/fig1_plotly.png")
 ```
 
-
 Next we will see an invitation to take a tour (which is worth doing) and Plotly helpfully points out that we can load files from Google Drive or Dropbox. We then select the Workspace option to begin work.
 
 ### Importing Files
@@ -47,7 +46,7 @@ knitr::include_graphics("/images/plotlyfigs/fig3_import.png")
 
 From the Organize page select the New button and then Upload. Now select your local file. When you upload the file a status message will display and if all goes well then you will see a completed message. If not a red message will display informing you that there has been a problem (how you fix these problems is unclear)
 
-For this experiment we used tow datasets from the Open Source Patent Analytics Manual [data repository](https://github.com/poldham/opensource-patent-analytics/tree/master/2_datasets). When using the Github repository click on the file of interest until you see a `View Raw` message. Then right click to download the data file from there. You can download them for your own use directly from the following links. 
+For this experiment we used two datasets from the Open Source Patent Analytics Manual [data repository](https://github.com/poldham/opensource-patent-analytics/tree/master/2_datasets). When using the Github repository click on the file of interest until you see a `View Raw` message. Then right click to download the data file from there. You can download them for your own use directly from the following links. 
 
 1. [WIPO trends](https://github.com/poldham/opensource-patent-analytics/blob/master/2_datasets/wipo/wipotrends_cleaned.csv?raw=true) application trends by year and with % change
 2. [Pizza patents by country and year](https://github.com/poldham/opensource-patent-analytics/raw/master/2_datasets/pizza_medium_clean/pcy.csv). This is a simple dataset containing counts of patent documents containing the word pizza from [WIPO Patentscope](https://patentscope.wipo.int/search/en/search.jsf) broken down by country and year.
@@ -159,7 +158,7 @@ knitr::include_graphics("/images/plotlyfigs/fig13_final_annotated.png")
 
 In this case we have added a couple of markers that may help to understand trends in activity. First, we have a dip in patent applications between 2001 and 2002. One possible explanation here is that this is a knock on effect of the collapse of the dot.com bubble where share prices reached a peak in 2000, declined rapidly and recovered before declining again into 2001. Patent data typically displays lag effects and it is reasonable to think that the decline in application activity from 2001 reflects these wider economic adjustments. Similarly, there is a significant dip in applications between 2008 and 2009 that it appears reasonable to assume reflects the knock on effects of the global economic crisis of 2007-2008. Note here that these are grosso modo way markers. We could choose to add other timeline style events or layer graphics to help understand the potential or actual relationships between wider economic activity and trends in patent applications worldwide. 
 
-### Saving and Sharing Sharing 
+### Saving and Sharing 
 
 To save the plot we simply click Save. However, it is here that one of Plotly's major strengths becomes apparent. As soon as we save the plot we can also invite others by email, we can create a public or private shareable link. For the collaborators, they must have a Plotly account already for this to work. 
 
@@ -167,7 +166,8 @@ To save the plot we simply click Save. However, it is here that one of Plotly's 
 knitr::include_graphics("/images/plotlyfigs/fig13_email.png")
 ```
 
-The next option is to share a link. Note here that the default is to share a private link. To change that select the lock icon. The private link is particularly well suited for patent professionals. 
+The next option is to share a link. Note here that the default is to share a private link. To change that select the lock icon. The private link is particularly well suited for patent professionals. You can visit the graph [https://plot.ly/~poldham/309/patent-applications-worldwide/](https://plot.ly/~poldham/309/patent-applications-worldwide/)
+
 ```{r echo=FALSE}
 knitr::include_graphics("/images/plotlyfigs/fig13_privatelink.png")
 ```
@@ -206,7 +206,7 @@ devtools::install_github("ropensci/plotly")
 
 When we load the library it will load other required packages, note that you may need to install some of these packages if you don't have them already. Use `install.packages("ggplot2")` and so on in the Console if this happens and then load the libraries.
 
-```{r eval=FALSE}
+```{r}
 library(plotly) ## loads Plotly and the additional packages it needs.
 ```
 Loading required package: RCurl
@@ -216,21 +216,22 @@ Loading required package: ggplot2
 
 We now need to set our credentials for the API. Follow this [link](https://plot.ly/settings/api) to obtain your API key (when logged in to Plotly). Note also that you can obtain a streaming API token on the same page. Streaming will update a graphic from inside RStudio. 
 
-When you have obtained your token then use the following command to register.
+Next save the username and key in your R profile as follows.
 
 ```{r eval=FALSE}
-set_credentials_file("your username", "your API key")
+Sys.setenv("plotly_username"="your_plotly_username")
+Sys.setenv("plotly_api_key"="your_api_key")
 ```
 
-To start plotting we will create an empty plotly object. We will call it pizza plot but you can call it what you like. 
+<!---To start plotting we will create an empty plotly object. We will call it pizza plot but you can call it what you like. 
 
 ```{r eval=FALSE}
-pizzaplot <- plotly()
+pizzaplot <- ggplotly()
 ```
 
-If we were to use class(pizzaplot) we would see that we have an object of "PlotlyClass".
+If we were to use class(pizzaplot) we would see that we have an object of "PlotlyClass". --->
 
-Next we will use a quick plot or `qplot` from `ggplot2`. First we will load the pizza patents by country and year dataset from the Github repository using `readr`. First you may need to install the `readr` package and/or lead the library. 
+Next we will use a quick plot or `qplot` from `ggplot2`. First we will load the pizza patents by country and year dataset from the Github repository using `readr`. First you may need to install the `readr` package and/or lead the library. If you have the tidyverse installed then you will simply need to load the library.
 
 ```{r eval=FALSE}
 install.packages("readr")
@@ -238,55 +239,58 @@ install.packages("readr")
 
 Load the library.
 
-```{r eval=FALSE}
+```{r}
 library(readr)
 ```
 
 Now read in the dataset from the Github respository (if you have it downloaded already you could load by inserting the path to your local file inside the quotes).
 
-```{r eval=FALSE}
+```{r}
 pcy <- read_csv("https://github.com/poldham/opensource-patent-analytics/raw/master/2_datasets/pizza_medium_clean/pcy.csv")
+pcy
 ```
 
 We will now make a quick plot using `qplot` from `ggplot2`. The data is for trends in patent documents mentioning pizza from WIPO Patentscope. We have set a limit to the data for 1970 to 2012 to edit out sparse data and remove the data cliff for recent years. 
 
-```{r eval=FALSE}
+```{r}
+library(ggplot2)
 pizza <- qplot(pubyear, n, data = pcy, geom = "line", colour = pubcountry,  xlim = c(1970, 2012))
+pizza               
 ```
 
-To create the plot in plotly we need to run the following.
+If we want to convert the ggplot into plotly we can use `ggplotly`.
+
+```{r}
+ggplotly(pizza)
+```
+
+We can now hover over the graph to display the data points and also we can use the scroll to see the range of countries. Clearly in this case activity in the US is squashing the other countries down to the bottom so we would in reality want to split this up into separate graphs. For the moment however lets upload the graph to our account.
+
+For this we just need to use `api_create`. It will be a good idea to check the `api_create` help and try out the examples to get a better feel for this. Note that you can also upload data frames with the same function. 
 
 ```{r eval=FALSE}
-response <- pizzaplot$ggplotly(pizza)
+api_create(pizza)
 ```
 
-Let's go and visit it online.
+This will trigger your browser window.
 
-```{r eval=FALSE}
-response$url
-```
+To visit the plot just created try this link [https://plot.ly/~poldham/613/](https://plot.ly/~poldham/613/)
 
 You will now see an online plot that should look like this.
 
 ```{r echo=FALSE}
-knitr::include_graphics("/images/plotlyfigs/fig14_R_online.png")
+#knitr::include_graphics("/images/plotlyfigs/fig14_R_online.png")
+knitr::include_graphics("/images/plotlyfigs/fig14_new_R_online.png")
 ```
 
-If we hover over the data points we will also see the data appear by country (to add a legend, edit graph and then Legends)
+If we hover over the data points we will also see the data appear by country (to add a legend, edit graph and then Legends). Note here that the data table is also provided under the Data tab.
 
 ```{r echo=FALSE}
-knitr::include_graphics("/images/plotlyfigs/fig15_R_interactivepng.png")
+#knitr::include_graphics("/images/plotlyfigs/fig15_R_interactivepng.png")
+knitr::include_graphics("/images/plotlyfigs/fig15_new_R_interactivepng.png")
 ```
 
-Note here that the data table is also provided under the Data tab.
-
-```{r echo=FALSE}
-knitr::include_graphics("/images/plotlyfigs/fig15_R_interactivepng.png")
-```
-
-We can also share the graph via social media, download the data, or edit the graph. Note that the default setting for a graph sent via the API appears to be public (with no obvious way to change that).
-
-It is here that Plotly's potential importance as a tool for sharing data and graphics becomes apparent. 
+We can also share the graph via social media, download the data, or edit the graph. Note that the default setting for a graph sent via the API appears is public. To change that use the Edit button and then select the Share. Note that you will need a paid account to share data privately. 
 
 ## Round Up
 

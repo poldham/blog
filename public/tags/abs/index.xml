@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Abs on Paul Oldham&#39;s Analytics Blog</title>
-    <link>https://www.pauloldham.net/tags/abs/</link>
+    <link>/tags/abs/</link>
     <description>Recent content in Abs on Paul Oldham&#39;s Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright @ Paul Oldham 2017-2018</copyright>
     <lastBuildDate>Mon, 11 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://www.pauloldham.net/tags/abs/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/abs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>API Resources for the Scientific Literature in R and Python</title>
-      <link>https://www.pauloldham.net/api-resources-for-scientific-literature/</link>
+      <link>/api-resources-for-scientific-literature/</link>
       <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.pauloldham.net/api-resources-for-scientific-literature/</guid>
+      <guid>/api-resources-for-scientific-literature/</guid>
       <description>&lt;p&gt;This short post provides details on some of the main APIs (web services) that can be used to monitor and retrieve data from the scientific literature in either R or Python. We are using these packages and libraries as part of a GIZ supported project with the authorities in Kenya who are responsible for providing research permits. Kenya is famous for its biodiversity and the diversity of its communities. However, there is no single repository of publications arising from research in Kenya. We are looking to use APIs to automate retrieval of publications about Kenya and its biodiversity. Hopefully this should allow us to build an open access virtual repository of publications on Kenya to serve the needs of researchers and the wider community.&lt;/p&gt;
 &lt;p&gt;We plan to use three main APIs for the Kenya project. There are many APIs out there but we will focus on those that aggregate data from different sources. I’ll add a few more that are interesting mainly for biodiversity topics.&lt;/p&gt;
 &lt;div id=&#34;main-apis&#34; class=&#34;section level2&#34;&gt;
