@@ -287,7 +287,7 @@ result
 
 So, we now have a data.frame that consists of list columns containing tibbles. Note that we have some NULLs where there is no data for a particular category for that ID. 
 
-If you are new to list columns, or `purrr` in general, a great place to start is [Jenny Bryans purrr tutorial](https://jennybc.github.io/purrr-tutorial/ls13_list-columns.html). 
+If you are new to list columns, or `purrr` in general, a great place to start is [Jenny Bryan's purrr tutorial](https://jennybc.github.io/purrr-tutorial/ls13_list-columns.html). 
 
 One of the great features of list columns is that we can search across them and add new values based on the matches. What we want to do now is to find John Smiths where the word University appears in their employment and their country is the US. We will carry out the search using `stringr::str_detect` which will return a logical value. We use `map` to map over the data and place this inside mutate to add a new column to the data frame. The code is a little more complicated than we might like because the use of map returns a vector of logical values. We use `map_lgl` and `any` to reduce this to a single TRUE/FALSE value. We then filter the data to those cases where both university and country are TRUE.^[ This example applies code in [Jenny Bryans purrr tutorial](https://jennybc.github.io/purrr-tutorial/ls13_list-columns.html)] 
 

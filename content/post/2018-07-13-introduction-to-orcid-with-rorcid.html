@@ -307,7 +307,7 @@ result</code></pre>
 ## 10 0000-0002-0888-1274      &lt;tibble [1 × 33]&gt; &lt;tibble [2 × 30]&gt; &lt;NULL&gt;    
 ## # ... with 13 more rows</code></pre>
 <p>So, we now have a data.frame that consists of list columns containing tibbles. Note that we have some NULLs where there is no data for a particular category for that ID.</p>
-<p>If you are new to list columns, or <code>purrr</code> in general, a great place to start is <a href="https://jennybc.github.io/purrr-tutorial/ls13_list-columns.html">Jenny Bryans purrr tutorial</a>.</p>
+<p>If you are new to list columns, or <code>purrr</code> in general, a great place to start is <a href="https://jennybc.github.io/purrr-tutorial/ls13_list-columns.html">Jenny Bryan’s purrr tutorial</a>.</p>
 <p>One of the great features of list columns is that we can search across them and add new values based on the matches. What we want to do now is to find John Smiths where the word University appears in their employment and their country is the US. We will carry out the search using <code>stringr::str_detect</code> which will return a logical value. We use <code>map</code> to map over the data and place this inside mutate to add a new column to the data frame. The code is a little more complicated than we might like because the use of map returns a vector of logical values. We use <code>map_lgl</code> and <code>any</code> to reduce this to a single TRUE/FALSE value. We then filter the data to those cases where both university and country are TRUE.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <pre class="r"><code>result %&gt;% 
   mutate(university = map(employment, str_detect, &quot;University&quot;), 
