@@ -246,10 +246,10 @@ nrow(smith_education)&lt;/code&gt;&lt;/pre&gt;
 
 nrow(smith_keywords)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 10&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We can see that these calls are becoming repetitive. We are calling an specific &lt;code&gt;rorcid&lt;/code&gt; function and then extracting a specific field into a data frame, suggesting we could start thinking about a helper function. We won’t go there now but a quick initial sketch for that might be.&lt;/p&gt;
+&lt;p&gt;We can see that these calls are becoming repetitive. We are calling a specific &lt;code&gt;rorcid&lt;/code&gt; function and then extracting a specific field into a data frame, suggesting we could start thinking about a helper function. We won’t go there now but a quick initial sketch for that might be.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df &amp;lt;- function(fun, id, field){
   res &amp;lt;- fun(id) %&amp;gt;% 
-    purrr::map2_df(., `[[`, field) %&amp;gt;% 
+    purrr::map_df(., `[[`, field) %&amp;gt;% 
     janitor::clean_names() %&amp;gt;% 
     group_by(source_source_orcid_path) %&amp;gt;% 
     nest(.key = field)

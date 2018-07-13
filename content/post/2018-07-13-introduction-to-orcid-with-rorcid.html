@@ -247,10 +247,10 @@ nrow(smith_education)</code></pre>
 
 nrow(smith_keywords)</code></pre>
 <pre><code>## [1] 10</code></pre>
-<p>We can see that these calls are becoming repetitive. We are calling an specific <code>rorcid</code> function and then extracting a specific field into a data frame, suggesting we could start thinking about a helper function. We won’t go there now but a quick initial sketch for that might be.</p>
+<p>We can see that these calls are becoming repetitive. We are calling a specific <code>rorcid</code> function and then extracting a specific field into a data frame, suggesting we could start thinking about a helper function. We won’t go there now but a quick initial sketch for that might be.</p>
 <pre class="r"><code>df &lt;- function(fun, id, field){
   res &lt;- fun(id) %&gt;% 
-    purrr::map2_df(., `[[`, field) %&gt;% 
+    purrr::map_df(., `[[`, field) %&gt;% 
     janitor::clean_names() %&gt;% 
     group_by(source_source_orcid_path) %&gt;% 
     nest(.key = field)

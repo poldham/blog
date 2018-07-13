@@ -242,12 +242,12 @@ smith_keywords <- rorcid::orcid_keywords(smith$source_source_orcid_path) %>%
 nrow(smith_keywords)
 ```
 
-We can see that these calls are becoming repetitive. We are calling an specific `rorcid` function and then extracting a specific field into a data frame, suggesting we could start thinking about a helper function. We won't go there now but a quick initial sketch for that might be. 
+We can see that these calls are becoming repetitive. We are calling a specific `rorcid` function and then extracting a specific field into a data frame, suggesting we could start thinking about a helper function. We won't go there now but a quick initial sketch for that might be. 
 
 ```{r eval=FALSE}
 df <- function(fun, id, field){
   res <- fun(id) %>% 
-    purrr::map2_df(., `[[`, field) %>% 
+    purrr::map_df(., `[[`, field) %>% 
     janitor::clean_names() %>% 
     group_by(source_source_orcid_path) %>% 
     nest(.key = field)
