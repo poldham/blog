@@ -1,0 +1,640 @@
+---
+title: Introduction to ORCID Researcher Identifiers in R with rorcid
+author: Paul Oldham
+date: '2018-07-13'
+slug: introduction-to-orcid-with-rorcid
+description: Getting started with ORCID using the rorcid package. A practical introduction to searching for researcher identifiers with the ORCID API and retrieving publication data with rorcid, purrr and rcrossref.
+categories:
+  - R
+tags:
+  - bibliometrics
+bibliography: [apis.bib, packages.bib, crossref.bib]
+nocite: |
+  @R-rorcid
+  @R-rcrossref
+  @R-purrr
+  @R-usethis
+  @R-janitor
+---
+
+
+
+<p>This article provides a practical introduction to the <code>rorcid</code> package from <a href="https://ropensci.org/">ROpenSci</a> to access the <a href="https://orcid.org/organizations/integrators/API">ORCID researcher ID API</a>. ORCID stands for Open Researcher or Contributor ID <span class="citation">(Haak et al. 2012; Meadows 2016; Youtie et al. 2017)</span>. ORCID is a non-profit organisation that provides researchers with a free unique researcher identifier and a profile. To date over 5 million ORCID IDs have been issued.</p>
+<p>An ORCID ID provides a researcher with a unique identifier and a single place where where they can gather together details on their career, funding, publications, patents and datasets. The ORCID profile is under the researcher’s control and they can decided what to make public or to keep private. An important feature of the ORCID system is that it integrates with services such as Crossref and so can automate updates of researcher publications. ORCID is also important to research funding organisations, employers and publishers. A growing number of funding organisations, such as Research Councils UK, now keep track of research investments and outcomes using ORCID.</p>
+<p>The key idea behind ORCID is researcher name disambiguation. There are two main problems here that can be described in terms of lumps and splits <span class="citation">(Fegley and Torvik 2013)</span>. The main problem here is lumps. The scientific literature is rife with people who share the same name but are distinct persons. In English a classic example would be John Smith while in Spanish it would be Carlos Garcia or Wei Wang in East Asia. This presents the problem of how to distinguish between distinct persons. The second problem arises from splits or variations in the same persons name. This can be described as the James T Kirk or Captain Kirk problem because this name might be represented as JT Kirk, James Tiberius Kirk or Kirk T James and so on with punctuation throwing additional confusion into the mayhem.</p>
+<p>ORCID contributes to solving this problem through the use of unique identifiers. It is not the only researcher identifier system out there but it has the huge advantage of being free and open access while ORCID profiles are controlled by researchers themselves.</p>
+<p>Scott Chamberlain from ROpenSci has developed the <code>rorcid</code> package to access the ORCID API in R. <code>rorcid</code> is well written and documented with plenty of examples. This article provides an introduction to <code>rorcid</code> focusing on common tasks you are likely to want to use ORCID for and how to deal with processing the return from the API in R in a way that produces useful data. Please feel welcome to suggest improvements!</p>
+<p>When working with ORCID we commonly start from two different positions:</p>
+<ol style="list-style-type: lower-alpha">
+<li>We have the name of a researcher and possibly other information about them such as their organisation. We want to look up their ORCID profile.</li>
+<li>We have an ORCID identifier and we want to retrieve information such as publications or funding information.</li>
+</ol>
+<p>We will deal with each of these in turn.</p>
+<div id="getting-started" class="section level2">
+<h2>Getting Started</h2>
+<p>We need to install the <code>rorcid</code> package. We will also install some helper packages. You will probably already have the tidyverse (we’ll mainly use <code>purrr</code>, <code>dplyr</code> and the pipe <code>%&gt;%</code>) and we’ll use <code>janitor</code> to consistently clean up column names.</p>
+<pre class="r"><code>install.packages(&quot;rorcid&quot;)
+install.packages(&quot;tidyverse&quot;)
+install.packages(&quot;janitor&quot;)
+install.packages(&quot;usethis&quot;)</code></pre>
+<pre class="r"><code>library(rorcid)
+library(tidyverse)
+library(janitor)
+library(usethis)</code></pre>
+<p>ORCID requires us to authenticate with an ORCID API Key to use the public API. There are two ways to do this. The easiest way to get started is simply to run <code>orcid_auth()</code> which will open a browser window and invite you to login (you will of course need to sign up to login). You will then be asked to close the browser and you will be good to go. A token will be cached locally in your working directory.</p>
+<pre class="r"><code>orcid_auth()</code></pre>
+<p>The second way, which works better for regular use, is to copy the API key displayed by <code>orcid_auth</code> minus the Bearer. Then call <code>usethis</code> to open up the Renviron file and enter and save the key as as ORCID_TOKEN=“yourkey”.</p>
+<pre class="r"><code>usethis::edit_r_environ()</code></pre>
+<p>You will need to restart the R session for the key to take effect the first time you do this and reload any libraries. You should now be able to call the key with.</p>
+<pre class="r"><code>Sys.getenv(&quot;ORCID_TOKEN&quot;)</code></pre>
+</div>
+<div id="looking-up-researchers" class="section level2">
+<h2>Looking up Researchers</h2>
+<p>We have two main choices when we want to look up researchers with ORCID</p>
+<ol style="list-style-type: decimal">
+<li>We use the most exact search criteria that we can (such as name, country, organisation, keywords)</li>
+<li>We cast the net wide and then narrow the potential results down.</li>
+</ol>
+<p>The choice you make will partly depend on the information that you have at hand. However, in reality you will often end up using the second option for reasons we will explore below.</p>
+</div>
+<div id="basic-searching" class="section level2">
+<h2>Basic Searching</h2>
+<p><code>rorcid</code> divides calls to the API up into a range of functions providing access to distinct chunks of data. We will start with a simple query using <code>orcid()</code>. If we use a simple open query we will get a lot of results back (up to the default maximum of 100).</p>
+<p>One tip when exploring ORCID is to use yourself as the example… because you should know what the right answer is. You can also use the fictitious, but incomplete, ORCID profile for Josiah Carberry, a specialist in psychoceramics, at <a href="https://orcid.org/0000-0002-1825-0097" class="uri">https://orcid.org/0000-0002-1825-0097</a>.</p>
+<p>I’ll just run a simple open search.</p>
+<pre class="r"><code>oldham &lt;- orcid(query = &quot;paul oldham&quot;)
+oldham</code></pre>
+<pre><code>## # A tibble: 100 x 3
+##    `orcid-identifier.uri`                `orcid-identifi… `orcid-identifi…
+##  * &lt;chr&gt;                                 &lt;chr&gt;            &lt;chr&gt;           
+##  1 https://orcid.org/0000-0002-0628-5540 0000-0002-0628-… orcid.org       
+##  2 https://orcid.org/0000-0002-1013-4390 0000-0002-1013-… orcid.org       
+##  3 https://orcid.org/0000-0003-1938-0798 0000-0003-1938-… orcid.org       
+##  4 https://orcid.org/0000-0002-4058-1490 0000-0002-4058-… orcid.org       
+##  5 https://orcid.org/0000-0001-5920-3804 0000-0001-5920-… orcid.org       
+##  6 https://orcid.org/0000-0002-2440-8444 0000-0002-2440-… orcid.org       
+##  7 https://orcid.org/0000-0001-5141-827X 0000-0001-5141-… orcid.org       
+##  8 https://orcid.org/0000-0002-1800-0530 0000-0002-1800-… orcid.org       
+##  9 https://orcid.org/0000-0003-2915-3169 0000-0003-2915-… orcid.org       
+## 10 https://orcid.org/0000-0002-4243-8807 0000-0002-4243-… orcid.org       
+## # ... with 90 more rows</code></pre>
+<p>ORCID will return a default of 100 results for searches. Note that we only receive three fields back, the url, the orcid identifier in path and the host.</p>
+<p>This is not really what we want because the query is looking for Paul OR Oldham. We can get closer by being more specific using the basic guide to search syntax <a href="https://members.orcid.org/api/tutorial/search-orcid-registry">here</a>.</p>
+<pre class="r"><code>oldham_gen &lt;- orcid(query = &quot;given-names:paul AND family-name:oldham&quot;) %&gt;% 
+  janitor::clean_names() 
+oldham_gen</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   orcid_identifier_uri                  orcid_identifier… orcid_identifie…
+## * &lt;chr&gt;                                 &lt;chr&gt;             &lt;chr&gt;           
+## 1 https://orcid.org/0000-0002-0628-5540 0000-0002-0628-5… orcid.org       
+## 2 https://orcid.org/0000-0002-1013-4390 0000-0002-1013-4… orcid.org</code></pre>
+<p>We use <code>janitor::clean_names</code> in this code to convert awkward punctuation in column names to underscores. This makes life easier because we don’t have to play with names like <code>orcid-identifier.uri</code></p>
+<p>The search returns 2 people who share this name. We only have orcid identifiers at the moment but we can use the very useful browse function to view the data in a browser. Normally you will use this with a single ORCID at a time. This call will trigger a browser window.</p>
+<pre class="r"><code>rorcid::browse(as.orcid(oldham$orcid_identifier_path[[1]]))</code></pre>
+<p>But of course you can always browse multiple ORCIDs if you want to courtesy of <code>purrr</code>. This will open multiple tabs containing the ORCID profiles in your browser. Use this with caution if you have lots and lots of ORCID ids or you will live in interesting times.</p>
+<pre class="r"><code>purrr::map(oldham_gen$orcid_identifier_path, rorcid::browse)</code></pre>
+<p>At this point you probably want to start exploring other search options to make the search more accurate. As Scott explains in the <code>orcid()</code> documentation you can use <a href="https://cwiki.apache.org/confluence/display/solr/The+Standard+Query+Parser">SOLR 3.6</a>) including Lucene with <a href="https://wiki.apache.org/solr/DisMax">DisMax</a> and <a href="http://wiki.apache.org/solr/ExtendedDisMax">Extended Dismax</a>.</p>
+<p>If we have more information available we might want to try something like this. In this case the query include the researchers previous affiliations.</p>
+<pre class="r"><code>oldham &lt;- orcid(query = &quot;given-names:paul AND family-name:oldham AND 
+                affiliation-org-name:London School of Economics&quot;) %&gt;% 
+  janitor::clean_names()
+oldham</code></pre>
+<pre><code>## # A tibble: 1 x 3
+##   orcid_identifier_uri                  orcid_identifier… orcid_identifie…
+## * &lt;chr&gt;                                 &lt;chr&gt;             &lt;chr&gt;           
+## 1 https://orcid.org/0000-0002-1013-4390 0000-0002-1013-4… orcid.org</code></pre>
+<p>A table of fields is available in this <a href="https://members.orcid.org/api/tutorial/search-orcid-registry">SOLR tutorial</a> and there are also quite a number of examples in the <code>rorcid</code> function documentation to experiment with. The following query searches for the author name and the word patents across all text fields. Other useful fields to try with AND/OR are <code>other-names</code>, <code>keyword</code>, <code>work-titles</code>, and <code>digital-object-ids</code>.</p>
+<pre class="r"><code>oldham &lt;- orcid(query = &quot;given-names:paul AND family-name:oldham AND
+                text:patents&quot;) %&gt;% 
+  janitor::clean_names()</code></pre>
+</div>
+<div id="dealing-with-nosiy-names" class="section level2">
+<h2>Dealing with Nosiy Names</h2>
+<p>ORCID is intended to help address the problem of name disambiguation (same name but different persons or variants of names) but we still confront the problem of how much information we have in the first place. We are also presented with the problem of variations in the form of the same information (e.g. the London School of Economics or LSE or the London School of Economics and Political Science). The challenge with using precise match criteria at the outset is that we might miss valid variants of our terms. This means that we will often want to start by capturing the universe of things that need to be captured and then filter the data to arrive at the information we are looking for.</p>
+<p>To illustrate, let’s pull back some information on the common name John Smith.</p>
+<pre class="r"><code>smith &lt;- orcid(query = &quot;given-names:john AND family-name:smith&quot;) %&gt;% 
+  janitor::clean_names() %&gt;% 
+  mutate(source_source_orcid_path = orcid_identifier_path)</code></pre>
+<p>At the end of this code we have added a call to <code>dplyr::mutate</code> that copies the <code>orcid_identifier_path</code> to <code>source_source_orcid_path</code>. The reason for this is that when we send the <code>orcid_identifier_path</code> to other functions it comes back called <code>source_source_orcid_path</code>. To enable joins to input tables we simply add this column.</p>
+<p>We have pulled back 81 identifiers for john smith. If you would like to pull back all data beyond the default maximum of 100 results (the first page) try using <code>recursive = TRUE</code>.</p>
+<p>All we have to go on at present is the ORCID id. To pull back other information we will need to pass the orcid IDs to other <code>rorcid</code> functions. Here we will use <code>orcid_address</code> to retrieve the address data and then restrict the data to the UK (“GB”).</p>
+<p>Many <code>rorcid</code> functions return a list containing one or more data frames so we will use <code>purrr</code> to extract the data frames. When using <code>map_df</code> from <code>purrr</code> note that NULLs and NAs can lead to errors. One tip when exploring list data for the first time is to use <code>purr::map</code> at first to inspect the data because it always returns a list and then experiment with <code>map_df</code> (see also <code>safely</code> and <code>possibly</code>). Also note that we use back ticks and not quotes around <code>[[</code> to subset into the list.</p>
+<p>We will then filter the data on the <code>country_value</code> field. In this case we will find John Smiths in the UK (GB).</p>
+<pre class="r"><code>smith_country &lt;- orcid_address(smith$orcid_identifier_path) %&gt;% 
+  purrr::map_df(., `[[`, 2) %&gt;% # access address level
+  janitor::clean_names()
+  
+smith_country %&gt;% 
+  filter(country_value == &quot;GB&quot;)</code></pre>
+<pre><code>## # A tibble: 5 x 12
+##   visibility path                 put_code display_index created_date_val…
+##   &lt;chr&gt;      &lt;chr&gt;                   &lt;int&gt;         &lt;int&gt;             &lt;dbl&gt;
+## 1 PUBLIC     /0000-0002-7709-550…   648480             1     1488985416579
+## 2 PUBLIC     /0000-0002-1963-409…   167571             0     1453659484730
+## 3 PUBLIC     /0000-0003-0079-969…   921160             1     1520958186511
+## 4 PUBLIC     /0000-0003-2119-855…   590213             1     1481331153320
+## 5 PUBLIC     /0000-0003-1184-791…   631888             1     1487068984706
+## # ... with 7 more variables: last_modified_date_value &lt;dbl&gt;,
+## #   source_source_client_id &lt;lgl&gt;, source_source_orcid_uri &lt;chr&gt;,
+## #   source_source_orcid_path &lt;chr&gt;, source_source_orcid_host &lt;chr&gt;,
+## #   source_source_name_value &lt;chr&gt;, country_value &lt;chr&gt;</code></pre>
+<p>We still have five results and not much more to go on. So the next step is to retrieve information about employment, education and keywords for the IDs. We will start with the raw oldham sets to get a feel for it. We use <code>orcid_employments()</code> to pull back the data.</p>
+<pre class="r"><code>oldham_employ &lt;- rorcid::orcid_employments(oldham_gen$orcid_identifier_path) %&gt;% 
+  map_df(., `[[`, &quot;employment-summary&quot;) %&gt;% 
+  janitor::clean_names()
+
+oldham_employ %&gt;% 
+  select(1:2) %&gt;% 
+  knitr::kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">department_name</th>
+<th align="left">role_title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">UniSA College</td>
+<td align="left">Course Coordinator/Lecturer/Tutor</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">DIrector</td>
+</tr>
+<tr class="odd">
+<td align="left">ESRC Centre for Economic and Social Aspects of Genomics</td>
+<td align="left">Research Fellow, Senior Research Associate, Research Associate</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Lecturer</td>
+</tr>
+</tbody>
+</table>
+<p>The employment records may be of different lengths. For example one oldham above has one entry and another has three. The <code>source_source_orcid_path</code> column is the key field foir identifying which oldham the records belong to.</p>
+<p>We will often be looking for data on more than one ORCID and entries with different numbers of rows will create a headache later on. So, we will often want to concatenate this data. To do this we use <code>dplyr::group_by</code> to group the data on the ORCID id. We then nest the data into a list column using <code>tidyr::nest</code> and give it a name.</p>
+<pre class="r"><code>nested &lt;- oldham_employ %&gt;%
+  group_by(source_source_orcid_path) %&gt;% 
+  nest(.key = &quot;employ&quot;)
+nested</code></pre>
+<pre><code>## # A tibble: 2 x 2
+##   source_source_orcid_path employ           
+##   &lt;chr&gt;                    &lt;list&gt;           
+## 1 0000-0002-0628-5540      &lt;tibble [1 × 24]&gt;
+## 2 0000-0002-1013-4390      &lt;tibble [3 × 24]&gt;</code></pre>
+<p>We can now see that we have a tibble for the first entry and a second tibble with 3 rows for the second. We use nest because it allows us to build up a data frame consisting of tibbles of different lengths linked to the ORCID ID. To access a nested field we can subset as usual.</p>
+<pre class="r"><code>nested$employ[[1]]</code></pre>
+<pre><code>## # A tibble: 1 x 24
+##   department_name role_title      end_date visibility put_code path       
+##   &lt;chr&gt;           &lt;chr&gt;           &lt;lgl&gt;    &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;      
+## 1 UniSA College   Course Coordin… NA       PUBLIC      3834445 /0000-0002…
+## # ... with 18 more variables: created_date_value &lt;dbl&gt;,
+## #   last_modified_date_value &lt;dbl&gt;, source_source_client_id &lt;lgl&gt;,
+## #   source_source_orcid_uri &lt;chr&gt;, source_source_orcid_host &lt;chr&gt;,
+## #   source_source_name_value &lt;chr&gt;, start_date_year_value &lt;chr&gt;,
+## #   start_date_month_value &lt;chr&gt;, start_date_day_value &lt;chr&gt;,
+## #   organization_name &lt;chr&gt;, organization_address_city &lt;chr&gt;,
+## #   organization_address_region &lt;chr&gt;, organization_address_country &lt;chr&gt;,
+## #   organization_disambiguated_organization_disambiguated_organization_identifier &lt;chr&gt;,
+## #   organization_disambiguated_organization_disambiguation_source &lt;chr&gt;,
+## #   end_date_year_value &lt;chr&gt;, end_date_month_value &lt;chr&gt;,
+## #   end_date_day_value &lt;chr&gt;</code></pre>
+<p>Or we can use <code>tidyr::unnest()</code></p>
+<pre class="r"><code>unnest(nested)</code></pre>
+<pre><code>## # A tibble: 4 x 25
+##   source_source_o… department_name role_title end_date visibility put_code
+##   &lt;chr&gt;            &lt;chr&gt;           &lt;chr&gt;      &lt;lgl&gt;    &lt;chr&gt;         &lt;int&gt;
+## 1 0000-0002-0628-… UniSA College   Course Co… NA       PUBLIC      3834445
+## 2 0000-0002-1013-… &lt;NA&gt;            DIrector   NA       PUBLIC      1749490
+## 3 0000-0002-1013-… ESRC Centre fo… Research … NA       PUBLIC      1749502
+## 4 0000-0002-1013-… &lt;NA&gt;            Lecturer   NA       PUBLIC      1880285
+## # ... with 19 more variables: path &lt;chr&gt;, created_date_value &lt;dbl&gt;,
+## #   last_modified_date_value &lt;dbl&gt;, source_source_client_id &lt;lgl&gt;,
+## #   source_source_orcid_uri &lt;chr&gt;, source_source_orcid_host &lt;chr&gt;,
+## #   source_source_name_value &lt;chr&gt;, start_date_year_value &lt;chr&gt;,
+## #   start_date_month_value &lt;chr&gt;, start_date_day_value &lt;chr&gt;,
+## #   organization_name &lt;chr&gt;, organization_address_city &lt;chr&gt;,
+## #   organization_address_region &lt;chr&gt;, organization_address_country &lt;chr&gt;,
+## #   organization_disambiguated_organization_disambiguated_organization_identifier &lt;chr&gt;,
+## #   organization_disambiguated_organization_disambiguation_source &lt;chr&gt;,
+## #   end_date_year_value &lt;chr&gt;, end_date_month_value &lt;chr&gt;,
+## #   end_date_day_value &lt;chr&gt;</code></pre>
+<p>One word of caution is that <code>group_by</code> creates a grouped data.frame or tibble. It is not an issue in this case but normally any function that is applied to a grouped tibble will be applied based on the group variable. This can produce very odd results, so you will normally want to <code>ungroup()</code> afterwards. In this case checking <code>class(nested)</code> reveals we are good to go.</p>
+<p>To scale up let’s try fetching the employment data for the smith set and some other chunks of data. There are quite a few different chunks of data that we can call back with <code>rorcid</code> functions. For example <code>orcid_person</code> will retrieve basic data on the person including the country value. <code>orcid_bio</code> will retrieve any biographical text entries and can then be text mined. Here we will just quickly run through a number of other fields:</p>
+<pre class="r"><code>smith_employ &lt;- rorcid::orcid_employments(smith$orcid_identifier_path) %&gt;% 
+  purrr::map_df(., `[[`, &quot;employment-summary&quot;) %&gt;% 
+  janitor::clean_names() %&gt;% 
+  group_by(source_source_orcid_path) %&gt;% 
+  nest(.key = &quot;employment&quot;)
+
+nrow(smith_employ)</code></pre>
+<pre><code>## [1] 14</code></pre>
+<!---For fun, it turns out that some of the John Smith entries are blank because they are spam entries. Can you figure out out which ones are spam?--->
+<pre class="r"><code>smith_education &lt;- rorcid::orcid_educations(smith$source_source_orcid_path) %&gt;%
+  purrr::map_df(., `[[`, &quot;education-summary&quot;) %&gt;%
+  janitor::clean_names() %&gt;% 
+  group_by(source_source_orcid_path) %&gt;% 
+  nest(.key = &quot;education&quot;)
+
+nrow(smith_education)</code></pre>
+<pre><code>## [1] 15</code></pre>
+<pre class="r"><code>smith_keywords &lt;- rorcid::orcid_keywords(smith$source_source_orcid_path) %&gt;%
+  purrr::map_df(., `[[`, &quot;keyword&quot;) %&gt;%
+  janitor::clean_names() %&gt;% 
+  group_by(source_source_orcid_path) %&gt;% 
+  nest(.key = &quot;keyword&quot;)
+
+nrow(smith_keywords)</code></pre>
+<pre><code>## [1] 10</code></pre>
+<p>We can see that these calls are becoming repetitive. We are calling an specific <code>rorcid</code> function and then extracting a specific field into a data frame, suggesting we could start thinking about a helper function. We won’t go there now but a quick initial sketch for that might be.</p>
+<pre class="r"><code>df &lt;- function(fun, id, field){
+  res &lt;- fun(id) %&gt;% 
+    purrr::map2_df(., `[[`, field) %&gt;% 
+    janitor::clean_names() %&gt;% 
+    group_by(source_source_orcid_path) %&gt;% 
+    nest(.key = field)
+}</code></pre>
+</div>
+<div id="joining-profile-data-together" class="section level2">
+<h2>Joining Profile Data Together</h2>
+<p>We now have a bunch of chunks of data. Note how our original john smith data contained 81 unique ORCID ids but we are pulling back data frames with different numbers of rows (and of different lengths). So at the moment we have:</p>
+<ul>
+<li>input orcids 81</li>
+<li>employ 14</li>
+<li>education 15</li>
+<li>keywords 10</li>
+</ul>
+<p>We will often see this with ORCID and in some cases fields may be dominated by NULLs. For example, according to ORCID only about 2% of the 3 million ORCID ids in 2017 included a public email address.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Researchers, including this one, are sick of endless academic spam and so will often choose not make their emails public.</p>
+<p>To deal with the data frames with different numbers of rows we will start by creating a table of unique ids from ORCID path. One thing to watch out for here is that a seemingly valid input ORCID may return an NA. In the case of the john smith data there was one case of this which seemed to be a record flagged for removal. We can handle this with <code>tidyr::drop_na()</code>.</p>
+<pre class="r"><code>ids &lt;- bind_rows(smith_employ, smith_education, smith_keywords) %&gt;% 
+  mutate(duplicated = duplicated(source_source_orcid_path)) %&gt;% 
+  filter(duplicated == FALSE) %&gt;% 
+  select(source_source_orcid_path) %&gt;% 
+  drop_na()
+ids</code></pre>
+<pre><code>## # A tibble: 23 x 1
+##    source_source_orcid_path
+##    &lt;chr&gt;                   
+##  1 0000-0002-3335-9488     
+##  2 0000-0001-7793-0079     
+##  3 0000-0003-0910-8475     
+##  4 0000-0002-8384-3964     
+##  5 0000-0002-1963-4092     
+##  6 0000-0003-3628-444X     
+##  7 0000-0003-0079-9695     
+##  8 0000-0002-4216-1107     
+##  9 0000-0001-9684-8847     
+## 10 0000-0002-0888-1274     
+## # ... with 13 more rows</code></pre>
+<p>When we have the unique ids we can use <code>dplyr::left_join()</code> to create a single data frame. If table joins are new to you in R try <a href="http://r4ds.had.co.nz/relational-data.html">this chapter of R for Data Science</a>. Here we place our ids on the left hand side and the other tables on the right hand side will be joined where there is a shared <code>source_source_orcid_path</code>.</p>
+<pre class="r"><code>result &lt;- left_join(ids, smith_employ, by = &quot;source_source_orcid_path&quot;) %&gt;%
+  left_join(., smith_education, by = &quot;source_source_orcid_path&quot;) %&gt;%
+  left_join(., smith_keywords, by = &quot;source_source_orcid_path&quot;)
+result</code></pre>
+<pre><code>## # A tibble: 23 x 4
+##    source_source_orcid_path employment        education         keyword   
+##    &lt;chr&gt;                    &lt;list&gt;            &lt;list&gt;            &lt;list&gt;    
+##  1 0000-0002-3335-9488      &lt;tibble [1 × 33]&gt; &lt;NULL&gt;            &lt;tibble […
+##  2 0000-0001-7793-0079      &lt;tibble [3 × 33]&gt; &lt;tibble [1 × 30]&gt; &lt;NULL&gt;    
+##  3 0000-0003-0910-8475      &lt;tibble [1 × 33]&gt; &lt;tibble [2 × 30]&gt; &lt;NULL&gt;    
+##  4 0000-0002-8384-3964      &lt;tibble [1 × 33]&gt; &lt;tibble [1 × 30]&gt; &lt;NULL&gt;    
+##  5 0000-0002-1963-4092      &lt;tibble [1 × 33]&gt; &lt;tibble [1 × 30]&gt; &lt;tibble […
+##  6 0000-0003-3628-444X      &lt;tibble [1 × 33]&gt; &lt;tibble [1 × 30]&gt; &lt;NULL&gt;    
+##  7 0000-0003-0079-9695      &lt;tibble [1 × 33]&gt; &lt;NULL&gt;            &lt;tibble […
+##  8 0000-0002-4216-1107      &lt;tibble [1 × 33]&gt; &lt;tibble [4 × 30]&gt; &lt;NULL&gt;    
+##  9 0000-0001-9684-8847      &lt;tibble [1 × 33]&gt; &lt;tibble [1 × 30]&gt; &lt;NULL&gt;    
+## 10 0000-0002-0888-1274      &lt;tibble [1 × 33]&gt; &lt;tibble [2 × 30]&gt; &lt;NULL&gt;    
+## # ... with 13 more rows</code></pre>
+<p>So, we now have a data.frame that consists of list columns containing tibbles. Note that we have some NULLs where there is no data for a particular category for that ID.</p>
+<p>If you are new to list columns, or <code>purrr</code> in general, a great place to start is <a href="https://jennybc.github.io/purrr-tutorial/ls13_list-columns.html">Jenny Bryans purrr tutorial</a>.</p>
+<p>One of the great features of list columns is that we can search across them and add new values based on the matches. What we want to do now is to find John Smiths where the word University appears in their employment and their country is the US. We will carry out the search using <code>stringr::str_detect</code> which will return a logical value. We use <code>map</code> to map over the data and place this inside mutate to add a new column to the data frame. The code is a little more complicated than we might like because the use of map returns a vector of logical values. We use <code>map_lgl</code> and <code>any</code> to reduce this to a single TRUE/FALSE value. We then filter the data to those cases where both university and country are TRUE.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<pre class="r"><code>result %&gt;% 
+  mutate(university = map(employment, str_detect, &quot;University&quot;), 
+        university = map_lgl(university, any)) %&gt;% 
+  mutate(country = map(employment, str_detect, &quot;US&quot;), 
+         country = map_lgl(country, any)) %&gt;% 
+  filter(university == TRUE &amp; country == TRUE)</code></pre>
+<pre><code>## # A tibble: 6 x 6
+##   source_source_orcid_path employment education keyword university country
+##   &lt;chr&gt;                    &lt;list&gt;     &lt;list&gt;    &lt;list&gt;  &lt;lgl&gt;      &lt;lgl&gt;  
+## 1 0000-0003-0910-8475      &lt;tibble [… &lt;tibble … &lt;NULL&gt;  TRUE       TRUE   
+## 2 0000-0002-4216-1107      &lt;tibble [… &lt;tibble … &lt;NULL&gt;  TRUE       TRUE   
+## 3 0000-0001-9684-8847      &lt;tibble [… &lt;tibble … &lt;NULL&gt;  TRUE       TRUE   
+## 4 0000-0002-0888-1274      &lt;tibble [… &lt;tibble … &lt;NULL&gt;  TRUE       TRUE   
+## 5 0000-0003-1545-5078      &lt;tibble [… &lt;tibble … &lt;NULL&gt;  TRUE       TRUE   
+## 6 0000-0003-1149-0562      &lt;tibble [… &lt;tibble … &lt;tibbl… TRUE       TRUE</code></pre>
+<p>So, we now have a data frame where we know that the John Smiths have University somewhere in their employment and that US also appears. Note that the <code>any</code> function can take <code>na.rm = TRUE</code> as an argument. We are getting closer.</p>
+<p>We can do the above without using map at all because <code>str_detect</code> will coerce columns consisting of a list of tibbles to vectors if it can. However, this will generate a warning that <code>argument is not an atomic vector; coercing</code> so expect to see that a lot. This code is easier to read than that above but suggests a need for some more work.</p>
+<p>In this case we will also narrow down the data by searching for a keyword associated with an author.</p>
+<pre class="r"><code>out &lt;- result %&gt;% 
+  mutate(university = str_detect(employment, &quot;University&quot;)) %&gt;% 
+  mutate(country = str_detect(employment, &quot;US&quot;)) %&gt;% 
+  mutate(term = str_detect(keyword, &quot;Infrared transmission&quot;)) %&gt;% 
+  filter(university == TRUE &amp; country == TRUE &amp; term == TRUE)
+ out</code></pre>
+<pre><code>## # A tibble: 1 x 7
+##   source_source_or… employment  education keyword university country term 
+##   &lt;chr&gt;             &lt;list&gt;      &lt;list&gt;    &lt;list&gt;  &lt;lgl&gt;      &lt;lgl&gt;   &lt;lgl&gt;
+## 1 0000-0003-1149-0… &lt;tibble [5… &lt;tibble … &lt;tibbl… TRUE       TRUE    TRUE</code></pre>
+<p>We have now reduced our original 81 john smiths to 1 who has a record of being at a University in the US who is interested in Infrared Transmission. If we wished to we can unnest the columns to inspect as we go.</p>
+<pre class="r"><code>out %&gt;% unnest(employment)</code></pre>
+<pre><code>## # A tibble: 5 x 37
+##   source_source_or… university country term  department_name role_title   
+##   &lt;chr&gt;             &lt;lgl&gt;      &lt;lgl&gt;   &lt;lgl&gt; &lt;chr&gt;           &lt;chr&gt;        
+## 1 0000-0003-1149-0… TRUE       TRUE    TRUE  Physics         Course Coord…
+## 2 0000-0003-1149-0… TRUE       TRUE    TRUE  &lt;NA&gt;            President    
+## 3 0000-0003-1149-0… TRUE       TRUE    TRUE  &lt;NA&gt;            Chief Techno…
+## 4 0000-0003-1149-0… TRUE       TRUE    TRUE  &lt;NA&gt;            Director of …
+## 5 0000-0003-1149-0… TRUE       TRUE    TRUE  &lt;NA&gt;            Senior Scien…
+## # ... with 31 more variables: start_date &lt;lgl&gt;, end_date &lt;lgl&gt;,
+## #   visibility &lt;chr&gt;, put_code &lt;int&gt;, path &lt;chr&gt;,
+## #   created_date_value &lt;dbl&gt;, last_modified_date_value &lt;dbl&gt;,
+## #   source_source_client_id &lt;lgl&gt;, source_source_orcid_uri &lt;chr&gt;,
+## #   source_source_orcid_host &lt;chr&gt;, source_source_name_value &lt;chr&gt;,
+## #   organization_name &lt;chr&gt;, organization_address_city &lt;chr&gt;,
+## #   organization_address_region &lt;chr&gt;, organization_address_country &lt;chr&gt;,
+## #   organization_disambiguated_organization_disambiguated_organization_identifier &lt;chr&gt;,
+## #   organization_disambiguated_organization_disambiguation_source &lt;chr&gt;,
+## #   start_date_day &lt;lgl&gt;, start_date_year_value &lt;chr&gt;,
+## #   start_date_month_value &lt;chr&gt;, end_date_month &lt;lgl&gt;,
+## #   end_date_day &lt;lgl&gt;, end_date_year_value &lt;chr&gt;,
+## #   start_date_day_value &lt;chr&gt;,
+## #   organization_disambiguated_organization &lt;lgl&gt;,
+## #   source_source_orcid &lt;lgl&gt;, source_source_client_id_uri &lt;chr&gt;,
+## #   source_source_client_id_path &lt;chr&gt;,
+## #   source_source_client_id_host &lt;chr&gt;, end_date_month_value &lt;chr&gt;,
+## #   end_date_day_value &lt;chr&gt;</code></pre>
+<p>One gotcha to be aware of is that if we try and unnest a column along with the rest of the columns we will get <code>Error: All nested columns must have the same number of elements</code>. In addition if we try and unnest a column containing NA or NULL or a literal NULL we get an error. The solution is to use <code>tidyr::drop_na()</code>.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<pre class="r"><code>result %&gt;% 
+  select(source_source_orcid_path, employment) %&gt;% 
+  drop_na(employment) %&gt;%
+  unnest() %&gt;% 
+  head()</code></pre>
+<pre><code>## # A tibble: 6 x 34
+##   source_source_orc… department_name   role_title      start_date end_date
+##   &lt;chr&gt;              &lt;chr&gt;             &lt;chr&gt;           &lt;lgl&gt;      &lt;lgl&gt;   
+## 1 0000-0002-3335-94… Civil Engineering Associate Prof… NA         NA      
+## 2 0000-0001-7793-00… &lt;NA&gt;              Research Offic… NA         NA      
+## 3 0000-0001-7793-00… &lt;NA&gt;              Regional Devel… NA         NA      
+## 4 0000-0001-7793-00… &lt;NA&gt;              Barham Distric… NA         NA      
+## 5 0000-0003-0910-84… Division of Plan… Graduate Resea… NA         NA      
+## 6 0000-0002-8384-39… &lt;NA&gt;              &lt;NA&gt;            NA         NA      
+## # ... with 29 more variables: visibility &lt;chr&gt;, put_code &lt;int&gt;,
+## #   path &lt;chr&gt;, created_date_value &lt;dbl&gt;, last_modified_date_value &lt;dbl&gt;,
+## #   source_source_client_id &lt;lgl&gt;, source_source_orcid_uri &lt;chr&gt;,
+## #   source_source_orcid_host &lt;chr&gt;, source_source_name_value &lt;chr&gt;,
+## #   organization_name &lt;chr&gt;, organization_address_city &lt;chr&gt;,
+## #   organization_address_region &lt;chr&gt;, organization_address_country &lt;chr&gt;,
+## #   organization_disambiguated_organization_disambiguated_organization_identifier &lt;chr&gt;,
+## #   organization_disambiguated_organization_disambiguation_source &lt;chr&gt;,
+## #   start_date_day &lt;lgl&gt;, start_date_year_value &lt;chr&gt;,
+## #   start_date_month_value &lt;chr&gt;, end_date_month &lt;lgl&gt;,
+## #   end_date_day &lt;lgl&gt;, end_date_year_value &lt;chr&gt;,
+## #   start_date_day_value &lt;chr&gt;,
+## #   organization_disambiguated_organization &lt;lgl&gt;,
+## #   source_source_orcid &lt;lgl&gt;, source_source_client_id_uri &lt;chr&gt;,
+## #   source_source_client_id_path &lt;chr&gt;,
+## #   source_source_client_id_host &lt;chr&gt;, end_date_month_value &lt;chr&gt;,
+## #   end_date_day_value &lt;chr&gt;</code></pre>
+<p>So list columns containing data frames are great for creating uniform data frames and for purposes such as searching across columns. They are also, more commonly, good for running models as described <a href="http://ijlyttle.github.io/isugg_purrr/presentation.html#(1)">here</a>. However, they can take a bit of getting used to.</p>
+</div>
+<div id="retrieving-publication-meta-data-with-rcrossref" class="section level2">
+<h2>Retrieving Publication Meta data with rcrossref</h2>
+<p>When we have identified the ORCID IDs that we want the logical next step is to retrieve publications. This is a big issue for a project I am working on in Kenya where we are working on the national research permit system. The idea we have is that we can use ORCID to pull back publications from researchers who at one time or another have received a permit for biodiversity related research. That should allow us to start building up an electronic repository of publications about biodiversity research in Kenya that can be made available to the public. Because ORCID profiles can be automatically updated (through services such as Crossref) we should be able to automate updating research publications without bothering researchers for copies of their publications.</p>
+<p>We will work with a sample of ORCID IDs for 61 researchers who have worked in Kenya at some point or another. What we want to do is to retrieve their publications using the <code>rorcid::works</code>. We will use <code>map</code> again to send each ORCID id to the call to works. We will also add names to the list that is returned using <code>set_names</code>.</p>
+<pre class="r"><code>kenya_works &lt;- map(kenya_orcid$orcid_identifier_path, rorcid::works) %&gt;% 
+  set_names(., nm = kenya_orcid$orcid_identifier_path) 
+
+names(kenya_works[1:5])</code></pre>
+<pre><code>## [1] &quot;0000-0001-5861-023X&quot; &quot;0000-0001-6916-0000&quot; &quot;0000-0002-4640-8760&quot;
+## [4] &quot;0000-0003-0576-8935&quot; &quot;0000-0002-3077-7422&quot;</code></pre>
+<p>What we get back from this is a named list containing data frames where the input ORCID identifier is the name for each list item. We can see this from a quick look using <code>str()</code>.</p>
+<pre class="r"><code>str(kenya_works[1:5], max.level = 1)</code></pre>
+<pre><code>## List of 5
+##  $ 0000-0001-5861-023X:Classes &#39;tbl_df&#39;, &#39;tbl&#39;, &#39;works&#39; and &#39;data.frame&#39;:    20 obs. of  21 variables:
+##   ..- attr(*, &quot;orcid&quot;)= chr &quot;0000-0001-5861-023X&quot;
+##  $ 0000-0001-6916-0000:Classes &#39;tbl_df&#39;, &#39;tbl&#39;, &#39;works&#39; and &#39;data.frame&#39;:    103 obs. of  23 variables:
+##   ..- attr(*, &quot;orcid&quot;)= chr &quot;0000-0001-6916-0000&quot;
+##  $ 0000-0002-4640-8760:Classes &#39;tbl_df&#39;, &#39;tbl&#39;, &#39;works&#39; and &#39;data.frame&#39;:    0 obs. of  0 variables
+##   ..- attr(*, &quot;orcid&quot;)= chr &quot;0000-0002-4640-8760&quot;
+##  $ 0000-0003-0576-8935:Classes &#39;tbl_df&#39;, &#39;tbl&#39;, &#39;works&#39; and &#39;data.frame&#39;:    0 obs. of  0 variables
+##   ..- attr(*, &quot;orcid&quot;)= chr &quot;0000-0003-0576-8935&quot;
+##  $ 0000-0002-3077-7422:Classes &#39;tbl_df&#39;, &#39;tbl&#39;, &#39;works&#39; and &#39;data.frame&#39;:    14 obs. of  21 variables:
+##   ..- attr(*, &quot;orcid&quot;)= chr &quot;0000-0002-3077-7422&quot;</code></pre>
+<p>We now want to convert the list of data frames to a single data frame but in doing so we want to pass the input ORCID ID from the name of the list into a column in the output. The reason for this is that the return from ORCID does not contain the ORCID ID we sent to the API but a range of ORCIDs that are the source for the works record. We need to add the ORCID ID for the person at the same time as we convert to one data frame. One way to do this is to use <code>map2_df</code> from <code>purrr</code>. This will map over <code>kenya_works</code> and the names at the same time. Mutate then adds a column containing the names (.y) as orcid_id.</p>
+<pre class="r"><code>pubs &lt;- kenya_works %&gt;%
+  map2_df(., names(kenya_works), ~ mutate(.x, orcid_id = .y)) %&gt;% 
+  janitor::clean_names()</code></pre>
+<p>Another way to do the same thing with less typing is to use the newer <code>purrr::imap</code> function which is a shorthand for <code>map2_df(x, names(x), ...)</code>.</p>
+<pre class="r"><code>pubs &lt;- kenya_works %&gt;% 
+  imap_dfr(~mutate(.x, orcid_id = .y)) %&gt;% 
+  janitor::clean_names()</code></pre>
+<p>We now have a single data frame with the publications that keeps the orcid_id as the key. Let’s take a look at who has the most works.</p>
+<pre class="r"><code>pubs %&gt;% count(orcid_id, sort = TRUE)</code></pre>
+<pre><code>## # A tibble: 36 x 2
+##    orcid_id                n
+##    &lt;chr&gt;               &lt;int&gt;
+##  1 0000-0001-7513-0887   125
+##  2 0000-0001-6916-0000   103
+##  3 0000-0002-2146-5726   100
+##  4 0000-0002-7793-8625   100
+##  5 0000-0002-3958-0343    64
+##  6 0000-0002-1921-0724    51
+##  7 0000-0002-7486-4763    44
+##  8 0000-0003-4024-0976    44
+##  9 0000-0003-4864-5150    42
+## 10 0000-0002-0123-8497    30
+## # ... with 26 more rows</code></pre>
+<p>We can take a look at the top result based on the count of records for the ORCID ID. Note that the count above is a count of entries linked to the ORCID ID and does not necessarily add up to a count of publications (it actually over counts). One of the top researchers is Daniel Masiga who has been working on Leishmaniasis in Baringo and Nakuru countries in Kenya. Let’s take a look at his public profile with <code>browse</code> or by opening the permanent link to the profile at <a href="https://orcid.org/0000-0001-7513-0887" class="uri">https://orcid.org/0000-0001-7513-0887</a>.</p>
+<pre class="r"><code>browse(&quot;0000-0001-7513-0887&quot;)</code></pre>
+<p>Let’s take a look at the titles of works that include reference to Kenya.</p>
+<pre class="r"><code>pubs %&gt;% mutate(kenya = str_detect(title_title_value, pattern = &quot;Kenya&quot;)) %&gt;% 
+  filter(kenya == TRUE) %&gt;% 
+  select(title_title_value)</code></pre>
+<pre><code>## # A tibble: 47 x 1
+##    title_title_value                                                      
+##    &lt;chr&gt;                                                                  
+##  1 Size-dependent distribution and feeding habits of Terebralia palustris…
+##  2 Spatial diversity of nematode and copepod genera of the coral degradat…
+##  3 Nematode community structure along the continental slope off the Kenya…
+##  4 New Desmodoridae (Nematoda: Desmodoroidea): three new species from Cer…
+##  5 Papillonema danieli gen. et sp. n. and Papillonema clavatum (Gerlach, …
+##  6 Unraveling Host-Vector-Arbovirus Interactions by Two-Gene High Resolut…
+##  7 Unraveling host-vector-arbovirus interactions by two-gene high resolut…
+##  8 Blood meal analysis and virus detection in blood-fed mosquitoes collec…
+##  9 Blood meal analysis and virus detection in blood-fed mosquitoes collec…
+## 10 High-resolution melting analysis reveals low Plasmodium parasitaemia i…
+## # ... with 37 more rows</code></pre>
+<p>Note here that we have some duplicated entries (possibly coming into the profile from different sources?) that may need investigating.</p>
+<p>What we will normally want from this table will be the dois where available. We can then pass the dois to other services such as Crossref using <code>rcrossref</code> to retrieve publication information.</p>
+</div>
+<div id="accessing-the-doi-field." class="section level2">
+<h2>Accessing the DOI field.</h2>
+<pre class="r"><code>doi &lt;- pubs %&gt;%
+  select(external_ids_external_id)</code></pre>
+<p>If we take a look at the doi field we will see that we have a lot of list() and NULL items as well as data.frames.</p>
+<pre class="r"><code>str(doi[15:25,])</code></pre>
+<pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    11 obs. of  1 variable:
+##  $ external_ids_external_id:List of 11
+##   ..$ : list()
+##   ..$ : list()
+##   ..$ : list()
+##   ..$ : list()
+##   ..$ : list()
+##   ..$ : list()
+##   ..$ :&#39;data.frame&#39;: 1 obs. of  4 variables:
+##   .. ..$ external-id-type        : chr &quot;doi&quot;
+##   .. ..$ external-id-value       : chr &quot;10.1242/jeb.176537&quot;
+##   .. ..$ external-id-relationship: chr &quot;SELF&quot;
+##   .. ..$ external-id-url.value   : chr &quot;https://doi.org/10.1242/jeb.176537&quot;
+##   ..$ :&#39;data.frame&#39;: 1 obs. of  4 variables:
+##   .. ..$ external-id-type        : chr &quot;doi&quot;
+##   .. ..$ external-id-value       : chr &quot;10.7554/eLife.29053&quot;
+##   .. ..$ external-id-relationship: chr &quot;SELF&quot;
+##   .. ..$ external-id-url.value   : chr &quot;https://doi.org/10.7554/eLife.29053&quot;
+##   ..$ :&#39;data.frame&#39;: 1 obs. of  4 variables:
+##   .. ..$ external-id-type        : chr &quot;doi&quot;
+##   .. ..$ external-id-value       : chr &quot;10.1242/jeb.171926&quot;
+##   .. ..$ external-id-relationship: chr &quot;SELF&quot;
+##   .. ..$ external-id-url.value   : chr &quot;https://doi.org/10.1242/jeb.171926&quot;
+##   ..$ :&#39;data.frame&#39;: 1 obs. of  4 variables:
+##   .. ..$ external-id-type        : chr &quot;doi&quot;
+##   .. ..$ external-id-value       : chr &quot;10.1515/9783110548877-003&quot;
+##   .. ..$ external-id-url         : logi NA
+##   .. ..$ external-id-relationship: chr &quot;SELF&quot;
+##   ..$ :&#39;data.frame&#39;: 1 obs. of  4 variables:
+##   .. ..$ external-id-type        : chr &quot;doi&quot;
+##   .. ..$ external-id-value       : chr &quot;10.1109/biocas.2016.7833768&quot;
+##   .. ..$ external-id-url         : logi NA
+##   .. ..$ external-id-relationship: chr &quot;SELF&quot;</code></pre>
+<p>The first thing we need to do is to get rid of the NULL and the empty list() entries. Normally we can use <code>purrr::compact()</code> directly to do this but in this case the NULLs are inside the list objects, so we call compact inside map, we then bind the list of data frames using <code>map_df</code> and a call to <code>bind_rows</code>.</p>
+<pre class="r"><code>doi &lt;- doi %&gt;%
+  map(., compact) %&gt;% 
+  map_df(bind_rows) %&gt;% 
+  janitor::clean_names()
+
+doi[1:5,] %&gt;%
+  select(1:3)</code></pre>
+<pre><code>##   external_id_type           external_id_value external_id_relationship
+## 1              doi          10.1242/jeb.176537                     SELF
+## 2              doi         10.7554/eLife.29053                     SELF
+## 3              doi          10.1242/jeb.171926                     SELF
+## 4              doi   10.1515/9783110548877-003                     SELF
+## 5              doi 10.1109/biocas.2016.7833768                     SELF</code></pre>
+<p>It is worth noting that the external_id_type column contains a variety of different kind of identifiers that we might want to explore (such as isbn and issn etc).</p>
+<pre class="r"><code>doi %&gt;% 
+  group_by(external_id_type) %&gt;%
+  count()</code></pre>
+<pre><code>## # A tibble: 10 x 2
+## # Groups:   external_id_type [10]
+##    external_id_type     n
+##    &lt;chr&gt;            &lt;int&gt;
+##  1 arxiv               47
+##  2 doi                690
+##  3 eid                283
+##  4 isbn                 1
+##  5 issn                74
+##  6 other-id            82
+##  7 pmc                 57
+##  8 pmid               140
+##  9 source-work-id      41
+## 10 wosuid              96</code></pre>
+<p>We will just filter the data to the dois and then pass them on to rcrossref to retrieve the publication meta data.</p>
+<pre class="r"><code>doi &lt;- doi %&gt;% filter(external_id_type == &quot;doi&quot;) %&gt;% 
+  select(external_id_value)</code></pre>
+<p>You will need to <code>install.packages(&quot;rcrossref&quot;)</code> and load the library to generate the data.</p>
+<pre class="r"><code>library(rcrossref)
+crossref_kenya &lt;- rcrossref::cr_works(doi$external_id_value)</code></pre>
+<p>As the function churns through the 690 dois warning messages will pop up with things like <code>404: Resource not found. - (115.001086)404</code>. I got 9 of these on this test. We can easily access this data.</p>
+<pre class="r"><code>crossref_kenya &lt;- crossref_kenya$data %&gt;% 
+  janitor::clean_names()
+crossref_kenya</code></pre>
+<pre><code>## # A tibble: 681 x 34
+##    alternative_id  container_title   created deposited doi   indexed issn 
+##    &lt;chr&gt;           &lt;chr&gt;             &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;
+##  1 10.1242/jeb.17… The Journal of E… 2018-0… 2018-07-… 10.1… 2018-0… 0022…
+##  2 10.7554/eLife.… eLife             2018-0… 2018-04-… 10.7… 2018-0… 2050…
+##  3 10.1242/jeb.17… The Journal of E… 2017-1… 2018-02-… 10.1… 2018-0… 0022…
+##  4 &lt;NA&gt;            Bild - Ton - Rhy… 2017-0… 2017-04-… 10.1… 2018-0… &lt;NA&gt; 
+##  5 &lt;NA&gt;            2016 IEEE Biomed… 2017-0… 2017-12-… 10.1… 2018-0… &lt;NA&gt; 
+##  6 &lt;NA&gt;            PLOS Biology      2016-0… 2017-06-… 10.1… 2018-0… 1545…
+##  7 &lt;NA&gt;            Frontiers in Beh… 2016-0… 2017-06-… 10.3… 2018-0… 1662…
+##  8 &lt;NA&gt;            Bat Bioacoustics… 2016-0… 2017-06-… 10.1… 2018-0… 0947…
+##  9 &lt;NA&gt;            Frontiers in Phy… 2014-0… 2015-02-… 10.3… 2018-0… 1664…
+## 10 &lt;NA&gt;            Frontiers in Psy… 2014-0… 2017-06-… 10.3… 2018-0… 1664…
+## # ... with 671 more rows, and 27 more variables: issued &lt;chr&gt;,
+## #   license_date &lt;chr&gt;, license_url &lt;chr&gt;, license_delay_in_days &lt;chr&gt;,
+## #   license_content_version &lt;chr&gt;, member &lt;chr&gt;, page &lt;chr&gt;, prefix &lt;chr&gt;,
+## #   publisher &lt;chr&gt;, reference_count &lt;chr&gt;, score &lt;chr&gt;, source &lt;chr&gt;,
+## #   subject &lt;chr&gt;, title &lt;chr&gt;, type &lt;chr&gt;, url &lt;chr&gt;, author &lt;list&gt;,
+## #   funder &lt;list&gt;, link &lt;list&gt;, archive &lt;chr&gt;, volume &lt;chr&gt;,
+## #   abstract &lt;chr&gt;, issue &lt;chr&gt;, isbn &lt;chr&gt;, update_policy &lt;chr&gt;,
+## #   assertion &lt;list&gt;, subtitle &lt;chr&gt;</code></pre>
+<p>Let’s take a look at the journals</p>
+<pre class="r"><code>crossref_kenya %&gt;% 
+  count(container_title, sort = TRUE)</code></pre>
+<pre><code>## # A tibble: 293 x 2
+##    container_title                                                       n
+##    &lt;chr&gt;                                                             &lt;int&gt;
+##  1 PLoS ONE                                                             22
+##  2 Physical Review D                                                    21
+##  3 The Journal of the Acoustical Society of America                     16
+##  4 Transportation Research Record: Journal of the Transportation Re…    15
+##  5 PLoS Neglected Tropical Diseases                                     14
+##  6 PLOS ONE                                                             10
+##  7 Leukemia                                                              9
+##  8 The Journal of Immunology                                             9
+##  9 Journal of Comparative Physiology A                                   8
+## 10 Accident Analysis &amp; Prevention                                        7
+## # ... with 283 more rows</code></pre>
+<p>There are quite a number of things that we could do from here such as attempting to retrieve full text links, abstracts, citations or text mining the available data. For example we could retrieve full text data from PLOS using packages such as <code>rplos</code>. For the moment, we have covered a lot of ground in using rorcid and bridging across to other data sources such as rcrossref.</p>
+</div>
+<div id="round-up" class="section level2">
+<h2>Round Up</h2>
+<p>ORCID is an increasingly important data service for research funding organisations, university administrators, publishers and researchers interested in understanding trends in science and technology. The <code>rorcid</code> package provides a straightforward and easy way to access ORCID data in R while Python users can try <a href="https://github.com/ORCID/python-orcid">python-orcid</a>.</p>
+<p>This article has walked through the basics of searching using rorcid and approaches to filtering the data. As we have seen one reality of working with names is dealing with homonyms or distinct persons who share the same name (also known as lumps). One challenge with the data returned by ORCID is that the completeness of different data fields can vary wildly. We addressed this problem by creating a single data frame consisting of list columns containing data frames and then searching across them. While there is room for improvement in this approach it
+illustrates the power of list columns.</p>
+<p>We finished off by retrieving publication data from a sample of researchers profiles for biodiversity research in Kenya. We then bridged across to the rcrossref package to pull back the publication data.</p>
+<p>Many thanks to Scott Chamberlain for his hard work on the rorcid package! As always corrections or suggestions are welcome.</p>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2>References</h2>
+<div id="refs" class="references">
+<div id="ref-R-rorcid">
+<p>Chamberlain, Scott. 2018. <em>Rorcid: Interface to the ’Orcid.org’ ’Api’</em>. <a href="https://CRAN.R-project.org/package=rorcid" class="uri">https://CRAN.R-project.org/package=rorcid</a>.</p>
+</div>
+<div id="ref-R-rcrossref">
+<p>Chamberlain, Scott, Carl Boettiger, Ted Hart, and Karthik Ram. 2018. <em>Rcrossref: Client for Various ’Crossref’ ’Apis’</em>. <a href="https://github.com/ropensci/rcrossref" class="uri">https://github.com/ropensci/rcrossref</a>.</p>
+</div>
+<div id="ref-Fegley_2013">
+<p>Fegley, Brent D., and Vetle I. Torvik. 2013. “Has Large-Scale Named-Entity Network Analysis Been Resting on a Flawed Assumption?” Edited by Marco Tomassini. <em>PLoS ONE</em> 8 (7). Public Library of Science (PLoS): e70299. <a href="https://doi.org/10.1371/journal.pone.0070299" class="uri">https://doi.org/10.1371/journal.pone.0070299</a>.</p>
+</div>
+<div id="ref-R-janitor">
+<p>Firke, Sam. 2018. <em>Janitor: Simple Tools for Examining and Cleaning Dirty Data</em>. <a href="https://CRAN.R-project.org/package=janitor" class="uri">https://CRAN.R-project.org/package=janitor</a>.</p>
+</div>
+<div id="ref-Haak_2012">
+<p>Haak, Laurel L., Martin Fenner, Laura Paglione, Ed Pentz, and Howard Ratner. 2012. “ORCID: A System to Uniquely Identify Researchers.” <em>Learned Publishing</em> 25 (4). Wiley: 259–64. <a href="https://doi.org/10.1087/20120404" class="uri">https://doi.org/10.1087/20120404</a>.</p>
+</div>
+<div id="ref-R-purrr">
+<p>Henry, Lionel, and Hadley Wickham. 2017. <em>Purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr" class="uri">https://CRAN.R-project.org/package=purrr</a>.</p>
+</div>
+<div id="ref-Meadows_2016">
+<p>Meadows, Alice. 2016. “Everything You Ever Wanted Know About ORCID: . . . But Were Afraid to Ask.” <em>College &amp; Research Libraries News</em> 77 (1). American Library Association: 23–30. <a href="https://doi.org/10.5860/crln.77.1.9428" class="uri">https://doi.org/10.5860/crln.77.1.9428</a>.</p>
+</div>
+<div id="ref-R-usethis">
+<p>Wickham, Hadley, and Jennifer Bryan. 2018. <em>Usethis: Automate Package and Project Setup</em>. <a href="https://CRAN.R-project.org/package=usethis" class="uri">https://CRAN.R-project.org/package=usethis</a>.</p>
+</div>
+<div id="ref-Youtie_2017">
+<p>Youtie, Jan, Stephen Carley, Alan L. Porter, and Philip Shapira. 2017. “Tracking Researchers and Their Outputs: New Insights from ORCIDs.” <em>Scientometrics</em> 113 (1). Springer Nature: 437–53. <a href="https://doi.org/10.1007/s11192-017-2473-0" class="uri">https://doi.org/10.1007/s11192-017-2473-0</a>.</p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://members.orcid.org/api/tutorial/search-orcid-registry" class="uri">https://members.orcid.org/api/tutorial/search-orcid-registry</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p> This example applies code in <a href="https://jennybc.github.io/purrr-tutorial/ls13_list-columns.html">Jenny Bryans purrr tutorial</a><a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>Unnest does take an argument <code>.drop</code> but I have failed to persuade that to work as I had hoped.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+</ol>
+</div>

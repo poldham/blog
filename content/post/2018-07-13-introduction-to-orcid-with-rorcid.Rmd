@@ -1,0 +1,480 @@
+---
+title: Introduction to ORCID Researcher Identifiers in R with rorcid
+author: Paul Oldham
+date: '2018-07-13'
+slug: introduction-to-orcid-with-rorcid
+description: Getting started with ORCID using the rorcid package. A practical introduction to searching for researcher identifiers with the ORCID API and retrieving publication data with rorcid, purrr and rcrossref.
+categories:
+  - R
+tags:
+  - bibliometrics
+bibliography: [apis.bib, packages.bib, crossref.bib]
+nocite: |
+  @R-rorcid
+  @R-rcrossref
+  @R-purrr
+  @R-usethis
+  @R-janitor
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+This article provides a practical introduction to the `rorcid` package from [ROpenSci](https://ropensci.org/) to access the [ORCID researcher ID API](https://orcid.org/organizations/integrators/API). ORCID stands for Open Researcher or Contributor ID [@Haak_2012; @Meadows_2016; @Youtie_2017]. ORCID is a non-profit organisation that provides researchers with a free unique researcher identifier and a profile. To date over 5 million ORCID IDs have been issued. 
+
+An ORCID ID provides a researcher with a unique identifier and a single place where where they can gather together details on their career, funding, publications, patents and datasets. The ORCID profile is under the researcher's control and they can decided what to make public or to keep private. An important feature of the ORCID system is that it integrates with services such as Crossref and so can automate updates of researcher publications. ORCID is also important to research funding organisations, employers and publishers. A growing number of funding organisations, such as Research Councils UK, now keep track of research investments and outcomes using ORCID.
+
+The key idea behind ORCID is researcher name disambiguation. There are two main problems here that can be described in terms of lumps and splits [@Fegley_2013]. The main problem here is lumps. The scientific literature is rife with people who share the same name but are distinct persons. In English a classic example would be John Smith while in Spanish it would be Carlos Garcia or Wei Wang in East Asia. This presents the problem of how to distinguish between distinct persons. The second problem arises from splits or variations in the same persons name. This can be described as the James T Kirk or Captain Kirk problem because this name might be represented as JT Kirk, James Tiberius Kirk or Kirk T James and so on with punctuation throwing additional confusion into the mayhem.
+
+ORCID contributes to solving this problem through the use of unique identifiers. It is not the only researcher identifier system out there but it has the huge advantage of being free and open access while ORCID profiles are controlled by researchers themselves.
+
+Scott Chamberlain from ROpenSci has developed the `rorcid` package to access the ORCID API in R. `rorcid` is well written and documented with plenty of examples. This article provides an introduction to `rorcid` focusing on common tasks you are likely to want to use ORCID for and how to deal with processing the return from the API in R in a way that produces useful data. Please feel welcome to suggest improvements!
+
+When working with ORCID we commonly start from two different positions:
+
+a) We have the name of a researcher and possibly other information about them such as their organisation. We want to look up their ORCID profile. 
+b) We have an ORCID identifier and we want to retrieve information such as publications or funding information.
+
+We will deal with each of these in turn.
+
+## Getting Started
+
+We need to install the `rorcid` package. We will also install some helper packages. You will probably already have the tidyverse (we'll mainly use `purrr`, `dplyr` and the pipe `%>%`) and we'll use `janitor` to consistently clean up column names. 
+
+```{r eval=FALSE}
+install.packages("rorcid")
+install.packages("tidyverse")
+install.packages("janitor")
+install.packages("usethis")
+```
+
+```{r message=FALSE}
+library(rorcid)
+library(tidyverse)
+library(janitor)
+library(usethis)
+```
+
+ORCID requires us to authenticate with an ORCID API Key to use the public API. There are two ways to do this. The easiest way to get started is simply to run `orcid_auth()` which will open a browser window and invite you to login (you will of course need to sign up to login). You will then be asked to close the browser and you will be good to go. A token will be cached locally in your working directory. 
+
+
+```{r eval=FALSE, cache=FALSE}
+orcid_auth()
+```
+
+The second way, which works better for regular use, is to copy the API key displayed by `orcid_auth` minus the Bearer. Then call `usethis` to open up the Renviron file and enter and save the key as as ORCID_TOKEN="yourkey". 
+
+```{r eval=FALSE}
+usethis::edit_r_environ()
+```
+
+You will need to restart the R session for the key to take effect the first time you do this and reload any libraries. You should now be able to call the key with. 
+
+```{r eval=FALSE, cache=FALSE}
+Sys.getenv("ORCID_TOKEN")
+```
+
+## Looking up Researchers
+
+We have two main choices when we want to look up researchers with ORCID
+
+1. We use the most exact search criteria that we can (such as name, country, organisation, keywords)
+2. We cast the net wide and then narrow the potential results down.
+
+The choice you make will partly depend on the information that you have at hand. However, in reality you will often end up using the second option for reasons we will explore below.
+
+## Basic Searching
+
+`rorcid` divides calls to the API up into a range of functions providing access to distinct chunks of data. We will start with a simple query using `orcid()`. If we use a simple open query we will get a lot of results back (up to the default maximum of 100). 
+
+One tip when exploring ORCID is to use yourself as the example... because you should know what the right answer is. You can also use the fictitious, but incomplete, ORCID profile for Josiah Carberry, a specialist in psychoceramics, at [https://orcid.org/0000-0002-1825-0097](https://orcid.org/0000-0002-1825-0097).
+
+I'll just run a simple open search. 
+
+```{r}
+oldham <- orcid(query = "paul oldham")
+oldham
+```
+
+ORCID will return a default of 100 results for searches. Note that we only receive three fields back, the url, the orcid identifier in path and the host. 
+
+This is not really what we want because the query is looking for Paul OR Oldham. We can get closer by being more specific using the basic guide to search syntax [here](https://members.orcid.org/api/tutorial/search-orcid-registry).
+
+```{r}
+oldham_gen <- orcid(query = "given-names:paul AND family-name:oldham") %>% 
+  janitor::clean_names() 
+oldham_gen
+```
+
+We use `janitor::clean_names` in this code to convert awkward punctuation in column names to underscores. This makes life easier because we don't have to play with names like `orcid-identifier.uri`
+
+The search returns 2 people who share this name. We only have orcid identifiers at the moment but we can use the very useful browse function to view the data in a browser. Normally you will use this with a single ORCID at a time. This call will trigger a browser window.
+
+```{r eval=FALSE}
+rorcid::browse(as.orcid(oldham$orcid_identifier_path[[1]]))
+```
+
+But of course you can always browse multiple ORCIDs if you want to courtesy of `purrr`. This will open multiple tabs containing the ORCID profiles in your browser. Use this with caution if you have lots and lots of ORCID ids or you will live in interesting times. 
+
+```{r eval=FALSE}
+purrr::map(oldham_gen$orcid_identifier_path, rorcid::browse)
+```
+
+At this point you probably want to start exploring other search options to make the search more accurate. As Scott explains in the  `orcid()` documentation you can use [SOLR 3.6](https://cwiki.apache.org/confluence/display/solr/The+Standard+Query+Parser)) including Lucene with [DisMax](https://wiki.apache.org/solr/DisMax) and [Extended Dismax](http://wiki.apache.org/solr/ExtendedDisMax). 
+
+If we have more information available we might want to try something like this. In this case the query include the researchers previous affiliations.
+
+```{r}
+oldham <- orcid(query = "given-names:paul AND family-name:oldham AND 
+                affiliation-org-name:London School of Economics") %>% 
+  janitor::clean_names()
+oldham
+```
+
+A table of fields is available in this [SOLR tutorial](https://members.orcid.org/api/tutorial/search-orcid-registry) and there are also quite a number of examples in the `rorcid` function documentation to experiment with. The following query searches for the author name and the word patents across all text fields. Other useful fields to try with AND/OR are `other-names`, `keyword`, `work-titles`, and `digital-object-ids`. 
+
+```{r}
+oldham <- orcid(query = "given-names:paul AND family-name:oldham AND
+                text:patents") %>% 
+  janitor::clean_names()
+```
+
+## Dealing with Nosiy Names
+
+ORCID is intended to help address the problem of name disambiguation (same name but different persons or variants of names) but we still confront the problem of how much information we have in the first place. We are also presented with the problem of variations in the form of the same information (e.g. the London School of Economics or LSE or the London School of Economics and Political Science). The challenge with using precise match criteria at the outset is that we might miss valid variants of our terms. This means that we will often want to start by capturing the universe of things that need to be captured and then filter the data to arrive at the information we are looking for. 
+
+To illustrate, let's pull back some information on the common name John Smith. 
+
+```{r}
+smith <- orcid(query = "given-names:john AND family-name:smith") %>% 
+  janitor::clean_names() %>% 
+  mutate(source_source_orcid_path = orcid_identifier_path)
+```
+
+At the end of this code we have added a call to `dplyr::mutate` that copies the `orcid_identifier_path` to `source_source_orcid_path`. The reason for this is that when we send the `orcid_identifier_path` to other functions it comes back called `source_source_orcid_path`. To enable joins to input tables we simply add this column. 
+
+We have pulled back 81 identifiers for john smith. If you would like to pull back all data beyond the default maximum of 100 results (the first page) try using `recursive = TRUE`. 
+
+All we have to go on at present is the ORCID id. To pull back other information we will need to pass the orcid IDs to other `rorcid` functions. Here we will use `orcid_address` to retrieve the address data and then restrict the data to the UK ("GB"). 
+
+Many `rorcid` functions return a list containing one or more data frames so we will use `purrr` to extract the data frames. When using `map_df` from `purrr` note that NULLs and NAs can lead to errors. One tip when exploring list data for the first time is to use `purr::map` at first to inspect the data because it always returns a list and then experiment with `map_df` (see also `safely` and `possibly`). Also note that we use back ticks and not quotes around `[[` to subset into the list. 
+
+We will then filter the data on the `country_value` field. In this case we will find John Smiths in the UK (GB).
+
+```{r}
+smith_country <- orcid_address(smith$orcid_identifier_path) %>% 
+  purrr::map_df(., `[[`, 2) %>% # access address level
+  janitor::clean_names()
+  
+smith_country %>% 
+  filter(country_value == "GB")
+```
+
+We still have five results and not much more to go on. So the next step is to retrieve information about employment, education and keywords for the IDs. We will start with the raw oldham sets to get a feel for it. We use `orcid_employments()` to pull back the data. 
+
+```{r}
+oldham_employ <- rorcid::orcid_employments(oldham_gen$orcid_identifier_path) %>% 
+  map_df(., `[[`, "employment-summary") %>% 
+  janitor::clean_names()
+
+oldham_employ %>% 
+  select(1:2) %>% 
+  knitr::kable()
+```
+
+The employment records may be of different lengths. For example one oldham above has one entry and another has three. The `source_source_orcid_path` column is the key field foir identifying which oldham the records belong to.
+
+We will often be looking for data on more than one ORCID and entries with different numbers of rows will create a headache later on. So, we will often want to concatenate this data. To do this we use `dplyr::group_by` to group the data on the ORCID id. We then nest the data into a list column using `tidyr::nest` and give it a name. 
+
+```{r}
+nested <- oldham_employ %>%
+  group_by(source_source_orcid_path) %>% 
+  nest(.key = "employ")
+nested
+```
+
+We can now see that we have a tibble for the first entry and a second tibble with 3 rows for the second. We use nest because it allows us to build up a data frame consisting of tibbles of different lengths linked to the ORCID ID. To access a nested field we can subset as usual.
+
+```{r}
+nested$employ[[1]]
+```
+
+Or we can use `tidyr::unnest()`
+
+```{r}
+unnest(nested)
+```
+
+One word of caution is that `group_by` creates a grouped data.frame or tibble. It is not an issue in this case but normally any function that is applied to a grouped tibble will be applied based on the group variable. This can produce very odd results, so you will normally want to `ungroup()` afterwards. In this case checking `class(nested)` reveals we are good to go. 
+
+To scale up let's try fetching the employment data for the smith set and some other chunks of data. There are quite a few different chunks of data that we can call back with `rorcid` functions. For example `orcid_person` will retrieve basic data on the person including the country value. `orcid_bio` will retrieve any biographical text entries and can then be text mined. Here we will just quickly run through a number of other fields:
+
+```{r}
+smith_employ <- rorcid::orcid_employments(smith$orcid_identifier_path) %>% 
+  purrr::map_df(., `[[`, "employment-summary") %>% 
+  janitor::clean_names() %>% 
+  group_by(source_source_orcid_path) %>% 
+  nest(.key = "employment")
+
+nrow(smith_employ)
+```
+
+<!---For fun, it turns out that some of the John Smith entries are blank because they are spam entries. Can you figure out out which ones are spam?--->
+
+```{r}
+smith_education <- rorcid::orcid_educations(smith$source_source_orcid_path) %>%
+  purrr::map_df(., `[[`, "education-summary") %>%
+  janitor::clean_names() %>% 
+  group_by(source_source_orcid_path) %>% 
+  nest(.key = "education")
+
+nrow(smith_education)
+```
+
+```{r}
+smith_keywords <- rorcid::orcid_keywords(smith$source_source_orcid_path) %>%
+  purrr::map_df(., `[[`, "keyword") %>%
+  janitor::clean_names() %>% 
+  group_by(source_source_orcid_path) %>% 
+  nest(.key = "keyword")
+
+nrow(smith_keywords)
+```
+
+We can see that these calls are becoming repetitive. We are calling an specific `rorcid` function and then extracting a specific field into a data frame, suggesting we could start thinking about a helper function. We won't go there now but a quick initial sketch for that might be. 
+
+```{r eval=FALSE}
+df <- function(fun, id, field){
+  res <- fun(id) %>% 
+    purrr::map2_df(., `[[`, field) %>% 
+    janitor::clean_names() %>% 
+    group_by(source_source_orcid_path) %>% 
+    nest(.key = field)
+}
+```
+
+## Joining Profile Data Together
+
+We now have a bunch of chunks of data. Note how our original john smith data contained 81 unique ORCID ids but we are pulling back data frames with different numbers of rows (and of different lengths). So at the moment we have:
+
+- input orcids 81
+- employ 14
+- education 15
+- keywords 10
+
+We will often see this with ORCID and in some cases fields may be dominated by NULLs. For example, according to ORCID only about 2% of the 3 million ORCID ids in 2017 included a public email address.^[[https://members.orcid.org/api/tutorial/search-orcid-registry](https://members.orcid.org/api/tutorial/search-orcid-registry)] Researchers, including this one, are sick of endless academic spam and so will often choose not make their emails public. 
+
+To deal with the data frames with different numbers of rows we will start by creating a table of unique ids from ORCID path. One thing to watch out for here is that a seemingly valid input ORCID may return an NA. In the case of the john smith data there was one case of this which seemed to be a record flagged for removal. We can handle this with `tidyr::drop_na()`.
+
+```{r}
+ids <- bind_rows(smith_employ, smith_education, smith_keywords) %>% 
+  mutate(duplicated = duplicated(source_source_orcid_path)) %>% 
+  filter(duplicated == FALSE) %>% 
+  select(source_source_orcid_path) %>% 
+  drop_na()
+ids
+```
+
+When we have the unique ids we can use `dplyr::left_join()` to create a single data frame. If table joins are new to you in R try [this chapter of R for Data Science](http://r4ds.had.co.nz/relational-data.html). Here we place our ids on the left hand side and the other tables on the right hand side will be joined where there is a shared `source_source_orcid_path`.
+
+```{r}
+result <- left_join(ids, smith_employ, by = "source_source_orcid_path") %>%
+  left_join(., smith_education, by = "source_source_orcid_path") %>%
+  left_join(., smith_keywords, by = "source_source_orcid_path")
+result
+```
+
+So, we now have a data.frame that consists of list columns containing tibbles. Note that we have some NULLs where there is no data for a particular category for that ID. 
+
+If you are new to list columns, or `purrr` in general, a great place to start is [Jenny Bryans purrr tutorial](https://jennybc.github.io/purrr-tutorial/ls13_list-columns.html). 
+
+One of the great features of list columns is that we can search across them and add new values based on the matches. What we want to do now is to find John Smiths where the word University appears in their employment and their country is the US. We will carry out the search using `stringr::str_detect` which will return a logical value. We use `map` to map over the data and place this inside mutate to add a new column to the data frame. The code is a little more complicated than we might like because the use of map returns a vector of logical values. We use `map_lgl` and `any` to reduce this to a single TRUE/FALSE value. We then filter the data to those cases where both university and country are TRUE.^[ This example applies code in [Jenny Bryans purrr tutorial](https://jennybc.github.io/purrr-tutorial/ls13_list-columns.html)] 
+
+
+```{r warning=FALSE}
+result %>% 
+  mutate(university = map(employment, str_detect, "University"), 
+        university = map_lgl(university, any)) %>% 
+  mutate(country = map(employment, str_detect, "US"), 
+         country = map_lgl(country, any)) %>% 
+  filter(university == TRUE & country == TRUE)
+```
+
+So, we now have a data frame where we know that the John Smiths have University somewhere in their employment and that US also appears. Note that the `any` function can take `na.rm = TRUE` as an argument. We are getting closer.
+
+We can do the above without using map at all because `str_detect` will coerce columns consisting of a list of tibbles to vectors if it can. However, this will generate a warning that `argument is not an atomic vector; coercing` so expect to see that a lot. This code is easier to read than that above but suggests a need for some more work. 
+
+In this case we will also narrow down the data by searching for a keyword associated with an author. 
+
+```{r warning=FALSE}
+out <- result %>% 
+  mutate(university = str_detect(employment, "University")) %>% 
+  mutate(country = str_detect(employment, "US")) %>% 
+  mutate(term = str_detect(keyword, "Infrared transmission")) %>% 
+  filter(university == TRUE & country == TRUE & term == TRUE)
+ out
+```
+
+We have now reduced our original 81 john smiths to 1 who has a record of being at a University in the US who is interested in Infrared Transmission. If we wished to we can unnest the columns to inspect as we go. 
+
+```{r}
+out %>% unnest(employment)
+```
+
+One gotcha to be aware of is that if we try and unnest a column along with the rest of the columns we will get `Error: All nested columns must have the same number of elements`. In addition if we try and unnest a column containing NA or NULL or a literal NULL we get an error. The solution is to use `tidyr::drop_na()`.^[Unnest does take an argument `.drop` but I have failed to persuade that to work as I had hoped.]
+
+```{r}
+result %>% 
+  select(source_source_orcid_path, employment) %>% 
+  drop_na(employment) %>%
+  unnest() %>% 
+  head()
+```
+
+So list columns containing data frames are great for creating uniform data frames and for purposes such as searching across columns. They are also, more commonly, good for running models as described [here](http://ijlyttle.github.io/isugg_purrr/presentation.html#(1)). However, they can take a bit of getting used to. 
+
+## Retrieving Publication Meta data with rcrossref
+
+When we have identified the ORCID IDs that we want the logical next step is to retrieve publications. This is a big issue for a project I am working on in Kenya where we are working on the national research permit system. The idea we have is that we can use ORCID to pull back publications from researchers who at one time or another have received a permit for biodiversity related research. That should allow us to start building up an electronic repository of publications about biodiversity research in Kenya that can be made available to the public. Because ORCID profiles can be automatically updated (through services such as Crossref) we should be able to automate updating research publications without bothering researchers for copies of their publications. 
+
+We will work with a sample of ORCID IDs for 61 researchers who have worked in Kenya at some point or another. What we want to do is to retrieve their publications using the `rorcid::works`. We will use `map` again to send each ORCID id to the call to works. We will also add names to the list that is returned using `set_names`.
+
+```{r echo=FALSE}
+load("kenya_orcid.rda")
+```
+
+```{r}
+kenya_works <- map(kenya_orcid$orcid_identifier_path, rorcid::works) %>% 
+  set_names(., nm = kenya_orcid$orcid_identifier_path) 
+
+names(kenya_works[1:5])
+```
+
+What we get back from this is a named list containing data frames where the input ORCID identifier is the name for each list item. We can see this from a quick look using `str()`.
+
+```{r}
+str(kenya_works[1:5], max.level = 1)
+```
+
+We now want to convert the list of data frames to a single data frame but in doing so we want to pass the input ORCID ID from the name of the list into a column in the output. The reason for this is that the return from ORCID does not contain the ORCID ID we sent to the API but a range of ORCIDs that are the source for the works record. We need to add the ORCID ID for the person at the same time as we convert to one data frame. One way to do this is to use `map2_df` from `purrr`. This will map over `kenya_works` and the names at the same time. Mutate then adds a column containing the names (.y) as orcid_id. 
+
+```{r}
+pubs <- kenya_works %>%
+  map2_df(., names(kenya_works), ~ mutate(.x, orcid_id = .y)) %>% 
+  janitor::clean_names()
+```
+
+Another way to do the same thing with less typing is to use the newer `purrr::imap` function which is a shorthand for `map2_df(x, names(x), ...)`.
+
+```{r}
+pubs <- kenya_works %>% 
+  imap_dfr(~mutate(.x, orcid_id = .y)) %>% 
+  janitor::clean_names()
+```
+
+We now have a single data frame with the publications that keeps the orcid_id as the key. Let's take a look at who has the most works.
+
+```{r}
+pubs %>% count(orcid_id, sort = TRUE)
+```
+
+We can take a look at the top result based on the count of records for the ORCID ID. Note that the count above is a count of entries linked to the ORCID ID and does not necessarily add up to a count of publications (it actually over counts). One of the top researchers is Daniel Masiga who has been working on Leishmaniasis in Baringo and Nakuru countries in Kenya. Let's take a look at his public profile with `browse` or by opening the permanent link to the profile at [https://orcid.org/0000-0001-7513-0887](https://orcid.org/0000-0001-7513-0887).
+
+```{r eval=FALSE}
+browse("0000-0001-7513-0887")
+```
+
+Let's take a look at the titles of works that include reference to Kenya. 
+
+```{r}
+pubs %>% mutate(kenya = str_detect(title_title_value, pattern = "Kenya")) %>% 
+  filter(kenya == TRUE) %>% 
+  select(title_title_value)
+```
+
+Note here that we have some duplicated entries (possibly coming into the profile from different sources?) that may need investigating. 
+
+What we will normally want from this table will be the dois where available. We can then pass the dois to other services such as Crossref using `rcrossref` to retrieve publication information.  
+
+## Accessing the DOI field. 
+
+```{r}
+doi <- pubs %>%
+  select(external_ids_external_id)
+```
+
+If we take a look at the doi field we will see that we have a lot of list() and NULL items as well as data.frames.
+
+```{r}
+str(doi[15:25,])
+```
+
+The first thing we need to do is to get rid of the NULL and the empty list() entries. Normally we can use `purrr::compact()` directly to do this but in this case the NULLs are inside the list objects, so we call compact inside map, we then bind the list of data frames using `map_df` and a call to `bind_rows`.
+
+```{r}
+doi <- doi %>%
+  map(., compact) %>% 
+  map_df(bind_rows) %>% 
+  janitor::clean_names()
+
+doi[1:5,] %>%
+  select(1:3)
+```
+
+It is worth noting that the external_id_type column contains a variety of different kind of identifiers that we might want to explore (such as isbn and issn etc).
+
+```{r}
+doi %>% 
+  group_by(external_id_type) %>%
+  count()
+```
+
+We will just filter the data to the dois and then pass them on to rcrossref to retrieve the publication meta data.  
+```{r}
+doi <- doi %>% filter(external_id_type == "doi") %>% 
+  select(external_id_value)
+```
+
+You will need to `install.packages("rcrossref")` and load the library to generate the data. 
+
+
+```{r warning=FALSE}
+library(rcrossref)
+crossref_kenya <- rcrossref::cr_works(doi$external_id_value)
+```
+
+As the function churns through the 690 dois warning messages will pop up with things like `404: Resource not found. - (115.001086)404`. I got 9 of these on this test. We can easily access this data.
+
+```{r}
+crossref_kenya <- crossref_kenya$data %>% 
+  janitor::clean_names()
+crossref_kenya
+```
+
+Let's take a look at the journals
+
+```{r}
+crossref_kenya %>% 
+  count(container_title, sort = TRUE)
+```
+
+There are quite a number of things that we could do from here such as attempting to retrieve full text links, abstracts, citations or text mining the available data. For example we could retrieve full text data from PLOS using packages such as `rplos`. For the moment, we have covered a lot of ground in using rorcid and bridging across to other data sources such as rcrossref. 
+
+## Round Up
+
+ORCID is an increasingly important data service for research funding organisations, university administrators, publishers and researchers interested in understanding trends in science and technology. The `rorcid` package provides a straightforward and easy way to access ORCID data in R while Python users can try [python-orcid](https://github.com/ORCID/python-orcid).
+
+This article has walked through the basics of searching using rorcid and approaches to filtering the data. As we have seen one reality of working with names is dealing with homonyms or distinct persons who share the same name (also known as lumps). One challenge with the data returned by ORCID is that the completeness of different data fields can vary wildly. We addressed this problem by creating a single data frame consisting of list columns containing data frames and then searching across them. While there is room for improvement in this approach it
+illustrates the power of list columns. 
+
+We finished off by retrieving publication data from a sample of researchers profiles for biodiversity research in Kenya. We then bridged across to the rcrossref package to pull back the publication data. 
+
+Many thanks to Scott Chamberlain for his hard work on the rorcid package! As always corrections or suggestions are welcome.
+
+## References
+
+
+
+
+
