@@ -244,7 +244,7 @@ oldham_employ %&gt;%
 </tr>
 </tbody>
 </table>
-<p>The employment records may be of different lengths. For example one oldham above has one entry and another has three. The <code>source_source_orcid_path</code> column is the key field foir identifying which oldham the records belong to.</p>
+<p>The employment records may be of different lengths. For example one oldham above has one entry and another has three. The <code>source_source_orcid_path</code> column is the key field for identifying which oldham the records belong to.</p>
 <p>We will often be looking for data on more than one ORCID and entries with different numbers of rows will create a headache later on. So, we will often want to concatenate this data. To do this we use <code>dplyr::group_by</code> to group the data on the ORCID id. We then nest the data into a list column using <code>tidyr::nest</code> and give it a name.</p>
 <pre class="r"><code>nested &lt;- oldham_employ %&gt;%
   group_by(source_source_orcid_path) %&gt;% 

@@ -183,7 +183,7 @@ oldham_employ %>%
   knitr::kable()
 ```
 
-The employment records may be of different lengths. For example one oldham above has one entry and another has three. The `source_source_orcid_path` column is the key field foir identifying which oldham the records belong to.
+The employment records may be of different lengths. For example one oldham above has one entry and another has three. The `source_source_orcid_path` column is the key field for identifying which oldham the records belong to.
 
 We will often be looking for data on more than one ORCID and entries with different numbers of rows will create a headache later on. So, we will often want to concatenate this data. To do this we use `dplyr::group_by` to group the data on the ORCID id. We then nest the data into a list column using `tidyr::nest` and give it a name. 
 
