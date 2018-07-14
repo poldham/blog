@@ -180,8 +180,8 @@ oldham</code></pre>
                 text:patents&quot;) %&gt;% 
   janitor::clean_names()</code></pre>
 </div>
-<div id="dealing-with-nosiy-names" class="section level2">
-<h2>Dealing with Nosiy Names</h2>
+<div id="dealing-with-noisy-names" class="section level2">
+<h2>Dealing with Noisy Names</h2>
 <p>ORCID is intended to help address the problem of name disambiguation (same name but different persons or variants of names) but we still confront the problem of how much information we have in the first place. We are also presented with the problem of variations in the form of the same information (e.g. the London School of Economics or LSE or the London School of Economics and Political Science). The challenge with using precise match criteria at the outset is that we might miss valid variants of our terms. This means that we will often want to start by capturing the universe of things that need to be captured and then filter the data to arrive at the information we are looking for.</p>
 <p>To illustrate, let’s pull back some information on the common name John Smith.</p>
 <pre class="r"><code>smith &lt;- orcid(query = &quot;given-names:john AND family-name:smith&quot;) %&gt;% 

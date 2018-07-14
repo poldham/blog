@@ -140,7 +140,7 @@ oldham <- orcid(query = "given-names:paul AND family-name:oldham AND
   janitor::clean_names()
 ```
 
-## Dealing with Nosiy Names
+## Dealing with Noisy Names
 
 ORCID is intended to help address the problem of name disambiguation (same name but different persons or variants of names) but we still confront the problem of how much information we have in the first place. We are also presented with the problem of variations in the form of the same information (e.g. the London School of Economics or LSE or the London School of Economics and Political Science). The challenge with using precise match criteria at the outset is that we might miss valid variants of our terms. This means that we will often want to start by capturing the universe of things that need to be captured and then filter the data to arrive at the information we are looking for. 
 
